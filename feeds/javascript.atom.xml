@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Prahlad Yeri's Blog - JavaScript</title><link href="/" rel="alternate"></link><link href="/feeds/javascript.atom.xml" rel="self"></link><id>/</id><updated>2022-10-14T08:00:00+05:30</updated><subtitle>Educate and solve problems is my mantra. I'm skilled in web development and a quick learner, I also like blogging and contributing to open source.</subtitle><entry><title>Converting Userscript to Chrome Extension: The monkeys are no longer needed</title><link href="/blog/2022/10/converting-userscripts-to-chrome-extensions.html" rel="alternate"></link><published>2022-10-14T08:00:00+05:30</published><updated>2022-10-14T08:00:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2022-10-14:/blog/2022/10/converting-userscripts-to-chrome-extensions.html</id><summary type="html">&lt;p&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/userScripts"&gt;Userscripts&lt;/a&gt; are a very useful and handy tool in the hands of power users. Just like customized garnishing, salt and pepper, etc. we put on our food before we eat, we can add custom javascript tweaks on the websites we visit.&lt;/p&gt;
+&lt;p&gt;For example, you may want Reddit to automatically highlight …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/userScripts"&gt;Userscripts&lt;/a&gt; are a very useful and handy tool in the hands of power users. Just like customized garnishing, salt and pepper, etc. we put on our food before we eat, we can add custom javascript tweaks on the websites we visit.&lt;/p&gt;
+&lt;p&gt;For example, you may want Reddit to automatically highlight the recently posted (unread) comments on a post or thread. Another example is that when you perform a Google search, you may want trusted sites highlighted specifically (based on a pre-filtered list if you have one).&lt;/p&gt;
+&lt;p&gt;The classical or traditional way of running these userscripts is by using the "monkey" extensions, the most popular of them being &lt;a href="https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/"&gt;Greasemonkey&lt;/a&gt; and &lt;a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en"&gt;Tampermonkey&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;These extensions allow you to write scripts that execute when you visit the particular sites for them. While this is a great way of using userscripts, the better and more efficient way is to always convert them into browser extensions.&lt;/p&gt;
+&lt;p&gt;Extensions run natively in your browsers as you're using one less execution layer. Besides, some extensions like Tampermonkey also update themselves too frequently (perhaps to keep up with the browser updates) and that might cause compatibility issues.&lt;/p&gt;
+&lt;p&gt;While comprehensive extension development is beyond the scope of this blog post, the conversion from a userscript to a basic chrome extension is quite straightforward. All you have to create is a folder for your extension and create two files named &lt;code&gt;manifest.json&lt;/code&gt; and &lt;code&gt;content.js&lt;/code&gt;. The &lt;code&gt;content.js&lt;/code&gt; is where you'll place the javascript code presently in your script file. Two important points to note here is that there should be no use of special &lt;code&gt;GM_*&lt;/code&gt; functions and you must not use any &lt;code&gt;return&lt;/code&gt; statement unless it's inside a function.&lt;/p&gt;
+&lt;p&gt;Here is a very basic &lt;code&gt;manifest.json&lt;/code&gt; example.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;manifest_version&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Reddit Plus&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;description&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Highlight unread comments and mark them in blue.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;version&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;1.0&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;icons&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;16&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;icon.png&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;48&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;icon.png&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;128&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;icon.png&amp;quot;&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;content_scripts&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="s2"&gt;&amp;quot;matches&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;https://*.reddit.com/*&amp;quot;&lt;/span&gt;
+      &lt;span class="p"&gt;],&lt;/span&gt;
+      &lt;span class="s2"&gt;&amp;quot;exclude_matches&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;https://*.reddit.com/test/*&amp;quot;&lt;/span&gt;
+      &lt;span class="p"&gt;],&lt;/span&gt;
+      &lt;span class="s2"&gt;&amp;quot;js&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;lib/jquery.min.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;content.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;browser_action&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;default_icon&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;icon.png&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;default_popup&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;popup.html&amp;quot;&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt;
+
+  &lt;span class="s2"&gt;&amp;quot;background&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="s2"&gt;&amp;quot;scripts&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;background.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+      &lt;span class="s2"&gt;&amp;quot;persistent&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;permissions&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;activeTab&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;storage&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;https://ajax.googleapis.com/&amp;quot;&lt;/span&gt;
+  &lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;My userscript also depends on jquery and instead of calling it through the CDN, I've included it as a separate script under "lib" folder as "lib/jquery.min.js". Having an &lt;code&gt;icon.png&lt;/code&gt; helps you distinguish the extension form others. The &lt;code&gt;background.js&lt;/code&gt; is required as an empty placeholder. So, there are 5 files in total (the last one being optional):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;manifest.json&lt;/li&gt;
+&lt;li&gt;content.js&lt;/li&gt;
+&lt;li&gt;icon.png&lt;/li&gt;
+&lt;li&gt;background.js&lt;/li&gt;
+&lt;li&gt;lib/jquery.min.js&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Once you have this structure, just go to &lt;code&gt;chrome://extensions&lt;/code&gt; on your browser and switch on the "Developer Mode". This will allow you to install unpacked extensions. Just click on the "Load Unpacked" and browse your extension folder.&lt;/p&gt;
+&lt;p&gt;That's it! You can now test your extension by visiting the site just like you did with userscripts and the monkey extensions. This was for chrome browser which I happen to use but extension development workflow for other browsers like firefox or edge shouldn't be much different than this. Let me know how your userscript to extension conversion goes in the comments below.&lt;/p&gt;</content><category term="JavaScript"></category><category term="Userscripts"></category><category term="Extensions"></category></entry><entry><title>How to use window.hashchange event to implement routing in vanilla javascript</title><link href="/blog/2020/08/how-to-use-windowhashchange-event-to-implement-routing-in-vanilla-javascript.html" rel="alternate"></link><published>2020-08-06T01:00:00+05:30</published><updated>2020-08-06T01:00:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2020-08-06:/blog/2020/08/how-to-use-windowhashchange-event-to-implement-routing-in-vanilla-javascript.html</id><summary type="html">&lt;p&gt;The popular wisdom when it comes to implement routing in your client side apps or single page apps (SPA) as they are called these days, is to just grab an "off-the-shelf" framework like angular or vue and start using it. Well, that's the easy way out but you will never …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The popular wisdom when it comes to implement routing in your client side apps or single page apps (SPA) as they are called these days, is to just grab an "off-the-shelf" framework like angular or vue and start using it. Well, that's the easy way out but you will never understand the nuts and bolts of how things like routing work at the low level. Besides, if routing is the only major requirement in your app, why riddle your app with unnecessary bloat of frameworks?&lt;/p&gt;
+&lt;p&gt;&lt;img alt="source code" src="/uploads/code.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;If you happen to agree with that wisdom, you can proceed further to learn how exactly to implement routing in vanilla javascript.&lt;/p&gt;
+&lt;p&gt;When it comes to routing, your app has two main options:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;To use hash urls such as &lt;code&gt;http://localhost/#login&lt;/code&gt; and &lt;code&gt;http://localhost/#register&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;To use fully fledged or "proper" urls like &lt;code&gt;http://localhost/login&lt;/code&gt; and &lt;code&gt;http://localhost/register&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;As you can see, the major difference is that the former method uses hashes (&lt;code&gt;#&lt;/code&gt;) which are used to control routing on the client side whereas the latter method uses complete urls without the hashes. The latter method requires you to use the &lt;code&gt;history.pushState&lt;/code&gt; API method and while these urls look quite sexy and elegant, they come with a cost: your backend web server must support routing up to multiple path fragments too. This means that you will need a "proper" web-server on the backend such as apache or nginx, you can't do this with "simple" http servers such as the python's built-in &lt;code&gt;http.server&lt;/code&gt; module or even static hosting facilities like github-pages and netlify. So, if you intend to host your app using github-pages or netlify, you must remember to use hash urls only!&lt;/p&gt;
+&lt;p&gt;Considering that hash urls method is compatible with all kinds of backend servers, its a good practice to use them in all apps, irrespective of the backend used. Once again, popular wisdom may not agree with that and most "experts" may in fact advise you to do the opposite!&lt;/p&gt;
+&lt;p&gt;Coming to the point, implementing hash urls is as easy as handling the &lt;code&gt;window.hashchange()&lt;/code&gt; browser event. Using vanilla javascript, it can be as simple as this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;hashchange&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+    &lt;span class="k"&gt;switch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;location&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;hash&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;#index&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+            &lt;span class="nx"&gt;doIndexStuff&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;#login&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+            &lt;span class="nx"&gt;doLoginStuff&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;#register&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+            &lt;span class="nx"&gt;doRegisterStuff&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="k"&gt;default&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+            &lt;span class="nx"&gt;handleDefaultCase&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You see how simple url routing is with &lt;code&gt;hashchange&lt;/code&gt;? You want to have advanced routing features like path fragments and parameters? No problemo! You can use simple string.split() method to take care of that:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;location&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;hash&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;substring&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;//#user/prahlad?view=profile&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;parts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;url&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;?&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;fragments&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;parts&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// user/prahlad&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;paramParts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;parts&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;amp;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="nx"&gt;params&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[];&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;paramParts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;pair&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;paramParts&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;=&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+        &lt;span class="nx"&gt;obj&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{};&lt;/span&gt;
+    &lt;span class="nx"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;pair&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;pair&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+    &lt;span class="nx"&gt;params&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This simple piece of code will parse your hash url and fill the successive path fragments (&lt;code&gt;user/prahlad&lt;/code&gt;) in the &lt;code&gt;fragments&lt;/code&gt; array and the parameter pairs (&lt;code&gt;?view=profile&lt;/code&gt;) as key-value objects in the &lt;code&gt;params&lt;/code&gt; array. You can of course mix, match and customize this code as per your own scenario but this is all there is to routing in about 90% of use cases!&lt;/p&gt;
+&lt;p&gt;Enjoy and Happy Coding!&lt;/p&gt;</content><category term="JavaScript"></category><category term="Routing"></category></entry><entry><title>How to implement URL routing in vanilla javascript</title><link href="/blog/2019/07/url-routing-pure-js.html" rel="alternate"></link><published>2019-07-18T13:30:00+05:30</published><updated>2019-07-18T13:30:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2019-07-18:/blog/2019/07/url-routing-pure-js.html</id><summary type="html">&lt;p&gt;In this post, I'll show you how to implement dynamic URL routing in vanilla JavaScript without using any heavy frameworks like angular, vue, react, ember, etc. in less than 30 lines of code!&lt;/p&gt;
+&lt;p&gt;The important attributes you need to know are &lt;code&gt;window.location&lt;/code&gt; and more specifically to our purpose, &lt;code&gt;window …&lt;/code&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;In this post, I'll show you how to implement dynamic URL routing in vanilla JavaScript without using any heavy frameworks like angular, vue, react, ember, etc. in less than 30 lines of code!&lt;/p&gt;
+&lt;p&gt;The important attributes you need to know are &lt;code&gt;window.location&lt;/code&gt; and more specifically to our purpose, &lt;code&gt;window.location.hash&lt;/code&gt;. This built-in property basically tells us what page URL or route we are presently in (ex: &lt;code&gt;index.html#something&lt;/code&gt;). This property is blank if there is no hash URL and you are on the main URL (ex: &lt;code&gt;index.html&lt;/code&gt; or &lt;code&gt;index.html#&lt;/code&gt;). In that case, you may assume a default hash such as &lt;code&gt;_index&lt;/code&gt; to maintain consistency:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;displayHash&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;theHash&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;location&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;hash&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;theHash&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;theHash&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;_index&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;elems&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;querySelectorAll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;#caption&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;elems&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;innerText&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Current Hash: &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;theHash&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This simple function displays the current hash in a heading element named &lt;code&gt;#caption&lt;/code&gt;. If you want this to fire each time the hash changes (user navigated to a different page in your app), you can do that using the &lt;code&gt;hashchange&lt;/code&gt; window event:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;hashchange&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;hashchange event&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;displayHash&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And finally, in order to display the heading initially when the user first loads the URL in their browser, you can call &lt;code&gt;displayHash()&lt;/code&gt; in the &lt;code&gt;DOMContentLoaded&lt;/code&gt; event call too:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;DOMContentLoaded&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;ev&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;DOMContentLoaded event&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;displayHash&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;That's all folks! URL Routing is so easy to implement without using any heavy and bloated frameworks at all. The demo for this example can be found at &lt;a href="https://prahladyeri.github.io/learn-js/url-routing"&gt;prahladyeri.github.io/learn-js/url-routing&lt;/a&gt;. You can see that as you click the individual hyper-links, the heading label changes to display the current hash.&lt;/p&gt;
+&lt;p&gt;The complete source code for this can be found at my github repo, &lt;a href="https://github.com/prahladyeri/learn-js/blob/master/url-routing/index.html"&gt;prahladyeri/learnjs&lt;/a&gt; (its less than 30 lines ;-).&lt;/p&gt;
+&lt;p&gt;I came across this solution through this &lt;a href="https://stackoverflow.com/a/41426078/849365"&gt;StackOverflow post by Tulio Faria&lt;/a&gt; which uses jquery but I adapted it for vanilla JavaScript.&lt;/p&gt;</content><category term="URL"></category><category term="Productivity"></category></entry><entry><title>CodeMirror - A simple and efficient code editor component for your web applications</title><link href="/blog/2019/06/codemirror-a-simple-and-efficient-code-editor-component-for-your-web-applications.html" rel="alternate"></link><published>2019-06-25T18:21:00+05:30</published><updated>2019-06-25T18:21:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2019-06-25:/blog/2019/06/codemirror-a-simple-and-efficient-code-editor-component-for-your-web-applications.html</id><summary type="html">&lt;p&gt;I'm a huge fan of simple things in life, things that achieve a lot with minimal efforts or configuration from the user's end. And whenever I come across such simple things, I like to share it with everyone and that's what I'm doing now.&lt;/p&gt;
+&lt;p&gt;In my recent flask based web …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I'm a huge fan of simple things in life, things that achieve a lot with minimal efforts or configuration from the user's end. And whenever I come across such simple things, I like to share it with everyone and that's what I'm doing now.&lt;/p&gt;
+&lt;p&gt;In my recent flask based web project, one requirement was to provide a code editor in the app itself. The web app has a main system and a subsystem, and the user wanted the subsystem part to be dynamically scripted so that she can change that part of the code later and customize it herself. The web-based editor looks something like this (except that it contains the actual code instead of this Hello World placeholder):&lt;/p&gt;
+&lt;p&gt;&lt;img alt="CodeMirror Demo" src="/uploads/CodeMirror_demo.png"&gt;&lt;/p&gt;
+&lt;p&gt;This was possible due to &lt;a href="https://codemirror.net/"&gt;CodeMirror&lt;/a&gt; which is an open source javascript library, they have a &lt;a href="https://github.com/codemirror/CodeMirror/"&gt;github repository&lt;/a&gt; too. You don't even have to download this library, its available on CDNJS, so you can simply link the stylesheet and two scripts in your html &lt;code&gt;head&lt;/code&gt; tag like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.47.0/codemirror.min.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;link&lt;/span&gt; &lt;span class="na"&gt;rel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.47.0/codemirror.min.css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.47.0/mode/python/python.min.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The first two resources are necessities (&lt;code&gt;codemirror.min.js&lt;/code&gt; and &lt;code&gt;codemirror.min.css&lt;/code&gt;), whereas the last one for mode (&lt;code&gt;python.min.js&lt;/code&gt;) depends on which language or mode you want the editor for. In my case, it was python but there are dozens of modes available for different languages like java, php, ruby, html, css, etc.&lt;/p&gt;
+&lt;p&gt;The best thing about using this component is getting started itself! All you have to do is create a html &lt;code&gt;textarea&lt;/code&gt; (which I already had as a dumb code editor!) and you are good to go:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;ready&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;adding codeMirror object&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;myCodeMirror&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;CodeMirror&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;fromTextArea&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;txtScript&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+       &lt;span class="nx"&gt;lineNumbers&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="nx"&gt;mode&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;python&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;});&lt;/span&gt;
+    &lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;myCodeMirror&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;change&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;editor&lt;/span&gt; &lt;span class="p"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="c1"&gt;//console.log(editor.getValue());   &lt;/span&gt;
+    &lt;span class="p"&gt;});&lt;/span&gt;
+    &lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;myCodeMirror&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;keydown&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;editor&lt;/span&gt; &lt;span class="p"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="c1"&gt;//do whatever you want&lt;/span&gt;
+    &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The &lt;code&gt;CodeMirror.fromTextArea()&lt;/code&gt; is the important method which directly converts your &lt;code&gt;textarea&lt;/code&gt; to a code editor, so simple and so effective! But note that after that, it totally makes your &lt;code&gt;textarea&lt;/code&gt; element vanish (&lt;code&gt;display: none&lt;/code&gt;) and you'll have to use the CodeMirror object variable (&lt;code&gt;window.myCodeMirror&lt;/code&gt; in this example) to read or write text to it:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;code&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;myCodeMirror&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getValue&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;//get value from editor&lt;/span&gt;
+&lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;myCodeMirror&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setValue&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;code&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;//set value to editor&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This component also has tons of &lt;a href="https://codemirror.net/doc/manual.html#config"&gt;configuration options&lt;/a&gt; like tabSize, theme, direction (ltr/rtl), lineNumbers, etc. I hope this editor component will help you if you ever come across a web project that requires it.&lt;/p&gt;
+&lt;p&gt;Happy coding, code and prosper!&lt;/p&gt;</content><category term="Internet"></category><category term="Open Source"></category><category term="Editor"></category></entry><entry><title>Userscript recipe: Adding auto-refresh button to gmail classic</title><link href="/blog/2018/08/userscript-recipe-adding-auto-refresh-button-to-gmail-classic.html" rel="alternate"></link><published>2018-08-28T21:48:00+05:30</published><updated>2018-08-28T21:48:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2018-08-28:/blog/2018/08/userscript-recipe-adding-auto-refresh-button-to-gmail-classic.html</id><summary type="html">&lt;p&gt;Call me old, but I much prefer the older classic GMail interface to the modern bloated one. Not only is the classic version less bandwidth consuming, but also simplistic in nature with just the buttons and tools that we need.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;I somehow don't like it when zillions of AJAX scripts …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Call me old, but I much prefer the older classic GMail interface to the modern bloated one. Not only is the classic version less bandwidth consuming, but also simplistic in nature with just the buttons and tools that we need.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;I somehow don't like it when zillions of AJAX scripts do all kinds of magic in the background of the web-page. However, I still want the GMail tab to auto-refresh itself and check new mails while I'm working in another tab in my browser. If only Google provided a way to auto-refresh in the classic interface! Since there isn't one, I &lt;a href="https://gist.github.com/prahladyeri/b66ba873106474520577ff744aa1ed46"&gt;wrote a user-script&lt;/a&gt; to add this functionality:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="GMail Classic" class="size-full wp-image-1009" height="561" src="/uploads/2018/08/gmail_classic_final.png" width="1171"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;GMail Classic&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;You can use any Script extension for Chrome/Firefox such as &lt;strong&gt;GreaseMonkey&lt;/strong&gt; or &lt;strong&gt;TamperMonkey&lt;/strong&gt; to add this userscript to your browser. I really hope you find this userscript useful!&lt;/p&gt;</content><category term="JavaScript"></category></entry><entry><title>Backbone.Events+Promises+async/await is a great combination for building javascript apps</title><link href="/blog/2018/07/backbone-events-promises-async_await-combination.html" rel="alternate"></link><published>2018-07-12T11:59:00+05:30</published><updated>2018-07-12T11:59:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2018-07-12:/blog/2018/07/backbone-events-promises-async_await-combination.html</id><summary type="html">&lt;p&gt;At the risk of being a contrarian, I'd like to show in this article how exactly can the Backbone's Events model be combined with the more modern constructs of Promises and async/await to build a killer app using JavaScript.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;First, let's try to understand why do we need these …&lt;/p&gt;</summary><content type="html">&lt;p&gt;At the risk of being a contrarian, I'd like to show in this article how exactly can the Backbone's Events model be combined with the more modern constructs of Promises and async/await to build a killer app using JavaScript.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;First, let's try to understand why do we need these constructs for asynchronous programming when JavaScript itself is a mostly asynchronous language featuring events and function callbacks. The &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"&gt;Promise API&lt;/a&gt; was introduced in ES6 standard as a way of preventing callback hell:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;someFunction&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;anotherFunction&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+  &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;yetAnotherFunction() {&lt;/span&gt;
+    &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;reallyCoreFunction() {&lt;/span&gt;
+      &lt;span class="c1"&gt;//readability sucks now!&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This is only three layers of callbacks, imagine what will happen when there are a hundred of them which is quite possible in a medium sized web app with multiple ajax calls and a dynamic interface. To solve this problem, functions started returning a "Promise" object instead of a callback function, so instead of multiple layers of callbacks, we can now use "function chaining" using the &lt;strong&gt;then&lt;/strong&gt; keyword like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;someFunction()
+.then(function(){
+  yetAnotherFunction();
+})
+.then(function(){
+  reallyCoreFunction();
+})
+//readability is better now!
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;As you can see, the Promise API has improved the readability to a considerable extent. Instead of a callback mechanism, the callee returns an object called &lt;strong&gt;Promise&lt;/strong&gt; which can be chained for further execution. For this to happen, the callee has to call resolve() in order for the caller to end the wait and trigger further execution in the next chain:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Promise Model" class="size-full wp-image-921" height="222" src="/uploads/2018/07/promise_model.png" width="755"&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Promise Model&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;But the async/await construct goes even further than this. You don't even need to do function chaining using &lt;strong&gt;then&lt;/strong&gt;, but the &lt;strong&gt;await&lt;/strong&gt; keyword itself is enough to do this. Internally, the async/await model uses the Promise API to achieve its end because even in this model, the callee has to make the resolve() call in order to return execution control to the caller and the process continues after the next await statement:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="async await Model" class="size-full wp-image-922" height="222" src="/uploads/2018/07/async_await_model.png" width="755"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;async await Model&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;However, one disadvantage of async/await is that the caller can only wait, it cannot receive a returned value which is possible in the Promise model. Another disadvantage is that the caller function itself who invoked the await statement needs to be declared as async which means it cannot be a part of a sequential statements in another process, but has to work independently as shown &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function#Examples"&gt;in this example&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;var sequentialStart = async function() {
+  console.log(&amp;#39;==SEQUENTIAL START==&amp;#39;);
+  const slow = await resolveAfter2Seconds(); // If the value of the expression following the await operator is not a Promise, it&amp;#39;s converted to a resolved Promise.
+  const fast = await resolveAfter1Second();
+  console.log(slow);
+  console.log(fast);
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Finally, the most important thing here is to realize that both Promises and async/await are just one level of asynchrony, let's call this detail asynchrony or &lt;strong&gt;micro asynchrony&lt;/strong&gt;, but there is also the other kind that works at the broader level which can be termed &lt;strong&gt;macro asynchrony&lt;/strong&gt;, and this is where Backbone.Events comes into the picture.&lt;/p&gt;
+&lt;p&gt;Consider that you have a complex web application with several views and each component should be able to trigger a message or event to any other component asynchronously in order for the app to render and function properly. Consider an app with a &lt;strong&gt;loginView&lt;/strong&gt; that needs to trigger an alert that a user has just signed in. Now, keeping the separation of concerns, the best practice here would be that the loginView shouldn't try to render that part of the DOM and leave it to the other component: &lt;strong&gt;navbarView&lt;/strong&gt;. Now, how can our loginView be able to "tell" the navbarView asynchronously over the wire to display that alert? Both Promises and async/await are of no use here, and hence we need a macro-level all-purpose &lt;strong&gt;Event Bus&lt;/strong&gt;, similar to the one that Backbone.js provides us:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="backbone.events Model" class="size-full wp-image-920" height="278" src="/uploads/2018/07/backbone.events_model.png" width="757"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;backbone.events Model&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this case, our caller and callee are inside separate components and don't even know each other. And separation of concerns imply that they cannot even contact each other directly. Now, Backbone provides this useful trigger/listen mechanism called &lt;strong&gt;Backbone.Events&lt;/strong&gt; using which any object in your app can listen to the events triggered on any other object! In this case, the loginView triggers an event called "navbarView.alert" and thus "tells" the navbarView that it has to do something (in this case show an alert). This mechanism also supports passing of any kind of data along with the triggering of event (in this case the &lt;em&gt;message&lt;/em&gt; parameter).&lt;/p&gt;
+&lt;p&gt;Thus, we can see that combining the power of all these asynchronous models, we can easily handle any level of complexity in our app, provided that our &lt;a href="https://prahladyeri.com/blog/2018/07/the-right-way-to-architect-single-page-web-applications.html"&gt;app itself is structured in the right way from the start&lt;/a&gt;.&lt;/p&gt;</content><category term="Backbone"></category><category term="JavaScript"></category></entry><entry><title>How to create a Server-less Google Drive client using only HTML and JavaScript</title><link href="/blog/2018/07/how-to-create-a-server-less-google-drive-client-using-only-htmljavascript.html" rel="alternate"></link><published>2018-07-09T12:23:00+05:30</published><updated>2018-07-09T12:23:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2018-07-09:/blog/2018/07/how-to-create-a-server-less-google-drive-client-using-only-htmljavascript.html</id><summary type="html">&lt;p&gt;A few days ago, I had to work on a project of this kind and the information and documentation available on this topic was quite bewildering. As a result, I decided to write this article in order to make everything available at one place.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;Almost everyone knows about the &lt;a href="https://github.com/google/google-api-python-client"&gt;Google …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;A few days ago, I had to work on a project of this kind and the information and documentation available on this topic was quite bewildering. As a result, I decided to write this article in order to make everything available at one place.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;Almost everyone knows about the &lt;a href="https://github.com/google/google-api-python-client"&gt;Google API Python Client&lt;/a&gt;(and similar others in Java, PHP, etc.) which can be accessed from the server, but few are aware that Google even supports a totally server-less implementation of a client using only client-side technology (HTML/JavaScript). The only caveat here is that your app won't get a permanent access token like the server side apps do, but instead, has a temporary access until your web page isn't closed. Here is how to go about doing it:&lt;/p&gt;
+&lt;h2&gt;Step-1: Register your App by visiting the Google Cloud Console:&lt;/h2&gt;
+&lt;p&gt;As usual, visit the &lt;a href="https://console.cloud.google.com/"&gt;Google Cloud Console&lt;/a&gt;and register your app first, enable the Google Drive API by visiting "APIs &amp;amp; Services"=&gt;"Dashboard", then click on "Credentials" to create an API Key, an OAuth credential and setup the authentication screen for your user. While setting credentials, remember to add your app's URL in authorized Redirect-URIs section. If you have multiple URLs for your app (like localhost for testing, www.YourSite.com for production, etc., then add them all to the list):&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Credentials Configuration Redirect URIs" src="/uploads/2018/07/credentials_config_redirect_uri.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Credentials Configuration: Redirect URIs&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;Step-2: Setup the OAuth consent screen.&lt;/h2&gt;
+&lt;p&gt;This is what your user will see when they visit your app and it redirects them to Google for getting permissions for Drive access. Click on the "OAuth consent screen" tab and configure it with your app's name, logo, etc.&lt;/p&gt;
+&lt;h2&gt;Step-3: Add script references.&lt;/h2&gt;
+&lt;p&gt;After you create the credentials and get your ClientID, API Key and secret key (not useful for our app, really), the next step is to start building the app. I usually prefer to keep the JavaScript logic in a separate file such as app.js instead of keeping it in the main index.html. Just add a script tag in your main index.html and add a reference to this app.js in which you'll write the Google Drive logic:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/static/app.js&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I've kept the app.js in a sub-folder named /static, if yours is different, then adjust the path accordingly. You'll also need to add a reference to Google authentication library in order to perform the OAuth authentication:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="err"&gt;async&lt;/span&gt; &lt;span class="err"&gt;defer&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://apis.google.com/js/api.js&amp;quot;&lt;/span&gt; 
+ &lt;span class="na"&gt;onload=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;this.onload=function(){};handleClientLoad()&amp;quot;&lt;/span&gt; 
+ &lt;span class="na"&gt;onreadystatechange=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;if (this.readyState === &amp;#39;complete&amp;#39;) this.onload()&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Finally, also add a reference to jQuery if you want to use it. In most apps, its usually a must!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Step-4: Build the app.&lt;/h2&gt;
+&lt;p&gt;Now, in your app.js, first add global variables that you'll need throughout your app:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;GoogleAuth&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;SCOPE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;https://www.googleapis.com/auth/drive&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;metadata&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;readonly&lt;/span&gt;
+&lt;span class="nt"&gt;SCOPE&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot; https://www.googleapis.com/auth/drive.install&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="nt"&gt;SCOPE&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot; https://www.googleapis.com/auth/drive.file&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="nt"&gt;var&lt;/span&gt; &lt;span class="nt"&gt;files&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="cp"&gt;[]&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nt"&gt;array&lt;/span&gt; &lt;span class="nt"&gt;to&lt;/span&gt; &lt;span class="nt"&gt;store&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;list&lt;/span&gt; &lt;span class="nt"&gt;of&lt;/span&gt; &lt;span class="nt"&gt;files&lt;/span&gt; &lt;span class="nt"&gt;in&lt;/span&gt; &lt;span class="nt"&gt;user&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;s&lt;/span&gt; &lt;span class="nt"&gt;drive&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Add the scopes as per your requirements, I had included &lt;strong&gt;auth/drive.install&lt;/strong&gt; and &lt;strong&gt;auth/drive.file&lt;/strong&gt; only because I had to provide an "open with this app" feature in the user's own google drive interface so that they may visit our app and run their files through it, and thus use it as a "file opener". If you don't need to provide such extended features and just want full access to the user's files, then the first one (&lt;strong&gt;auth/drive&lt;/strong&gt;) is sufficient.&lt;/p&gt;
+&lt;p&gt;After that, write the entry point for our app in app.js. As per the script attribute, you'll be redirected here by the Google authentication library:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt;* This is the entry-point that gapi calls.&lt;/span&gt;
+&lt;span class="cm"&gt;* &lt;/span&gt;
+&lt;span class="cm"&gt;* */&lt;/span&gt;
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;handleClientLoad() {&lt;/span&gt;
+ &lt;span class="c1"&gt;// Load the API&amp;#39;s client and auth2 modules.&lt;/span&gt;
+ &lt;span class="c1"&gt;// Call the initClient function after the modules load.&lt;/span&gt;
+ &lt;span class="nx"&gt;gapi&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;load&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;client:auth2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;initClient&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;gapi.load()&lt;/strong&gt; loads the auth library and prepares your app for authentication, then signals the control to &lt;strong&gt;initClient()&lt;/strong&gt; function where you'll perform the actual authentication like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; &lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt; * starts the client authorization, most useful for debugging.&lt;/span&gt;
+&lt;span class="cm"&gt; * &lt;/span&gt;
+&lt;span class="cm"&gt; * */&lt;/span&gt;
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;initClient() {&lt;/span&gt;
+    &lt;span class="c1"&gt;// Retrieve the discovery document for version 3 of Google Drive API.&lt;/span&gt;
+    &lt;span class="c1"&gt;// In practice, your app can retrieve one or more discovery documents.&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;discoveryUrl&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;https://www.googleapis.com/discovery/v1/apis/drive/v3/rest&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// Initialize the gapi.client object, which app uses to make API requests.&lt;/span&gt;
+    &lt;span class="c1"&gt;// Get API key and client ID from API Console.&lt;/span&gt;
+    &lt;span class="c1"&gt;// &amp;#39;scope&amp;#39; field specifies space-delimited list of access scopes.&lt;/span&gt;
+    &lt;span class="nx"&gt;gapi&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;client&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;init&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+        &lt;span class="nx"&gt;apiKey&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="nx"&gt;discoveryDocs&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;discoveryUrl&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+        &lt;span class="nx"&gt;clientId&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;yyyyyyyyyy-yyyyyyyyyyyyyy.apps.googleusercontent.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="nx"&gt;scope&lt;/span&gt;: &lt;span class="kt"&gt;SCOPE&lt;/span&gt;
+    &lt;span class="p"&gt;}).&lt;/span&gt;&lt;span class="nx"&gt;then&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;init happened successfully.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+      &lt;span class="nx"&gt;GoogleAuth&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;gapi&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;auth2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getAuthInstance&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+      &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;now binding updateSigninStatus&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+      &lt;span class="nx"&gt;GoogleAuth&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;isSignedIn&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;listen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;updateSigninStatus&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// Listen for sign-in state changes.&lt;/span&gt;
+
+      &lt;span class="c1"&gt;// Listen for sign-in state changes.&lt;/span&gt;
+      &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;now calling updateSigninStatus&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+      &lt;span class="nx"&gt;updateSigninStatus&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;GoogleAuth&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;isSignedIn&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;get&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+
+      &lt;span class="c1"&gt;// Handle initial sign-in state. (Determine if user is already signed in.)&lt;/span&gt;
+      &lt;span class="c1"&gt;//var user = GoogleAuth.currentUser.get();&lt;/span&gt;
+
+      &lt;span class="c1"&gt;// Call handleAuthClick function when user clicks on&lt;/span&gt;
+      &lt;span class="c1"&gt;//      &amp;quot;Sign In/Authorize&amp;quot; button.&lt;/span&gt;
+      &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;#sign-in-or-out-button&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;click&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;handleAuthClick&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+      &lt;span class="p"&gt;});&lt;/span&gt; 
+      &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;#revoke-access-button&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;click&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;revokeAccess&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+      &lt;span class="p"&gt;});&lt;/span&gt;
+
+    &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ERROR in gapi.init:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;(Remember to replace the long string of "xxxxxx..." with your own API Key, and the long string of "yyyyyy...." with your own Client ID)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;gapi.client.init()&lt;/strong&gt; is an important function which does all the hard work of checking whether a user is authenticated, and if not, then redirect them to Google's servers, perform the authentication, and if successful, redirect them back to your server and inside the &lt;strong&gt;.then()&lt;/strong&gt; block in which you'll handle your applications logic (like displaying the logged-in user's name which you get using &lt;strong&gt;GoogleAuth.currentUser.get()&lt;/strong&gt;, update the logged-in status (toggle sign-in and sign-out buttons accordingly), etc:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;gapi.client&lt;/strong&gt; is your global variable that could be used for doing all kinds of stuff. For example, this is how you can list the files available in the Google Drive's root folder of the user as links in your document:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;   &lt;span class="nt"&gt;gapi&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;client&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;drive&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;files&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;get&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;fileId&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;name,webContentLink&amp;#39;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;then&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;function&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;success&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="err"&gt;var&lt;/span&gt; &lt;span class="err"&gt;webContentLink&lt;/span&gt; &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="err"&gt;success.result.webContentLink&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="err"&gt;var&lt;/span&gt; &lt;span class="err"&gt;fileName&lt;/span&gt; &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="err"&gt;success.result.name&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="err"&gt;console.log(&amp;quot;SUCCESS!&lt;/span&gt; &lt;span class="err"&gt;name&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;, webContentLink);&lt;/span&gt;
+&lt;span class="s2"&gt;        console.log(&amp;quot;&lt;/span&gt;&lt;span class="n"&gt;SUCCESS&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="n"&gt;webContentLink&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;, webContentLink);&lt;/span&gt;
+&lt;span class="s2"&gt;        $source = $(&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;quot; + webContentLink + &amp;quot;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot; + fileName + &amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="err"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="err"&gt;$(&amp;#39;body&amp;#39;).append($source)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;function&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;fail&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="err"&gt;console.log(fail)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="err"&gt;console.log(&amp;#39;Error&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;+&lt;/span&gt; &lt;span class="err"&gt;fail.result.error.message)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The &lt;strong&gt;name&lt;/strong&gt; field represents the file name and &lt;strong&gt;webContentLink&lt;/strong&gt; is the actual link to the file in the user's drive, you can use it however in your app once you get it (like download it using the AJAX &lt;strong&gt;jquery.get()&lt;/strong&gt; method, etc.).&lt;/p&gt;</content><category term="HTML"></category><category term="JavaScript"></category><category term="How To"></category></entry></feed>

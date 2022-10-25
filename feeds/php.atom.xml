@@ -1,0 +1,897 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Prahlad Yeri's Blog - PHP</title><link href="/" rel="alternate"></link><link href="/feeds/php.atom.xml" rel="self"></link><id>/</id><updated>2022-10-12T14:00:00+05:30</updated><subtitle>Educate and solve problems is my mantra. I'm skilled in web development and a quick learner, I also like blogging and contributing to open source.</subtitle><entry><title>[PHP/Codeigniter] Playing with multi-queries in MySQL</title><link href="/blog/2022/10/php-mysql-multi-queries.html" rel="alternate"></link><published>2022-10-12T14:00:00+05:30</published><updated>2022-10-12T14:00:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2022-10-12:/blog/2022/10/php-mysql-multi-queries.html</id><summary type="html">&lt;p&gt;Multi-queries are often discouraged with &lt;code&gt;mysqli&lt;/code&gt; functions but there are times when you must use them. One obvious use case is initializing the database. One of the first things your app must do is determine if the database tables exist or not, and then run an initializing SQL script if …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Multi-queries are often discouraged with &lt;code&gt;mysqli&lt;/code&gt; functions but there are times when you must use them. One obvious use case is initializing the database. One of the first things your app must do is determine if the database tables exist or not, and then run an initializing SQL script if they don't. This script may include multiple queries for creating tables, views, stored procedures, etc. and a few insert queries to populate default records (such as an admin user).&lt;/p&gt;
+&lt;p&gt;Running multiple queries with &lt;code&gt;mysqli&lt;/code&gt; isn't an exact science though! The &lt;a href="https://www.php.net/manual/en/mysqli.multi-query.php"&gt;&lt;code&gt;mysqli_multi_query&lt;/code&gt;&lt;/a&gt; function is technically the way to do it but there are some quirks you must be aware of when using it.&lt;/p&gt;
+&lt;p&gt;A major challenge here is error handling. The above function sends the individual queries (separated by semi-colons) to server one by one and stops executing the moment it faces an error in one of them. As stated in &lt;a href="https://stackoverflow.com/a/7867175/849365"&gt;this stackoverflow answer&lt;/a&gt;, there is no official way to fetch errors in each and every one of your statements.&lt;/p&gt;
+&lt;p&gt;What you must do, in fact, is keep calling &lt;code&gt;mysqli_next_result()&lt;/code&gt; again and again until each query result (or error) is fetched. This is how a proper implementation looks like (the code would probably be much shorter if it was implemented using some other technology like python or ADO.NET!):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class="nv"&gt;$data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;error&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[]);&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$this&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;input&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;method&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;post&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nv"&gt;$sql&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;file_get_contents&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;APPPATH&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;../init.sql&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nv"&gt;$result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;mysqli_multi_query&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$this&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;db&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;conn_id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$sql&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nv"&gt;$result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;error&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;db_error&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;//handle error&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;mysqli_more_results&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$this&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;db&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;conn_id&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nv"&gt;$result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;mysqli_next_result&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$this&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;db&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;conn_id&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+         &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nv"&gt;$result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;error&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;db_error&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;//handle error&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;count&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;error&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nv"&gt;$data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;info&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;The system is successfully installed!&amp;lt;br&amp;gt;&amp;lt;a href=&amp;quot;/auth/login&amp;quot;&amp;gt;Click here&amp;lt;/a&amp;gt; to login!&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="nv"&gt;$data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;installed&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Another quirk to be aware of with &lt;code&gt;mysqli_multi_query&lt;/code&gt; is that you must ALWAYS fetch the results by calling &lt;code&gt;mysqli_next_result&lt;/code&gt; subsequently until &lt;code&gt;mysqli_more_results()&lt;/code&gt; returns true. Not doing so may introduce some inadvertent bugs in your code when you later try to fetch records through &lt;code&gt;mysqli_query&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Happy coding and let me know through comments below how your implementation goes!&lt;/p&gt;</content><category term="PHP"></category><category term="MySQL"></category><category term="SQL"></category></entry><entry><title>Wordpress to Pelican in 24 hours</title><link href="/blog/2019/05/wordpress-to-pelican-in-24-hours.html" rel="alternate"></link><published>2019-05-21T00:58:00+05:30</published><updated>2019-05-21T00:58:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2019-05-21:/blog/2019/05/wordpress-to-pelican-in-24-hours.html</id><summary type="html">&lt;p&gt;Today, I finished migration of my blog &lt;a href="https://prahladyeri.com"&gt;https://prahladyeri.com&lt;/a&gt; from a self-hosted Wordpress site to a statically hosted &lt;a href="https://pages.github.com/"&gt;Github Pages&lt;/a&gt; site. For the static site generator, instead of choosing Jekyll which is a hot favorite of rubyists, I went for &lt;a href="https://github.com/getpelican/pelican/"&gt;Pelican&lt;/a&gt; instead as I figured my Python skills might …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Today, I finished migration of my blog &lt;a href="https://prahladyeri.com"&gt;https://prahladyeri.com&lt;/a&gt; from a self-hosted Wordpress site to a statically hosted &lt;a href="https://pages.github.com/"&gt;Github Pages&lt;/a&gt; site. For the static site generator, instead of choosing Jekyll which is a hot favorite of rubyists, I went for &lt;a href="https://github.com/getpelican/pelican/"&gt;Pelican&lt;/a&gt; instead as I figured my Python skills might be somewhat useful in dealing with that.&lt;/p&gt;
+&lt;p&gt;Having used Jekyll earlier, I felt that Pelican is pretty much the same thing. There is a configuration file in which you define your site parameters, a folder hierarchy for defining your posts and pages, and a bunch of templates (&lt;code&gt;pelican theme&lt;/code&gt;) to make some serious customizations.&lt;/p&gt;
+&lt;p&gt;In this post, I'll briefly go through the migration process:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Run the standard Wordpress import tool and backup all your posts and comments. It's better if you disable comments on your site (or maybe even take it down entirely for maintenance until the migration is complete).&lt;/li&gt;
+&lt;li&gt;Copy the &lt;code&gt;uploads&lt;/code&gt; folder containing your images through FTP/SFTP.&lt;/li&gt;
+&lt;li&gt;Install Python on your machine if not already installed.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Install the Pelican and Markdown packages:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install pelican markdown
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Install additional packages for importing the Wordpress XML:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install BeautifulSoup4 lxml
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Install &lt;code&gt;pandoc&lt;/code&gt; as it's needed for &lt;code&gt;markdown-xml&lt;/code&gt; conversion during the Wordpress import. Instructions for installing it for your OS can be found &lt;a href="https://pandoc.org/"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;Create a new folder (such as &lt;code&gt;PRAHLADYERI.COM&lt;/code&gt;) for your new blog writing/publishing.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Traverse to that folder through command line and run &lt;code&gt;pelican-quickstart&lt;/code&gt;. It'll ask some basic questions like your blog name, title, etc. You can leave most to their defaults. Once done, it'll create a folder structure like below:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;d:\source\PRAHLADYERI.COM
+├───content                                            
+│   ├───pages                                          
+│   ├───uploads                                        
+│   │   ├───2016
+pelicanconf.py
+tasks.py
+MakeFile
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;tasks.py&lt;/code&gt; and &lt;code&gt;MakeFile&lt;/code&gt; are something you can ignore unless you want to automate site generation. Now you can copy the &lt;code&gt;uploads&lt;/code&gt; folder brought from Wordpress inside the &lt;code&gt;content&lt;/code&gt; folder (it's the place where your posts will now reside in either markdown (&lt;code&gt;*.md&lt;/code&gt;) or reStructured Text (&lt;code&gt;*.rst&lt;/code&gt;) formats).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;Copy the XML file imported from Wordpress inside the above folder.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Now simply run &lt;code&gt;pelican-import&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pelican&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;wpfile&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;markdown&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;your&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xml&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The above command converts all your Wordpress posts (not comments) into markdown format and copies it to the content folder. Your old site is now imported to the pelcian system and is ready for generation!&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;Make some changes to the &lt;code&gt;pelicanconf.py&lt;/code&gt;. Set the attributes for &lt;code&gt;AUTHOR&lt;/code&gt; and &lt;code&gt;SITENAME&lt;/code&gt;. You may also want to set &lt;code&gt;PAGE_URL&lt;/code&gt;, &lt;code&gt;PAGE_URL_SAVE_AS&lt;/code&gt;, &lt;code&gt;ARTICLE_URL&lt;/code&gt; and &lt;code&gt;ARTICLE_URL_SAVE_AS&lt;/code&gt; to match your existing site's URL pattern.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;To generate the new site, simply run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pelican content
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This will generate a folder called &lt;code&gt;output&lt;/code&gt; which you can directly serve through github pages! You can also go to the output folder and test it locally by running this command and checking in your browser:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;python -m http.server
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;From now on, you can compose your new blog posts by simply creating a markdown file (in this case, it's &lt;code&gt;wordpress-pelican-24-hrs.md&lt;/code&gt;, add content to it and simply run &lt;code&gt;pelican content&lt;/code&gt; to generate the site! The markdown content should start with header attributes which will tell pelican system about the title, date, category, tags, etc. Here is a brief sample excerpt from this very blog post:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Title: Wordpress to Pelican in &lt;span class="m"&gt;24&lt;/span&gt; hours
+Date: &lt;span class="m"&gt;2019&lt;/span&gt;-05-21 &lt;span class="m"&gt;00&lt;/span&gt;:58
+Author: Prahlad Yeri
+Category: PHP
+Tags: Wordpress, PHP, Python
+Status: published
+Cover: uploads/cover.jpg
+
+Today, I finished migration of my blog &amp;lt;https://prahladyeri.com&amp;gt; from a self-hosted Wordpress site to a statically hosted &lt;span class="o"&gt;[&lt;/span&gt;Github Pages&lt;span class="o"&gt;](&lt;/span&gt;https://pages.github.com/&lt;span class="o"&gt;)&lt;/span&gt; site. For the static site generator, instead of choosing Jekyll which is a hot favorite of rubyists, I went &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;Pelican&lt;span class="o"&gt;](&lt;/span&gt;https://github.com/getpelican/pelican/&lt;span class="o"&gt;)&lt;/span&gt; instead as I figured my Python skills might be somewhat useful in dealing with that.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This is the very simplest of use cases, of course. For other advanced things like changing the theme templates and CSS, migrating to &lt;a href="https://disqus.com"&gt;disqus comments&lt;/a&gt;, etc., I'll make another post later. You may also refer the &lt;a href="https://docs.getpelican.com/"&gt;official pelican docs&lt;/a&gt; which has all these details and a lot of other useful information.&lt;/p&gt;</content><category term="Wordpress"></category><category term="PHP"></category><category term="Python"></category></entry><entry><title>WordPress DIY: Adding syntax highlighting to your WordPress blog without using an external plugin</title><link href="/blog/2018/07/wordpress-diy-adding-syntax-highlighting-to-your-wordpress-blog-without-using-an-external-plugin.html" rel="alternate"></link><published>2018-07-10T12:47:00+05:30</published><updated>2018-07-10T12:47:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2018-07-10:/blog/2018/07/wordpress-diy-adding-syntax-highlighting-to-your-wordpress-blog-without-using-an-external-plugin.html</id><summary type="html">&lt;p&gt;Just as my other articles in &lt;a href="https://prahladyeri.com/blog/tag/wordpress+diy"&gt;WordPress DIY&lt;/a&gt; series, this one also focuses on doing everything yourself by writing the code rather than using any external dependencies. There are two popular open source implementations of Syntax Highlighting JavaScript libraries: &lt;a href="https://github.com/google/code-prettify"&gt;Google's Prettify&lt;/a&gt; and &lt;a href="http://alexgorbatchev.com/SyntaxHighlighter/"&gt;Alex Gorbatchev's Syntax Highlighter&lt;/a&gt;, and in this article …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Just as my other articles in &lt;a href="https://prahladyeri.com/blog/tag/wordpress+diy"&gt;WordPress DIY&lt;/a&gt; series, this one also focuses on doing everything yourself by writing the code rather than using any external dependencies. There are two popular open source implementations of Syntax Highlighting JavaScript libraries: &lt;a href="https://github.com/google/code-prettify"&gt;Google's Prettify&lt;/a&gt; and &lt;a href="http://alexgorbatchev.com/SyntaxHighlighter/"&gt;Alex Gorbatchev's Syntax Highlighter&lt;/a&gt;, and in this article, we will use the former.&lt;!--more--&gt; Writing your own plugin for syntax highlighting is very straightforward if you know what you are doing. Just create a file named &lt;strong&gt;/wp-content/plugins/wp-prettify.php&lt;/strong&gt; in your WordPress installation and add the below code to it:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;?&lt;/span&gt;&lt;span class="nx"&gt;php&lt;/span&gt;
+&lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt; * @package WP Prettify&lt;/span&gt;
+&lt;span class="cm"&gt; * @version 0.1.0&lt;/span&gt;
+&lt;span class="cm"&gt; */&lt;/span&gt;
+&lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;Plugin Name: WP Prettify&lt;/span&gt;
+&lt;span class="cm"&gt;Plugin URI: http://github.com/prahladyeri/wp-prettify&lt;/span&gt;
+&lt;span class="cm"&gt;Description: Wordpress implementation of Google Prettify Syntax Highlighter&lt;/span&gt;
+&lt;span class="cm"&gt;Author: Prahlad Yeri&lt;/span&gt;
+&lt;span class="cm"&gt;Author URI: https://www.prahladyeri.com/&lt;/span&gt;
+&lt;span class="cm"&gt;Version: 0.1.0&lt;/span&gt;
+&lt;span class="cm"&gt;License: GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html&lt;/span&gt;
+&lt;span class="cm"&gt;*/&lt;/span&gt;
+
+
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;add_syntax_highlighter() {&lt;/span&gt;
+&lt;span class="nx"&gt;$text&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;EOD&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;script&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;DOMContentLoaded&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;elements&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementsByTagName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pre&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;elements&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;elements&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;className&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;indexOf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;prettyprint&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="nx"&gt;elements&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;className&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;   &lt;span class="nx"&gt;elements&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;className&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot; prettyprint &amp;quot;&lt;/span&gt;
+            &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;adding&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+          &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;class already exists&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="err"&gt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;style&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nx"&gt;pre&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prettyprint&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prettyprinted&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;border&lt;/span&gt;: &lt;span class="kt"&gt;0px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="nx"&gt;padding&lt;/span&gt;: &lt;span class="kt"&gt;5px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="nx"&gt;font&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;size&lt;/span&gt;: &lt;span class="kt"&gt;15px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="err"&gt;/style&amp;gt;&lt;/span&gt;
+
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;script&lt;/span&gt; &lt;span class="nx"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="err"&gt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="nx"&gt;EOD&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="nx"&gt;echo&lt;/span&gt; &lt;span class="nx"&gt;$text&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nx"&gt;add_action&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;wp_head&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;add_syntax_highlighter&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="o"&gt;?&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Remember to enable the plugin by navigating to &lt;strong&gt;/wp-admin&lt;/strong&gt; before using it.&lt;/p&gt;
+&lt;p&gt;This function first adds a &lt;strong&gt;prettyprint&lt;/strong&gt; class to all your \&amp;lt;pre&gt; tags to tell the Prettify library to highlight this block and thus making syntax highlighting painless on your part. The advantage of using Google's solution is that it automatically detects the programming or scripting language inside the block, and you don't have to use additional tag markup like &lt;strong&gt;"lang=php"&lt;/strong&gt; or something like that.&lt;/p&gt;
+&lt;p&gt;The addition of CSS &lt;strong&gt;\&amp;lt;style&gt;&lt;/strong&gt; tag in the function is optional and not really needed. Its just my preference to hide the border and increase the padding and font size a bit.&lt;/p&gt;
+&lt;p&gt;The demonstration of this self-written plugin is quite evident as this very site runs on this plugin and the above code block is highlighted using the Google's Prettify library. If you can use the Chrome or Firefox Developer tools to analyze that \&amp;lt;pre&gt; block, it will show you that a &lt;strong&gt;prettyprint&lt;/strong&gt; class has been added!&lt;/p&gt;
+&lt;p&gt;So, go ahead and write this plugin if you are building a WordPress blog for yourself and want to do this in a DIY way.&lt;/p&gt;</content><category term="PHP"></category><category term="Wordpress"></category></entry><entry><title>WordPress DIY: Adding twitter cards meta to your blog without using an external plugin</title><link href="/blog/2018/07/wordpress-diy-adding-twitter-cards-meta-to-your-blog.html" rel="alternate"></link><published>2018-07-08T11:46:00+05:30</published><updated>2018-07-08T11:46:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2018-07-08:/blog/2018/07/wordpress-diy-adding-twitter-cards-meta-to-your-blog.html</id><summary type="html">&lt;p&gt;Just like my &lt;a href="https://prahladyeri.com/blog/2018/07/wordpress-diy-adding-google-analytics-script-to-your-blog.html"&gt;last article&lt;/a&gt;, we won't be focusing on using a third party plugin, but write our own plugin. I'm a minimalist and don't prefer to use layer-2 solutions for really trivial things that can easily be achieved by writing code.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;Now, though trivial to implement, the twitter cards …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Just like my &lt;a href="https://prahladyeri.com/blog/2018/07/wordpress-diy-adding-google-analytics-script-to-your-blog.html"&gt;last article&lt;/a&gt;, we won't be focusing on using a third party plugin, but write our own plugin. I'm a minimalist and don't prefer to use layer-2 solutions for really trivial things that can easily be achieved by writing code.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;Now, though trivial to implement, the twitter cards support is a very important and useful thing for your blog. To understand why, consider the following example tweet from Python Software Foundation:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Links had no Twitter Card Meta" src="/uploads/2018/07/no_twitter_card.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Links had no Twitter Card Meta&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;As you can see, the posted links on this tweet from the domain djangoproject.com didn't expand into a preview because they didn't have twitter card meta tags in their pages. Unlike Facebook who expands all posted links, Twitter doesn't do that automatically, but only after parsing some meta tags which should be in their required format. Only after that, the tweets expand into a full preview like this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Link had Twitter Meta" src="/uploads/2018/07/twitter_card.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Link had Twitter Card Meta&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;So as the owner of a WordPress blog, you'd be certainly interested in having the tweets containing links to your own site expand into these previews, right? So, let's go about doing it.&lt;/p&gt;
+&lt;p&gt;Essentially, your web page should contain the following meta tags that twitter parses in order to come up with a preview:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;meta&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;twitter:card&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;content=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;summary&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+ &lt;span class="nt"&gt;&amp;lt;meta&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;twitter:site&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;content=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@prahladyeri&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+ &lt;span class="nt"&gt;&amp;lt;meta&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;twitter:creator&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;@prahladyeri&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+ &lt;span class="nt"&gt;&amp;lt;meta&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;twitter:url&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;content=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://prahladyeri.com/blog/2018/06/people-migrating-from-github-to-gitlab-should-learn-about-these-details-first.html&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+ &lt;span class="nt"&gt;&amp;lt;meta&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;twitter:title&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;content=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;People migrating from Github to Gitlab should learn about these details first&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+ &lt;span class="nt"&gt;&amp;lt;meta&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;twitter:description&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;content=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;After &amp;lt;a href=&amp;amp;quot;https://www.prahladyeri.com/blog/2018/06/microsofts-github-acquisition-an-unbiased-perspective.html&amp;amp;quot;&amp;gt;Microsoft&amp;amp;#039;s recent acquisition of Github&amp;lt;/a&amp;gt;, a mass exodus has kind of begun and many small and large projects are moving their code bases to the much hyped &amp;lt;a href=&amp;amp;quot;https://gitlab.com/&amp;amp;quot;&amp;gt;Gitlab&amp;lt;/a&amp;gt; in a hurry, and these include both open and closed source projects. However, before migrating to Gitlab, they should take a pause and learn something about Gitlab and consider evaluating other alternatives too.&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+ &lt;span class="nt"&gt;&amp;lt;meta&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;twitter:image&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;content=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://secure.gravatar.com/avatar/3f253507b82dd33f352c08f649caaa54?rating=PG&amp;amp;size=75&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;All these meta tags have different meanings. For example, &lt;strong&gt;twitter:url&lt;/strong&gt; is for the canonical URL of your page, &lt;strong&gt;twitter:title&lt;/strong&gt; is for the title that should be displayed in the preview, etc.&lt;/p&gt;
+&lt;p&gt;Now, let's add a simple PHP plugin file that automatically adds these tags in all the pages of our WordPress blog. Firstly, create a text file called &lt;strong&gt;"/wp-content/plugins/custom_headers.php"&lt;/strong&gt; in your WordPress installation folder (no need to create if you had done already by following the last article).&lt;/p&gt;
+&lt;p&gt;After that, just add the below function and call it using &lt;strong&gt;add_action()&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;add_twitter_card_header() {&lt;/span&gt;
+    &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="nx"&gt;twitter&lt;/span&gt; &lt;span class="nx"&gt;cards&lt;/span&gt; &lt;span class="nx"&gt;hack&lt;/span&gt;
+    &lt;span class="nx"&gt;global&lt;/span&gt; &lt;span class="nx"&gt;$post&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;is_single&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="nx"&gt;is_page&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;$twitter_url&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;get_permalink&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="nx"&gt;$twitter_title&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;get_the_title&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="nx"&gt;$content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;get_extended&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="nx"&gt;$post&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="nx"&gt;post_content&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="nx"&gt;$attch_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;get_post_thumbnail_id&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;$post&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="nx"&gt;ID&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="nx"&gt;$twitter_thumbs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;wp_get_attachment_image_src&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;$attch_id&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;full&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="nx"&gt;$twitter_thumb&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;$twitter_thumbs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nx"&gt;$twitter_thumb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="nx"&gt;$twitter_thumb&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;https://secure.gravatar.com/avatar/3f253507b82dd33f352c08f649caaa54?rating=PG&amp;amp;size=75&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="o"&gt;?&amp;gt;&lt;/span&gt;
+        &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;meta&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;twitter:card&amp;quot;&lt;/span&gt; &lt;span class="nx"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;summary&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;meta&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;twitter:site&amp;quot;&lt;/span&gt; &lt;span class="nx"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;@prahladyeri&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;meta&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;twitter:creator&amp;quot;&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;@prahladyeri&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;meta&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;twitter:url&amp;quot;&lt;/span&gt; &lt;span class="nx"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;?php echo $twitter_url; ?&amp;gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;meta&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;twitter:title&amp;quot;&lt;/span&gt; &lt;span class="nx"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;?php echo $twitter_title; ?&amp;gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;meta&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;twitter:description&amp;quot;&lt;/span&gt; &lt;span class="nx"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;?php echo esc_html($content[&amp;#39;main&amp;#39;]); ?&amp;gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;meta&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;twitter:image&amp;quot;&lt;/span&gt; &lt;span class="nx"&gt;content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;?php echo $twitter_thumb; ?&amp;gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class="o"&gt;&amp;lt;?&lt;/span&gt;&lt;span class="nx"&gt;php&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nx"&gt;add_action&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;wp_head&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;add_twitter_card_header&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This simple block of code will pick up all required things such as the post's title content excerpt, etc. and supply them to twitter via the meta tags. Few important things you need to remember:&lt;/p&gt;
+&lt;p&gt;1. Firstly, update the \$twitter_thumb variable in the following block with your own gravatar:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;if&lt;/span&gt;&lt;span class="o"&gt;(!$&lt;/span&gt;&lt;span class="nt"&gt;twitter_thumb&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="err"&gt;$twitter_thumb&lt;/span&gt; &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;secure&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gravatar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;avatar&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="n"&gt;f253507b82dd33f352c08f649caaa54&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;&lt;span class="n"&gt;rating&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;PG&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="k"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;75&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This will show the gravatar by default if you haven't set a featured image in your post.&lt;/p&gt;
+&lt;p&gt;2. You'll need to add the &lt;strong&gt;"Read More"&lt;/strong&gt; meta tag in all your posts, otherwise &lt;strong&gt;\$content['main']&lt;/strong&gt; will return the whole thing instead of just the excerpt.&lt;/p&gt;
+&lt;p&gt;Once you do this and publish your post, head over to the &lt;a href="https://cards-dev.twitter.com/validator"&gt;Twitter Cards Validator Service&lt;/a&gt; and test your link. Its as easy as that!&lt;/p&gt;</content><category term="PHP"></category><category term="Wordpress"></category></entry><entry><title>Wordpress DIY: Adding Google Analytics Script to your Blog Without using an External Plugin</title><link href="/blog/2018/07/wordpress-diy-adding-google-analytics-script-to-your-blog.html" rel="alternate"></link><published>2018-07-07T12:36:00+05:30</published><updated>2018-07-07T12:36:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2018-07-07:/blog/2018/07/wordpress-diy-adding-google-analytics-script-to-your-blog.html</id><summary type="html">&lt;p&gt;Adding a custom script element to your Wordpress blog is really straightforward if you know what you are doing and there isn't any need to install a third-party plugin for this.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;Now, for something like spam protection (Akismet) or adding contact forms (Contact Form Seven), its quite understandable, but if …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Adding a custom script element to your Wordpress blog is really straightforward if you know what you are doing and there isn't any need to install a third-party plugin for this.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;Now, for something like spam protection (Akismet) or adding contact forms (Contact Form Seven), its quite understandable, but if you take the approach of adding third party plugins for every little plus and minus operation (such as adding a Google Analytics script), then its neither good for the maintenance nor security of your Wordpress blog.&lt;/p&gt;
+&lt;p&gt;In this article, I'm going to explain how to create a simple custom plugin for your Wordpress blog that you'll hand-code yourself. The custom plugin will be quite generic and can be later used for adding other elements too such as maybe twitter card attributes, etc.&lt;/p&gt;
+&lt;p&gt;Create the following PHP Plugin file in the code editor of your choice and save it as &lt;strong&gt;/wp-content/plugins/custom_headers.php&lt;/strong&gt; in your Wordpress installation.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;?&lt;/span&gt;&lt;span class="nx"&gt;php&lt;/span&gt; 
+&lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt; * @package Custom Headers&lt;/span&gt;
+&lt;span class="cm"&gt; * @version 0.1.0&lt;/span&gt;
+&lt;span class="cm"&gt; */&lt;/span&gt;
+&lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;Plugin Name: Custom Headers&lt;/span&gt;
+&lt;span class="cm"&gt;Plugin URI: http://github.com/prahladyeri/custom-headers/&lt;/span&gt;
+&lt;span class="cm"&gt;Description: Add a bunch of custom headers before the head tag.&lt;/span&gt;
+&lt;span class="cm"&gt;Author: Prahlad Yeri&lt;/span&gt;
+&lt;span class="cm"&gt;Version: 0.1.0&lt;/span&gt;
+&lt;span class="cm"&gt;Author URI: https://www.prahladyeri.com/&lt;/span&gt;
+&lt;span class="cm"&gt;*/&lt;/span&gt;
+
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;add_analytics_header() {&lt;/span&gt;
+&lt;span class="nx"&gt;$analytics&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;EOD&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;--&lt;/span&gt; &lt;span class="nx"&gt;Global&lt;/span&gt; &lt;span class="nx"&gt;site&lt;/span&gt; &lt;span class="nx"&gt;tag&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;gtag&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;js&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nx"&gt;Google&lt;/span&gt; &lt;span class="nx"&gt;Analytics&lt;/span&gt; &lt;span class="o"&gt;--&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;script&lt;/span&gt; &lt;span class="nx"&gt;async&lt;/span&gt; &lt;span class="nx"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXX-X&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;script&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;dataLayer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;dataLayer&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="p"&gt;[];&lt;/span&gt;
+  &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;gtag&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;&lt;span class="nx"&gt;dataLayer&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;arguments&lt;/span&gt;&lt;span class="p"&gt;);}&lt;/span&gt;
+  &lt;span class="nx"&gt;gtag&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;js&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nb"&gt;Date&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+
+  &lt;span class="nx"&gt;gtag&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;config&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;UA-XXXXXXX-X&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="err"&gt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="nx"&gt;EOD&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="nx"&gt;echo&lt;/span&gt; &lt;span class="nx"&gt;$analytics&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nx"&gt;add_action&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;wp_head&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;add_analytics_header&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Just remember to update the package meta stuff (Plugin Name, Author, etc.) as it suits you and put your own Analytics ID in place of UA-XXXXXXX-X.&lt;/p&gt;
+&lt;p&gt;Its as simple as that, your plugin is ready! Just enable this plugin by going to Plugins-&gt;Installed Plugins in your Wordpress admin panel.&lt;/p&gt;</content><category term="PHP"></category><category term="Wordpress"></category></entry><entry><title>How to create a Google Drive App in PHP</title><link href="/blog/2017/01/how-to-create-google-drive-app-php.html" rel="alternate"></link><published>2017-01-02T04:21:00+05:30</published><updated>2017-01-02T04:21:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2017-01-02:/blog/2017/01/how-to-create-google-drive-app-php.html</id><summary type="html">&lt;p&gt;This is the second article in the drive series for web programmers that aims to explain how to use the Google Drive API in your web applications to access files/folders on behalf of your logged-in users.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;One of the basic tasks here is to authenticate to google and access …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is the second article in the drive series for web programmers that aims to explain how to use the Google Drive API in your web applications to access files/folders on behalf of your logged-in users.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;One of the basic tasks here is to authenticate to google and access the drive on the user’s behalf once they grant permission to your app. This method of authentication is called &lt;a href="https://en.wikipedia.org/wiki/OAuth"&gt;OAuth&lt;/a&gt; and is very much needed for implementing the drive api.&lt;/p&gt;
+&lt;p&gt;However, a good documentation to implement this in a backend app, especially a php app is very much lacking. The so called &lt;a href="https://developers.google.com/drive/v3/web/quickstart/php"&gt;quickstart for drive api&lt;/a&gt; and the web based example &lt;a href="https://developers.google.com/api-client-library/php/auth/web-app"&gt;here&lt;/a&gt; show some example code, but what a lot of beginner programmers need is a step-by-step tutorial of how to go about doing it.&lt;/p&gt;
+&lt;h3&gt;I: Register a google app by visiting the &lt;a href="https://console.developers.google.com/"&gt;Google API console&lt;/a&gt;:&lt;/h3&gt;
+&lt;p&gt;The way the latest version (V3) of drive API works is only through OAuth. It means you cannot put a password or API key inside your code and access the drive files. You need to register your backend app and generate OAuth credentials for the app, so that it can access the drive on the user’s behalf once the user grants permission to the app. So the first step is going to the &lt;a href="https://console.developers.google.com/"&gt;Google API console&lt;/a&gt;, registering the app itself and generating OAuth credentials. The registration process is pretty straightforward, we just select “Create Project” from the dropdown and give a nice name for the project such as &lt;code class="highlighter-rouge"&gt;Drive Example App&lt;/code&gt; in our case.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Register Google App" src="/uploads/old/google-apis/drive_api_steps.png"&gt;&lt;/p&gt;
+&lt;h3 id="ii-configure-the-credentials-and-download-the-client_idjson-file"&gt;II: Configure the credentials and download the client_id.json file:&lt;/h3&gt;
+&lt;p&gt;This is the credential file that validates to Google who you are (as a developer) and also your app that acts on your behalf. Download and save it as &lt;code class="highlighter-rouge"&gt;client_id.json&lt;/code&gt; in the same directory as your app.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Configure Credentials" src="/uploads/old/google-apis/configuration_steps_generic1.png"&gt;&lt;/p&gt;
+&lt;h3&gt;III: Write your back-end app:&lt;/h3&gt;
+&lt;p&gt;First of all, you have to add the dependency of google-api php library to your project. If you are using composer, all you need to do is add this package to the composer.json:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;quot;require&amp;quot;: {
+  &amp;quot;google/apiclient&amp;quot;: &amp;quot;^2.0&amp;quot;
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If you don’t use composer, you can just download the latest version of library from &lt;a href="https://github.com/google/google-api-php-client"&gt;their repo&lt;/a&gt;, and just &lt;code class="highlighter-rouge"&gt;require_once&lt;/code&gt; it in your code like this:&lt;/p&gt;
+&lt;p&gt;::: {.highlighter-rouge}&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;require_once &amp;#39;/path/to/google-api-php-client/vendor/autoload.php&amp;#39;;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;:::&lt;/p&gt;
+&lt;p&gt;You can follow this pattern for any kind of php project, be it based on Symfony, Laravel, CodeIgniter or even a pure php project. But this tutorial and code example is based on a pure php project.&lt;/p&gt;
+&lt;p&gt;The first thing to do now is to handle the home page url (index.php).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="nt"&gt;client&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;new&lt;/span&gt; &lt;span class="nt"&gt;Google_Client&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="nt"&gt;client-&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;setAuthConfig&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;client_id.json&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="nt"&gt;client-&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;addScope&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;Google_Service_Drive&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;DRIVE&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+&lt;span class="nt"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;file_exists&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;credentials.json&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;))&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="err"&gt;$access_token&lt;/span&gt; &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="err"&gt;(file_get_contents(&amp;quot;credentials.json&amp;quot;))&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="err"&gt;$client-&amp;gt;setAccessToken($access_token)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="err"&gt;//Refresh&lt;/span&gt; &lt;span class="err"&gt;the&lt;/span&gt; &lt;span class="err"&gt;token&lt;/span&gt; &lt;span class="err"&gt;if&lt;/span&gt; &lt;span class="err"&gt;it&amp;#39;s&lt;/span&gt; &lt;span class="err"&gt;expired.&lt;/span&gt;
+    &lt;span class="err"&gt;if&lt;/span&gt; &lt;span class="err"&gt;($client-&amp;gt;isAccessTokenExpired())&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
+        &lt;span class="err"&gt;$client-&amp;gt;fetchAccessTokenWithRefreshToken($client-&amp;gt;getRefreshToken())&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="err"&gt;file_put_contents($credentialsPath,&lt;/span&gt; &lt;span class="err"&gt;json_encode($client-&amp;gt;getAccessToken()))&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="nt"&gt;drive_service&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;new&lt;/span&gt; &lt;span class="nt"&gt;Google_Service_Drive&lt;/span&gt;&lt;span class="o"&gt;($&lt;/span&gt;&lt;span class="nt"&gt;client&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="nt"&gt;files_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="nt"&gt;drive_service-&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;files-&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;listFiles&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;array&lt;/span&gt;&lt;span class="o"&gt;())&lt;/span&gt;&lt;span class="nt"&gt;-&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;getFiles&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt; 
+    &lt;span class="nt"&gt;echo&lt;/span&gt; &lt;span class="nt"&gt;json_encode&lt;/span&gt;&lt;span class="o"&gt;($&lt;/span&gt;&lt;span class="nt"&gt;files_list&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt; &lt;span class="nt"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="err"&gt;$redirect_uri&lt;/span&gt; &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39; . $_SERVER&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;HTTP_HOST&amp;#39;&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s1"&gt; . &amp;#39;&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;oauth2callback&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;php&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;;&lt;/span&gt;
+&lt;span class="s1"&gt;  header(&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;Location&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nf"&gt;filter_var&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;redirect_uri&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;FILTER_SANITIZE_URL&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We first check whether we have the drive access credentials for the user locally stored in a file called credentials.json (not to be confused with client_id.json we downloaded earlier which is for developer credentials). Again, we are assuming a single user scenario here. If your drive app needs to authenticate with multiple users, you’ll have to store separate credentials.json for each logged-in user in the database, and access that through a session or something.&lt;/p&gt;
+&lt;p&gt;Further, if credentials aren’t found locally, we direct them to &lt;code class="highlighter-rouge"&gt;/oauth2callback.php&lt;/code&gt;, so google will authenticate them and send us the token for accessing the drive, and after that, we will put that token into the local file, credentials.json and redirect the user back to the index.php. Finally, we call the &lt;code class="highlighter-rouge"&gt;listFiles()&lt;/code&gt; method that displays the list of all files and folders in that user’s drive. Here is the code for &lt;code class="highlighter-rouge"&gt;oauth2callback.php&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="nt"&gt;client&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;new&lt;/span&gt; &lt;span class="nt"&gt;Google_Client&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="nt"&gt;client-&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;setAuthConfigFile&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;client_id.json&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="nt"&gt;client-&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;setRedirectUri&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;http://&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="nt"&gt;_SERVER&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;HTTP_HOST&amp;#39;&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/oauth2callback.php&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="nt"&gt;client-&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;addScope&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;Google_Service_Drive&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;DRIVE&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;DRIVE_METADATA_READONLY&lt;/span&gt;
+
+&lt;span class="nt"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(!&lt;/span&gt; &lt;span class="nt"&gt;isset&lt;/span&gt;&lt;span class="o"&gt;($&lt;/span&gt;&lt;span class="nt"&gt;_GET&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;code&amp;#39;&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="o"&gt;))&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="err"&gt;$auth_url&lt;/span&gt; &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="err"&gt;$client-&amp;gt;createAuthUrl()&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="err"&gt;header(&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;Location&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39; . filter_var($auth_url, FILTER_SANITIZE_URL));&lt;/span&gt;
+&lt;span class="s1"&gt;} else {&lt;/span&gt;
+&lt;span class="s1"&gt;  $client-&amp;gt;authenticate($_GET&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;code&amp;#39;&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s1"&gt;);&lt;/span&gt;
+&lt;span class="s1"&gt;  $access_token = $client-&amp;gt;getAccessToken();&lt;/span&gt;
+&lt;span class="s1"&gt;  file_put_contents(&amp;quot;credentials.json&amp;quot;, json_encode($access_token));&lt;/span&gt;
+
+&lt;span class="s1"&gt;  $redirect_uri = &amp;#39;&lt;/span&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39; . $_SERVER&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;HTTP_HOST&amp;#39;&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s1"&gt; . &amp;#39;&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;;&lt;/span&gt;
+&lt;span class="s1"&gt;  header(&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;Location&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nf"&gt;filter_var&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;redirect_uri&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;FILTER_SANITIZE_URL&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Once you have the credentials locally (in the form of &lt;code class="highlighter-rouge"&gt;credentials.json&lt;/code&gt;), you can just use it to access the drive API. Thus, the result of this whole exercise is that only on first page load is the user redirected to google site to authenticate themselves. Once the app has the access token (credentials.json), its no longer required, the drive can be accessed directly by the app from then on. If all goes well, you should be able to see a screen such as this when you test this example app for the first time:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;![Google OAuth Screen](/uploads/old/google-apis/oauth_screen_generic.png)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I’ll leave the more comprehensive use of this API as an exercise to the reader who wants to develop a more fully featured app out of this. Click the below link to download the source for this example implementation from the Github repo:&lt;/p&gt;
+&lt;p&gt;&lt;a class="btn btn-md btn-success" href="https://github.com/prahladyeri/php-drive-example/"&gt;php_drive_example&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Note:&lt;/p&gt;
+&lt;p&gt;If you are getting an SSL certificate error while testing this on Windows, have a look at &lt;a href="http://stackoverflow.com/q/29822686/849365"&gt;this&lt;/a&gt;.&lt;/p&gt;</content><category term="Google Drive"></category><category term="PHP"></category><category term="How To"></category></entry><entry><title>Farewell Wordpress, Hello Jekyll!</title><link href="/blog/2015/02/farewell-wordpress-hello-jekyll.html" rel="alternate"></link><published>2015-02-04T18:30:00+05:30</published><updated>2015-02-04T18:30:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2015-02-04:/blog/2015/02/farewell-wordpress-hello-jekyll.html</id><summary type="html">&lt;p&gt;Here I am, signing off from a &lt;em&gt;self-hosted, over-bloated &lt;a href="http://www.wordpress.org"&gt;Wordpress&lt;/a&gt;&lt;/em&gt; site and finding a welcome change in &lt;a href="http://jekyllrb.com/"&gt;Jekyll&lt;/a&gt;, a blog-aware static site generator. There is nothing new about this, several well-known bloggers have already migrated to Jekyll in the last few years including &lt;a href="http://rsms.me/"&gt;Rasmus Andersson&lt;/a&gt;, &lt;a href="http://quaran.to/"&gt;Nick Quaranto&lt;/a&gt; and &lt;a href="http://rogchap.com/"&gt;Roger Chapman …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here I am, signing off from a &lt;em&gt;self-hosted, over-bloated &lt;a href="http://www.wordpress.org"&gt;Wordpress&lt;/a&gt;&lt;/em&gt; site and finding a welcome change in &lt;a href="http://jekyllrb.com/"&gt;Jekyll&lt;/a&gt;, a blog-aware static site generator. There is nothing new about this, several well-known bloggers have already migrated to Jekyll in the last few years including &lt;a href="http://rsms.me/"&gt;Rasmus Andersson&lt;/a&gt;, &lt;a href="http://quaran.to/"&gt;Nick Quaranto&lt;/a&gt; and &lt;a href="http://rogchap.com/"&gt;Roger Chapman&lt;/a&gt;. Ever since Tom Preston Werner invented this thing in 2008 and published his infamous article about &lt;a href="http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html"&gt;Blogging Like a Hacker&lt;/a&gt;, it has become the &lt;em&gt;Go-to thing&lt;/em&gt; for those of us who favour on-line publishing above everything else.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;And that’s for many good reasons, the most important being a major issue with Wordpress design - &lt;em&gt;Of what use is an RDBMS database like mysql in a weblog?&lt;/em&gt;. I think this question should have been asked the day Wordpress was invented. However, since there weren’t too many alternatives in those days and &lt;code class="highlighter-rouge"&gt;php&lt;/code&gt; hosting was &lt;em&gt;way too easy&lt;/em&gt;, most ignored this factor.&lt;/p&gt;
+&lt;h3&gt;Save me a ton of money&lt;/h3&gt;
+&lt;p&gt;Jekyll generates static sites made of pure HTML/CSS. A static site is a website whose content stays static (&lt;em&gt;unchanged by any user-input&lt;/em&gt;) on the server-side (though dynamic functionality can be provided on the client-side using javascript). What this means is that you are not only done away with the hassle of hosting your own database, but also avoid &lt;em&gt;costly monthly fees&lt;/em&gt; going to your Web Hosting Providers. That’s because unlike a &lt;code class="highlighter-rouge"&gt;php&lt;/code&gt; hosted dynamic site, a static site is much much faster and cheaper. In fact, &lt;a href="https://github.com/jekyll/jekyll/wiki/Sites"&gt;Github pages&lt;/a&gt; provides you free static web hosting without any bandwidth or space restrictions!&lt;/p&gt;
+&lt;h3&gt;How do I implement this?&lt;/h3&gt;
+&lt;p&gt;The &lt;em&gt;References&lt;/em&gt; section at the bottom contains a couple of links to detailed migration guides if you intend to go this route. As any seasoned &lt;code class="highlighter-rouge"&gt;php&lt;/code&gt; programmer would tell you, programming in a language like &lt;code class="highlighter-rouge"&gt;php&lt;/code&gt; isn’t everyone’s cup of tea. While you don’t have to do any programming for hosting a static site, you should still know about a few things in order to implement a static site:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://jekyllrb.com/"&gt;Jekyll&lt;/a&gt;: Jekyll is a command line tool written in &lt;code class="highlighter-rouge"&gt;ruby&lt;/code&gt; language to generate blog-aware static sites (like the one you are presently viewing). Visit the link to find docs that explain what Jekyll is, how to install ruby and jekyll on your system and publish your posts.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://daringfireball.net/projects/markdown/syntax"&gt;Markdown&lt;/a&gt;: &lt;code class="highlighter-rouge"&gt;Markdown&lt;/code&gt; is a beautiful language crafted specially with on-line publishers in mind. Jekyll posts written in &lt;code class="highlighter-rouge"&gt;Markdown&lt;/code&gt; syntax are saved with the extension of &lt;code class="highlighter-rouge"&gt;.md&lt;/code&gt;. While you can write posts in plain old html syntax too, knowing markdown comes very handy and saves time.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For instance, when I write:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[Jekyll](http://jekyllrb.com/)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;It becomes:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://jekyllrb.com/"&gt;Jekyll&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Making lists, headings, etc. is as easy. For instance,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;### Three hashes means H3
+#### Four hashes means H4
+1. This is list-item1
+2. This is list-item2
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;becomes:&lt;/p&gt;
+&lt;h3&gt;Three hashes means H3&lt;/h3&gt;
+&lt;h4&gt;Four hashes means H4&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;This is list-item1&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This is list-item2&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://disqus.com/"&gt;Disqus&lt;/a&gt;: Perhaps the only feature for which most bloggers need a dynamic site is that of posting comments. Thanks to services like disqus, bloggers can now leave the hassle of maintaining their own database for storing their readers’ comments. Disqus does this for them. Read on the link to find out how to implement it on your Jekyll blog.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/jekyll/jekyll/wiki/Sites"&gt;Github pages&lt;/a&gt;: Github pages is literally a boon for us bloggers. I’m aware of no other static web hosting service that lets you host unlimited content with practically unlimited bandwidth!&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.google.com/analytics"&gt;Google Analytics&lt;/a&gt;: This is an invaluable service from Google used for tracking the web traffic on your blog or website. And not just hit-counts, you get to know what kinds of visitors come to your site based on demographic stats like location, age-group, gender, likes/dislikes, etc. All you have to do is put a bunch of code that analytics site provides you in your jekyll default template. Even when I was on Wordpress, I was using Google Analytics instead of the various stats plugins that come with Wordpress.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Outcome&lt;/h3&gt;
+&lt;p&gt;Jekyll feels so good that I can’t recommend you enough of it! If you are presently using a self-hosted wordpress site and want to migrate to Jekyll and Github-pages, just go ahead and do it without any second thoughts. And after that, please let me know about your migration experience through &lt;code class="highlighter-rouge"&gt;disqus&lt;/code&gt; comments below this post!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Reference:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://hadihariri.com/2013/12/24/migrating-from-wordpress-to-jekyll/"&gt;Wordpress to Jekyll - Migration guide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://paulstamatiou.com/how-to-wordpress-to-jekyll/"&gt;Wordpress to Jekyll - How to&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/jekyll/jekyll/wiki/Sites"&gt;Jekyll, A blog aware static site generator&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html"&gt;Blogging Like a Hacker&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://en.wikipedia.org/wiki/Jekyll_%28software%29"&gt;Jekyll, Wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/jekyll/jekyll/wiki/Sites"&gt;Github pages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/"&gt;How to set up a custom domain with Github pages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://joshualande.com/jekyll-github-pages-poole/"&gt;Poole - A minimalistic Jekyll theme&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="PHP"></category><category term="Wordpress"></category><category term="Jekyll"></category></entry><entry><title>PHP-FPM vs node.js - The REAL Performance Battle</title><link href="/blog/2014/06/php-fpm-vs-node-js-the-real-performance-battle.html" rel="alternate"></link><published>2014-06-22T21:15:00+05:30</published><updated>2014-06-22T21:15:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2014-06-22:/blog/2014/06/php-fpm-vs-node-js-the-real-performance-battle.html</id><summary type="html">&lt;p&gt;Even after my last &lt;a href="/blog/2014/06/php-vs-node-js-real-statistics.html"&gt;article&lt;/a&gt; about PHP and node.js benchmarking, my search for the holy grail of performance truth still continues. However, I do understand now that pitting PHP running on apache against a stand-alone node was a bit unfair with PHP for it was limited by what the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Even after my last &lt;a href="/blog/2014/06/php-vs-node-js-real-statistics.html"&gt;article&lt;/a&gt; about PHP and node.js benchmarking, my search for the holy grail of performance truth still continues. However, I do understand now that pitting PHP running on apache against a stand-alone node was a bit unfair with PHP for it was limited by what the apache configuration could handle.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="/uploads/old/benchmark.png"&gt;&lt;img alt="Benchmark" class="alignnone size-full wp-image-3082" height="622" src="/uploads/old/benchmark.png" width="1021"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;No, this time I went with nginx, a light and performance oriented server that was specifically designed to solve the &lt;a href="https://en.wikipedia.org/wiki/C10k"&gt;C10K&lt;/a&gt; problem from the ground-up. And who better than &lt;a href="http://php-fpm.org/"&gt;PHP-FPM&lt;/a&gt;, the enhanced Fastcgi process manager that implements asynchronous features (at least in theory) to take on &lt;a href="http://nodejs.org/"&gt;node.js&lt;/a&gt;. node.js is the one server that implements all its features primarily using callbacks in javascript, and thus drastically improvising performance by leveraging the benefits of &lt;a href="https://en.wikipedia.org/wiki/Functional_programming"&gt;functional programming&lt;/a&gt; (again, in theory).&lt;/p&gt;
+&lt;p&gt;I used the same code I had used earlier but did a small improvement to it so that the random filenames generated for performing I/O are unique:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; 
+&lt;span class="c1"&gt;//asyncdemo.php&lt;/span&gt;
+&lt;span class="nv"&gt;$s&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;//generate a random string of 108KB and a random filename&lt;/span&gt;
+&lt;span class="nv"&gt;$filename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="c1"&gt;//generate a random filename&lt;/span&gt;
+&lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nv"&gt;$fname&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;rand&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;99999&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.txt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;file_exists&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$fname&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+
+&lt;span class="c1"&gt;//generate a random string of 108kb&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;108000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nv"&gt;$n&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;rand&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;57&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="nv"&gt;$s&lt;/span&gt;&lt;span class="o"&gt;.=&lt;/span&gt;&lt;span class="nb"&gt;chr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$n&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;//write the string to disk&lt;/span&gt;
+&lt;span class="nb"&gt;file_put_contents&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$fname&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nv"&gt;$s&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;//read the string back from disk&lt;/span&gt;
+&lt;span class="nv"&gt;$result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;file_get_contents&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$fname&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;//write the string back on the response stream&lt;/span&gt;
+&lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$result&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And here is the Javascript version:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;//server.js&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;http&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;http&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;    
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;http&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;createServer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;handler&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;fs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;fs&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;handler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;response&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;response&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;writeHead&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Content-Type&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;text/plain&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+
+    &lt;span class="c1"&gt;//generate a random filename&lt;/span&gt;
+    &lt;span class="k"&gt;do&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;fname&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;floor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;random&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;99999999&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.txt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;fs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;existsSync&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;fname&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+
+    &lt;span class="c1"&gt;//generate a random string of 108kb&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;payload&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;108000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;n&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;floor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;random&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;122&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="nx"&gt;payload&lt;/span&gt;&lt;span class="o"&gt;+=&lt;/span&gt;&lt;span class="nb"&gt;String&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;fromCharCode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;n&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="c1"&gt;//write the string to disk in async manner&lt;/span&gt;
+    &lt;span class="nx"&gt;fs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;writeFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;fname&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;err&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;err&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;err&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+            &lt;span class="c1"&gt;//read the string back from disk in async manner&lt;/span&gt;
+            &lt;span class="nx"&gt;fs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;readFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;fname&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;err&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;err&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;err&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+                &lt;span class="nx"&gt;response&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;end&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;//write the string back on the response stream&lt;/span&gt;
+            &lt;span class="p"&gt;});&lt;/span&gt;  
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nx"&gt;server&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;listen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;8080&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Running on localhost:8080&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So, what happens when we run a piece of web application code performing async I/O for two thousand times (with two hundred concurrent) using a tool like apache-bench? Who is faster - PHP-FPM or node.js? Here is the answer.&lt;/p&gt;
+&lt;p&gt;So, moral of the story is that even the latest and greatest of PHP world falls behind node.js (though by a much smaller margin than before). Now, I do understand that PHP's market is very large, and with so many opensource CMSes like wordpress, mediawiki and drupal already powered by PHP, it is quite difficult to shake PHP's market share in the near future.&lt;/p&gt;
+&lt;p&gt;On the other hand, with the performance advantage that node.js offers, its a very lucrative option for startups small businesses that don't have the funding to develop high-end enterprise apps in say, Java or SAP. More importantly, if tommorrow I were to given a task of developing a performance-driven app, is there one reason why I should not write it in node.js and go for PHP-FPM instead? Some food for thought. Comments are Welcome!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Summarized results:
+PHP-FPM: 64.447 secondsnode.js: 42.441 seconds
+
+The Machine:
+Intel Pentium Dual-Core 2.30GHz running Linux 3.2.0
+
+The Configurations:
+PHP-FPM: PHP 5.4.23 (fpm-fcgi) (built: Jun 22 2014 14:51:15
+NODE: node v0.10.28
+
+Detailed Results:
+--PHP-FPM-----
+ab -c 200 -n 2000 http://localhost:8080/asyncdemo/asyncdemo.php
+
+Concurrency Level:      200
+Time taken for tests:   64.447 seconds
+Complete requests:      2000
+Failed requests:        6
+   (Connect: 0, Receive: 0, Length: 6, Exceptions: 0)
+Write errors:           0
+Non-2xx responses:      6
+Total transferred:      215649378 bytes
+HTML transferred:       215355222 bytes
+Requests per second:    31.03 [#/sec] (mean)
+Time per request:       6444.742 [ms] (mean)
+Time per request:       32.224 [ms] (mean, across all concurrent requests)
+Transfer rate:          3267.70 [Kbytes/sec] receive
+
+
+--NODE-----
+ab -c 200 -n 2000 http://localhost:8080/
+
+Concurrency Level:      200
+Time taken for tests:   42.441 seconds
+Complete requests:      2000
+Failed requests:        1
+   (Connect: 0, Receive: 0, Length: 1, Exceptions: 0)
+Write errors:           0
+Total transferred:      216155440 bytes
+HTML transferred:       215953440 bytes
+Requests per second:    47.12 [#/sec] (mean)
+Time per request:       4244.115 [ms] (mean)
+Time per request:       21.221 [ms] (mean, across all concurrent requests)
+Transfer rate:          4973.69 [Kbytes/sec] received
+&lt;/pre&gt;&lt;/div&gt;</content><category term="PHP"></category><category term="JavaScript"></category><category term="Node"></category></entry><entry><title>PHP vs node.js: The REAL statistics</title><link href="/blog/2014/06/php-vs-node-js-real-statistics.html" rel="alternate"></link><published>2014-06-09T21:36:00+05:30</published><updated>2014-06-09T21:36:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2014-06-09:/blog/2014/06/php-vs-node-js-real-statistics.html</id><summary type="html">&lt;p&gt;When it comes to web programming, I've always coded in ASP.NET or the LAMP technologies for most part of my life. Now, the new buzz in the city is &lt;a href="https://en.wikipedia.org/wiki/Node.js"&gt;node.js&lt;/a&gt;. It is a light-weight platform that runs javascript code on server-side and is said to improvise performance by …&lt;/p&gt;</summary><content type="html">&lt;p&gt;When it comes to web programming, I've always coded in ASP.NET or the LAMP technologies for most part of my life. Now, the new buzz in the city is &lt;a href="https://en.wikipedia.org/wiki/Node.js"&gt;node.js&lt;/a&gt;. It is a light-weight platform that runs javascript code on server-side and is said to improvise performance by using async I/O.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;a href="http://notes.ericjiang.com/posts/751"&gt;theory&lt;/a&gt; suggests that synchronous or blocking model of I/O works something like this:&lt;/p&gt;
+&lt;p&gt;&lt;a href="/uploads/2014/06/nodejs-comp.png"&gt;&lt;img alt="Blocking I/O" class="alignnone size-full wp-image-3070" height="354" src="/uploads/old/nodejs-comp.png" width="506"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I/O is typically the costliest part of a web transaction. When a request arrives to the apache web server, it passes it to PHP interpreter for scripting any dynamic contents. Now comes the tricky part - If the PHP script wants to read something from the disk/database or write to it, that is the slowest link in the chain. When you call PHP function file_get_contents(), the entire thread is blocked until the contents are retrieved! The server can't do anything until your script gets the file contents. Consider what happens when multiples of simultaneous requests are issued by different users to your server? They get queued, because no thread is available to do the job since they are all blocked in I/O!&lt;/p&gt;
+&lt;p&gt;Here comes the unique selling-point of node.js. Since node.js implements async I/O in almost all its functions, the server thread in the above scenario is freed as soon as the file retrieval function (fs.readFile) is called. Then, once the I/O completes, node calls a function (passed earlier by fs.readFile) along with the data parameters. In the meantime, that valuable thread can be used for serving some other request.&lt;/p&gt;
+&lt;p&gt;So thats the theory about it anyway. But I'm not someone who just accepts any new fad in the town just because it is hype and everyone uses it. Nope, I want to get under the covers and verify it for myself. I wanted to see whether this theory holds in actual practice or not.&lt;/p&gt;
+&lt;p&gt;So I brought upon myself the job of writing two simple scripts for benchmarking this - one in PHP (hosted on apache2) and other in javascript (hosted on node.js). The test itself was very simple. The script would:&lt;/p&gt;
+&lt;p&gt;1. Accept the request.\
+2. Generate a random string of 108 kilobytes.\
+3. Write the string to a file on the disk.\
+4. Read the contents back from disk.\
+5. Return the string back on the response stream.&lt;/p&gt;
+&lt;p&gt;This is the first script, index.php:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class="c1"&gt;//index.php&lt;/span&gt;
+&lt;span class="nv"&gt;$s&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;//generate a random string of 108KB and a random filename&lt;/span&gt;
+&lt;span class="nv"&gt;$fname&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;chr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rand&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;57&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;chr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rand&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;57&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;chr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rand&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;57&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;chr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;rand&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;57&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.txt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;108000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nv"&gt;$i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nv"&gt;$n&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;rand&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;57&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="nv"&gt;$s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;chr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$n&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;//write s to a file&lt;/span&gt;
+&lt;span class="nb"&gt;file_put_contents&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$fname&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nv"&gt;$s&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="nv"&gt;$result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;file_get_contents&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$fname&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$result&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And here is the second script, server.js:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;//server.js&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;http&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;http&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;    
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;http&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;createServer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;handler&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;handler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;response&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;//console.log(&amp;#39;request received!&amp;#39;);&lt;/span&gt;
+    &lt;span class="nx"&gt;response&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;writeHead&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Content-Type&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;text/plain&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+
+    &lt;span class="nx"&gt;s&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;//generate a random string of 108KB and a random filename&lt;/span&gt;
+    &lt;span class="nx"&gt;fname&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;fromCharCode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;floor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;random&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;122&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;
+        &lt;span class="nb"&gt;String&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;fromCharCode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;floor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;random&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;122&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;
+        &lt;span class="nb"&gt;String&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;fromCharCode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;floor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;random&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;122&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; 
+        &lt;span class="nb"&gt;String&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;fromCharCode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;floor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;random&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;122&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;.txt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="mi"&gt;108000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;n&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;floor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;random&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;122&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="nx"&gt;s&lt;/span&gt;&lt;span class="o"&gt;+=&lt;/span&gt;&lt;span class="nb"&gt;String&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;fromCharCode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;n&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="c1"&gt;//write s to a file&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;fs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;fs&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;fs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;writeFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;fname&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;err&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;fd&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;err&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;throw&lt;/span&gt; &lt;span class="nx"&gt;err&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="c1"&gt;//console.log(&amp;quot;The file was saved!&amp;quot;);&lt;/span&gt;
+            &lt;span class="c1"&gt;//read back from the file&lt;/span&gt;
+            &lt;span class="nx"&gt;fs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;readFile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;fname&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;err&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;err&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;throw&lt;/span&gt; &lt;span class="nx"&gt;err&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="nx"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="nx"&gt;response&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;end&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;result&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="p"&gt;});&lt;/span&gt;  
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nx"&gt;server&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;listen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;8124&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Server running at http://127.0.0.1:8124/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And then, I ran the apache benchmarking tool on both of them with 2000 requests (200 concurrent). When I saw the time stats of the result, I was astounded:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;#PHP:
+Concurrency Level:      200
+Time taken for tests:   574.796 seconds
+Complete requests:      2000
+
+#node.js:
+Concurrency Level:      200
+Time taken for tests:   41.887 seconds
+Complete requests:      2000
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The truth is out. node.js was faster than PHP by more 14 times! These results are astonishing. It simply means that node.js IS going to be THE de-facto standard for writing performance driven apps in the upcoming future, there is no doubt about it!&lt;/p&gt;
+&lt;p&gt;Agreed that the &lt;a href="http://nodejs.org"&gt;nodejs&lt;/a&gt; ecosystem isn't that widely developed yet, and most node modules for things like db connectivity, network access, utilities, etc. are actively being developed. But still, after seeing these results, its a no-brainer. Any extra effort spent in developing node.js apps is more than worth it. PHP might be still having the "king of web" status, but with node.js in the town, I don't see that status staying for very long!&lt;/p&gt;
+&lt;h2&gt;Update&lt;/h2&gt;
+&lt;p&gt;After reading some comments from the below section, I felt obliged to create a C#/mono version too. This, unfortunately, has turned out to be the slowest of the bunch (\~40 secs for 1 request). Either the Task library in mono is terribly implemented, or there is something terribly wrong with my &lt;a href="http://pastebin.mozilla.org/5406784"&gt;code&lt;/a&gt;. I'll fix it once I get some time and be back with my next post (maybe ASP.NET vs node.js vs PHP!).&lt;/p&gt;
+&lt;h2&gt;Second Update&lt;/h2&gt;
+&lt;p&gt;As for C#/ASP.NET, this is the most optimum version that I could manage. It still lags behind both PHP and node.js and most of the issued requests just get dropped. (And yes, I've tested it on both Linux/Mono and Windows-Server-2012/IIS environments). Maybe ASP.NET is inherently slower, so I'll have to change the terms of this benchmark to take it into comparison:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nl"&gt;Handler&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Web&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;IHttpHandler&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;private&lt;/span&gt; &lt;span class="n"&gt;StringBuilder&lt;/span&gt; &lt;span class="n"&gt;payload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;null&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="n"&gt;private&lt;/span&gt; &lt;span class="n"&gt;async&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;processAsync&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Random&lt;/span&gt; &lt;span class="p"&gt;();&lt;/span&gt;
+
+        &lt;span class="c1"&gt;//generate a random string of 108kb&lt;/span&gt;
+        &lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;StringBuilder&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;54000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="p"&gt;)(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Next&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;65&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;90&lt;/span&gt;&lt;span class="p"&gt;)));&lt;/span&gt;
+
+        &lt;span class="c1"&gt;//create a unique file&lt;/span&gt;
+        &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;fname&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;do&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;fname&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;@&amp;quot;c:\source\csharp&lt;/span&gt;&lt;span class="se"&gt;\a&lt;/span&gt;&lt;span class="s"&gt;syncdemo&lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="s"&gt; + r.Next (1, 99999999).ToString () + &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;File&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Exists&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fname&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+
+        &lt;span class="c1"&gt;//write the string to disk in async manner&lt;/span&gt;
+        &lt;span class="n"&gt;using&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;FileStream&lt;/span&gt; &lt;span class="n"&gt;fs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;File&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fname&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;FileMode&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CreateNew&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;FileAccess&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ReadWrite&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Text&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ASCIIEncoding&lt;/span&gt; &lt;span class="p"&gt;()).&lt;/span&gt;&lt;span class="n"&gt;GetBytes&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ToString&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+            &lt;span class="n"&gt;await&lt;/span&gt; &lt;span class="n"&gt;fs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;WriteAsync&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;bytes&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;bytes&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Length&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="n"&gt;fs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Close&lt;/span&gt; &lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+
+        &lt;span class="c1"&gt;//read the string back from disk in async manner&lt;/span&gt;
+        &lt;span class="n"&gt;payload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;StringBuilder&lt;/span&gt; &lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="n"&gt;StreamReader&lt;/span&gt; &lt;span class="n"&gt;sr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;StreamReader&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fname&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;await&lt;/span&gt; &lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ReadToEndAsync&lt;/span&gt; &lt;span class="p"&gt;());&lt;/span&gt;
+        &lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Close&lt;/span&gt; &lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="c1"&gt;//File.Delete (fname); //remove the file&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;ProcessRequest&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;HttpContext&lt;/span&gt; &lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;Task&lt;/span&gt; &lt;span class="n"&gt;task&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Task&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;processAsync&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;task&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Start&lt;/span&gt; &lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="n"&gt;task&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Wait&lt;/span&gt; &lt;span class="p"&gt;();&lt;/span&gt;
+
+        &lt;span class="c1"&gt;//write the string back on the response stream&lt;/span&gt;
+        &lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Response&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ContentType&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;text/plain&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Response&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Write&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ToString&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="n"&gt;IsReusable&lt;/span&gt; 
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;em&gt;References:&lt;/em&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Node.js"&gt;https://en.wikipedia.org/wiki/Node.js&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://notes.ericjiang.com/posts/751"&gt;http://notes.ericjiang.com/posts/751&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://nodejs.org"&gt;http://nodejs.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://code.google.com/p/node-js-vs-apache-php-benchmark/wiki/Tests"&gt;https://code.google.com/p/node-js-vs-apache-php-benchmark/wiki/Tests&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><category term="PHP"></category><category term="JavaScript"></category><category term="Node"></category></entry><entry><title>How to create a custom email plugin for Wordpress</title><link href="/blog/2014/06/how-to-create-a-custom-email-plugin-for-wordpress.html" rel="alternate"></link><published>2014-06-07T10:39:00+05:30</published><updated>2014-06-07T10:39:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2014-06-07:/blog/2014/06/how-to-create-a-custom-email-plugin-for-wordpress.html</id><summary type="html">&lt;p&gt;Last week, I suddenly stopped receiving email notifications for my &lt;a href="https://www.openshift.com/"&gt;openshift&lt;/a&gt; hosted blog. I came to know after some &lt;a href="http://stackoverflow.com/questions/17583205/sendmail-on-openshift-php-codeigniter/17598537#17598537"&gt;reading&lt;/a&gt; that commonly used cloud hosts such as openshift, aws, etc. are usually blacklisted by most email servers, hence its not a good idea to use them to send mails.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;In …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Last week, I suddenly stopped receiving email notifications for my &lt;a href="https://www.openshift.com/"&gt;openshift&lt;/a&gt; hosted blog. I came to know after some &lt;a href="http://stackoverflow.com/questions/17583205/sendmail-on-openshift-php-codeigniter/17598537#17598537"&gt;reading&lt;/a&gt; that commonly used cloud hosts such as openshift, aws, etc. are usually blacklisted by most email servers, hence its not a good idea to use them to send mails.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;In any case, why should I depend on my hosting provider for email sending. Until now, I had never bothered about how mail sending worked in wordpress as it used to work out of the box. So last week, I pulled up my socks and decided to put my php &lt;a href="http://en.wikipedia.org/wiki/Geany"&gt;IDE&lt;/a&gt; and &lt;a href="http://en.wikipedia.org/wiki/Xdebug"&gt;debugger&lt;/a&gt; to some good work.&lt;/p&gt;
+&lt;p&gt;I decided to use my &lt;a href="https://sendgrid.com"&gt;sendgrid&lt;/a&gt; account to send mails. All that`s needed now is calling the web service with the credentials they've provided. But how to integrate this with my wordpress blog?&lt;/p&gt;
+&lt;p&gt;Once I located &lt;strong&gt;&lt;em&gt;where&lt;/em&gt;&lt;/strong&gt; the mail sending functionality is there in wordpress code, adding a new method was a piece of cake!! Turns out that wordpress, by default, just executes the "mail" command which is usually just a symlink on unix boxes actually pointing to &lt;em&gt;/usr/bin/sendmail&lt;/em&gt; or something. I found it in a pluggable function &lt;em&gt;wp_mail()&lt;/em&gt;. (see &lt;em&gt;/wp-includes/pluggable.php&lt;/em&gt;). I also came to know from the codex that &lt;a href="http://codex.wordpress.org/Pluggable_Functions"&gt;pluggable functions&lt;/a&gt; can be easily overridden by plugins.&lt;/p&gt;
+&lt;p&gt;Now all I had to do was write a small plugin in the /wp-content/plugins/sendgrid/ folder and override this wp_mail() function with whatever I want.&lt;/p&gt;
+&lt;p&gt;Lo and behold! I started receiving notifications for all comments and contact forms filled, by just writing this one plugin. I found the process so simple and easy to integrate with wordpress that I couldn't help sharing with you. Here are the two php snippets that you need to place in /wp-content/plugins/&lt;em&gt;your-plugin-name&lt;/em&gt;/ and activate it. &lt;em&gt;Wordpress&lt;/em&gt; will do the rest!&lt;/p&gt;
+&lt;p&gt;(First one is the main plugin php file that displays the plugin in your admin menu and overrides the wp_mail function. The second php file contains the actual custom function that sends email via sendgrid.)&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;wp-content/plugins/sendgrid/myplugin.php:&lt;/em&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;?&lt;/span&gt;&lt;span class="nx"&gt;php&lt;/span&gt; &lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt; * Plugin Name: Sendgrid Plugin&lt;/span&gt;
+&lt;span class="cm"&gt; * Plugin URI:  http://www.prahladyeri.com&lt;/span&gt;
+&lt;span class="cm"&gt; * Description: Mail sending using Sendgrid Web API&lt;/span&gt;
+&lt;span class="cm"&gt; * Version:     0.1&lt;/span&gt;
+&lt;span class="cm"&gt; * Author:      Prahlad Yeri&lt;/span&gt;
+&lt;span class="cm"&gt; * Author URI:  http://www.prahladyeri.com&lt;/span&gt;
+&lt;span class="cm"&gt; * License:     MIT&lt;/span&gt;
+&lt;span class="cm"&gt; */&lt;/span&gt;
+
+&lt;span class="c1"&gt;//namespace MailDemo;&lt;/span&gt;
+&lt;span class="nx"&gt;require_once&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;sendgrid.php&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="nx"&gt;add_action&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;init&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;plugin_init&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt; * Plugin Name: Prahlad&amp;#39;s mail&lt;/span&gt;
+&lt;span class="cm"&gt; * Description: Alternative way to send a mail&lt;/span&gt;
+&lt;span class="cm"&gt; */&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nx"&gt;function_exists&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;wp_mail&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; 
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;wp_mail&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;$to&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;$subject&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;$message&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;$headers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;$attachments&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;array&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;$sto&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;is_array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;$to&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="nx"&gt;$sto&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;implode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;,&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;$to&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="nx"&gt;$sto&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;$to&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="nx"&gt;sendgridmail&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;wpadmin@mywebsite.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;$sto&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;$subject&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;$message&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;$headers&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;plugin_init&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;em&gt;wp-content/plugins/sendgrid/sendgrid.php:&lt;/em&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;?&lt;/span&gt;&lt;span class="nx"&gt;php&lt;/span&gt; &lt;span class="c1"&gt;//wp-content/plugins/sendgrid/sendgrid.php&lt;/span&gt;
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;sendgridmail&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;$from&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;$to&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;$subject&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;$message&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;$headers&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;        
+&lt;span class="nx"&gt;$url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;https://api.sendgrid.com/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nx"&gt;$user&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;your-sendgrid-username&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;   
+&lt;span class="nx"&gt;$pass&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;your-sendgrid-password&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="nx"&gt;$params&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;       
+&lt;span class="s1"&gt;&amp;#39;api_user&amp;#39;&lt;/span&gt;  &lt;span class="o"&gt;?&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;$user&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;api_key&amp;#39;&lt;/span&gt;   &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;$pass&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;to&amp;#39;&lt;/span&gt;        &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;$to&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;subject&amp;#39;&lt;/span&gt;   &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;$subject&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;html&amp;#39;&lt;/span&gt;      &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;text&amp;#39;&lt;/span&gt;      &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;$message&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;from&amp;#39;&lt;/span&gt;      &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;$from&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+      &lt;span class="p"&gt;);&lt;/span&gt;
+
+
+    &lt;span class="nx"&gt;$request&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;  &lt;span class="nx"&gt;$url&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;api/mail.send.json&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// Generate curl request&lt;/span&gt;
+    &lt;span class="nx"&gt;$session&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;curl_init&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;$request&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="c1"&gt;// Tell curl to use HTTP POST&lt;/span&gt;
+    &lt;span class="nx"&gt;curl_setopt&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;$session&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;CURLOPT_POST&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="c1"&gt;// Tell curl that this is the body of the POST&lt;/span&gt;
+    &lt;span class="nx"&gt;curl_setopt&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;$session&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;CURLOPT_POSTFIELDS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;$params&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="c1"&gt;// Tell curl not to return headers, but do return the response&lt;/span&gt;
+    &lt;span class="nx"&gt;curl_setopt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;$session&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;CURLOPT_HEADER&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;curl_setopt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;$session&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;CURLOPT_RETURNTRANSFER&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="nx"&gt;print_r&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;obtaining the response&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="c1"&gt;// obtain response&lt;/span&gt;
+    &lt;span class="nx"&gt;$response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;curl_exec&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;$session&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;print_r&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;closing curl session&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;curl_close&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;$session&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// print everything out&lt;/span&gt;
+    &lt;span class="c1"&gt;//print_r($response);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;//only for testing:&lt;/span&gt;
+&lt;span class="cm"&gt;/*$to      = &amp;#39;prahladyeri@yahoo.com&amp;#39;;&lt;/span&gt;
+&lt;span class="cm"&gt;$subject = &amp;#39;Testemail&amp;#39;;&lt;/span&gt;
+&lt;span class="cm"&gt;$message = &amp;#39;It works!!&amp;#39;;&lt;/span&gt;
+&lt;span class="cm"&gt;echo &amp;#39;To is: &amp;#39; + $to;&lt;/span&gt;
+&lt;span class="cm"&gt;#wp_mail($to, $subject, $message, array() );&lt;/span&gt;
+&lt;span class="cm"&gt;sendgridmail($to, $subject, $message, array());&lt;/span&gt;
+&lt;span class="cm"&gt;print_r(&amp;#39;Just sent!&amp;#39;);*/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;em&gt;References:&lt;/em&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="http://codex.wordpress.org/Pluggable_Functions"&gt;http://codex.wordpress.org/Pluggable_Functions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/q/17583205/849365#17598537"&gt;http://stackoverflow.com/q/17583205/849365#17598537&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://codex.wordpress.org/Pluggable_Functions"&gt;http://codex.wordpress.org/Pluggable_Functions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://en.wikipedia.org/wiki/Geany"&gt;http://en.wikipedia.org/wiki/Geany&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://en.wikipedia.org/wiki/Xdebug"&gt;http://en.wikipedia.org/wiki/Xdebug&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://sendgrid.com"&gt;https://sendgrid.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://sendgrid.com/docs/"&gt;https://sendgrid.com/docs/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.openshift.com/"&gt;https://www.openshift.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><category term="PHP"></category><category term="Wordpress"></category><category term="Email"></category><category term="How To"></category></entry><entry><title>The 7 "Bread and Butter" Plugins for your Wordpress blog</title><link href="/blog/2013/11/the-7-bread-and-butter-plugins-for-your-wordpress-blog.html" rel="alternate"></link><published>2013-11-27T19:09:00+05:30</published><updated>2013-11-27T19:09:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2013-11-27:/blog/2013/11/the-7-bread-and-butter-plugins-for-your-wordpress-blog.html</id><summary type="html">&lt;p&gt;Based on my experiments while setting up this blog, below are the 7 "bread and butter" plugins for your wordpress blog. These plugins came very handy for me and allowed me to seamlessly integrate much needed functionality in my blog without writing a single line of php code.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="/uploads/old/database_active.png"&gt;&lt;img alt="Wordpress Plugin" class="alignnone wp-image-186" height="77" src="/uploads/old/database_active.png" width="77"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href="http://wordpress.org/plugins/contact-form-7/"&gt;Contact Form …&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;Based on my experiments while setting up this blog, below are the 7 "bread and butter" plugins for your wordpress blog. These plugins came very handy for me and allowed me to seamlessly integrate much needed functionality in my blog without writing a single line of php code.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="/uploads/old/database_active.png"&gt;&lt;img alt="Wordpress Plugin" class="alignnone wp-image-186" height="77" src="/uploads/old/database_active.png" width="77"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href="http://wordpress.org/plugins/contact-form-7/"&gt;Contact Form 7&lt;/a&gt; (Contact Forms): &lt;/strong&gt;While designing this blog, a Contact page was one of my primary requirements. This plugin is popular and well maintained. Once installed, you will have a Contact tab on your dashboard that has a default contact-form with a short-code. You can copy-paste this short-code into any post or page of yours, and lo and behold! You have a contact form ready such as &lt;a href="http://www.prahladyeri.com/contact/" title="Contact"&gt;the one on this blog&lt;/a&gt;. Of course, you can customize the default contact-form to change the fields to suit your particular needs. By default, the form filled by the user is mailed to the admin user's email address. If you want to store the form data in the WP database in addition to that, you will have to install the &lt;a href="http://wordpress.org/extend/plugins/flamingo/"&gt;Flamingo&lt;/a&gt; plugin along with this.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href="http://wordpress.org/plugins/jetpack/"&gt;Jetpack&lt;/a&gt; (Multi-purpose): &lt;/strong&gt;This is what I would term the "bread-and-butter" plugin for wordpress blog owners. Brought to you by Automattic (the company behind Wordpress), this plugin provides almost every feature a blogger can think of such as:&lt;ul&gt;
+&lt;li&gt;Comprehensive statistics such as hits per page/post, incoming/outoing links, referrals, etc.&lt;/li&gt;
+&lt;li&gt;Social buttons and a social-networking based comment system.&lt;/li&gt;
+&lt;li&gt;Email subscriptions for your blog posts and comments.&lt;/li&gt;
+&lt;li&gt;A mobile theme that automatically streamlines your site for mobile visitors.&lt;/li&gt;
+&lt;li&gt;Allowing your readers to login to your blog using their wordpress.com account.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href="http://wordpress.org/plugins/akismet/"&gt;Akismet&lt;/a&gt; (Spam control): &lt;/strong&gt;Again, this is a "bread and butter" kind of plugin. What kind of blogger, in his right mind, will trust comments on his high-traffic blog to be spam free! Akismet is a web-service that specializes in eradicating spam. Once you install this plugin, all your comments will be scanned by this web service before they make way to your dashboard.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href="http://wordpress.org/extend/plugins/wordpress-importer/"&gt;WordPress Importer&lt;/a&gt; (migrating your existing wordpress blog): &lt;/strong&gt;If you are migrating your posts from another wordpress hosted blog or a wordpress.com blog (like I did), you need this plugin to import the posts that you exported from there. In fact, wordpress automatically prompts you to install this plugin when you go to Dashboard-&gt;Tools-&gt;Import to import your posts.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href="http://wordpress.org/plugins/xml-sitemap-feed/"&gt;XML Sitemap &amp;amp; Google News Feeds&lt;/a&gt; (Submitting sitemaps to spiders): &lt;/strong&gt;A well written blog must also be searchable by spiders and search-engines, so that it can send readers to your blog. Now, when you submit your blog url to the search-engines like Google or Bing, it pays to have a sitemap so that the spiders know how is your blog or website structured. After installing this plugin, an automatic sitemap url is seamlessly generated for you at http://Your-WP-URL/sitemap.xml. You can then submit this sitemap url to the search engines and thus increase the visibility of your wordpress blog.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href="http://wordpress.org/plugins/w3-total-cache/"&gt;W3 Total Cache&lt;/a&gt; (caching and performance): &lt;/strong&gt;Whilst I haven't installed this plugin myself yet, it is said to improve the performance of your blog by serving static content to your users instead of running heavy-duty php scripts that increase your backend load. This plugin is also recommended by the XML Sitemap plugin.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href="http://wordpress.org/plugins/backup/"&gt;Backup&lt;/a&gt; (backing up your wordpress site):&lt;/strong&gt; You usually take an export of your posts from the Tools-Export menu, but if you want to backup your entire wordpress blog including the mysql database dump and all files used for hosting your wordpress blog, then this plugin is the way to go.&lt;/li&gt;
+&lt;/ol&gt;</content><category term="Wordpress"></category></entry><entry><title>Some Wordpress tips and tricks</title><link href="/blog/2013/11/some-wordpress-tips-and-tricks.html" rel="alternate"></link><published>2013-11-23T12:19:00+05:30</published><updated>2013-11-23T12:19:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2013-11-23:/blog/2013/11/some-wordpress-tips-and-tricks.html</id><summary type="html">&lt;p&gt;Wordpress is a universally recognized and robust blogging platform written in the PHP language. Below are a bunch of Wordpress tricks that I've learned during my deployments, and I'd like to share with you.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;1. Change breadcrumbs to start from "Home" instead of \&amp;lt;Site-Title&gt;&lt;/em&gt;&lt;/strong&gt; (Works for Mantra theme): When I …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Wordpress is a universally recognized and robust blogging platform written in the PHP language. Below are a bunch of Wordpress tricks that I've learned during my deployments, and I'd like to share with you.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;1. Change breadcrumbs to start from "Home" instead of \&amp;lt;Site-Title&gt;&lt;/em&gt;&lt;/strong&gt; (Works for Mantra theme): When I set up this site, the breadcrumbs in the post used to read like this:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.prahladyeri.com/"&gt;Prahlad Yeri » &lt;/a&gt;&lt;a href="http://www.prahladyeri.com/category/wordpress/"&gt;wordpress » &lt;/a&gt;WordPress installation quick-start guide&lt;/p&gt;
+&lt;p&gt;However, I wanted it to look like this:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.prahladyeri.com/"&gt;Home » &lt;/a&gt;&lt;a href="http://www.prahladyeri.com/category/wordpress/"&gt;wordpress » &lt;/a&gt;WordPress installation quick-start guide&lt;/p&gt;
+&lt;p&gt;In order to do that, you need to look into your theme-functions.php file and see where wordpress is echoing your breadcrumbs. In the mantra theme, I found this in the function mantra_breadcrumbs(). So accordingly, I changed get_bloginfo('name') and hard-coded it to 'Home':&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;//changed by prahlad
+//echo &amp;#39;&lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;#39;.get_bloginfo(&amp;#39;url&amp;#39;).&amp;#39;&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;&amp;#39;.get_bloginfo(&amp;#39;name&amp;#39;).&amp;#39; &lt;span class="ni"&gt;&amp;amp;raquo;&lt;/span&gt; &lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;&amp;#39;; 
+echo &amp;#39;&lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;#39;.get_bloginfo(&amp;#39;url&amp;#39;).&amp;#39;&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;&amp;#39;.&amp;#39;Home&amp;#39;.&amp;#39; &lt;span class="ni"&gt;&amp;amp;raquo;&lt;/span&gt; &lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;&amp;#39;;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You have to do this at multiple places in the mantra_breadcrumbs() (or your theme's equivalent function) wherever get_bloginfo('name') is used and replace it with 'Home'.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;2. How to crop off the big page-title that appears on top of pages:&lt;/em&gt; &lt;/strong&gt;This is a nice little css trick.  Just open your theme's style.css and switch off the display for "entry-title" class elements within the "page" class elements. This will hide the page titles only on page-titles (and not posts!):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;/*start: prahlad - used to hide post-titles on all pages (not posts)*/&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;page&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;entry-title&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+ &lt;span class="k"&gt;display&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;none&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="c"&gt;/*end: prahlad*/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If you notice that some whitespace is still left on top of the page, you can try some of these modifiers:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="na"&gt;.site-header&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
+ &lt;span class="nl"&gt;padding-bottom:&lt;/span&gt; &lt;span class="err"&gt;0&lt;/span&gt;&lt;span class="c"&gt;;&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
+
+&lt;span class="na"&gt;.site-content&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
+ &lt;span class="nl"&gt;margin-top:&lt;/span&gt; &lt;span class="err"&gt;0&lt;/span&gt;&lt;span class="c"&gt;;&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
+
+&lt;span class="c"&gt;#content {&lt;/span&gt;
+ &lt;span class="nl"&gt;margin-top:&lt;/span&gt; &lt;span class="err"&gt;-20&lt;/span&gt;&lt;span class="nf"&gt;px&lt;/span&gt;&lt;span class="c"&gt;;&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;3. How to add a contact-form to your post or page:&lt;/em&gt;&lt;/strong&gt;  In order to do that you need a Contact-Form plugin. The most popular and well-maintained plugin at that is "Contact-Forms 7":&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://wordpress.org/plugins/contact-form-7/"&gt;http://wordpress.org/plugins/contact-form-7/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This is a pretty decent form plugin that, from a single line of short-code (in your page or post), creates a basic all-purpose contact-form such as this:&lt;/p&gt;
+&lt;p&gt;&lt;a href="/uploads/old/Contact-Forms-7.png"&gt;&lt;img alt="Page created with Contact Forms 7" class="size-medium wp-image-120" height="164" src="/uploads/old/Contact-Forms-7-300x164.png" width="300"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Page created with Contact Forms 7&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;When you install this plugin, you will see an additional "Contact" tab in your dashboard. When you click that, you will see a default form with a short-code like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[contact-form-7 id=&amp;quot;116&amp;quot; title=&amp;quot;Contact form 1&amp;quot;]
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can copy-paste this short-code anywhere in the editor for your page or post. For this site's contact page, it looked something like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[contact-form-7 id=&amp;quot;116&amp;quot; title=&amp;quot;Contact form 1&amp;quot;]
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;By default, the information in the text-fields are mailed to the admin user's email-address when a user submits this form. You can change all this by editing the default form that you find in the "Contact" tab of your dashboard. You can add/remove the text-fields, add validation and much &lt;a href="http://contactform7.com/tag-syntax/"&gt;more&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Another plugin that works in combination with this is the &lt;a href="http://wordpress.org/plugins/flamingo"&gt;flamingo plugin&lt;/a&gt;. It is useful in case you want to store the contact information in the wordpress database in addition to getting it mailed to your email address.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;4: Change the footer notices (such as "Powered by Wordpress", etc..):&lt;/em&gt;&lt;/strong&gt; Just open your footer.php from editor and try to find a snippet such as this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;footer&lt;/span&gt; &lt;span class="nx"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;colophon&amp;quot;&lt;/span&gt; &lt;span class="nx"&gt;role&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;contentinfo&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+ &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;div&lt;/span&gt; &lt;span class="kr"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;site-info&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+ &lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt; &lt;span class="nx"&gt;do_action&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;twentytwelve_credits&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="cp"&gt;?&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Change it accordingly to suit your needs.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;References:&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;http://www.cryoutcreations.eu/forums/t/breadcrumbs-how-to-show-home-instead-of-site-title-in-the-breadcrumbs&lt;/li&gt;
+&lt;li&gt;http://wordpress.org/plugins/contact-form-7/&lt;/li&gt;
+&lt;li&gt;http://www.wpsquared.com/top-10-wordpress-contact-form-plugins/&lt;/li&gt;
+&lt;li&gt;http://wordpress.org/support/topic/plugin-contact-form-7-16?replies=5&lt;/li&gt;
+&lt;li&gt;http://contactform7.com/text-fields/&lt;/li&gt;
+&lt;li&gt;http://contactform7.com/tag-syntax/&lt;/li&gt;
+&lt;/ul&gt;</content><category term="WordPress"></category><category term="PHP"></category></entry><entry><title>Wordpress installation quick-start guide</title><link href="/blog/2013/11/wordpress-installation-quick-start-guide.html" rel="alternate"></link><published>2013-11-17T04:17:00+05:30</published><updated>2013-11-17T04:17:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2013-11-17:/blog/2013/11/wordpress-installation-quick-start-guide.html</id><summary type="html">&lt;p&gt;Wordpress is a blogging platform that is very easy to use, but involves many configuration trivia which may become overwhelming, unless organized and documented somewhere. Based on my experience of setting up this website, here are the things that I had to keep in mind to get it up and …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Wordpress is a blogging platform that is very easy to use, but involves many configuration trivia which may become overwhelming, unless organized and documented somewhere. Based on my experience of setting up this website, here are the things that I had to keep in mind to get it up and running:&lt;!--more--&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Wordpress file-structure:&lt;/strong&gt; A brief understanding of the file structure helps before delving into the installation details. The folder where you upload the contents of wordpress installation files has an index.php file that triggers other configuration files from there. You have to setup the mysql database credentials in the &lt;em&gt;wp-config.php&lt;/em&gt; file before starting the installation. Inside the root folder, there are two sub-folders, &lt;strong&gt;wp-admin&lt;/strong&gt; and &lt;strong&gt;wp-content&lt;/strong&gt;. The wp-admin folder stores the necessary files to bring up the admin interface when you type http://your-wp-url/wp-admin to administer your site for adding posts, moderating comments, etc. The wp-content folder on the other hand, stores contains files and folders to create the structure, functionality and look and feel of your blog. The wp-content folder further has &lt;strong&gt;wp-themes&lt;/strong&gt; and &lt;strong&gt;wp-plugins&lt;/strong&gt; folders. The former controls the structure and look and feel (themes), whereas the latter is for adding extra bits of extra functionality (plugins).&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;root-folder » index.php, wp-config.php, wp-settings.php&lt;/em&gt;&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;wp-admin - Files &amp;amp; folders to control admin interface.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;wp-content&lt;/em&gt;&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;wp-themes - Files and folders to control look and feel.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;wp-plugins - Files and folders to add bits of extra functionality.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;wp-includes - Contains header files for other php scripts.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- --&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Famous File-minute installation:&lt;/strong&gt;Once you have the basic understanding, you may proceed with the much advertised&lt;a href="http://codex.wordpress.org/Installing_WordPress#Famous_5-Minute_Install" title="famous five minute installation"&gt;&lt;em&gt;famous five minute installation&lt;/em&gt;&lt;/a&gt; of your wordpress site. Basically, once you have set the mysql credentials in wp-config.php, wordpress does the rest by creating the required tables for your blog-posts, comments and other elements. But make sure, the wp-user you configure has suffient rights to create/alter/query/etc. on the wordpress database you have configured.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Configuration:&lt;/strong&gt; These settings in wp-config.php come quite handy during deployment:&lt;ul&gt;
+&lt;li&gt;DB_NAME - mysql database name reserved for the wordpress blog.&lt;/li&gt;
+&lt;li&gt;DB_USER - mysql user-id.&lt;/li&gt;
+&lt;li&gt;DB_PASSWORD - mysql password.&lt;/li&gt;
+&lt;li&gt;DB_HOST - hostname of the machine where mysql is running.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The above settings are almost always different in your local environment from that of your web-hosting machine. Hence, it is advisable that you keep the local version of wp-config.php separate by adding an exception to version control systems like git, svn, etc. if you are using any.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Site name settings:&lt;/strong&gt; Two php global variables called WP_HOME and WP_SITEURL are almost always a source of trouble during migration of wordpress sites. These variables tell wordpress the url of your currently hosted wordpress site (such as http://localhost/wp or http://www.mysite.com/blog). When you migrate your database settings to your web host, wordpress obviously can't find the localhost there. To temporarily solve this issue, you can hard-code these values at the start of wp-config.php like this:&lt;ul&gt;
+&lt;li&gt;define('WP_HOME','http://workstation2/rhc/prahladyeri/php');&lt;/li&gt;
+&lt;li&gt;define('WP_SITEURL','http://workstation2/rhc/prahladyeri/php');&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Once you have access to wp-admin, you should remove them from wp-config.php and go to Settings-&gt;General to set these variables in a proper manner under the fields, "Wordpress Address (URL)" and "Site Address (URL)".&lt;/p&gt;</content><category term="PHP"></category><category term="Wordpress"></category></entry></feed>

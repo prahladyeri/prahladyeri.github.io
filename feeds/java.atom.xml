@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Prahlad Yeri's Blog - Java</title><link href="/" rel="alternate"></link><link href="/feeds/java.atom.xml" rel="self"></link><id>/</id><updated>2015-12-30T22:36:00+05:30</updated><subtitle>Educate and solve problems is my mantra. I'm skilled in web development and a quick learner, I also like blogging and contributing to open source.</subtitle><entry><title>Eclipse Mars - Not ready for Linux Yet</title><link href="/blog/2015/12/eclipse-mars-not-ready-for-linux.html" rel="alternate"></link><published>2015-12-30T22:36:00+05:30</published><updated>2015-12-30T22:36:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2015-12-30:/blog/2015/12/eclipse-mars-not-ready-for-linux.html</id><summary type="html">&lt;p&gt;So after hearing about all the hype and praises about this Eclipse new release called &lt;a href="https://projects.eclipse.org/releases/mars"&gt;Mars&lt;/a&gt;, I decided to give it a try on my Ubuntu laptop yesterday. Since I already use &lt;code class="highlighter-rouge"&gt;Kepler&lt;/code&gt; the older version, I was looking for some big positives like performance improvements (most often talked about …&lt;/p&gt;</summary><content type="html">&lt;p&gt;So after hearing about all the hype and praises about this Eclipse new release called &lt;a href="https://projects.eclipse.org/releases/mars"&gt;Mars&lt;/a&gt;, I decided to give it a try on my Ubuntu laptop yesterday. Since I already use &lt;code class="highlighter-rouge"&gt;Kepler&lt;/code&gt; the older version, I was looking for some big positives like performance improvements (most often talked about by a lot of Eclipse fans lately).&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Eclipse Red Logo" src="/uploads/old/eclipse-red.png"&gt;&lt;/p&gt;
+&lt;p&gt;When I started this new &lt;code class="highlighter-rouge"&gt;eclipse&lt;/code&gt; on ubuntu, I first had a faint hope that it was running faster (maybe a trick of the mind instilled by the new red logo!). But the true test of any software is how it performs under REAL world conditions. Alas! As I had expected, I was only to be disappointed on the performance front. Unless there is a drastic change in underlying core components such as a code refactoring or an improvement of graphic toolkit/library, the “performance” can only get worse, not better. After I created a simple &lt;em&gt;HelloADT&lt;/em&gt; project, here is what happened when I clicked on an Android Activity layout screen:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Eclipse Mars" src="/uploads/old/Eclipse_Mars.png"&gt;&lt;/p&gt;
+&lt;p&gt;And this is a modern &lt;em&gt;Intel core i3&lt;/em&gt; machine we are talking about with 4 GB RAM, not some old device. Just after this disaster of an IDE happened, I started my good old &lt;code class="highlighter-rouge"&gt;kepler&lt;/code&gt; version and opened the same ADT project which ran without any problems:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Eclipse Kepler" src="/uploads/old/Eclipse_Kepler.png"&gt;&lt;/p&gt;
+&lt;p&gt;It was good that I had kept my kepler installation folder intact, so I was able to revert. So moral of the story is:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Take all claims about this “big improvement” with a pinch of salt, especially if it is a Java based software.&lt;/li&gt;
+&lt;li&gt;Wait for &lt;code class="highlighter-rouge"&gt;Eclipse mars&lt;/code&gt; to get more stable before using it for production work.&lt;/li&gt;
+&lt;/ol&gt;</content><category term="Eclipse"></category></entry><entry><title>Rockstar Java Series: Learn type annotations and be a better coder</title><link href="/blog/2015/12/rockstar-java-dev-series-learn-type-annotations.html" rel="alternate"></link><published>2015-12-24T21:23:00+05:30</published><updated>2015-12-24T21:23:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2015-12-24:/blog/2015/12/rockstar-java-dev-series-learn-type-annotations.html</id><summary type="html">&lt;p&gt;&lt;em&gt;Java SE 8&lt;/em&gt; comes with a bundle of new features, and not many of them catch the attention of coders until they learn what they are and realize their usefulness. One such feature that can help you become a better Java coder is the ability to declare &lt;em&gt;type annotations&lt;/em&gt; to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;em&gt;Java SE 8&lt;/em&gt; comes with a bundle of new features, and not many of them catch the attention of coders until they learn what they are and realize their usefulness. One such feature that can help you become a better Java coder is the ability to declare &lt;em&gt;type annotations&lt;/em&gt; to any type use.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;Before &lt;em&gt;Java SE 8&lt;/em&gt; came out, &lt;em&gt;type annotations&lt;/em&gt; could only be applied to declarations, but now they can be applied to any type use such as declarations of variables or methods, &lt;em&gt;class instance&lt;/em&gt; creation, &lt;em&gt;casts&lt;/em&gt;, &lt;em&gt;interface&lt;/em&gt; creation, &lt;em&gt;implements&lt;/em&gt; clauses, &lt;em&gt;throws&lt;/em&gt; clauses, etc.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Type annotations&lt;/em&gt; were created to support improved analysis of Java programs by introducing stronger type checking. The more the &lt;em&gt;Java compiler&lt;/em&gt; and &lt;em&gt;JVM&lt;/em&gt; knows about your &lt;code&gt;bytecode&lt;/code&gt;, the more equipped they are to perform better in the real world across all platforms.&lt;/p&gt;
+&lt;h2&gt;What are Type Annotations?&lt;/h2&gt;
+&lt;p&gt;In its basic form, an annotation looks like the following:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;@entity
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The variable after &lt;code&gt;@&lt;/code&gt; symbol tells the Java compiler that what follows is a type annotation. A standard example of a built-in type annotation is &lt;code&gt;@Override&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;@Override
+public void talk()
+{
+    System.out.println(&amp;quot;I am an overridden method&amp;quot;);
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The &lt;code&gt;@Override&lt;/code&gt; type annotation tells the Java compiler that what follows is an overridden method from the base class. Of course, you can even place multiple type annotations for the same declaration:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;@Override
+@SuppressWarnings(&amp;quot;unchecked&amp;quot;)
+void myMethod() { ... }
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;em&gt;Java SE 8&lt;/em&gt; is so flexible that it allows you to define your own type annotations!&lt;/p&gt;
+&lt;h2&gt;How to create your own Type Annotations?&lt;/h2&gt;
+&lt;p&gt;Imagine there is a Software firm called &lt;em&gt;Acme Corporation&lt;/em&gt; that develops Java software for its large number of clients. The standard Java practice there is to declare header files in each and every Java source file (*.java) like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt; * @copyright Amce Corporation Inc.&lt;/span&gt;
+&lt;span class="cm"&gt; * @author Prahlad Yeri&lt;/span&gt;
+&lt;span class="cm"&gt; * @date 25-12-2015&lt;/span&gt;
+&lt;span class="cm"&gt; * @version 1.1&lt;/span&gt;
+&lt;span class="cm"&gt; * */&lt;/span&gt;
+&lt;span class="kr"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;Duck&lt;/span&gt; 
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;talk() {&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Sound familiar? This is a pretty much common header style nowadays. This same information could be structured by using your own type annotation and it becomes so, so simple:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;@Classinfo&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="nx"&gt;author&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Prahlad Yeri&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nx"&gt;date&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;25-12-2015&amp;quot;&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="kr"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;Duck&lt;/span&gt; 
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;talk() {&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In order to use your &lt;code&gt;@Classinfo&lt;/code&gt; type annotation, you must declare it. Annotation declaration in Java is similar to how interfaces are declared. In fact, annotations are a kind of interface themselves:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;@interface Classinfo 
+{
+    String copyright() default &amp;quot;Acme Corporation Inc.&amp;quot;;
+    String author();
+    String date();
+    String version() default &amp;quot;1.1&amp;quot;;
+    String lastModified() default &amp;quot;&amp;quot;;
+    String lastModifiedBy() default &amp;quot;&amp;quot;;
+    String codeReviewBy() default &amp;quot;&amp;quot;; 
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can see that default values are given for &lt;code&gt;copyright&lt;/code&gt;, &lt;code&gt;version&lt;/code&gt;, &lt;code&gt;lastModifiedBy&lt;/code&gt;, etc. so they are not basically required. If you need multiple author declaration, you can turn it into a list:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;String[] author();
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And then proceed to define multiple authors when using the type annotation in this manner:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;@Classinfo(
+    author = {&amp;quot;Prahlad Yeri&amp;quot;, &amp;quot;John Doe&amp;quot;},
+    date = &amp;quot;25-12-2015&amp;quot;
+)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Built-in type annotations in Java&lt;/h2&gt;
+&lt;p&gt;Java comes with a bunch of type annotations pre defined. The ones we saw in this tutorial were &lt;code&gt;@Override&lt;/code&gt; and &lt;code&gt;@SuppressWarnings&lt;/code&gt;. Here is the entire list:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;@Deprecated annotation indicates that the marked element is deprecated and should no longer be used.&lt;/li&gt;
+&lt;li&gt;@Override annotation informs the compiler that the element is meant to override an element declared in a superclass.&lt;/li&gt;
+&lt;li&gt;@SuppressWarnings annotation tells the compiler to suppress specific warnings that it would otherwise generate.&lt;/li&gt;
+&lt;li&gt;@SafeVarargs annotation, when applied to a method or constructor, asserts that the code does not perform potentially unsafe operations on its varargs parameter.&lt;/li&gt;
+&lt;li&gt;@FunctionalInterface annotation, introduced in Java SE 8, indicates that the type declaration is intended to be a functional interface, as defined by the Java Language Specification.&lt;/li&gt;
+&lt;li&gt;@Documented annotation (&lt;em&gt;only to be used in case of annotation declaration&lt;/em&gt;) indicates that whenever the specified annotation is used those elements should be documented using the Javadoc tool. (By default, annotations are not included in Javadoc.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;References:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://docs.oracle.com/javase/tutorial/java/annotations/index.html"&gt;Official Oracle docs - Type Annotations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.oracle.com/javase/tutorial/java/annotations/basics.html"&gt;Official Oracle docs - Type Annotations Basics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.oracle.com/javase/tutorial/java/annotations/predefined.html"&gt;Official Oracle docs - Predefined Type Annotations&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Java"></category></entry><entry><title>Rockstar Java Series: Use default methods and be a better coder</title><link href="/blog/2015/12/rockstar-java-series-use-default-methods-and-be-a-better-coder.html" rel="alternate"></link><published>2015-12-21T21:23:00+05:30</published><updated>2015-12-21T21:23:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2015-12-21:/blog/2015/12/rockstar-java-series-use-default-methods-and-be-a-better-coder.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Java 8&lt;/strong&gt; comes with a lot more improvements and features than most people seem to realize. One such feature that can help you become a better Java coder is &lt;strong&gt;Default methods&lt;/strong&gt;.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;To learn just how useful this feature is, lets take a very plain simple example: A &lt;code class="highlighter-rouge"&gt;Product Interface&lt;/code&gt;. Suppose …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Java 8&lt;/strong&gt; comes with a lot more improvements and features than most people seem to realize. One such feature that can help you become a better Java coder is &lt;strong&gt;Default methods&lt;/strong&gt;.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;To learn just how useful this feature is, lets take a very plain simple example: A &lt;code class="highlighter-rouge"&gt;Product Interface&lt;/code&gt;. Suppose that you are a Java Engineer who is just appointed as the Backend Developer in Acme Trading Corporation to develop their new eCommerce system. Suppose Acme has a range of electronic products ranging from computers to cell phones and hard drives to printers. Being a design-oriented programmer, you develop a &lt;code class="highlighter-rouge"&gt;Product&lt;/code&gt; Interface and a generic &lt;code class="highlighter-rouge"&gt;BaseProduct&lt;/code&gt; class for all products:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;//Product.java&lt;/span&gt;
+&lt;span class="kr"&gt;interface&lt;/span&gt; &lt;span class="nx"&gt;Product&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;getName&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;setName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;getDescription&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;setDescription&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="kr"&gt;double&lt;/span&gt; &lt;span class="nx"&gt;getRate&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;setRate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;double&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;//BaseProduct.java&lt;/span&gt;
+&lt;span class="kr"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;BaseProduct&lt;/span&gt; &lt;span class="kr"&gt;implements&lt;/span&gt; &lt;span class="nx"&gt;Product&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kr"&gt;private&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kr"&gt;private&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;description&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kr"&gt;private&lt;/span&gt; &lt;span class="kr"&gt;double&lt;/span&gt; &lt;span class="nx"&gt;rate&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+
+    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;setDescription&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;description&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;getDescription() {&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;description&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;setName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;getName() {&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;setRate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;double&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;rate&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="kr"&gt;double&lt;/span&gt; &lt;span class="nx"&gt;getRate() {&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;rate&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="kr"&gt;static&lt;/span&gt; &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;String&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="nx"&gt;args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;BaseProduct&lt;/span&gt; &lt;span class="nx"&gt;product&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;BaseProduct&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="nx"&gt;product&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Foo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="nx"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;out&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;product&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getName&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You realize that all products have at least these three things in common: &lt;code class="highlighter-rouge"&gt;Name&lt;/code&gt;, &lt;code class="highlighter-rouge"&gt;Description&lt;/code&gt; and &lt;code class="highlighter-rouge"&gt;Rate&lt;/code&gt;. Then, you start implementing the &lt;code class="highlighter-rouge"&gt;Laptop&lt;/code&gt; class based on the &lt;code class="highlighter-rouge"&gt;BaseProduct&lt;/code&gt; class:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;//Laptop.java&lt;/span&gt;
+&lt;span class="kr"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;Laptop&lt;/span&gt; &lt;span class="kr"&gt;extends&lt;/span&gt; &lt;span class="nx"&gt;BaseProduct&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kr"&gt;private&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;cpuType&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kr"&gt;private&lt;/span&gt; &lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;usbPorts&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;getCpuType() {&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;cpuType&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;setCpuType&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;cpuType&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;getUsbPorts() {&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;usbPorts&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;setUsbPorts&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;usbPorts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+
+    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="kr"&gt;static&lt;/span&gt; &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;String&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="nx"&gt;args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;Laptop&lt;/span&gt; &lt;span class="nx"&gt;laptop&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;Laptop&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="nx"&gt;laptop&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Dell Inspiron&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="nx"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;out&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;laptop&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getName&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now imagine that you have created lots of classes for all Acme products in this manner including &lt;code class="highlighter-rouge"&gt;Television&lt;/code&gt;, &lt;code class="highlighter-rouge"&gt;Refregerator&lt;/code&gt;, &lt;code class="highlighter-rouge"&gt;Keyboard&lt;/code&gt;, etc.&lt;/p&gt;
+&lt;p&gt;Now, you are just 10 days from releasing the final version of your mind-blowing Product Management System when suddenly your boss tells you that you also need a &lt;code class="highlighter-rouge"&gt;Rating&lt;/code&gt;, but only for some products. Naturally, you being a techie who just sips coffee in front of the computer screen the whole day just didn’t realize how the end customers might interact with your system. So, how will you add &lt;code class="highlighter-rouge"&gt;Rating&lt;/code&gt; to the system now?&lt;/p&gt;
+&lt;p&gt;The classic approach in Java is to just add a &lt;code class="highlighter-rouge"&gt;Rating&lt;/code&gt; property to each and every individual product class of yours that needs a &lt;code class="highlighter-rouge"&gt;Rating&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;//Laptop.java&lt;/span&gt;
+&lt;span class="kr"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;Laptop&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;//Classic Java Programmer Approach&lt;/span&gt;
+    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;getRating() {&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;setRating&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;float&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+
+    &lt;span class="c1"&gt;//.....&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This is a pretty naive approach to this problem. For one, you already have about 100 classes for various products and you will have to go to each one and implement this method. Secondly, you will also break binary compatability with existing versions of your system, so you cannot release this one backend class without replacing your entire system. Another approach is to convert the &lt;code class="highlighter-rouge"&gt;Product&lt;/code&gt; interface to an abstract class, but again, why unnecessarily involve private state when it isn’t needed in the first place. Secondly, a &lt;code class="highlighter-rouge"&gt;BaseProduct&lt;/code&gt; can derive from only one abstract-class but multiple interfaces, so what will you do when you will have to implement more interfaces in future?&lt;/p&gt;
+&lt;p&gt;The most apt solution to this problem is that provided by &lt;code class="highlighter-rouge"&gt;Java 8&lt;/code&gt;: &lt;em&gt;default method&lt;/em&gt;. Just add default methods for &lt;code class="highlighter-rouge"&gt;Rating&lt;/code&gt; to your interface as follows and problem solved!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;//Product.java&lt;/span&gt;
+&lt;span class="kr"&gt;interface&lt;/span&gt; &lt;span class="nx"&gt;Product&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;//Rockstar Java Programmer Approach&lt;/span&gt;
+    &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;getRating() {&lt;/span&gt;
+        &lt;span class="nx"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;out&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;I am the default method for getRating!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;setRating&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;out&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;I am the default method for setRating!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;getName&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;setName&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;getDescription&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;setDescription&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="kr"&gt;double&lt;/span&gt; &lt;span class="nx"&gt;getRate&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;setRate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;double&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The single most important advantage of &lt;code class="highlighter-rouge"&gt;default method&lt;/code&gt; is &lt;code class="highlighter-rouge"&gt;interface evolution&lt;/code&gt; - meaning that your existing code won’t loose ABI (&lt;code class="highlighter-rouge"&gt;Application Binary Interface&lt;/code&gt;) with the new class. If your interface is a part of a libary jar that you distribute to your users, you can release the newer version without affecting the already running code that might be referring to older jars.&lt;/p&gt;
+&lt;p&gt;The inspiration for this came when Oracle themselves had to extend the &lt;code class="highlighter-rouge"&gt;Collection&lt;/code&gt; interface and add a new &lt;code class="highlighter-rouge"&gt;stream&lt;/code&gt; method in &lt;code class="highlighter-rouge"&gt;Java 8&lt;/code&gt;. The &lt;code class="highlighter-rouge"&gt;Collection&lt;/code&gt; interface is very generic and a large number of classes implement that. If Oracle had to implement a &lt;code class="highlighter-rouge"&gt;stream&lt;/code&gt; method in each and every class derived from &lt;code class="highlighter-rouge"&gt;Collection&lt;/code&gt; interface, it would have taken them ages to release Java 8! Rather, they invented this helpful new feature, &lt;code class="highlighter-rouge"&gt;default method&lt;/code&gt; to extend their &lt;code class="highlighter-rouge"&gt;Collection&lt;/code&gt; interface. And now, they don’t have to worry about ABI. Old code referring to JDK 8 libraries will not fail because they are now binary compatible thanks to default methods!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;References:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/q/19998454/849365"&gt;http://stackoverflow.com/q/19998454/849365&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://programmers.stackexchange.com/q/233053/849365"&gt;http://programmers.stackexchange.com/q/233053/849365&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://examples.javacodegeeks.com/java-basics/java-8-default-methods-tutorial/"&gt;http://examples.javacodegeeks.com/java-basics/java-8-default-methods-tutorial/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Java"></category></entry><entry><title>Rockstar Java Series: Using Lambda expressions to up your game</title><link href="/blog/2015/12/rockstar-java-dev-series-using-lambda-expressions.html" rel="alternate"></link><published>2015-12-16T21:23:00+05:30</published><updated>2015-12-16T21:23:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2015-12-16:/blog/2015/12/rockstar-java-dev-series-using-lambda-expressions.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Java 8&lt;/strong&gt; comes with a lot more improvements and features than most people seem to realize. One such feature that can boost your productivity as a Java Programmer is &lt;strong&gt;Lambda expressions&lt;/strong&gt;.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;To learn just how beneficial this oft less understood feature is, lets take a very simple example: A &lt;code&gt;Product …&lt;/code&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Java 8&lt;/strong&gt; comes with a lot more improvements and features than most people seem to realize. One such feature that can boost your productivity as a Java Programmer is &lt;strong&gt;Lambda expressions&lt;/strong&gt;.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;To learn just how beneficial this oft less understood feature is, lets take a very simple example: A &lt;code&gt;Product search function&lt;/code&gt;, and see how various traditional approaches to this problem fare out. Since eCommerce stores and shopping cart apps have become quite a buzzword of late, lets make a simple implementation of product search by name:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;//Navie approach
+public static List&amp;lt;Product&amp;gt; search(List&amp;lt;Product&amp;gt; stock, String name) 
+{
+    ArrayList&amp;lt;Product&amp;gt; r = new ArrayList&amp;lt;Product&amp;gt;();
+    for (Product p : stock)
+    {
+        if (p.name.compareTo(name)==0) {
+            r.add(p);
+        }
+    }
+    return r;
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This is the naivest approach a programmer can possibly take when writing a product search method. The assumption here is that name is going to be the only criteria to search the product catalog. Suppose, you were working as a Java Programmer for a small eCommerce store and you wrote this function, only to realize that your users want a price comparison feature too. So, you add two extra parameters for price range to the search method like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;//Classic Java Programmer approach
+public static List&amp;lt;Product&amp;gt; searchWithRange(List&amp;lt;Product&amp;gt; stock, String name, double minValue, double maxValue)
+{
+    ArrayList&amp;lt;Product&amp;gt; r = new ArrayList&amp;lt;Product&amp;gt;();
+    for (Product p : stock)
+    {
+        if (p.name.compareTo(name)==0 &amp;amp;&amp;amp; (p.price&amp;gt;=minValue &amp;amp;&amp;amp; p.price&amp;lt;=maxValue)) {
+            r.add(p);
+        }
+    }
+    return r;
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This is the classic Java Programmer pattern - if you want to change behavior of a class, just add more parameters to methods. Even a lot of experts do this forgetting the repercussions. For one, each and every change impacts the &lt;code&gt;public interface&lt;/code&gt; of your class. Meaning, if you have distributed this class as part of a library &lt;code&gt;jar&lt;/code&gt; to any fellow programmers, you must recompile your library package again just for adding one extra parameter. Expert programmers realize this, so they come up with &lt;code&gt;Interfaces&lt;/code&gt;. In this example, an Expert programmer will try to separate out the search comparison logic from the search scanning (for loop) and define a &lt;code&gt;ProductFilter&lt;/code&gt; interface such as this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;interface&lt;/span&gt; &lt;span class="nx"&gt;ProductFilter&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="kr"&gt;boolean&lt;/span&gt; &lt;span class="nx"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;Product&lt;/span&gt; &lt;span class="nx"&gt;p&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This interface is just a “contract” that asks users to define a &lt;code&gt;run&lt;/code&gt; method for comparing a product and return a matching boolean result to include it in the result or not. With this interface, our search method becomes lot more flexible:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;//Expert Java Programmer approach
+public static List&amp;lt;Product&amp;gt; searchWithInterface(List&amp;lt;Product&amp;gt; stock, ProductFilter filter)
+{
+    ArrayList&amp;lt;Product&amp;gt; r = new ArrayList&amp;lt;Product&amp;gt;();
+    for (Product p : stock)
+    {
+        if (filter.run(p)) {
+            r.add(p);
+        }
+    }
+    return r;
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You see, the class is more generic and flexible now. It can take up whatever new criteria like product size (“15+ inch LCD screens”) or product ratings (“four stars plus”) you come up with. Here is a simple example of using this search method:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;List&amp;lt;Product&amp;gt; r =  Product.searchWithInterface(list,new ProductFilter(){
+    public boolean run(Product p) {
+            return (p.name==&amp;quot;foo&amp;quot; &amp;amp;&amp;amp; (p.price&amp;gt;=10 &amp;amp;&amp;amp; p.price&amp;lt;=50) &amp;amp;&amp;amp; p.size==&amp;quot;15in&amp;quot;);
+        }
+    });
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This is how you would have done things if you were an Expert Java programmer until JDK 7.0, but JDK 8.0 has changed everything! With &lt;em&gt;lambdas&lt;/em&gt;, the above implementation becomes even more flexible and powerful. Firstly, because the interface &lt;code&gt;ProductFilter&lt;/code&gt; has only one method, it is a &lt;code&gt;functional interface&lt;/code&gt;. With functional interfaces, you can directly assign them &lt;code&gt;lambda expressions&lt;/code&gt;, so the above search application becomes as simple as this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;  List&amp;lt;Product&amp;gt; r =  Product.searchWithLambda(list,
+    (Product p) -&amp;gt; (p.name.equals(&amp;quot;foo&amp;quot;) &amp;amp;&amp;amp; (p.price&amp;gt;=10 &amp;amp;&amp;amp; p.price&amp;lt;=50) &amp;amp;&amp;amp; p.size.equals(&amp;quot;15in&amp;quot;))); //rockstar2
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The syntax for a lamdba is as follows: Arguments in braces, followed by the arrow symbol, followed by statements that return a value:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;(arguments) -&amp;gt; (statements)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In fact, a Rockstar Java programmer will think that he/she no longer needs the &lt;code&gt;ProductFilter&lt;/code&gt; interface now. That’s because the package &lt;code&gt;java.util.function&lt;/code&gt; comes bundled with several generic interfaces that are pretty easy to use with lambdas. For instance, using the &lt;code&gt;Predicate&amp;lt;T&amp;gt;&lt;/code&gt; Interface, our search method no longer needs an interface now!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;//Rockstar Java Programmer approach
+public static List&amp;lt;Product&amp;gt;  searchWithLambda(List&amp;lt;Product&amp;gt; stock, Predicate&amp;lt;Product&amp;gt; filter) 
+{
+    ArrayList&amp;lt;Product&amp;gt; r = new ArrayList&amp;lt;Product&amp;gt;();
+    for (Product p : stock)
+    {
+        if (filter.test(p)) {
+            r.add(p);
+        }
+    }
+    return r;
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The interface &lt;code&gt;java.util.function.Predicate&lt;/code&gt; is a generic interface that contains a generic method named &lt;code&gt;test()&lt;/code&gt; (notice we changed &lt;code&gt;run&lt;/code&gt; to &lt;code&gt;test&lt;/code&gt; in order to use this interface). The package &lt;code&gt;java.util.function.*&lt;/code&gt; contains several other useful interfaces like &lt;code&gt;Predicate&lt;/code&gt; that can help you in many such situations.&lt;/p&gt;
+&lt;p&gt;Good programming is all about minimalism and reducing code-bloat. Whilst implementing a new paradigm in your existing code might sometime clash with your other constraints like delivery time and number of available developers, I personally think that in the long run, all these efforts spent usually pay off. The pay-off could be in the form of more re-usability, more readability of code, fewer bugs and in most cases all of them.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://gist.github.com/prahladyeri/0577b5a01ccaa8206e80"&gt;Here&lt;/a&gt; is the complete implementation of &lt;code&gt;Product.java&lt;/code&gt;. Today we learned about Lambda expressions, an important new feature in Java 8. In the next part of the series we will learn about &lt;code&gt;default methods&lt;/code&gt;, another great Java feature to make your life easier!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;References:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html"&gt;https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html"&gt;https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Java"></category></entry><entry><title>How to start Android App Development</title><link href="/blog/2015/11/how-to-start-android.html" rel="alternate"></link><published>2015-11-26T22:36:00+05:30</published><updated>2015-11-26T22:36:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2015-11-26:/blog/2015/11/how-to-start-android.html</id><summary type="html">&lt;p&gt;One of the most frequently asked questions on almost any social networking sites these days is how do I start android app programming? Indeed, it is as if Android Development has become some abstract and obscure layer of programming model that only few Illuminati sort of individuals seem accomplished at …&lt;/p&gt;</summary><content type="html">&lt;p&gt;One of the most frequently asked questions on almost any social networking sites these days is how do I start android app programming? Indeed, it is as if Android Development has become some abstract and obscure layer of programming model that only few Illuminati sort of individuals seem accomplished at.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;There is no doubt that the process of compiling an android app from source-code to the actual bytecode that runs on your smartphone is a bit more complex than compiling your normal &lt;code class="highlighter-rouge"&gt;C&lt;/code&gt; or &lt;code class="highlighter-rouge"&gt;Java&lt;/code&gt; program. And it seems even more complex than it deserves to be because of some drastic changes Google has introduced with Android Platform, such as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Android is a whole new Operating System which comes with its own concepts.&lt;/li&gt;
+&lt;li&gt;Android has a completely new SDK which has both similarities and differences with the Standard &lt;code class="highlighter-rouge"&gt;Java SE&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Android introduces new programming models for smartphone interfaces like &lt;code class="highlighter-rouge"&gt;Activity&lt;/code&gt;, &lt;code class="highlighter-rouge"&gt;Intent&lt;/code&gt;, etc.&lt;/li&gt;
+&lt;li&gt;Android introduces a completely new way of building GUI interfaces using an XML dialect.&lt;/li&gt;
+&lt;li&gt;Android makes frequent changes to its IDE and keeps switching its recommended IDE.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The Android world is always in a flux, though it has been stabilizing a bit since the last year. &lt;code class="highlighter-rouge"&gt;Eclipse&lt;/code&gt; plus the &lt;code class="highlighter-rouge"&gt;ADT Plugin&lt;/code&gt; was the original recommended IDE and still used by many, but a few years back that changed and now Android’s official development way is the &lt;code class="highlighter-rouge"&gt;Android Studio&lt;/code&gt; which is nothing but a decorated version of &lt;code class="highlighter-rouge"&gt;Intellij IDEA&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In any case, it is important to note that learning Android Development is a full-time job, at least until you grasp the basics. Think of it as just another branch of development, just like you have the traditional &lt;em&gt;Desktop Programming&lt;/em&gt; using &lt;code class="highlighter-rouge"&gt;Visual Studio or .NET&lt;/code&gt;, &lt;em&gt;Web Programming&lt;/em&gt; using &lt;code class="highlighter-rouge"&gt;PHP/Python/HTML/CSS&lt;/code&gt;, this is the arena of &lt;em&gt;Mobile Apps Development&lt;/em&gt; or specifically, &lt;em&gt;Android Development&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;But that doesn’t mean you need to know the intricacies of how telephony works or how does your app interact with SIM-cards or the Contacts on your SDCard. Thankfully, Android has already done that low level job for you. Android is based on &lt;code class="highlighter-rouge"&gt;Linux&lt;/code&gt; kernel which is very powerful and secure when it comes to controlling a handheld device. On top of Linux, Android ships with its own libraries that interact with the kernel, along with the &lt;code class="highlighter-rouge"&gt;Dalvik&lt;/code&gt; runtime. &lt;code class="highlighter-rouge"&gt;Dalvik&lt;/code&gt; is nothing but a miniaturized version of your Java Runtime Engine (affectionately called &lt;code class="highlighter-rouge"&gt;JRE&lt;/code&gt;). The thing about &lt;code class="highlighter-rouge"&gt;Dalvik&lt;/code&gt; is that it is much less resource intensive compared to &lt;code class="highlighter-rouge"&gt;JRE&lt;/code&gt; since it is specifically designed for smart devices. Here is the entire android stack or architecture that you should keep referring to througout your app development process:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Anatomy Physiology of an Android. Licensed under CC BY-SA 3.0 via Commons" src="/uploads/old/Android-System-Architecture.png"&gt;&lt;/p&gt;
+&lt;p&gt;^&lt;em&gt;Courtesy:\ “Android-System-Architecture”\ by\ Smieh\ -\ Anatomy\ Physiology\ of\ an\ Android.&lt;/em&gt;^&lt;/p&gt;
+&lt;p&gt;The top layer of the stack consists of &lt;em&gt;Applications&lt;/em&gt; or apps that we generally use like Contacts, Browser, Home (the Launcher screen that first comes when you start your device), Phone (the dialler) are all apps.&lt;/p&gt;
+&lt;p&gt;The second layer consists of &lt;em&gt;Frameworks&lt;/em&gt; - i.e stuff that the apps are made of. As you will soon learn, there are things like &lt;em&gt;Activities&lt;/em&gt;, &lt;em&gt;Views&lt;/em&gt;, &lt;em&gt;Content Providers&lt;/em&gt;, etc. which are going to be the &lt;em&gt;building blocks&lt;/em&gt; of our apps. The Android OS manages these blocks as soon as the user starts our app and starts using it.&lt;/p&gt;
+&lt;h2&gt;Pre-requisites&lt;/h2&gt;
+&lt;p&gt;There are a few things that you already must know in order to start android-programming, the most important being &lt;code class="highlighter-rouge"&gt;Core Java&lt;/code&gt;, also known as &lt;code class="highlighter-rouge"&gt;Java SE&lt;/code&gt; for Standard Edition (not &lt;code class="highlighter-rouge"&gt;EE&lt;/code&gt; or Enterprise Edition). If you don’t know it, then go back to school (or a self-learning website) and learn that first. Java programming introduces enough nuances and complexities of its own, so you will likely get overwhelmed by both Java and Android if you try to learn them at the same time. Recommended Java tutorial site is the one found at &lt;a href="https://docs.oracle.com/javase/tutorial/"&gt;Oracle website&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The other thing you should know about is how to use &lt;code class="highlighter-rouge"&gt;Eclipse&lt;/code&gt; or &lt;code class="highlighter-rouge"&gt;IntelliJ&lt;/code&gt; IDEs as you will have to use either one of them to start Android Programming. However, this isn’t a &lt;code class="highlighter-rouge"&gt;hard requirement&lt;/code&gt; like that of Java. IDE is something that you can get used to after using it for a while. It might take some google-searches or errands at &lt;code class="highlighter-rouge"&gt;StackOverflow&lt;/code&gt; at first, but once you get used to it for sometime, you can figure out most things pretty easily.&lt;/p&gt;
+&lt;p&gt;Thirdly, it is not mandatory but helpful to know some good design principles. The way you style your widgets like TextViews, Labels, EditTexts, etc. very much determines whether people will like your app or not. There is also the thing that when you launch you app in the market, people will judge your app by its cover or front-screen and your download count will likely depend on that. Of course, you can hire a graphic designer for this or if you are a DIY guy like me, learn a professional Image Editing software like &lt;code class="highlighter-rouge"&gt;GIMP&lt;/code&gt; (on Linux) or &lt;code class="highlighter-rouge"&gt;Adobe Photoshop&lt;/code&gt; (on Windows).&lt;/p&gt;
+&lt;h2&gt;Install the Java JDK&lt;/h2&gt;
+&lt;p&gt;Now that you have had your breakfast and kept aside all your distractions to focus on the &lt;code class="highlighter-rouge"&gt;Android Mission&lt;/code&gt;, the first thing to do is install the Java JDK software which is required in order to write and compile Android Apps. Again, head over to Oracle website where you can find the &lt;a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html"&gt;latest download for Java SE&lt;/a&gt;. Choose your &lt;em&gt;OS&lt;/em&gt; and preferred version. Don’t install &lt;code class="highlighter-rouge"&gt;Netbeans&lt;/code&gt; unless you need it for any other purpose, we will be using either &lt;code class="highlighter-rouge"&gt;Eclipse&lt;/code&gt; or &lt;code class="highlighter-rouge"&gt;Android Studio&lt;/code&gt; for app development.&lt;/p&gt;
+&lt;h2&gt;Install the Android SDK, SDK Tools and Platform Tools&lt;/h2&gt;
+&lt;p&gt;Head over to &lt;a href="http://developer.android.com/sdk/index.html"&gt;Android Developer site&lt;/a&gt; and download the Android SDK. Now, if you want to use &lt;code class="highlighter-rouge"&gt;Android Studio&lt;/code&gt; (or you are a big fan of the &lt;code class="highlighter-rouge"&gt;grade&lt;/code&gt; build system which is default there), download that IDE which includes the entire bundle. Otherwise, head downwards to find an option called “SDK only” to download the minimal commandline version or if you want to use &lt;code class="highlighter-rouge"&gt;Eclipse&lt;/code&gt; with &lt;code class="highlighter-rouge"&gt;ADT&lt;/code&gt; plugin. The thing here is that you need at least one IDE to develop otherwise it gets pretty complex to hand-code the &lt;code class="highlighter-rouge"&gt;xml&lt;/code&gt; layouts, double-compile your code, first to Java bytecode (&lt;code class="highlighter-rouge"&gt;.class&lt;/code&gt;) and then to Dalvik bytecode (&lt;code class="highlighter-rouge"&gt;.dex&lt;/code&gt;) and finally zipping them into &lt;code class="highlighter-rouge"&gt;APK&lt;/code&gt; (the &lt;code class="highlighter-rouge"&gt;JAR&lt;/code&gt; equivalent), that you are better off delegating these low details to an IDE.&lt;/p&gt;
+&lt;p&gt;Again, its important to know, why double compilation is required to build Android apps. You see, your code is first compiled to Java bytecode and then, &lt;code class="highlighter-rouge"&gt;Dalvik&lt;/code&gt; compiler takes that output and compiles it to &lt;code class="highlighter-rouge"&gt;dex&lt;/code&gt; or Dalvik bytecode (why that happens is an interesting topic for my another blog post!). Here is how this happens:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Dalvik Compilation Process" src="/uploads/old/Dalvik_Compilation_Process.png"&gt;&lt;/p&gt;
+&lt;h2&gt;Build that Hello World App&lt;/h2&gt;
+&lt;p&gt;Head over to the &lt;a href="http://developer.android.com/tools/studio/studio-config.html"&gt;Configuration Section&lt;/a&gt; first to ensure that you’ve setup your IDE properly. Then, the &lt;a href="http://developer.android.com/tools/workflow/index.html"&gt;Workflow section&lt;/a&gt; is your &lt;em&gt;Bible&lt;/em&gt; (or &lt;em&gt;Geeta&lt;/em&gt; or &lt;em&gt;Qoran&lt;/em&gt; or whatever thrills you). Read it, re-read it, bookmark it, keep referring to it until you are proficient in building and running apps. Needless to say, if you face any issues, there is always &lt;code class="highlighter-rouge"&gt;Google&lt;/code&gt; and &lt;code class="highlighter-rouge"&gt;StackOverflow&lt;/code&gt; which should answer all your queries.&lt;/p&gt;
+&lt;p&gt;In my next post, I will be covering about android features and a doing some basic things like layout design, interaction with &lt;code class="highlighter-rouge"&gt;sqlite&lt;/code&gt; databases, etc. All the best!&lt;/p&gt;
+&lt;p&gt;References:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://developer.android.com/tools/workflow/index.html"&gt;Android Workflow section&lt;/a&gt;\
+&lt;a href="http://developer.android.com/tools/studio/studio-config.html"&gt;Android Configuration Section&lt;/a&gt;\
+&lt;a href="http://developer.android.com/sdk/index.html"&gt;Android SDK Downloads&lt;/a&gt;\
+&lt;a href="https://en.wikipedia.org/wiki/Android_(operating_system)"&gt;The Android Operating System&lt;/a&gt;\
+&lt;a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html"&gt;Latest download for Java SE&lt;/a&gt;&lt;/p&gt;</content></entry><entry><title>The REAL way to make Eclipse run faster on Ubuntu</title><link href="/blog/2014/06/real-way-make-eclipse-run-faster-ubuntu.html" rel="alternate"></link><published>2014-06-02T09:57:00+05:30</published><updated>2014-06-02T09:57:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2014-06-02:/blog/2014/06/real-way-make-eclipse-run-faster-ubuntu.html</id><summary type="html">&lt;p&gt;If you are still one of those people who are frustrated with the crawling speed of eclipse IDE (especially after the recent clunky releases of Juno/Kepler), then you are in good company! Most of the advice you might have read until now for speeding up Eclipse must have involved …&lt;/p&gt;</summary><content type="html">&lt;p&gt;If you are still one of those people who are frustrated with the crawling speed of eclipse IDE (especially after the recent clunky releases of Juno/Kepler), then you are in good company! Most of the advice you might have read until now for speeding up Eclipse must have involved tweaking the following parameters in eclipse.ini file:&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;::: {.wp_syntax}
+&lt;code class="python"&gt;-Xmn512m -Xms1024m -Xmx1024m -Xss2m -XX:PermSize=1024m -XX:MaxPermSize=1024m -XX:+UseParallelGC&lt;/code&gt;&lt;/code&gt;
+:::&lt;/p&gt;
+&lt;p&gt;Since Eclipse is pretty much a RAM hungry monster, feeding it with lots of RAM should surely make it run fast, right? Wrong! Until recently I had spent a lot of time tweaking those parameters, but no substantial performance could be gained (though I have 4GB of RAM with i3 which is not a bad configuration). The main issue here is that the underlying linux won't provide the required boost to eclipse no matter whatever the parameters you provide. For instance, the system monitor shows that eclipse is only consuming 500Mb RAM, now what difference will it make if I provide 2048m to -XX:MaxPermSize?&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.prahladyeri.com/uploads/2014/06/eclipse-monitor.png"&gt;&lt;img alt="System Monitor" class="size-medium wp-image-2969" src="/uploads/old/eclipse-monitor-300x236.png"&gt;&lt;/a&gt; System Monitor&lt;/p&gt;
+&lt;p&gt;My search lead me to another better &lt;a href="http://ubuntuguide.net/ubuntu-using-ramdisk-for-better-performance-and-fast-response"&gt;approach&lt;/a&gt; to solving this problem. If somehow we can load JDK into a shared memory or a RAM-Disk instead of it starting from the local hard-disk, both startup time and performance could be drastically improved.&lt;/p&gt;
+&lt;p&gt;But how do we create a RAM-Disk on linux? Well, if you using ubuntu, then you are in &lt;a href="http://superuser.com/questions/45342/when-should-i-use-dev-shm-and-when-should-i-use-tmp"&gt;luck!&lt;/a&gt; Ubuntu has a working RAM-Disk folder called &lt;strong&gt;/dev/shm&lt;/strong&gt; that could be globally used by any application as a temporary storage. If you go to that folder, you can see lots of files stored by pulseaudio.&lt;/p&gt;
+&lt;p&gt;I thought why not copy the JDK folder to /dev/shm and provide that as a -vm parameter to eclipse. Lo and behold! Eclipse runs about 10 times faster on my ubuntu machine. Try it yourself and let me know (If you are having performance issues with Eclipse, that is..-).&lt;/p&gt;</content><category term="Eclipse"></category></entry><entry><title>How to create android dialogs in a reusable manner</title><link href="/blog/2013/12/how-to-create-android-dialogs-in-a-reusable-manner.html" rel="alternate"></link><published>2013-12-01T04:55:00+05:30</published><updated>2013-12-01T04:55:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2013-12-01:/blog/2013/12/how-to-create-android-dialogs-in-a-reusable-manner.html</id><summary type="html">&lt;p&gt;Creating dialogs is a very common need in your app to show a dialog box to the user in order to fetch a value, be it a mobile, desktop or even a web application. Furthermore, the values can range from anything like simple &lt;em&gt;OK-Cancel&lt;/em&gt; dialog results to a list of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Creating dialogs is a very common need in your app to show a dialog box to the user in order to fetch a value, be it a mobile, desktop or even a web application. Furthermore, the values can range from anything like simple &lt;em&gt;OK-Cancel&lt;/em&gt; dialog results to a list of "check-able" values or even a date-range.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.prahladyeri.com/uploads/2013/11/droid-man.png"&gt;&lt;img alt="droid-man" class="alignnone wp-image-209" height="70" src="/uploads/old/droid-man.png" width="60"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I experienced the need to create an android dialog for each one of those for showing reports in a recent android app project. Whilst the java api offers maximum flexibility in creating dialog interface elements, there is no ready-made method that can be called to get, say a result for a message-dialog like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;result = MessageBox.Show();
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Other languages like C# and VB provide such methods to show modal dialog boxes that return values after waiting for a modal dialog. But unfortunately, there is no concept of "modal" in android. A thread cannot just sit idle waiting for input as the resources are too valuable for that. Instead, there is the concept of callbacks, so that instead of you waiting for the dialog to return, the method calls back a function reference you have passed it:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;AlertDialog.Builder builder=new AlertDialog.Builder(context);
+builder.setTitle(&amp;quot;Milk supply tracker&amp;quot;);
+builder.setMessage(message);
+builder.setPositiveButton(&amp;quot;Yes&amp;quot;,listener);
+builder.setNegativeButton(&amp;quot;No&amp;quot;,listener);
+builder.create().show();
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The listener here is the referece to a function that will be called when the Yes or No button will be clicked. This not only complicates your code, but makes it very difficult to reuse code for handling different situations like getting a selection from a range of values or getting a date/time range. To solve this problem, I created a separate java class called Dialog and added variations of ShowDialog() methods to handle each type of dialog:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kr"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;Dialog&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="kr"&gt;static&lt;/span&gt; &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;ShowMessageDialog&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;Context&lt;/span&gt; &lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;ShowDialog&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;MessageBoxType&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;OKOnly&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt;&lt;span class="p"&gt;[]{},&lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="kr"&gt;static&lt;/span&gt; &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;ShowMessageDialog&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;Context&lt;/span&gt; &lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;MessageBoxType&lt;/span&gt; &lt;span class="nx"&gt;type&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;OnClickListener&lt;/span&gt; &lt;span class="nx"&gt;listener&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="p"&gt;{&lt;/span&gt;
+         &lt;span class="nx"&gt;ShowDialog&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;type&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt;&lt;span class="p"&gt;[]{},&lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;listener&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+     &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="kr"&gt;static&lt;/span&gt; &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;ShowListDialog&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;Context&lt;/span&gt; &lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;String&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="nx"&gt;listItems&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kr"&gt;boolean&lt;/span&gt; &lt;span class="nx"&gt;isMultiChoice&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;OnClickListener&lt;/span&gt; &lt;span class="nx"&gt;listener&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="p"&gt;{&lt;/span&gt;
+     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;isMultiChoice&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+         &lt;span class="nx"&gt;ShowDialog&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;MessageBoxType&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;OkCancel&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;listItems&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;isMultiChoice&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;listener&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+     &lt;span class="k"&gt;else&lt;/span&gt;
+         &lt;span class="nx"&gt;ShowDialog&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;MessageBoxType&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;OKOnly&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;listItems&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;isMultiChoice&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;listener&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+     &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="kr"&gt;static&lt;/span&gt; &lt;span class="k"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;ShowDateDialog&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;Context&lt;/span&gt; &lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nb"&gt;String&lt;/span&gt; &lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;OnDateSetListener&lt;/span&gt; &lt;span class="nx"&gt;listener&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;Calendar&lt;/span&gt; &lt;span class="nx"&gt;c&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;Calendar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getInstance&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;y&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;c&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;Calendar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;YEAR&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;m&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;c&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;Calendar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;MONTH&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nx"&gt;d&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;c&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;Calendar&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;DAY_OF_MONTH&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+        &lt;span class="nx"&gt;DatePickerDialog&lt;/span&gt; &lt;span class="nx"&gt;dlg&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;DatePickerDialog&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;listener&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;m&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;d&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="nx"&gt;dlg&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setTitle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="nx"&gt;dlg&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;show&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;As you can see, the ShowMessageDialog() accepts different parameters depending on whether a listener is required or not. ShowListDialog(), on the other hand passes an array of strings to create a dialog displaying a list of values from which a user may select. The isMultiChoice parameter tells whether a checkbox is required or not against each value in the select list. All this is actually implemented in the ShowDialog() private method, whereas the ShowDateDialog() has its own implementation. Here is the source for ShowDialog():&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;private static void ShowDialog(Context context, String message, MessageBoxType type , String[] listItems, boolean isMultiChoice, OnClickListener listener,OnClickListener selectedItemListener)
+{
+    AlertDialog.Builder builder=new AlertDialog.Builder(context);
+
+    if (listItems.length&amp;gt;0 &amp;amp;&amp;amp; isMultiChoice==false)
+    {
+        CheckedItems=new ArrayList();//won&amp;#39;t be used in this case.
+        builder.setTitle(message);
+
+        builder.setItems(listItems, selectedItemListener);
+    }
+    else if (listItems.length&amp;gt;0 &amp;amp;&amp;amp; isMultiChoice==true)
+    {
+        CheckedItems=new ArrayList();
+        builder.setTitle(message);
+
+        builder.setMultiChoiceItems(listItems, null, new OnMultiChoiceClickListener() 
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which, boolean checked) 
+            {
+                if (checked)
+                    CheckedItems.add(which);
+                else
+                {
+                    if (CheckedItems.contains(which))
+                        CheckedItems.remove(which);
+                }
+            }
+        });
+    }
+    else
+    {
+        builder.setTitle(&amp;quot;Milk supply tracker&amp;quot;);
+        builder.setMessage(message);
+    }
+
+    if (listItems.length==0 || isMultiChoice)
+    {
+        switch(type)
+        {
+        case OKOnly:
+            builder.setPositiveButton(&amp;quot;OK&amp;quot;,listener);
+            break;
+        case OkCancel:
+            builder.setPositiveButton(&amp;quot;OK&amp;quot;,listener);
+            builder.setNegativeButton(&amp;quot;Cancel&amp;quot;,listener);
+            break;
+        case YesNo:
+            builder.setPositiveButton(&amp;quot;Yes&amp;quot;,listener);
+            builder.setNegativeButton(&amp;quot;No&amp;quot;,listener);
+            break;
+        }           
+    }
+
+    builder.create().show();
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So hopefully, this class should suffice all your needs related to showing a dialog on your android app. Here is a working example of how the ShowListDialog() is actually called with checkboxes on:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;selItems&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;new&lt;/span&gt; &lt;span class="nt"&gt;String&lt;/span&gt;&lt;span class="cp"&gt;[]&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="err"&gt;&amp;quot;apples&amp;quot;,&amp;quot;oranges&amp;quot;,&amp;quot;grapes&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="nt"&gt;Device&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;ShowListDialog&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;this&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Select a fruit&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;selItems&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;true&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;new&lt;/span&gt; &lt;span class="nt"&gt;DialogInterface&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;OnClickListener&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+        &lt;span class="err"&gt;@Override&lt;/span&gt;
+        &lt;span class="err"&gt;public&lt;/span&gt; &lt;span class="err"&gt;void&lt;/span&gt; &lt;span class="err"&gt;onClick(DialogInterface&lt;/span&gt; &lt;span class="err"&gt;dialog,&lt;/span&gt; &lt;span class="err"&gt;int&lt;/span&gt; &lt;span class="err"&gt;which)&lt;/span&gt; 
+        &lt;span class="err"&gt;{&lt;/span&gt;
+            &lt;span class="err"&gt;if&lt;/span&gt; &lt;span class="err"&gt;(which==DialogInterface.BUTTON_POSITIVE)&lt;/span&gt;
+            &lt;span class="err"&gt;{&lt;/span&gt;
+                &lt;span class="err"&gt;for(int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;Device&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CheckedItems&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="n"&gt;Dialog&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;ShowMessageDialog&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ReportsActivity&lt;/span&gt;&lt;span class="err"&gt;.&lt;/span&gt;&lt;span class="n"&gt;this&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;selected:&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;selItems&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="err"&gt;}&lt;/span&gt;
+    &lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Android"></category><category term="How To"></category></entry><entry><title>How to uniquely identify your Android device in code</title><link href="/blog/2013/11/how-to-uniquely-identify-your-android-device-in-code.html" rel="alternate"></link><published>2013-11-28T02:17:00+05:30</published><updated>2013-11-28T02:17:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2013-11-28:/blog/2013/11/how-to-uniquely-identify-your-android-device-in-code.html</id><summary type="html">&lt;p&gt;My last android project involved tracking each device where the app is installed and storing the information to a database. It is quite a common need to uniquely identify your android device in code.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="droid-man" src="/uploads/old/droid-man.png"&gt;&lt;/p&gt;
+&lt;p&gt;Now, had it been a PC, it would have been easy to track the MAC-address of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;My last android project involved tracking each device where the app is installed and storing the information to a database. It is quite a common need to uniquely identify your android device in code.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="droid-man" src="/uploads/old/droid-man.png"&gt;&lt;/p&gt;
+&lt;p&gt;Now, had it been a PC, it would have been easy to track the MAC-address of the NIC or an HDD serial to uniquely identify and track that device. But what is the equivalent for android?&lt;/p&gt;
+&lt;p&gt;My research first led me to IMEI number (&lt;em&gt;TelephonyManager.getDeviceId()&lt;/em&gt;). IMEI is a unique number associated with your device (pretty much like a vehicle's chassis number) and is widely used for tracking cellphones. The android API provides this ready-made function to uniquely identify your device if you wish to go this route:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;public static String getDeviceIdTm(Context context)
+{
+    TelephonyManager tm=(TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+    return tm.getDeviceId();
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;But wait, not all devices are equipped with Telephony. What about tablets and amazon kindle devices? It so happens, that this is just one way to track your device, but it is not full-proof. It will work only for phones and for other devices this function will return null.&lt;/p&gt;
+&lt;p&gt;This led me to another way of tracking an Android device: An in-built variable that the Android system itself provides you: ANDROID_ID. In theory, this variable is all you need to know to identify your device uniquely:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;public static String getDeviceIdAndroid(Context context)
+{
+    return Secure.getString(context.getContentResolver(),Secure.ANDROID_ID);
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;But Alas! Even this is not full-proof. It will work on most modern versions of android (HoneyComb and above). Again, due to a manufacturer bug, it will not return a unique value, but a constant value "9774d56d682e549c" on some handsets.&lt;/p&gt;
+&lt;p&gt;This led me to a third way of identifying my device which was a bit hackish. I prefer not to use this method if any of the prior two methods worked.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;public static String getDeviceIdPseudo(Context context)
+ {
+     String tstr=&amp;quot;&amp;quot;;
+     if (Build.VERSION.SDK_INT &amp;gt; Build.VERSION_CODES.FROYO) {
+         tstr+= Build.SERIAL;
+         tstr += &amp;quot;::&amp;quot; + (Build.PRODUCT.length() % 10) + (Build.BOARD.length() % 10) + (Build.BRAND.length() % 10) + (Build.CPU_ABI.length() % 10) + (Build.DEVICE.length() % 10) + (Build.MANUFACTURER.length() % 10) + (Build.MODEL.length() % 10);
+         return tstr;
+    }
+ }
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This method computes a Pseudo-id for your device taking reference to some hardware values. If the previous two methods don't work, then this is all you are left with for device identification.&lt;/p&gt;
+&lt;p&gt;I then integrated the above three methods to create a generic method called &lt;strong&gt;&lt;em&gt;getDeviceIdUnique()&lt;/em&gt;&lt;/strong&gt; that will work on all android devices - irrespective of whether its a phone/tablet or what make it is:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;public static String getDeviceIdUnique(Context context)
+ {
+     try {
+         String a = getDeviceIdTm(context);
+         String b = getDeviceIdAndroid(context);
+         String c = getDeviceIdPseudo(context);
+
+         if (a!=null &amp;amp;&amp;amp; a.length()&amp;gt;0 &amp;amp;&amp;amp; a.replace(&amp;quot;0&amp;quot;, &amp;quot;&amp;quot;).length()&amp;gt;0) 
+             return a;
+         else if (b!=null &amp;amp;&amp;amp; b.length()&amp;gt;0 &amp;amp;&amp;amp; b.equals(&amp;quot;9774d56d682e549c&amp;quot;)==false) 
+             return b;
+         else if (c!=null &amp;amp;&amp;amp; c.length()&amp;gt;0) 
+             return c;
+         else
+             return &amp;quot;&amp;quot;;
+         }
+     catch(Exception ex)
+     {
+         return &amp;quot;&amp;quot;;
+     }
+ }
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;em&gt;References:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/q/2785485/849365"&gt;http://stackoverflow.com/q/2785485/849365&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/q/4468248/849365"&gt;http://stackoverflow.com/q/4468248/849365&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Android"></category><category term="How To"></category></entry><entry><title>3 Steps to integrate barcode scanning in your Android app</title><link href="/blog/2013/11/three-steps-to-integrate-barcode-scanning-in-your-android-app.html" rel="alternate"></link><published>2013-11-24T14:50:00+05:30</published><updated>2013-11-24T14:50:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2013-11-24:/blog/2013/11/three-steps-to-integrate-barcode-scanning-in-your-android-app.html</id><summary type="html">&lt;p&gt;Whilst barcode scanning is a pretty complex and non-trivial task in itself, it could be overwhelming sometimes with android programming. Lucky for us, there exists an opensource project called &lt;a href="https://github.com/zxing/zxing"&gt;&lt;em&gt;ZXing (pronounced Zebra-crossing)&lt;/em&gt;&lt;/a&gt; that solves this problem for us.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="/uploads/old/barcode.png"&gt;&lt;img alt="Barcode" class="wp-image-152 alignnone" height="77" src="/uploads/old/barcode.png" width="108"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The ZXing project has already done the heavy lifting by programming the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Whilst barcode scanning is a pretty complex and non-trivial task in itself, it could be overwhelming sometimes with android programming. Lucky for us, there exists an opensource project called &lt;a href="https://github.com/zxing/zxing"&gt;&lt;em&gt;ZXing (pronounced Zebra-crossing)&lt;/em&gt;&lt;/a&gt; that solves this problem for us.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="/uploads/old/barcode.png"&gt;&lt;img alt="Barcode" class="wp-image-152 alignnone" height="77" src="/uploads/old/barcode.png" width="108"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The ZXing project has already done the heavy lifting by programming the core java components required to scan a 1d/2d barcode or even a PR-code in the form of a &lt;a href="https://play.google.com/store/apps/details?id=com.google.zxing.client.android"&gt;Google-play app&lt;/a&gt;. All you have to do is send an intent to this app and receive the scanned results that you may use in your app.&lt;/p&gt;
+&lt;p&gt;The ZXing project is Apache licensed, so it is free to use without any kind of restrictions. Follow these steps to integrate ZXing with your app:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Step 1:&lt;/em&gt;&lt;/strong&gt; Download the source for IntentIntegrator.java and IntentResult.java from &lt;a href="http://code.google.com/p/zxing/source/browse/trunk#trunk%2Fandroid-integration%2Fsrc%2Fmain%2Fjava%2Fcom%2Fgoogle%2Fzxing%2Fintegration%2Fandroid"&gt;here&lt;/a&gt; and add the files to your android project sources.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Step 2:&lt;/em&gt;&lt;/strong&gt; Start an intent in that part of your code where you would like to initiate the barcode scanning (such as a menu handler):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;IntentIntegrator integrator = new IntentIntegrator(yourActivity);
+integrator.initiateScan();
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Step 3:&lt;/em&gt;&lt;/strong&gt; All that remains now is to handle the result of this activity in your onActivityResult() handler. This is how I did it in my code:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;requestCode&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="nt"&gt;IntentIntegrator&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;REQUEST_CODE&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="err"&gt;IntentResult&lt;/span&gt; &lt;span class="err"&gt;scanResult&lt;/span&gt; &lt;span class="err"&gt;=&lt;/span&gt; &lt;span class="err"&gt;IntentIntegrator.parseActivityResult(requestCode,&lt;/span&gt; &lt;span class="err"&gt;resultCode,&lt;/span&gt; &lt;span class="err"&gt;data)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="err"&gt;if&lt;/span&gt; &lt;span class="err"&gt;(scanResult&lt;/span&gt; &lt;span class="err"&gt;!=&lt;/span&gt; &lt;span class="err"&gt;null)&lt;/span&gt;
+    &lt;span class="err"&gt;{&lt;/span&gt;
+        &lt;span class="err"&gt;//&lt;/span&gt; &lt;span class="err"&gt;handle&lt;/span&gt; &lt;span class="err"&gt;scan&lt;/span&gt; &lt;span class="err"&gt;result&lt;/span&gt;
+        &lt;span class="err"&gt;//MessageBox.run(this,&lt;/span&gt; &lt;span class="err"&gt;&amp;quot;&amp;quot;,&lt;/span&gt; &lt;span class="err"&gt;&amp;quot;toString()&lt;/span&gt; &lt;span class="n"&gt;returns&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot; + scanResult.toString());&lt;/span&gt;
+&lt;span class="s2"&gt;    }&lt;/span&gt;
+&lt;span class="s2"&gt;    else&lt;/span&gt;
+&lt;span class="s2"&gt;    {&lt;/span&gt;
+&lt;span class="s2"&gt;        // else continue with any other code you need in the method&lt;/span&gt;
+&lt;span class="s2"&gt;        MessageBox.run(this, &amp;quot;&amp;quot;, &amp;quot;&lt;/span&gt;&lt;span class="n"&gt;scanResult&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;null&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="err"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;That`s all! The above code not only returns the barcode scanning result to your app, but even prompts the user to install a barcode scanner app in case one isn't there. This is the easiest and recommended way of integrating barcode scanning in your android app.&lt;/p&gt;
+&lt;p&gt;In case you want to embed the entire ZXing component in your app and don't want to install an app separately for it, refer to the relevant links in the references section. However, this method is not recommended as your app won't get the updates from ZXing.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;References:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/q/11205183/849365"&gt;http://stackoverflow.com/q/11205183/849365&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/q/4854442/849365#4854637"&gt;http://stackoverflow.com/q/4854442/849365#4854637&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/q/16433860/849365"&gt;http://stackoverflow.com/q/16433860/849365&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/zxing/zxing"&gt;https://github.com/zxing/zxing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://code.google.com/p/zxing/wiki/ScanningViaIntent"&gt;http://code.google.com/p/zxing/wiki/ScanningViaIntent&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Android"></category><category term="Java"></category></entry></feed>

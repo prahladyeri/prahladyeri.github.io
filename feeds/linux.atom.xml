@@ -1,0 +1,1087 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Prahlad Yeri's Blog - Linux</title><link href="/" rel="alternate"></link><link href="/feeds/linux.atom.xml" rel="self"></link><id>/</id><updated>2019-10-27T17:50:00+05:30</updated><subtitle>Educate and solve problems is my mantra. I'm skilled in web development and a quick learner, I also like blogging and contributing to open source.</subtitle><entry><title>Linux DIY: How to identify your MTP file-transfer device (such as smart-phone) in Bash</title><link href="/blog/2019/10/how-to-identify-mtp-device-bash.html" rel="alternate"></link><published>2019-10-27T17:50:00+05:30</published><updated>2019-10-27T17:50:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2019-10-27:/blog/2019/10/how-to-identify-mtp-device-bash.html</id><summary type="html">&lt;p&gt;In the good old days, USB file-transfer between your laptop and smart-phone used to happen through the much easier "mass storage" mode which works just as if you had inserted an external pen-drive. But these days, most smart-phones and tablets have shifted to the MTP (Media Transfer Protocol).&lt;/p&gt;
+&lt;p&gt;Unlike a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the good old days, USB file-transfer between your laptop and smart-phone used to happen through the much easier "mass storage" mode which works just as if you had inserted an external pen-drive. But these days, most smart-phones and tablets have shifted to the MTP (Media Transfer Protocol).&lt;/p&gt;
+&lt;p&gt;Unlike a mass storage device, the MTP device doesn't show up in the usual &lt;code&gt;/media/&amp;lt;user&amp;gt;/&amp;lt;device-label&amp;gt;&lt;/code&gt; folder in a linux distro which makes backup automation or other file transfer tasks more difficult as you cannot simply hard-code this path and write bash scripts based on that.&lt;/p&gt;
+&lt;p&gt;This isn't possible in case of MTP because the label is dynamically determined using two important bits of information called &lt;em&gt;BusID&lt;/em&gt; and &lt;em&gt;DeviceID&lt;/em&gt;, and the file-system path works out to be something like this:&lt;/p&gt;
+&lt;p&gt;/run/user/1000/gvfs/mtp:host=%5Busb%3A&lt;strong&gt;001&lt;/strong&gt;%2C&lt;strong&gt;010&lt;/strong&gt;%5D/Internal shared storage&lt;/p&gt;
+&lt;p&gt;In this example, &lt;code&gt;001&lt;/code&gt; is the BusID whereas &lt;code&gt;010&lt;/code&gt; is the DeviceID. You can find these two values by running the &lt;code&gt;lsusb&lt;/code&gt; command before and after the MTP device is inserted:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="bash lsusb" src="/uploads/lsusb1.png"&gt;&lt;/p&gt;
+&lt;p&gt;However, these two numbers (BusID and DeviceID) are dynamically determined depending on when and where you inserted the MTP device. Hence, if you are writing an automation script for backup, etc., you need to calculate it using other two static bits of information which are always constant for your device, they are called &lt;em&gt;VendorID&lt;/em&gt; and &lt;em&gt;ProductID&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;In this example (for my Redmi Y2 phone), they happen to be &lt;code&gt;2717:ff40&lt;/code&gt; (displayed right next to the BusID and DeviceID in above screen). Now that you have these two static bits of information which are always going to be in a given format (&lt;code&gt;VendorID:ProductID&lt;/code&gt;), you can pass it to a bash function to determine the path dynamically:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt; get_mtp_path&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="nv"&gt;str&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;lsusb&lt;span class="p"&gt;|&lt;/span&gt;grep &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$1&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+    &lt;span class="nv"&gt;bus&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$str&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{split($0,a,&amp;quot; &amp;quot;); print a[2]}&amp;#39;&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
+    &lt;span class="nv"&gt;dvc&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$str&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{split($0,a,&amp;quot; &amp;quot;); print a[4]}&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; sed &lt;span class="s1"&gt;&amp;#39;s/://g&amp;#39;&lt;/span&gt; &lt;span class="sb"&gt;`&lt;/span&gt;
+    &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;mtp:host=%5Busb%3A&lt;/span&gt;&lt;span class="nv"&gt;$bus&lt;/span&gt;&lt;span class="s2"&gt;%2C&lt;/span&gt;&lt;span class="nv"&gt;$dvc&lt;/span&gt;&lt;span class="s2"&gt;%5D&amp;quot;&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="nv"&gt;redmi_y2&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2717:ff40&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;redmi_y2_path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;get_mtp_path &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$redmi_y2&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
+&lt;span class="nv"&gt;folder&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/run/user/1000/gvfs/&lt;/span&gt;&lt;span class="nv"&gt;$redmi_y2_path&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In above script, &lt;code&gt;$redmi_y2&lt;/code&gt; variable is hard-coded which is then passed to the &lt;code&gt;get_mtp_path&lt;/code&gt; bash function to determine the actual path which is then stored in the &lt;code&gt;$folder&lt;/code&gt; variable.&lt;/p&gt;
+&lt;p&gt;Now that you have &lt;code&gt;$folder&lt;/code&gt;, you can do anything with it. For example, you can use rsync to backup your smart-phone pics in the &lt;code&gt;DCIM&lt;/code&gt; folder to your laptop:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rsync -vrt &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$folder&lt;/span&gt;&lt;span class="s2"&gt;/Internal storage/DCIM/&amp;quot;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;~/Pictures/&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Alternatively, you can run a normal backup of your &lt;code&gt;Documents&lt;/code&gt; folder to your smart-phone:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rsync -vrt  &lt;span class="s2"&gt;&amp;quot;~/Documents/&amp;quot;&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$folder&lt;/span&gt;&lt;span class="s2"&gt;/Internal storage/Documents/&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The possibilities of this are immense!&lt;/p&gt;</content><category term="Linux"></category><category term="Bash"></category><category term="MTP"></category><category term="How To"></category></entry><entry><title>How to enforce conventional commit messages using git hooks</title><link href="/blog/2019/06/how-to-enforce-conventional-commit-messages-using-git-hooks.html" rel="alternate"></link><published>2019-06-14T11:58:00+05:30</published><updated>2019-06-14T11:58:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2019-06-14:/blog/2019/06/how-to-enforce-conventional-commit-messages-using-git-hooks.html</id><summary type="html">&lt;p&gt;&lt;a href="https://www.conventionalcommits.org/en/v1.0.0-beta.4/"&gt;Conventional git commit messages&lt;/a&gt; are not just nice to have but great to have. In fact, once you get to know them, you'll start feeling that they are essential in any serious programming project. Consider the difference between following two commit messages for instance:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git commit -m &amp;quot;added social login …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://www.conventionalcommits.org/en/v1.0.0-beta.4/"&gt;Conventional git commit messages&lt;/a&gt; are not just nice to have but great to have. In fact, once you get to know them, you'll start feeling that they are essential in any serious programming project. Consider the difference between following two commit messages for instance:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git commit -m &amp;quot;added social login feature for authentication using twitter&amp;quot;
+git commit -m &amp;quot;feat(authentication): added social login using twitter&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The second one is not only more readable but it also follows standards which makes it easier to integrate with build tools such as Travis CI and Appveyor. Not just that, you can easily automate &lt;code&gt;CHANGELOG&lt;/code&gt; generation when your &lt;code&gt;git log&lt;/code&gt; looks like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; git log --oneline
+61c8ca9 (HEAD -&amp;gt; master) fix: navbar not responsive on mobile
+479c48b test: prepared test cases for user authentication
+a992020 chore: moved to semantic versioning
+b818120 fix: button click even handler firing twice
+c6e9a97 fix: login page css
+dfdc715 feat(authentication): added social login using twitter
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;All in all, I like conventional commit messages so much that I don't want to keep it optional but make it the default way of life. How do I do it? The answer is simple: &lt;em&gt;git hooks&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;You don't need to be a git ninja or expert to work with hooks. Suffice it to know that inside your special git repository folder (named &lt;code&gt;.git&lt;/code&gt;), there are some other special folders:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;logs
+hooks
+objects
+refs
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The one we are interested in is &lt;code&gt;hooks&lt;/code&gt;. To get the hang of it, create a test project on your machine and initialize an empty git repository by running:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git init .
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now visit the &lt;code&gt;.git&lt;/code&gt; folder just generated and navigate to the hooks folder. There will be a bunch of scripts with &lt;code&gt;.sample&lt;/code&gt; extension (which means they are all disabled). The one we are interested in is &lt;code&gt;commit-msg&lt;/code&gt;. This is the hook that fires just before your commit is made and thus allows you to reject the commit by throwing an error if the message isn't in proper format.&lt;/p&gt;
+&lt;p&gt;Create a new script in this directory named &lt;code&gt;commit-msg&lt;/code&gt; and add the below code (you'll need python installed) to it using your favorite editor (mine is notepad++!):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/usr/bin/env python&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;re&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="c1"&gt;# example:&lt;/span&gt;
+    &lt;span class="c1"&gt;# feat(apikey): added the ability to add api key to configuration&lt;/span&gt;
+    &lt;span class="n"&gt;pattern&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;(build|ci|docs|feat|fix|perf|refactor|style|test|chore|revert)(\([\w\-]+\))?:\s.*&amp;#39;&lt;/span&gt;
+    &lt;span class="n"&gt;filename&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;ss&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;match&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pattern&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ss&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;Exception&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;conventional commit validation failed&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Save the script and make it executable (by running &lt;code&gt;chmod u+x commit-msg&lt;/code&gt; on linux, not required on windows). Now head back to your source code folder where you initialized the git repo and create a source file just for testing. Then, &lt;code&gt;git add&lt;/code&gt; and try to commit just for testing using a non-conventional message. If all goes well, it should fail like this!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; git commit -m &amp;quot;added a new feature for xyz&amp;quot;
+Traceback (most recent call last):
+  File &amp;quot;C:/Users/prahlad/Documents/scripts/check_commit.py&amp;quot;, line 22, in &amp;lt;module&amp;gt;
+    main()
+  File &amp;quot;C:/Users/prahlad/Documents/scripts/check_commit.py&amp;quot;, line 19, in main
+    if m == None: raise Exception(&amp;quot;conventional commit validation failed&amp;quot;)
+Exception: conventional commit validation failed    
+Now test with a valid commit message and it should work!
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Once you practice this a few times and get a hang over it, you'll then want to make this behavior default for whatever projects you start using &lt;code&gt;git init&lt;/code&gt; in future, isn't it? Sure, you can do that by creating a global git commit hook template but that will be a post for another day. First things first!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Edit&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;For those really interested in enforcing and automating this thing, I've just published a python package called &lt;a href="https://github.com/prahladyeri/enforce-git-message"&gt;enforce-git-message&lt;/a&gt;. All you need to do is install that python package and it'll automatically copy the above script to your &lt;code&gt;~/.git-templates&lt;/code&gt; directory and also set the value for &lt;code&gt;git config init.templatedir&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install enforce-git-message
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;References:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.conventionalcommits.org/en/v1.0.0-beta.4/"&gt;https://www.conventionalcommits.org/en/v1.0.0-beta.4/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://stackoverflow.com/q/3523534/849365"&gt;https://stackoverflow.com/q/3523534/849365&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://stackoverflow.com/q/37699261/849365"&gt;https://stackoverflow.com/q/37699261/849365&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://coderwall.com/p/jp7d5q/create-a-global-git-commit-hook"&gt;https://coderwall.com/p/jp7d5q/create-a-global-git-commit-hook&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Git"></category><category term="Open Source"></category><category term="How To"></category></entry><entry><title>Performing a little usability tweak on the XFCE window recycler in greybird theme</title><link href="/blog/2018/09/performing-a-little-usability-tweak-on-the-xfce-window-recycler-in-greybird-theme.html" rel="alternate"></link><published>2018-09-11T09:44:00+05:30</published><updated>2018-09-11T09:44:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2018-09-11:/blog/2018/09/performing-a-little-usability-tweak-on-the-xfce-window-recycler-in-greybird-theme.html</id><summary type="html">&lt;p&gt;Xubuntu is my favorite distro, hands down and the default Greybird theme is just wonderful! There used to be a time when I liked Ubuntu-MATE too, but not so much since they took the road to GTK+3! Coming back to the topic, XFCE works great but it has a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Xubuntu is my favorite distro, hands down and the default Greybird theme is just wonderful! There used to be a time when I liked Ubuntu-MATE too, but not so much since they took the road to GTK+3! Coming back to the topic, XFCE works great but it has a small usability issue in the default Greybird theme which annoys most power users.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;ALT+TAB is the usual way to recycle window icons on any DE, and the "tab" key determines the currently focused window. Now, one of the Greybird theme developers decided in his profound wisdom that a mouse move over the cycling dialog can cause a window focus too. Since the mouse cursor occupies a central position most of the time, it automatically causes an item in the cycling dialog to be selected which is not intended at all! While this could be a great "feature" for those users who like juggling with their mouse while pressing the ALT+TAB keys, I hardly think any power user would like to do that. For most users, this could be easily a cause of annoyance or frustration since they have to move the mouse out of the dialog's range to ensure that it doesn't interfere with their selection again.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XFCE Alt+Tab Cycling Dialog" src="/uploads/2018/09/alt-tab-cycling.png"&gt;&lt;/p&gt;
+&lt;p&gt;As you can see, the blue background represents the selected/active window. Now, imagine intending to select the firefox window by pressing ALT+TAB, but terminal window gets selected instead since the mouse happens to be placed there! Astonishingly, however, I couldn't find any discussions or issues raised regarding this anywhere on the internet except &lt;a href="https://forum.xfce.org/viewtopic.php?id=9585"&gt;this one thread on XFCE forums&lt;/a&gt;. After making some tweaks to their code, I was able to come up with my own version which resolves this issue:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;include &amp;quot;/usr/share/themes/Greybird/gtk-2.0/gtkrc&amp;quot;
+
+style &amp;quot;xfwm-tabwin-tweak&amp;quot;
+{
+ Xfwm4TabwinWidget::border-width = 1
+ Xfwm4TabwinWidget::border-alpha = 0.9
+ Xfwm4TabwinWidget::icon-size = 64
+ Xfwm4TabwinWidget::listview-icon-size = 16
+ Xfwm4TabwinWidget::preview-size = 512
+ Xfwm4TabwinWidget::alpha = 0.9 #0.8
+ Xfwm4TabwinWidget::border-radius = 5 #10
+
+bg[NORMAL] = shade (0.45, @bg_color_dark) # widget background color
+ bg[ACTIVE] = shade (0.65, @selected_bg_color)# when keyboard and mouse focus on the same item
+ bg[PRELIGHT] = shade (0.45, @bg_color_dark) # color of item with mouse hovering on it, which we want to make it
+ bg[SELECTED] = shade (0.65, @selected_bg_color) #color of selected item using keyboard
+
+fg[NORMAL] = shade (0.8, &amp;quot;#fff&amp;quot;) #shade (0.8, @base_color)
+ fg[ACTIVE] = &amp;quot;#fff&amp;quot; #@base_color # text color of item where our mouse and keyboard meet
+ fg[PRELIGHT] = shade (0.8, &amp;quot;#fff&amp;quot;) #shade (0.8, @base_color)
+ fg[SELECTED] = &amp;quot;#fff&amp;quot; #@base_color
+
+engine &amp;quot;murrine&amp;quot; {
+ roundness = 6
+ }
+}
+
+widget &amp;quot;xfwm4-tabwin*&amp;quot; style &amp;quot;xfwm-tabwin-tweak&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Save the above file as \~/.gtkrc-2.0 and change your theme from Greybird to something else and back again, and this issue will be resolved.&lt;/p&gt;</content><category term="Linux"></category><category term="XFCE"></category></entry><entry><title>Linux DIY: Creating a multiboot USB drive with ISO images of multiple distros</title><link href="/blog/2018/09/linux-diy-creating-a-multiboot-usb-drive-with-iso-images-of-multiple-distros.html" rel="alternate"></link><published>2018-09-11T04:32:00+05:30</published><updated>2018-09-11T04:32:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2018-09-11:/blog/2018/09/linux-diy-creating-a-multiboot-usb-drive-with-iso-images-of-multiple-distros.html</id><summary type="html">&lt;p&gt;Though I'm not a distro-hopper exactly, I keep trying live versions of popular linux distros like &lt;strong&gt;debian&lt;/strong&gt; and &lt;strong&gt;ubuntu&lt;/strong&gt; every now and then, and while I generally use the "dd" command which works right out of the box, today I thought that instead of burning a new ISO image each …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Though I'm not a distro-hopper exactly, I keep trying live versions of popular linux distros like &lt;strong&gt;debian&lt;/strong&gt; and &lt;strong&gt;ubuntu&lt;/strong&gt; every now and then, and while I generally use the "dd" command which works right out of the box, today I thought that instead of burning a new ISO image each time, why not create a single 16GB USB stick which can boot multiple distro images!&lt;!--more--&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;dd if=xubuntu-18.04.1-desktop-amd64.iso of=/dev/sdb bs=1M
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This simple dd command does the job, but you are left with a single ISO image occupying the entire disk space which is an inefficiency if you have a larger drive that can hold multiple images. So, let's learn how to reclaim all that space by creating a single USB which can boot multiple ISO images. Though the process is a bit more involved than the dd command, the reward is obviously worth it too.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step-1: Format your USB drive to FAT32, there should be a single partition on the drive with boot flag enabled.&lt;/strong&gt; - Also, label the drive as MULTIBOOT or something for recognizing it easier. Though the linked article below uses the fdisk/mkfs.vfat commands, you can even use graphical tools like &lt;strong&gt;gparted&lt;/strong&gt; to make this process simpler.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Gparted" class="alignnone size-full wp-image-1020" height="520" src="/uploads/2018/09/gparted.png" width="774"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step-2: Install grub2 on the newly formatted drive, create a boilerplate grub.cfg file:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Close the gparted window if its open, otherwise the drive won't be mounted.&lt;/li&gt;
+&lt;li&gt;Type &lt;code&gt;sudo grub-install --force --no-floppy --boot-directory=/media/prahlad/MULTIBOOT/boot /dev/sdx&lt;/code&gt; (replacing path with yours, &lt;strong&gt;x&lt;/strong&gt; with your actual USB device)&lt;/li&gt;
+&lt;li&gt;Type &lt;code&gt;cd /media/prahlad/MULTIBOOT/boot/grub&lt;/code&gt; (or whatever your path is)&lt;/li&gt;
+&lt;li&gt;Type &lt;code&gt;wget http://pendrivelinux.com/downloads/multibootlinux/grub.cfg&lt;/code&gt; (to get the grub.cfg file)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Step-3: Copy whatever ISOs you want into the root folder of your drive.&lt;/strong&gt; For the purposes of this example, let's consider latest LTS releases of Ubuntu and Xubuntu (swap with any other flavors or debian too if you prefer):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cp ubuntu-18.04.1-desktop-amd64.iso /media/prahlad/MULTIBOOT/
+cp xubuntu-18.04.1-desktop-amd64.iso /media/prahlad/MULTIBOOT/
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Step-4: Edit the grub.cfg you just downloaded, and configure entries for your ISOs accordingly.&lt;/strong&gt; Its important that you do this carefully:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# This grub.cfg file was created by Lance http://www.pendrivelinux.com
+# Suggested Entries and the suggestor, if available, will also be noted.
+
+set timeout=10
+set default=0
+
+menuentry &amp;quot;Ubuntu Desktop ISO&amp;quot; {
+ loopback loop /ubuntu-18.04.1-desktop-amd64.iso
+ linux (loop)/casper/vmlinuz boot=casper iso-scan/filename=/ubuntu-18.04.1-desktop-amd64.iso noeject noprompt splash --
+ initrd (loop)/casper/initrd.lz
+}
+
+menuentry &amp;quot;Xubuntu Desktop ISO&amp;quot; {
+ loopback loop /xubuntu-18.04.1-desktop-amd64.iso
+ linux (loop)/casper/vmlinuz boot=casper iso-scan/filename=/xubuntu-18.04.1-desktop-amd64.iso noeject noprompt splash --
+ initrd (loop)/casper/initrd
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;As you can see, I've changed only the menu entries to keep things simple. The arguments are also self apparent. For instance, &lt;em&gt;loopback&lt;/em&gt; and &lt;em&gt;loop&lt;/em&gt; attributes are used because we aren't booting directly from the USB, but mounting the virtual loop device (ISO file) instead.&lt;/p&gt;
+&lt;p&gt;However, note that there could be subtle differences between distros, xubuntu uses &lt;strong&gt;&lt;em&gt;/casper/initrd&lt;/em&gt;&lt;/strong&gt; instead of &lt;strong&gt;&lt;em&gt;/casper/initrd.lz&lt;/em&gt;&lt;/strong&gt;, for instance. To know the right entry for your own distro, compare the "&lt;em&gt;/boot/grub/grub.cfg" file&lt;/em&gt; of your distro ISO to get a hint about what menu entry to add. If your ISO isn't one of the 'buntus or a debian, then it might get trickier.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step-5: Boot from your USB drive and ensure that it works.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Make sure that you boot from your newly created USB drive, not from the hard drive as usual. If everything goes right, you should be able to see a grub boot screen with the two menus for Ubuntu and Xubuntu.&lt;/p&gt;
+&lt;p&gt;Once this process is successful, adding new ISOs to your drive is only too easy. Just copy the brand new ISO to your drive's root directory and just add the necessary entry in &lt;em&gt;/boot/grub/grub.cfg&lt;/em&gt;, that's it!&lt;/p&gt;
+&lt;p&gt;Finally, you'll have to enable legacy boot option if not already done in your bios settings, this process won't work with EFI/UEFI systems since the drive doesn't have an EFI partition. I might do another post about creating a similar drive for EFI/UEFI setups in future, until then you can refer to &lt;a href="https://old.reddit.com/r/linux/comments/9es7j1/linux_diy_creating_a_multiboot_usb_drive_with_iso/e5sa5d8/"&gt;this reddit post&lt;/a&gt; by &lt;a href="https://old.reddit.com/user/need2burn"&gt;/u/need2burn&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Best of luck!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Reference:&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;http://www.pendrivelinux.com/boot-multiple-iso-from-usb-via-grub2-using-linux/&lt;/p&gt;</content><category term="Linux"></category><category term="How-To"></category></entry><entry><title>XFCE panel indicator plugin background fix</title><link href="/blog/2018/07/xfce-panel-indicator-plugin-background-fix.html" rel="alternate"></link><published>2018-07-21T00:14:00+05:30</published><updated>2018-07-21T00:14:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2018-07-21:/blog/2018/07/xfce-panel-indicator-plugin-background-fix.html</id><summary type="html">&lt;p&gt;The indicator plugin in XFCE panel has been a very useful but also a very controversial plugin! The reason is that its the only plugin on the XFCE panel developed in GTK3 (whereas rest of the panel is developed in GTK2) and this causes some theming issues.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;Specifically, only those …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The indicator plugin in XFCE panel has been a very useful but also a very controversial plugin! The reason is that its the only plugin on the XFCE panel developed in GTK3 (whereas rest of the panel is developed in GTK2) and this causes some theming issues.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;Specifically, only those themes will work for the panel who's developers have taken care to style both the GTK2 and GTK3 components, otherwise it results in an odd background color around the indicator plugin which isn't in sync with rest of the theme:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="xfce-indicator-plugin-background-issue" class="size-full wp-image-976" height="130" src="/uploads/2018/07/xfce-indicator-plugin-background-issue.png" width="380"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;XFCE indicator-plugin background issue&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://bugs.launchpad.net/bugs/1408979"&gt;Bug #1408979&lt;/a&gt; has been reported on launchpad for this and even askubuntu is filled with &lt;a href="https://askubuntu.com/questions/663248/xubuntu-indicator-plugin-background"&gt;a bunch of questions&lt;/a&gt; pertaining to this issue. I came across this while trying to port &lt;a href="https://prahladyeri.com/blog/2018/07/how-to-make-your-xubuntu-desktop-look-and-behave-like-ubuntu-mate.html"&gt;ambiance looks to my xubuntu desktop&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The fix is really simple if your theme already has GTK3 support (but not for the indicator plugin specifically). GTK3 support typically exists for your theme if it has &lt;strong&gt;/gtk-3.0&lt;/strong&gt; folder in its root folder. All you have to do is open the &lt;strong&gt;/\&amp;lt;your_theme&gt;/gtk-3.0/gtk.css&lt;/strong&gt; and add this style patch to it:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;/*xfce panel workaround */&lt;/span&gt;
+
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;xfce4-panel&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;background-color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;@&lt;/span&gt;&lt;span class="n"&gt;dark_bg_color&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; 
+  &lt;span class="k"&gt;font&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;normal&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;xfce4-panel&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;button&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;background-image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;none&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;background-color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;@&lt;/span&gt;&lt;span class="n"&gt;dark_bg_color&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;border-radius&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;xfce4-panel&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;button&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;active&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;xfce4-panel&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;button&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;checked&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;background-image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;none&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;background-color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;shade&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;dark_bg_color&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.20&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;border&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;none&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;xfce4-panel&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;button&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;hover&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;xfce4-panel&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;button&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;active&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;hover&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;xfce4-panel&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;button&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;checked&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;hover&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;background-color&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;shade&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;dark_bg_color&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.20&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;border&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;none&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Make sure to replace the &lt;strong&gt;\@dark_bg_color&lt;/strong&gt; with whatever your theme's background color is. After the above change, just apply your theme using the theme switcher and you will see this problem magically fixed!&lt;/p&gt;
+&lt;p&gt;Now in cases where your theme doesn't have GTK3 support, it might get tricky. I faced this same issue with the &lt;a href="https://www.xfce-look.org/p/1016446/"&gt;Ambiance XFCE theme&lt;/a&gt;, for instance. What I did as a workaround was copy the &lt;strong&gt;gtk-3.0&lt;/strong&gt; folder from the official Ambiance theme from &lt;strong&gt;ubuntu-mate-themes&lt;/strong&gt; package to the linked XFCE theme's folder and then did the above fix. Of course, I could have used the official theme itself in the first place, but it doesn't support xfwm4.&lt;/p&gt;
+&lt;p&gt;I hope the above information helps you if you were looking for a fix to this exact same issue.&lt;/p&gt;</content><category term="XFCE"></category><category term="Xubuntu"></category></entry><entry><title>How to make your Xubuntu 16.04 desktop look and behave like Ubuntu-MATE</title><link href="/blog/2018/07/how-to-make-your-xubuntu-desktop-look-and-behave-like-ubuntu-mate.html" rel="alternate"></link><published>2018-07-18T19:40:00+05:30</published><updated>2018-07-18T19:40:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2018-07-18:/blog/2018/07/how-to-make-your-xubuntu-desktop-look-and-behave-like-ubuntu-mate.html</id><summary type="html">&lt;p&gt;Xubuntu is one of the most popular among the "lighter" distros as it hardly consumes 200MB when idle and even older machines are able to run with acceptable performance. Ubuntu-MATE which is based on MATE Desktop (a GNOME-2 fork) is also a similar competing distro though its debatable whether its …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Xubuntu is one of the most popular among the "lighter" distros as it hardly consumes 200MB when idle and even older machines are able to run with acceptable performance. Ubuntu-MATE which is based on MATE Desktop (a GNOME-2 fork) is also a similar competing distro though its debatable whether its as light as Xubuntu in terms of resource consumption.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Xubuntu Desktop which looks like Ubuntu-MATE" src="/uploads/2018/07/ubuntu-mate_lookalike.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Xubuntu Desktop which looks like Ubuntu-MATE&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Making a switch from Xubuntu to Ubuntu-MATE totally makes sense if you have any particular reason for it, but I've observed that many people make that switch only because they like the astonishing looks of Ubuntu-MATE which are admittedly and relatively better compared to XFCE. For whatever reason (such as familiarity) if you want to just stay on Xubuntu but still want to have the "look and feel" of Ubuntu-MATE, its very easy to achieve that, you just have to follow this brief process described in this article.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step-1: Download the Ambiance theme for XFCE from &lt;a href="https://www.xfce-look.org/p/1016446/"&gt;here&lt;/a&gt; and extract them to your \~/.themes/ folder.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Whilst the official Ubuntu packages &lt;strong&gt;mate-themes&lt;/strong&gt; and &lt;strong&gt;ubuntu-mate-themes&lt;/strong&gt; also come with a version of Ambiance theme, the window title background didn't turn dark when I applied it for some reason. You can still have those packages installed if you want, but the one in your \~/.themes/ folder will override any installed themes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step-2: Apply Ambiance GTK theme.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Head over to Appearance applet in your XFCE Settings Manager and switch the GTK theme to &lt;strong&gt;Ambiance&lt;/strong&gt; which you should now see after performing step-1:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Settings Manager-&gt;Appearance" src="/uploads/2018/07/SM_appearance.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Settings Manager-&gt;Appearance&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step-3: Apply Ambiance Window Manager theme.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The next step is to do the same for Window Manager theme. Head over to Window Manager applet and make the switch there too:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Settings Manager-&gt;Window Manager" src="/uploads/2018/07/SM_window_manager.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Settings Manager-&gt;Window Manager&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step-4: Install Ubuntu-MATE icons.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This is for adding those green MATE icons. Just run this command to install the official package:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo apt install ubuntu-mate-icon-themes
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Again open the Appearance applet but this time click the &lt;strong&gt;Icons&lt;/strong&gt; tab on the top, and just select &lt;strong&gt;Ambiance-MATE&lt;/strong&gt; from there:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Settings Manager-&gt;Appearance (Icons Tab)" src="/uploads/2018/07/SM_appearance_icons.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Settings Manager-&gt;Appearance (Icons Tab)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Optionally, you can also click the &lt;strong&gt;Fonts&lt;/strong&gt; tab and change the font to Ubuntu or one of its derivatives to get that Ubuntu-MATE feel!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step-5: Use the magic switch: XFCE Panel Switch.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;XFCE Panel Switch&lt;/strong&gt; is a wonderful tool that drastically alters the layout of your XFCE Desktop, just search for "XFCE Panel Switch" in your whisker menu or find it under &lt;strong&gt;Settings&lt;/strong&gt; in your regular menu. Start that tool and you'll be able to switch to any desired desktop layout (choose "GNOME 2" for the looks of Ubuntu-MATE and click "Apply" icon which is the first in the bottom list of small icons):&lt;/p&gt;
+&lt;p&gt;&lt;img alt="XFCE Panel Switch" src="/uploads/2018/07/xfce-panel-switch.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;XFCE Panel Switch&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Once you do that, you should be able to get a perfect Ubuntu-MATE look alike such as the one shown on the top screen. Finally and optionally, you can also install the official package &lt;strong&gt;ubuntu-mate-wallpapers&lt;/strong&gt; if you like their wallpapers too.&lt;/p&gt;</content><category term="Linux"></category><category term="Ubuntu"></category><category term="Ubuntu-MATE"></category><category term="Xubuntu"></category><category term="How To"></category></entry><entry><title>How to use Bash+rsync to automate your periodical backups on Linux</title><link href="/blog/2018/03/how-to-use-bashrsync-to-automate-your-periodical-backups-on-linux.html" rel="alternate"></link><published>2018-03-04T13:05:00+05:30</published><updated>2018-03-04T13:05:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2018-03-04:/blog/2018/03/how-to-use-bashrsync-to-automate-your-periodical-backups-on-linux.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;Linux&lt;/strong&gt; is all about simplicity. Simple and time-tested tools like &lt;code&gt;iptables&lt;/code&gt;, &lt;code&gt;netstat&lt;/code&gt; and &lt;code&gt;rsync&lt;/code&gt; can be called for help for basic tasks instead of untrusted third-party tools as happens in case of Windows. If you are a desktop user, then taking frequent backups of your data to a pen-drive or …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Linux&lt;/strong&gt; is all about simplicity. Simple and time-tested tools like &lt;code&gt;iptables&lt;/code&gt;, &lt;code&gt;netstat&lt;/code&gt; and &lt;code&gt;rsync&lt;/code&gt; can be called for help for basic tasks instead of untrusted third-party tools as happens in case of Windows. If you are a desktop user, then taking frequent backups of your data to a pen-drive or external disk is a typical problem to solve.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;In this article, I'll show how I solved this problem using a combination of &lt;strong&gt;bash scripting&lt;/strong&gt; and &lt;strong&gt;rsync&lt;/strong&gt;, the basic tooling available on any linux distro these days, be it Ubuntu, Debian or Fedora.&lt;/p&gt;
+&lt;p&gt;One of the things you may want to do is determine what folder(s) you want to backup to which device. You may want to copy the source code folder only to your pen drive and your images and documents to only external drive, for instance. Here is where identifying the disk label through bash comes in handy in the backup script:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;if [ -d &amp;quot;/media/prahlad/DATA128&amp;quot; ]; then
+    device_name=&amp;quot;DATA128&amp;quot;
+    folder_name=&amp;quot;/media/prahlad/DATA128&amp;quot;
+elif [ -d &amp;quot;/media/prahlad/extHD&amp;quot; ]; then
+    device_name=&amp;quot;extHD&amp;quot;
+    folder_name=&amp;quot;/media/prahlad/extHD&amp;quot;
+else
+    echo &amp;quot;No Drive Found&amp;quot;
+    exit
+fi
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In the above example, &lt;strong&gt;DATA128&lt;/strong&gt; is a pen-drive and &lt;strong&gt;extHD&lt;/strong&gt; is an external hard-drive and the above script determines which disk is inserted in the USB drive. You can then use the &lt;strong&gt;\$folder_name&lt;/strong&gt; bash variable to dynamically copy to that device instead of hard-coding that path unnecessarily. You can also use &lt;strong&gt;\$device_name&lt;/strong&gt; bash variable to include or skip specific folders when running the rsync command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rsync -va /home/prahlad/source &amp;quot;$folder_name/source&amp;quot;
+
+if [ &amp;quot;$device_name&amp;quot; = &amp;quot;extHD&amp;quot; ]; then
+ rsync -va /home/prahlad/Pictures &amp;quot;$folder_name/home/Pictures&amp;quot;
+ rsync -va /home/prahlad/Documents &amp;quot;$folder_name/home/Documents&amp;quot;
+fi
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The &lt;strong&gt;rsync&lt;/strong&gt; command itself is also versatile enough to do a lot of things which are not possible using a simple copy-paste-replace using a file manager. For instance, the "a" or "--archive" option intelligently archives (copies) files while skipping identical ones based on checksum or modification date automatically. Further, the "--delete" option deletes files which are present on the destination backup device, but not on the source device which is typically the case when you want to backup your data. Run "man rsync" to see the full range of options exposed by this wonderful command.&lt;/p&gt;
+&lt;p&gt;Finally, another advantage of using a script for backup automation is that you can implement custom actions through the script. For example, compressing the mozilla firefox user folder before taking its backup:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;echo &amp;quot;backing up firefox...&amp;quot;
+tar czf ~/firefox-backup.tar.gz ~/.mozilla/firefox/
+rsync -va ~/firefox-backup.tar.gz &amp;quot;$folder_name/home/firefox-backup.tar.gz&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Below is a typical example of how you might implement a script to automate backup of your home folder and set this as a cron job to run say weekly or fortnightly:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -d &lt;span class="s2"&gt;&amp;quot;/media/prahlad/DATA128&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+ &lt;span class="nv"&gt;device_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;DATA128&amp;quot;&lt;/span&gt;
+ &lt;span class="nv"&gt;folder_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/media/prahlad/DATA128&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; -d &lt;span class="s2"&gt;&amp;quot;/media/prahlad/extHD&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+ &lt;span class="nv"&gt;device_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;extHD&amp;quot;&lt;/span&gt;
+ &lt;span class="nv"&gt;folder_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/media/prahlad/extHD&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;
+ &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;No Drive Found&amp;quot;&lt;/span&gt;
+ &lt;span class="nb"&gt;exit&lt;/span&gt;
+&lt;span class="k"&gt;fi&lt;/span&gt;
+
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Device: &lt;/span&gt;&lt;span class="nv"&gt;$device_name&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Folder: &lt;/span&gt;&lt;span class="nv"&gt;$folder_name&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+
+&lt;span class="c1"&gt;#start copying &lt;/span&gt;
+
+&lt;span class="c1"&gt;#home&lt;/span&gt;
+rsync -va ~/.bashrc &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$folder_name&lt;/span&gt;&lt;span class="s2"&gt;/home/&amp;quot;&lt;/span&gt; --delete
+rsync -va ~/.profile &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$folder_name&lt;/span&gt;&lt;span class="s2"&gt;/home/&amp;quot;&lt;/span&gt; --delete
+rsync -va ~/Downloads/ &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$folder_name&lt;/span&gt;&lt;span class="s2"&gt;/home/Downloads/&amp;quot;&lt;/span&gt; --delete
+rsync -va ~/Documents/ &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$folder_name&lt;/span&gt;&lt;span class="s2"&gt;/home/Documents/&amp;quot;&lt;/span&gt; --delete
+rsync -va ~/Pictures/ &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$folder_name&lt;/span&gt;&lt;span class="s2"&gt;/home/Pictures/&amp;quot;&lt;/span&gt; --delete
+rsync -va ~/.ssh/ &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$folder_name&lt;/span&gt;&lt;span class="s2"&gt;/home/.ssh/&amp;quot;&lt;/span&gt; --delete
+rsync -va ~/.gnupg/ &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$folder_name&lt;/span&gt;&lt;span class="s2"&gt;/home/.gnupg/&amp;quot;&lt;/span&gt; --delete
+rsync -va ~/.thunderbird/ &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$folder_name&lt;/span&gt;&lt;span class="s2"&gt;/home/.thunderbird/&amp;quot;&lt;/span&gt; --delete
+rsync -va ~/.mozilla/ &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$folder_name&lt;/span&gt;&lt;span class="s2"&gt;/home/.mozilla/&amp;quot;&lt;/span&gt; --delete
+
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Done&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can customize the above script by adding custom actions or if conditions to skip or include specific folders based on the device label.&lt;/p&gt;</content><category term="Backup"></category><category term="Linux"></category><category term="Ubuntu"></category><category term="How To"></category></entry><entry><title>Tux Drive - A Command Line Tool to Access Google Drive from Linux</title><link href="/blog/2017/09/introducing-tuxdrive-a-command-line-tool-to-access-google-drive-from-linux.html" rel="alternate"></link><published>2017-09-20T00:03:00+05:30</published><updated>2017-09-20T00:03:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2017-09-20:/blog/2017/09/introducing-tuxdrive-a-command-line-tool-to-access-google-drive-from-linux.html</id><summary type="html">&lt;p&gt;One of the most boring things we need to perform in life is using the &lt;a href="https://drive.google.com/drive/"&gt;Google Drive&lt;/a&gt;. On one hand, so useful is this tool provided by Google (so many cloud GBs for free, yay!) but on the other hand, the web interface to access those files is not quite …&lt;/p&gt;</summary><content type="html">&lt;p&gt;One of the most boring things we need to perform in life is using the &lt;a href="https://drive.google.com/drive/"&gt;Google Drive&lt;/a&gt;. On one hand, so useful is this tool provided by Google (so many cloud GBs for free, yay!) but on the other hand, the web interface to access those files is not quite as intuitive, especially so for power users, and certainly so for linux users!&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;Unlike the good old FTP/SFTP where you could just run some geeky commands in a terminal (or use a super-intuitive GUI like FileZilla to just drag and drop files), the Google Drive web interface results in a crippled work flow. To top it, we don't even have a desktop client like the Windows folks do.&lt;/p&gt;
+&lt;h1&gt;Tux Drive&lt;/h1&gt;
+&lt;p&gt;To solve this problem, I have written a console based python program called &lt;a href="https://github.com/prahladyeri/tuxdrive"&gt;&lt;strong&gt;tuxdrive&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Tux Drive running on Ubuntu 16.04 LTS" height="302" src="https://raw.githubusercontent.com/prahladyeri/tuxdrive/master/screenshot.png" width="687"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tux Drive running on Ubuntu 16.04 LTS&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Its nowhere as comprehensive as FTP/SFTP in flexibility (yet), but it does some basic things like &lt;strong&gt;&lt;em&gt;ls (or dir)&lt;/em&gt;&lt;/strong&gt; to list remote files and directories on your drive, &lt;strong&gt;&lt;em&gt;get file_name&lt;/em&gt;&lt;/strong&gt; to download a file, &lt;strong&gt;&lt;em&gt;cd remote_dir&lt;/em&gt;&lt;/strong&gt; to change the drive directory, etc.&lt;/p&gt;
+&lt;p&gt;Here is the entire list of vocabulary that &lt;strong&gt;tuxdrive&lt;/strong&gt; is currently acquainted with:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; help (or ?): Shows this help facility.
+ dir (or ls): Lists all files and folders on drive.
+ !dir (or !ls): Lists all files and folders in current directory.
+ get (or pull) &amp;lt;item&amp;gt;: Pulls the named file/folder from drive to current working directory.
+ put (or push) &amp;lt;item&amp;gt;: Pushes the named file/folder from current working directory to drive.
+ rm &amp;lt;item&amp;gt;: Delete the named file/folder on remote path.
+ pwd: Print working directory (remote/drive).
+ cd: Change working directory (remote/drive).
+ lpwd: Print working directory (local).
+ lcd: Change working directory (local).
+ rdcache: Show remote directory mapping of id and folder paths.
+ rfcache: Show remote files mapping of id and folder paths.
+ mkdir: Create a directory on remote path.
+ exit: Exits this program.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Instructions to download and run &lt;strong&gt;tuxdrive&lt;/strong&gt; can be found on the &lt;a href="https://github.com/prahladyeri/tuxdrive"&gt;project github&lt;/a&gt;. I sincerely hope this tool becomes useful to as many users as possible. If something good comes out of this, I'll think about integrating dropbox too into this in future.&lt;/p&gt;
+&lt;p&gt;Have a Good Day.&lt;/p&gt;</content><category term="Google Drive"></category><category term="Linux"></category><category term="Python"></category></entry><entry><title>How To Make Your Ubuntu Desktop Faster</title><link href="/blog/2017/09/how-to-trim-your-new-ubuntu-installation-of-extra-fat-and-make-it-faster.html" rel="alternate"></link><published>2017-09-19T13:11:00+05:30</published><updated>2017-09-19T13:11:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2017-09-19:/blog/2017/09/how-to-trim-your-new-ubuntu-installation-of-extra-fat-and-make-it-faster.html</id><summary type="html">&lt;p&gt;The usual advice you get when seeking a more resource conserving distro is to use a lighter spin-off such as Xubuntu, Lubuntu, etc. However, not many people know that even a "heavy" distro such as Ubuntu LTS with the default Unity Desktop could be made much lighter by uninstalling some …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The usual advice you get when seeking a more resource conserving distro is to use a lighter spin-off such as Xubuntu, Lubuntu, etc. However, not many people know that even a "heavy" distro such as Ubuntu LTS with the default Unity Desktop could be made much lighter by uninstalling some packages and removing others from the startup. Let us see how it can be achieved:&lt;/p&gt;
+&lt;h2&gt;Remove unwanted items from Startup Applications&lt;/h2&gt;
+&lt;p&gt;When you go to the Ubuntu Dash and start the "&lt;strong&gt;Startup Applications&lt;/strong&gt;" dialog, it doesn't show you the whole picture. There are still many "hidden apps" that silently start in the background without you knowing it. In order for all these hidden apps to be displayed in that dialog, you'll have to run the following command in the terminal once:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo sed -i &amp;#39;s/NoDisplay=true/NoDisplay=false/g&amp;#39; /etc/xdg/autostart/*.desktop
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Once you run this and then open the "Startup Applications" dialog, you'll be able to see the hidden apps too:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Startup Applications (Ubuntu)" src="/uploads/2017/09/startup_applications.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Startup Applications (Ubuntu)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;From this dialog, you can disable an app from starting up by "unchecking" it. The most important that I typically uncheck on a new installation are &lt;strong&gt;Backup Monitor&lt;/strong&gt; and &lt;strong&gt;Desktop Sharing&lt;/strong&gt;. It doesn't make sense to have such a huge backup schizophrenia on a non-production desktop computer, so I wonder why the Backup Monitor is enabled in the first place. About 99% of sysadmins either perform a manual backup periodically, or write an automation script use something like &lt;strong&gt;rsync&lt;/strong&gt; which is specifically designed for the job.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Desktop Sharing&lt;/strong&gt; is an equally unnecessary tool to have been enabled by default on a linux desktop. This ain't the Windows world where people use Remote Desktop clients to connect to other PCs on the same network. About 99% of linux folks use &lt;strong&gt;ssh&lt;/strong&gt; to connect to remote machines instead. Desktop Sharing should be an opt-in feature in any case and a user who specifically needs it can enable it when needed.&lt;/p&gt;
+&lt;h2&gt;Remove unnecessary background services such as cups and avahi-daemon&lt;/h2&gt;
+&lt;p&gt;On a fresh Ubuntu installation, run &lt;code&gt;sudo netstat -antpe&lt;/code&gt; and you'll see the rarely used &lt;code&gt;cupsd&lt;/code&gt; daemon (&lt;em&gt;common unix printing service&lt;/em&gt;) running on a free TCP port and  silently leeching your memory and network resources. Similarly, you can run &lt;code&gt;sudo netstat -anupe&lt;/code&gt; to scan for UDP ports and you'll similarly see the cups browser daemon (&lt;code&gt;cups-browsed&lt;/code&gt;) and the avahi daemon (&lt;code&gt;avahi-daemon&lt;/code&gt;) services.&lt;/p&gt;
+&lt;p&gt;Use of printers has become less and less, especially since the oncoming of digital age and internet revolution. Heck, even companies have been encouraging email communication these days in a bid to avoid paper work and save trees, and here we are - one of the top linux distributions running a printer service by default!&lt;/p&gt;
+&lt;p&gt;My humble request to them is please make this an opt-in feature, those who need it will have enough sense to run &lt;code&gt;sudo apt install cups&lt;/code&gt;. Until that happens, the rest of the folks can do the following:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo systemctl disable cupsd
+sudo systemctl disable cups-browsed
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We are not uninstalling it, just disabling the service just in case. And before you say that &lt;code&gt;cups&lt;/code&gt; is needed for PDF exports from browsers, then no, the latest versions of firefox and chrome come with their own PDF extensions and don't depend on this service anymore.&lt;/p&gt;
+&lt;p&gt;As for the other service (&lt;code&gt;avahi-daemon&lt;/code&gt;), it really doesn't make any sense as &lt;code&gt;avahi&lt;/code&gt; is the linux implementation of Apple's proprietary protocols for peer-to-peer communication between their iDevices. Nobody in their right minds would be using an open source OS like Ubuntu on their PC/Laptop to communicate with proprietary Apple products! The two just don't play well together as Apple products only work in a closed eco-system. &lt;/p&gt;
+&lt;p&gt;As for those rare folks who absolutely need avahi-daemon, let them install it themselves, why include this by default? Until that happens, the rest of us can disable &lt;code&gt;avahi-daemon&lt;/code&gt; by simply running:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo systemctl disable avahi-daemon
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Disable HUD (if you don't use it)&lt;/h2&gt;
+&lt;p&gt;One of the reasons why Xubuntu has such a low memory footprint (~200 MB at idle) is that it doesn't come with memory leeching services such as the HUD. For example, on my laptop, HUD service eats a good 30MB of RAM which is too much for a service that I don't even use. As &lt;a href="https://askubuntu.com/a/218073/49938"&gt;described in this post&lt;/a&gt;, you can disable the HUD service from the terminal as follows:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo chmod -x /usr/lib/indicator-appmenu/hud-service # 32bit systems
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;OR
+    sudo chmod -x /usr/lib/x86_64-linux-gnu/hud/hud-service # 64bit systems&lt;/p&gt;
+&lt;h2&gt;Disable evolution processes (if you use thunderbird or anything else instead)&lt;/h2&gt;
+&lt;p&gt;Evolution processes(such as &lt;code&gt;evolution-calendar-factory&lt;/code&gt; and &lt;code&gt;evolution-addressbook-factory&lt;/code&gt;) are huge memory leechers and a drain on your RAM. If you just start the system monitor and search for &lt;code&gt;evolution&lt;/code&gt;, you'll find 4-5 different processes consuming a good 120MB of your RAM! Now, for someone who doesn't even use the evolution email client or any of these services, why should they be there in the first place? But unfortunately, you cannot just remove (&lt;code&gt;uninstall&lt;/code&gt;) these packages using &lt;code&gt;apt&lt;/code&gt;. Trying to &lt;code&gt;apt remove evolution-data-server&lt;/code&gt; will break your system as they've made it a core part of the desktop. What you can do instead (if you really want to claim back that RAM) is a &lt;a href="https://askubuntu.com/a/816353/49938"&gt;workaround suggested in this post&lt;/a&gt;. Simply rename the folders as follows:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo mv /usr/lib/evolution-data-server /usr/lib/evolution-data-server-disabled
+sudo mv /usr/lib/evolution /usr/lib/evolution-disabled
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Optionally, a less dirty hack is to remove the executable flag from the individual processes, so that they won't start. This way, the processes won't start again if you update your core packages in future.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo chmod -x /usr/lib/evolution/evolution-calendar-factory # less dirty hack
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Remove GNOME software center (only if you don't use it)&lt;/h2&gt;
+&lt;p&gt;This piece of junk (gnome software center) takes a good 70-80MB on any typical ubuntu installation. For managing software, I find the good old &lt;code&gt;apt install&lt;/code&gt; way to be much more intuitive than the gnome software center. For those rare cases when you absolutely need a GUI, the &lt;code&gt;synaptic package manager&lt;/code&gt; works absolutely fine and without taking a constant toll on your resources.&lt;/p&gt;
+&lt;p&gt;As described in &lt;a href="https://askubuntu.com/a/783075/49938"&gt;this answer&lt;/a&gt;, all it takes to safely remove gnome software center from your system is:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo apt purge gnome-software
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;hr&gt;
+&lt;p&gt;After trimming the programs and services as mentioned above, your system should become nearly as light-weight as those other lighter distros like xubuntu, lubuntu, etc. and you'll still be able to enjoy and work with a richer and more visually pleasant user interface!&lt;/p&gt;
+&lt;p&gt;On my own laptop, I was able to reduce the idle memory consumption from ~550MB to ~300MB which is as close as it gets to ubuntu-mate!&lt;/p&gt;
+&lt;h2&gt;Update&lt;/h2&gt;
+&lt;p&gt;As of 18.04 LTS, Ubuntu has replaced gnome software center with a new piece of crap called "snappy" which is no better than its predecessor! To remove snappy, just follow this process:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;#check what snaps are installed
+snap list
+
+#remove all snaps
+sudo apt purge snapd
+
+#delete the snap folder
+rm -rf snap
+
+#optionally replace snaps with standard apps
+sudo apt install gnome-calculator gnome-logs gnome-characters gnome-system-monitor
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I still don't understand why ubuntu keeps shipping this extra needless junk like &lt;code&gt;cups&lt;/code&gt; and &lt;code&gt;avahi&lt;/code&gt; with each new release (considering its useless for the average or most typical user out there). My best guess is they do this so that the user googles for ways to remove it and thus improve their linux skills!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Reference:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://askubuntu.com/questions/210387/how-can-i-disable-hud-service"&gt;https://askubuntu.com/questions/210387/how-can-i-disable-hud-service&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://askubuntu.com/a/816353/49938"&gt;https://askubuntu.com/a/816353/49938&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Ubuntu"></category><category term="Xubuntu"></category><category term="Productivity"></category><category term="How To"></category></entry><entry><title>Ubuntu 17.10 (Artful Aardvark) - An Objective Review</title><link href="/blog/2017/09/ubuntu-17-10-artful-aardvark-an-objective-review.html" rel="alternate"></link><published>2017-09-16T18:29:00+05:30</published><updated>2017-09-16T18:29:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2017-09-16:/blog/2017/09/ubuntu-17-10-artful-aardvark-an-objective-review.html</id><summary type="html">&lt;p&gt;Today, I installed the &lt;a href="http://cdimage.ubuntu.com/daily-live/current/"&gt;Daily Build&lt;/a&gt; of the upcoming Ubuntu 17.10 in VirtualBox and gave it a try. This was supposed to be the first one that replaced &lt;strong&gt;Unity Desktop&lt;/strong&gt; with &lt;strong&gt;GNOME&lt;/strong&gt;. After having used 16.04 LTS for a long time, I felt that this version is quite …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Today, I installed the &lt;a href="http://cdimage.ubuntu.com/daily-live/current/"&gt;Daily Build&lt;/a&gt; of the upcoming Ubuntu 17.10 in VirtualBox and gave it a try. This was supposed to be the first one that replaced &lt;strong&gt;Unity Desktop&lt;/strong&gt; with &lt;strong&gt;GNOME&lt;/strong&gt;. After having used 16.04 LTS for a long time, I felt that this version is quite stable but still lacking in some respects from what I consider to be a &lt;em&gt;proper&lt;/em&gt; Ubuntu OS. Below are my observations:&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="/uploads/2017/09/artful.png"&gt;&lt;img alt="Ubuntu 17.10 (Artful Aardwork)" class="wp-image-466 size-large" height="361" src="/uploads/2017/09/artful-1024x578.png" width="640"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Ubuntu 17.10 (Artful Aardwark)&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Slightly Higher Memory Consumption in Idle Mode:&lt;/strong&gt; One of the first things I've observed is that Artful eats a bigger chunk of memory than its predecessors. The 16.04 LTS typically consumes in the range of 400-450 MB at rest, whereas Artful consumed a good 639 MB which is slightly higher. The gnome process itself accounted for more than 300 MB at rest, which is a bit higher when compared to the original GNOME Desktop. Maybe, they'll fix this in the final release version.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Shortcuts Dialog Missing:&lt;/strong&gt; In the Unity Desktop, I very much depend on the "Shortcuts Dialog" which is a dialog that pops up when you long press the &lt;strong&gt;Super&lt;/strong&gt; key on the Desktop:&lt;/p&gt;
+&lt;p&gt;&lt;a href="/uploads/2017/09/keyboard_shortcuts_dialog.png"&gt;&lt;img alt="Ubuntu Keyboard Shortcuts Dialog" class="wp-image-467 size-full" height="600" src="/uploads/2017/09/keyboard_shortcuts_dialog.png" width="942"&gt;&lt;/a&gt;
+&lt;strong&gt;Unity Keyboard Shortcuts Dialog&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;As you can see, this gives a good overview of various shortcut keys and comes in very handy for many Ubuntu users. Perhaps, the devs have forgotten to add this feature when they transitioned Ubuntu to the GNOME desktop.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Many Shortcuts Missing:&lt;/strong&gt; There are many actual shortcuts too which are missing in this version. One of the important ones for example is &lt;strong&gt;HUD&lt;/strong&gt; which is a quite well known feature. Another one is the &lt;strong&gt;"Super+Tab"&lt;/strong&gt; shortcut which allows you to cycle through the dock menu in Unity.&lt;/p&gt;
+&lt;p&gt;&lt;a href="/uploads/2017/09/dock.png"&gt;&lt;img alt="Ubuntu Dock" class="size-full wp-image-468" height="356" src="/uploads/2017/09/dock.png" width="108"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Ubuntu Dock&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Again, this important shortcut is missing which contributes much to the usability of a typical Ubuntu user. Maybe, this is all right from a GNOME user's perspective but we are talking about Ubuntu here and not Ubuntu-GNOME, so the features of the former should have a priority and not the latter. If this turns out to be just another clone of Ubuntu-GNOME, then what's the use of having Ubuntu, people can already use the Ubuntu-GNOME Desktop for that.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Stable Performance:&lt;/strong&gt; Other than the points described above, Ubuntu 17.10 seems ready for the prime time. But having said that, I haven't come across any drastic feature addition to 16.04 LTS yet, so I'm not going to switch just yet. If &lt;strong&gt;Wayland&lt;/strong&gt; improves over the years and  makes a drastic improvement in performance (as they had originally promised), then lets see! Until then, its just wait and watch.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content><category term="Linux"></category><category term="Ubuntu"></category></entry><entry><title>How to install Debian+LXDE on ANY Android Tablet</title><link href="/blog/2017/07/install-debian-lxde-on-tablet.html" rel="alternate"></link><published>2017-07-05T04:21:00+05:30</published><updated>2017-07-05T04:21:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2017-07-05:/blog/2017/07/install-debian-lxde-on-tablet.html</id><summary type="html">&lt;p&gt;Running a linux distro on android devices is a hot topic these days, and why not? After all, android is already based on linux kernel, but a pretty much locked-down and dumbed-down version of it. The OEM doesn’t give you root and in most cases, not even an open …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Running a linux distro on android devices is a hot topic these days, and why not? After all, android is already based on linux kernel, but a pretty much locked-down and dumbed-down version of it. The OEM doesn’t give you root and in most cases, not even an open source bootloader or kernel.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;That way, its good for maybe the most average user who doesn’t care about the OS and just want to use their phones. But for a power user, that’s not enough.&lt;/p&gt;
+&lt;p&gt;&lt;a href="/uploads/2017/07/debian_xfce_tablet.jpg"&gt;&lt;img alt="Debian (LXDE) running on Xiaomi MiPad" class="size-full wp-image-553" src="/uploads/2017/07/debian_xfce_tablet.jpg"&gt;&lt;/a&gt; &lt;strong&gt;Debian (LXDE) running on Xiaomi MiPad Tablet&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The so called apps available in the Play Store don’t allow you to utilize the full power of your linux device. A power user always wants to have the power of a full linux distro (such as Debian or Ubuntu or Fedora) on his/her device.&lt;/p&gt;
+&lt;p&gt;For a long time, I researched for the best way to install a linux distro on a tablet, preferably one that didn’t involve rooting or partitioning the device. The &lt;a href="https://wiki.debian.org/ChrootOnAndroid"&gt;debian guide&lt;/a&gt; lists down several methods and apps to do this such as Linux Deploy, GNURoot, Termux, etc. Out of them, the least risky and one that supports most android devices (including my KitKat tablet) is &lt;a href="https://play.google.com/store/apps/details?id=com.gnuroot.debian"&gt;GNURoot-Debian&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Once you install this app on your tablet, it creates a self-contained &lt;code class="highlighter-rouge"&gt;chroot&lt;/code&gt; install of debian using a tool called &lt;a href="https://wiki.archlinux.org/index.php/Proot"&gt;Proot&lt;/a&gt;. Once that is done, all you need to do is open up the app terminal and just start using it:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;apt-get update
+apt-get install tmux vim gcc python python3 python3-pip
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Of course, these are just some of the packages that I’ve installed, you can do whatever you want with your linux installation. The only limitation is regarding multiple user logins. By default, the app will login you as &lt;code class="highlighter-rouge"&gt;root&lt;/code&gt; and while you can create additional users using &lt;code class="highlighter-rouge"&gt;useradd&lt;/code&gt; command, don’t expect things like &lt;code class="highlighter-rouge"&gt;setuid&lt;/code&gt; and &lt;code class="highlighter-rouge"&gt;setgid&lt;/code&gt; to work. The only way to switch user is using the &lt;code class="highlighter-rouge"&gt;su - yourLogin&lt;/code&gt; command (whilst the &lt;code class="highlighter-rouge"&gt;login&lt;/code&gt; command should work too in theory, I’m having a few problems with it presently, it might need some fixing in /etc/pam.d/* configuration files).&lt;/p&gt;
+&lt;p&gt;Further, if you have good amount of RAM on your tablet, you may consider using a desktop environment along with your headless installation (LXDE is recommended as it performs best on minimal resources). In order to do that, you’ll need two things:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://play.google.com/store/apps/details?id=x.org.server&amp;amp;hl=en"&gt;XServer-XSDL app&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;LXDE/XFCE desktop installed.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The former is used to interact with the headless XServer installation of your debian and provide you a graphical desktop environment. For the latter, you’ll have to just &lt;code class="highlighter-rouge"&gt;apt-get install lxde&lt;/code&gt; (or lxde-core depending on your choice). Then, in order to use the desktop any time on your tablet:&lt;/p&gt;
+&lt;p&gt;1) Open XServer-XSDL app, follow the instructions until you reach a blue screen.&lt;/p&gt;
+&lt;p&gt;2) Go to the debian installation and run:\
+export DISPLAY=:0 PULSE_SERVER=tcp:127.0.0.1:4712\
+startlxde &amp;amp;&lt;/p&gt;
+&lt;p&gt;3) Go back to XServer-XSDL app to interact with the desktop.&lt;/p&gt;
+&lt;p&gt;If all goes well, you should be able to see an lxde desktop like the one shown in the above screen. Coupled with the keyboard case and a bunch of great linux apps (such as vim, emacs, geany, inkscape, eclipse, etc.), you should be able to convert your mobile tablet into a great development machine on wheels.&lt;/p&gt;
+&lt;p&gt;References:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.xda-developers.com/guide-installing-and-running-a-gnulinux-environment-on-any-android-device/"&gt;https://www.xda-developers.com/guide-installing-and-running-a-gnulinux-environment-on-any-android-device/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wiki.debian.org/ChrootOnAndroid"&gt;https://wiki.debian.org/ChrootOnAndroid&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://play.google.com/store/apps/details?id=com.gnuroot.debian"&gt;https://play.google.com/store/apps/details?id=com.gnuroot.debian&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://play.google.com/store/apps/details?id=x.org.server&amp;amp;hl=en"&gt;https://play.google.com/store/apps/details?id=x.org.server&amp;amp;hl=en&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wiki.archlinux.org/index.php/Proot"&gt;https://wiki.archlinux.org/index.php/Proot&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Android"></category><category term="Debian"></category><category term="LXDE"></category></entry><entry><title>How to create a screencast in Xubuntu using ffmpeg</title><link href="/blog/2016/07/how-to-create-screencast-xubuntu.html" rel="alternate"></link><published>2016-07-19T04:21:00+05:30</published><updated>2016-07-19T04:21:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2016-07-19:/blog/2016/07/how-to-create-screencast-xubuntu.html</id><summary type="html">&lt;p&gt;In this article, I’m going to describe how to create a desktop screencast recording with or without audio in Xubuntu 16.04. With little changes, however, it should work on other distros too.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;The first thing to do is to ensure that your headphone microphone is enabled in Xubuntu …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In this article, I’m going to describe how to create a desktop screencast recording with or without audio in Xubuntu 16.04. With little changes, however, it should work on other distros too.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;The first thing to do is to ensure that your headphone microphone is enabled in Xubuntu audio settings. For some reasons, Xubuntu doesn’t seem to do this by default. Just click that tray icon top-right corner and click on &lt;code class="highlighter-rouge"&gt;Sound Settings&lt;/code&gt;. Then click on &lt;code class="highlighter-rouge"&gt;Input Devices&lt;/code&gt; tab and select &lt;code class="highlighter-rouge"&gt;Headset Microphone&lt;/code&gt; or something from the list, and unmute the device by clicking the grey color audio icon:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Xubuntu Mic Unmute" src="/uploads/old/xubuntu_mic_unmute.png"&gt;&lt;/p&gt;
+&lt;p&gt;And of course, you’ll need &lt;code class="highlighter-rouge"&gt;ffmpeg&lt;/code&gt; to do this, its a small command line audio utility in linux. Its only a &lt;code class="highlighter-rouge"&gt;sudo apt-get&lt;/code&gt; away in case you don’t have it already. After that, all you have to do is run this command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ffmpeg -video_size 1024x767 -framerate 25 -f x11grab -i :0.0+0,0 -f alsa -ac 2 -i default output.mkv
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To stop the screen recording, just press &lt;code class="highlighter-rouge"&gt;Ctrl+C&lt;/code&gt;. This command uses the &lt;code class="highlighter-rouge"&gt;alsa&lt;/code&gt; module to record audio. The &lt;code class="highlighter-rouge"&gt;-ac 2&lt;/code&gt; parameter specifies the audio channel (stereo as opposed to mono). If you want, you can also specify an audio sampling rate using &lt;code class="highlighter-rouge"&gt;-ar&lt;/code&gt; option which is usually 44100 by default. The &lt;code class="highlighter-rouge"&gt;-i default&lt;/code&gt; refers to the default available audio device. It usually works, but in case it doesn’t, you can specify the exact input device you want to use. In order to do that, run this command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;arecord -L
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And you will get an output such as this one:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;dmix&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;CARD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;PCH&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;DEV&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;
+    &lt;span class="n"&gt;HDA&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;PCH&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ALC3234&lt;/span&gt; &lt;span class="n"&gt;Analog&lt;/span&gt;
+    &lt;span class="n"&gt;Direct&lt;/span&gt; &lt;span class="n"&gt;sample&lt;/span&gt; &lt;span class="n"&gt;mixing&lt;/span&gt; &lt;span class="n"&gt;device&lt;/span&gt;
+&lt;span class="n"&gt;dsnoop&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;CARD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;PCH&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;DEV&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;
+    &lt;span class="n"&gt;HDA&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;PCH&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ALC3234&lt;/span&gt; &lt;span class="n"&gt;Analog&lt;/span&gt;
+    &lt;span class="n"&gt;Direct&lt;/span&gt; &lt;span class="n"&gt;sample&lt;/span&gt; &lt;span class="n"&gt;snooping&lt;/span&gt; &lt;span class="n"&gt;device&lt;/span&gt;
+&lt;span class="n"&gt;hw&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;CARD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;PCH&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;DEV&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;
+    &lt;span class="n"&gt;HDA&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;PCH&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ALC3234&lt;/span&gt; &lt;span class="n"&gt;Analog&lt;/span&gt;
+    &lt;span class="n"&gt;Direct&lt;/span&gt; &lt;span class="n"&gt;hardware&lt;/span&gt; &lt;span class="n"&gt;device&lt;/span&gt; &lt;span class="n"&gt;without&lt;/span&gt; &lt;span class="n"&gt;any&lt;/span&gt; &lt;span class="n"&gt;conversions&lt;/span&gt;
+&lt;span class="n"&gt;plughw&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;CARD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;PCH&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;DEV&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;
+    &lt;span class="n"&gt;HDA&lt;/span&gt; &lt;span class="n"&gt;Intel&lt;/span&gt; &lt;span class="n"&gt;PCH&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ALC3234&lt;/span&gt; &lt;span class="n"&gt;Analog&lt;/span&gt;
+    &lt;span class="n"&gt;Hardware&lt;/span&gt; &lt;span class="n"&gt;device&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;all&lt;/span&gt; &lt;span class="n"&gt;software&lt;/span&gt; &lt;span class="n"&gt;conversions&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In the above, you can see the plugged-in available sound card at the end. So you can take that device and specify it in this way instead of the &lt;code class="highlighter-rouge"&gt;default&lt;/code&gt; device:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ffmpeg -video_size 1024x767 -framerate 25 -f x11grab -i :0.0+0,0 -f alsa -ac 2 -i plughw:CARD=PCH,DEV=0 output.mkv
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If you don’t want audio in the screencast, however, then omit the alsa module and just run this instead:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ffmpeg -video_size 1024x767 -framerate 25 -f x11grab -i :0.0+0,0 output.mkv
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I’ve used other screencasting software in Linux before such as the &lt;code class="highlighter-rouge"&gt;RecordMyDesktop&lt;/code&gt; tool and the built-in &lt;code class="highlighter-rouge"&gt;Ctrl+Shift+Alt+R&lt;/code&gt; screencasting in GNOME. But this method of using &lt;code class="highlighter-rouge"&gt;ffmpeg&lt;/code&gt; was what I found to be the most speedy and configurable. Try it and do let me know how your screencasting goes!&lt;/p&gt;</content><category term="Linux"></category><category term="Xubuntu"></category><category term="How To"></category></entry><entry><title>How to deal with frequent disconnects of 3G USB Dongle on Linux Desktop</title><link href="/blog/2016/06/how-to-deal-with-frequent-disconnects-of-3g-usb-dongle-on-linux-desktop.html" rel="alternate"></link><published>2016-06-28T20:00:00+05:30</published><updated>2016-06-28T20:00:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2016-06-28:/blog/2016/06/how-to-deal-with-frequent-disconnects-of-3g-usb-dongle-on-linux-desktop.html</id><summary type="html">&lt;p&gt;One of the major issues on linux desktop these days has to do with 3G USB dongles/modems. In many countries like India, a USB dongle still remains a major way to access the Internet. The latest versions of &lt;code&gt;network-manager&lt;/code&gt; has solved most of the issues relating to the basic …&lt;/p&gt;</summary><content type="html">&lt;p&gt;One of the major issues on linux desktop these days has to do with 3G USB dongles/modems. In many countries like India, a USB dongle still remains a major way to access the Internet. The latest versions of &lt;code&gt;network-manager&lt;/code&gt; has solved most of the issues relating to the basic recognition of these modems, but one major irritant still remains on Ubuntu 16.04 and a few other distros.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;It so happens that many a times, the connection entirely vanishes from the network-manager applet menu on the top right. For example, if you hibernate your laptop and then wake it, the menu is no longer there. However, if you manually take out the dongle and re-insert, the modem is recognized and the menu reappears. If you want to avoid that manual re-insertion and want to do a “soft reset” instead, here is what you can do:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Send a reset signal to your usb modem:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo usb_modeswitch -v 12d1 -p 1496 -R
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Send a modeswitch signal to your usb modem:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo usb_modeswitch -v 12d1 -p 1496 -J
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The parameters, &lt;code&gt;-v&lt;/code&gt; and &lt;code&gt;-p&lt;/code&gt; stand for vendor code and product code respectively and you can find them by running &lt;code&gt;lsusb&lt;/code&gt; command. For example, the below entry is for vendor code &lt;code&gt;12d1&lt;/code&gt; (Huawei) and the product code is &lt;code&gt;1496&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Bus 001 Device 004: ID 12d1:1496 Huawei Technologies Co., Ltd. Broadband stick
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Please remember that for modeswitch signal, the parameter -J is vendor specific and works for Huawei modems only, please run &lt;code&gt;man usb-modeswitch&lt;/code&gt; to find out your vendor specific modeswitch control parameter. For instance, its -O for Sony and -L for Cisco control parameter.&lt;/p&gt;
+&lt;p&gt;Of course, once you try these commands and find that they are working, you can add them as a shortcut to your &lt;code&gt;~/.bashrc&lt;/code&gt; file. Something like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;alias &amp;quot;reset_huawei=sudo usb_modeswitch -v 12d1 -p 1496 -R&amp;quot;
+alias &amp;quot;modeswitch_huawei=sudo usb_modeswitch -v 12d1 -p 1496 -J&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now, all you need to do is run &lt;code&gt;reset_huawei &amp;amp;&amp;amp; modeswitch_huawei&lt;/code&gt; and that’s it! No need to manually re-insert the dongle anymore.&lt;/p&gt;</content><category term="Hardware"></category><category term="Linux"></category><category term="How To"></category></entry><entry><title>Ten useful LibreOffice Macro Recipes</title><link href="/blog/2016/02/ten-libreoffice-macro-recipes.html" rel="alternate"></link><published>2016-02-26T02:23:00+05:30</published><updated>2016-02-26T02:23:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2016-02-26:/blog/2016/02/ten-libreoffice-macro-recipes.html</id><summary type="html">&lt;p&gt;Macros are a great way to automate tasks in Spreadsheet applications, be it the good old Microsoft Excel or the equally efficient FOSS alternative, LibreOffice Calc. The best thing about macros is that they are written in a very easy language called &lt;a href="https://en.wikipedia.org/wiki/BASIC"&gt;Basic&lt;/a&gt;.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="LibreOffice Logo" src="/uploads/old/libreofficeCalcLogo.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;© The LibreOffice Project&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;As it’s very …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Macros are a great way to automate tasks in Spreadsheet applications, be it the good old Microsoft Excel or the equally efficient FOSS alternative, LibreOffice Calc. The best thing about macros is that they are written in a very easy language called &lt;a href="https://en.wikipedia.org/wiki/BASIC"&gt;Basic&lt;/a&gt;.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="LibreOffice Logo" src="/uploads/old/libreofficeCalcLogo.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;© The LibreOffice Project&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;As it’s very name suggests, Basic is a lenient programming language actually designed with ease of use in mind. For instance, upper/lower case doesn’t matter for variable names or keywords (&lt;code class="highlighter-rouge"&gt;if/IF&lt;/code&gt;, &lt;code class="highlighter-rouge"&gt;sub/Sub&lt;/code&gt;, &lt;code class="highlighter-rouge"&gt;function/Function&lt;/code&gt; are equivalents), function braces are optional like Ruby and type-conversion happens automatically. This makes Basic equally useful for both power users and programmers. A LibreOffice Basic macro is just a function or sub procedure which does a specific useful task. In this tutorial, we will see ten such useful macros that can help you with various automation tasks.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="#howto"&gt;Recipe 0: How to create a LibreOffice macro&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#readcell"&gt;Recipe 1: Read cell contents&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#changecell"&gt;Recipe 2: Change cell contents&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#searchandrepl"&gt;Recipe 3: Search and Replace text&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#regex"&gt;Recipe 4: Regular Expressions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#showopendialog"&gt;Recipe 5: Show File-open dialog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#showsavedialog"&gt;Recipe 6: Show File-save dialog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#readfromfiles"&gt;Recipe 7: File I/O: Read from files&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#writetofiles"&gt;Recipe 8: File I/O: Write to files&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#loadfromcsv"&gt;Recipe 9: Load data from a CSV file&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#copytoclipboard"&gt;Recipe 10: Copy text to clipboard&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#demo"&gt;Demo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#references"&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="howto"&gt;Recipe 0: How to create a LibreOffice macro&lt;/h2&gt;
+&lt;p&gt;Whilst macros can be created in Writer and Draw too, in this specific tutorial, we will restrict ourselves to spreadsheets (Calc). To create a macro, just open the spreadsheet in LibreOffice and go to &lt;code class="highlighter-rouge"&gt;Tools-&amp;gt;Macros-&amp;gt;Organize Macros-&amp;gt;LibreOffice Basic&lt;/code&gt; menu. After that, if you want to create a macro specific to your spreadsheet (as usually is the case), expand your spreadsheet file on left and select &lt;code class="highlighter-rouge"&gt;Standard&lt;/code&gt; and click &lt;code class="highlighter-rouge"&gt;New&lt;/code&gt;. This will open the LibreOffice Macro Editor as a separate window.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Macros Menu" src="/uploads/old/macros_menu.png"&gt;&lt;/p&gt;
+&lt;h2 id="readcell"&gt;Recipe 1: Read cell contents&lt;/h2&gt;
+&lt;p&gt;One of the most basic things needed for automation is reading a cell’s contents. The following piece of code does exactly this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Sub read_cell
+    dim document as object
+    document = ThisComponent
+    sheet = document.Sheets(0)
+    MsgBox(sheet.getCellByPosition(0, 0).String)
+End Sub
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code class="highlighter-rouge"&gt;dim&lt;/code&gt; is a keyword used to declare a variable but declaration is totally optional unless &lt;code class="highlighter-rouge"&gt;Option Explicit&lt;/code&gt; is specified at the beginning of the module. &lt;code class="highlighter-rouge"&gt;ThisComponent&lt;/code&gt; is the LibreOffice object that references the current spreadsheet (or a written document in case of Writer). The important thing here is the expression, &lt;code class="highlighter-rouge"&gt;sheet.getCellByPosition(0, 0).String&lt;/code&gt; which gets the contents of first cell in the first row. Cells can be referenced using the co-ordinate system where (0,0) refers to cell at row-0 and column-0. Thus, any value across the entire spreadsheet can be fetched using this simple method.&lt;/p&gt;
+&lt;p&gt;To run a macro from the editor, just place the cursor inside the &lt;code class="highlighter-rouge"&gt;sub&lt;/code&gt; or &lt;code class="highlighter-rouge"&gt;function&lt;/code&gt; body of any macro and press &lt;code class="highlighter-rouge"&gt;F5&lt;/code&gt; (or alternatively, click the &lt;code class="highlighter-rouge"&gt;Run BASIC&lt;/code&gt; icon on the toolbar).&lt;/p&gt;
+&lt;h2 id="changecell"&gt;Recipe 2: Change cell contents&lt;/h2&gt;
+&lt;p&gt;Another often needed thing is the ability to change the cell contents. The following code sets the first cell in the first row to “Hola! Mundo”, the Spanish expression for “Hello! World”:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Sub change_cell
+    dim document as object
+    document = ThisComponent
+    sheet = document.Sheets(0)
+    sheet.getCellByPosition(0, 0).String = &amp;quot;Hola Mundo!&amp;quot;
+    MsgBox(&amp;quot;Done&amp;quot;)
+End Sub
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id="searchandrepl"&gt;Recipe 3: Search and Replace&lt;/h2&gt;
+&lt;p&gt;Searching and replacing specific strings could be an important part of your automation routine. Below is a fun macro that searches for the first names of some Linux experts (like Linus, Richard, Peter, etc.) and replaces it with their last names (Torvalds, Stallman, Anvin):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Sub replace_text
+    Dim names() As String
+    Dim surnames() As String
+    Dim n As Long
+    Dim document As Object
+    Dim sheets as Object
+    Dim sheet as Object
+    Dim replace As Object
+
+    names() = Array(&amp;quot;Linus&amp;quot;, &amp;quot;Richard&amp;quot;, &amp;quot;Peter&amp;quot;, &amp;quot;Greg&amp;quot;, &amp;quot;Bill&amp;quot;)
+    surnames() = Array(&amp;quot;Torvalds&amp;quot;, &amp;quot;Stallman&amp;quot;, &amp;quot;Anvin&amp;quot;, &amp;quot;Kroah&amp;quot;, &amp;quot;Gates&amp;quot;)
+    document = ThisComponent rem .CurrentController.Frame
+    rem sheet = doc.CurrentSelection.Spreadsheet
+    sheets = document.getSheets()
+    sheet = sheets.getByIndex(0)
+    replace = sheet.createReplaceDescriptor rem document.createReplaceDescriptor in case of Writer
+    rem replace.SearchRegularExpression = True
+    For n = lbound(names()) To ubound(names())
+        replace.SearchString = names(n)
+        replace.ReplaceString = surnames(n)
+        sheet.replaceAll(replace)
+    Next n
+    MsgBox(&amp;quot;Done&amp;quot;)
+End Sub
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code class="highlighter-rouge"&gt;names()&lt;/code&gt; and &lt;code class="highlighter-rouge"&gt;surnames()&lt;/code&gt; are actually arrays. Unlike C and Java, arrays in Basic are declared and accessed using round braces and not square ones. Also, what gets declared in an array declaration is the upper-bound, not the total size. Thus, &lt;code class="highlighter-rouge"&gt;foo(2)&lt;/code&gt; is actually a size-3 array ranging from indices 0 to 2.&lt;/p&gt;
+&lt;h2 id="regex"&gt;Recipe 4: Regular Expressions&lt;/h2&gt;
+&lt;p&gt;Regular expressions are very useful in searching and replacing text based on specific patterns. The following macro searches for all the email addresses in your spreadsheet and replaces each one with &lt;code class="highlighter-rouge"&gt;foo@bar.com&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Sub replace_with_regex
+  Dim names() As String
+  Dim surnames() As String
+  Dim n As Long
+  Dim document As Object
+  Dim sheets as Object
+  Dim sheet as Object
+  Dim replace As Object
+
+  pattern = &amp;quot;\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b&amp;quot; rem regex pattern to match any email address
+  document = ThisComponent rem .CurrentController.Frame
+  sheets = document.getSheets()
+  sheet = sheets.getByIndex(0)
+  replace = sheet.createReplaceDescriptor rem document.createReplaceDescriptor in case of Writer
+  replace.SearchRegularExpression = True
+  replace.SearchString = pattern
+  replace.ReplaceString = &amp;quot;foo@bar.com&amp;quot;
+  sheet.replaceAll(replace)
+
+  MsgBox(&amp;quot;Done&amp;quot;)
+End Sub
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id="showopendialog"&gt;Recipe 5: Show File-open dialog&lt;/h2&gt;
+&lt;p&gt;Showing the File-open dialog is a very common requirement, especially when you want to open an external file for processing. The below code uses the &lt;code class="highlighter-rouge"&gt;FilePicker&lt;/code&gt; object to show the file-open dialog and return the selected file-name:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;show_open_dialog&lt;/span&gt;
+    &lt;span class="nx"&gt;dim&lt;/span&gt; &lt;span class="nx"&gt;aurl&lt;/span&gt; &lt;span class="kr"&gt;as&lt;/span&gt; &lt;span class="nx"&gt;object&lt;/span&gt;
+    &lt;span class="nx"&gt;dim&lt;/span&gt; &lt;span class="nx"&gt;s&lt;/span&gt; &lt;span class="kr"&gt;as&lt;/span&gt; &lt;span class="kt"&gt;string&lt;/span&gt;
+    &lt;span class="nx"&gt;dim&lt;/span&gt; &lt;span class="nx"&gt;oDlg&lt;/span&gt; &lt;span class="kr"&gt;as&lt;/span&gt; &lt;span class="nx"&gt;object&lt;/span&gt;
+
+    &lt;span class="nx"&gt;oDlg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;createUnoService&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;com.sun.star.ui.dialogs.FilePicker&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nx"&gt;oDlg&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setMultiSelectionMode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nx"&gt;oDlg&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;appendFilter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;CSV Files (.csv)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*.csv&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; 
+    &lt;span class="nx"&gt;oDlg&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;execute&lt;/span&gt;
+    &lt;span class="nx"&gt;aUrl&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;oDlg&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getFiles&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+    &lt;span class="nx"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;aUrl&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nx"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="nx"&gt;then&lt;/span&gt;
+        &lt;span class="nx"&gt;MsgBox&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;File Selected: &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;s&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;chr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="nx"&gt;end&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt;
+    &lt;span class="nx"&gt;show_open_dialog&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;s&lt;/span&gt;
+&lt;span class="nx"&gt;end&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code class="highlighter-rouge"&gt;createUnoService&lt;/code&gt; is a LibreOffice specific method for creating helper objects like &lt;code class="highlighter-rouge"&gt;FilePicker&lt;/code&gt; in this example. The &lt;code class="highlighter-rouge"&gt;appendFilter&lt;/code&gt; method is used to filter out only &lt;code class="highlighter-rouge"&gt;CSV&lt;/code&gt; files in the dialog.&lt;/p&gt;
+&lt;h2 id="showsavedialog"&gt;Recipe 6: Show File-save dialog&lt;/h2&gt;
+&lt;p&gt;For showing a File-save dialog, the same &lt;code class="highlighter-rouge"&gt;FilePicker&lt;/code&gt; object is used, initializing it with the &lt;code class="highlighter-rouge"&gt;FILESAVE_AUTOEXTENSION&lt;/code&gt; argument:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;show_save_dialog&lt;/span&gt;
+    &lt;span class="nx"&gt;dim&lt;/span&gt; &lt;span class="nx"&gt;aurl&lt;/span&gt; &lt;span class="kr"&gt;as&lt;/span&gt; &lt;span class="nx"&gt;object&lt;/span&gt;
+    &lt;span class="nx"&gt;dim&lt;/span&gt; &lt;span class="nx"&gt;s&lt;/span&gt; &lt;span class="kr"&gt;as&lt;/span&gt; &lt;span class="kt"&gt;string&lt;/span&gt;
+    &lt;span class="nx"&gt;dim&lt;/span&gt; &lt;span class="nx"&gt;oDlg&lt;/span&gt; &lt;span class="kr"&gt;as&lt;/span&gt; &lt;span class="nx"&gt;object&lt;/span&gt;
+
+    &lt;span class="nx"&gt;sFilePickerArgs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;Array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_&lt;/span&gt;
+    &lt;span class="nx"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;sun&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;star&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ui&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;dialogs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;TemplateDescription&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;FILESAVE_AUTOEXTENSION&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;    
+    &lt;span class="nx"&gt;oDlg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;createUnoService&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;com.sun.star.ui.dialogs.FilePicker&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nx"&gt;oDlg&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;initialize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;sFilePickerArgs&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+    &lt;span class="nx"&gt;oDlg&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setMultiSelectionMode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nx"&gt;oDlg&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;appendFilter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;CSV Files (.csv)&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*.csv&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; 
+    &lt;span class="nx"&gt;oDlg&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setTitle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Save As....&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nx"&gt;oDlg&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="nx"&gt;then&lt;/span&gt;
+        &lt;span class="nx"&gt;aUrl&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;oDlg&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getFiles&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+        &lt;span class="nx"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;aUrl&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nx"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="nx"&gt;then&lt;/span&gt;
+            &lt;span class="nx"&gt;MsgBox&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;File Selected: &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;s&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;chr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="nx"&gt;end&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;
+        &lt;span class="nx"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="nx"&gt;end&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt;
+    &lt;span class="nx"&gt;show_save_dialog&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;s&lt;/span&gt;
+&lt;span class="nx"&gt;end&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id="readfromfiles"&gt;Recipe 7: File I/O: Read from files&lt;/h2&gt;
+&lt;p&gt;Raw file I/O is a feature provided by almost every language and Basic macros make it almost too easy. Below code is used to read a CSV file with three columns. Name of the file is set in the &lt;code class="highlighter-rouge"&gt;filename&lt;/code&gt; variable. The variable &lt;code class="highlighter-rouge"&gt;num&lt;/code&gt; is a numerical tag used to reference the file-handler and &lt;code class="highlighter-rouge"&gt;FreeFile()&lt;/code&gt; returns a free available number that can be used for tagging. The &lt;code class="highlighter-rouge"&gt;open&lt;/code&gt; statement is self-explanatory. In Basic, files can be opened in Input, Output and Binary modes. Finally, the &lt;code class="highlighter-rouge"&gt;input&lt;/code&gt; statement is used to actually read the file into the variables line after line.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sub file_io_read
+    dim v1, v2, v3
+    filename = &amp;quot;/home/prahlad/data/test.csv&amp;quot;
+    num = FreeFile()
+    open filename for input as #num 
+    do while not eof(num)
+        input #num, v1, v2, v3
+        print v1 &amp;amp; &amp;quot;::&amp;quot; &amp;amp; v2 &amp;amp; &amp;quot;::&amp;quot; &amp;amp; v3
+    loop
+    close #num
+    msgbox &amp;quot;Done&amp;quot;
+end sub
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id="writetofiles"&gt;Recipe 8: File I/O: Write to files&lt;/h2&gt;
+&lt;p&gt;For writing to files, a handler is opened in &lt;code class="highlighter-rouge"&gt;output&lt;/code&gt; mode instead of &lt;code class="highlighter-rouge"&gt;input&lt;/code&gt;, and the &lt;code class="highlighter-rouge"&gt;write&lt;/code&gt; statement is used to actually write the variables to a file.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sub file_io_write
+    filename = &amp;quot;/home/prahlad/data/dummy.csv&amp;quot;
+    num = FreeFile()
+    open filename for output as #num 
+    write #num, &amp;quot;col1&amp;quot;, &amp;quot;col2&amp;quot;, &amp;quot;col3&amp;quot;
+    write #num, &amp;quot;1&amp;quot;, &amp;quot;2&amp;quot;, &amp;quot;3&amp;quot;
+    write #num, &amp;quot;4&amp;quot;, &amp;quot;5&amp;quot;, &amp;quot;6&amp;quot;
+    close #num
+    msgbox &amp;quot;Done&amp;quot;
+end sub
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id="loadfromcsv"&gt;Recipe 9: Load data from a CSV file&lt;/h2&gt;
+&lt;p&gt;Apart from working in raw I/O mode, it is sometimes required to load a complete CSV as a sheet in the current document. Using the &lt;code class="highlighter-rouge"&gt;show_open_dialog&lt;/code&gt; function that we studied earlier, the following macro first prompts a user with a File-open dialog and then loads the specified CSV file as a new sheet:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sub load_from_csv
+    fname = show_open_dialog
+    if len(fname)&amp;gt;0 then
+        dim fileProps(1) as new com.sun.star.beans.PropertyValue
+        fileProps(0).Name = &amp;quot;FilterName&amp;quot;
+        fileProps(0).Value = &amp;quot;Text - txt - csv (StarCalc)&amp;quot;
+        fileProps(1).Name = &amp;quot;FilterOptions&amp;quot;
+        fileProps(1).Value = &amp;quot;44,34,76,1,,0,false,true,true,false&amp;quot;
+        document = StarDesktop.loadComponentFromURL(fname, &amp;quot;_blank&amp;quot;, 0, fileProps())        
+    end if
+    msgbox &amp;quot;Done&amp;quot;
+end sub
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code class="highlighter-rouge"&gt;fileProps(0)&lt;/code&gt; is a property variable used for specifying the CSV file format, while &lt;code class="highlighter-rouge"&gt;fileProps(1)&lt;/code&gt; specifies the default formatting options for the CSV (such as a delimiter, charset, etc.)&lt;/p&gt;
+&lt;h2 id="copytoclipboard"&gt;Recipe 10: Copy text to clipboard&lt;/h2&gt;
+&lt;p&gt;Your custom processing might involve putting a specific text to the clipboard from LibreOffice Calc. Following code shows how to put the string “Hola!” to the system clipboard:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sub copy_to_clipboard
+    oClip = CreateUnoService(&amp;quot;com.sun.star.datatransfer.clipboard.SystemClipboard&amp;quot;)
+    oTR = createUnoListener(&amp;quot;TR_&amp;quot;, &amp;quot;com.sun.star.datatransfer.XTransferable&amp;quot;)
+    oClip.setContents(oTR, null)
+    msgbox &amp;quot;Done&amp;quot;
+end sub
+
+Function TR_getTransferData( aFlavor As com.sun.star.datatransfer.DataFlavor ) As Any
+    If (aFlavor.MimeType = &amp;quot;text/plain;charset=utf-16&amp;quot;) Then
+        TR_getTransferData = &amp;quot;Hola!&amp;quot;
+    EndIf
+End Function
+
+Function TR_getTransferDataFlavors() As Any
+    Dim aF As new com.sun.star.datatransfer.DataFlavor
+    aF.MimeType = &amp;quot;text/plain;charset=utf-16&amp;quot;
+    aF.HumanPresentableName = &amp;quot;Unicode-Text&amp;quot;
+    TR_getTransferDataFlavors = Array(aF)
+End Function
+
+Function TR_isDataFlavorSupported( aFlavor As com.sun.star.datatransfer.DataFlavor ) As Boolean
+    TR_isDataFlavorSupported = (aFlavor.MimeType = &amp;quot;text/plain;charset=utf-16&amp;quot;)
+End Function
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Second function is a callback and is used for storing the string to clipboard. The last two are helper functions used by the &lt;code class="highlighter-rouge"&gt;SystemClipboard&lt;/code&gt; and &lt;code class="highlighter-rouge"&gt;XTransferable&lt;/code&gt; helper objects and are required.&lt;/p&gt;
+&lt;h2&gt;Demo&lt;/h2&gt;
+&lt;p&gt;Finally, the working LibreOffice Calc spreadsheet implementing all these examples can be found &lt;a href="/uploads/old/macro_recipes.ods"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Reference:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://api.libreoffice.org/examples/examples.html#Basic_examples"&gt;http://api.libreoffice.org/examples/examples.html#Basic_examples&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://forum.openoffice.org/en/forum/viewtopic.php?f=25&amp;amp;t=36441"&gt;https://forum.openoffice.org/en/forum/viewtopic.php?f=25&amp;amp;t=36441&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://ask.libreoffice.org/en/question/39940/calc-open-and-save-csv-file-with-given-filter-options/"&gt;https://ask.libreoffice.org/en/question/39940/calc-open-and-save-csv-file-with-given-filter-options/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/OpenOffice.org_Developers_Guide"&gt;https://wiki.openoffice.org/wiki/Documentation/DevGuide/OpenOffice.org_Developers_Guide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wiki.openoffice.org/wiki/Documentation/BASIC_Guide/Cells_and_Ranges"&gt;https://wiki.openoffice.org/wiki/Documentation/BASIC_Guide/Cells_and_Ranges&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.excel-spreadsheet.com/vba/inputoutput.htm"&gt;http://www.excel-spreadsheet.com/vba/inputoutput.htm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://forum.openoffice.org/en/forum/viewtopic.php?f=45&amp;amp;t=13783"&gt;https://forum.openoffice.org/en/forum/viewtopic.php?f=45&amp;amp;t=13783&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="LibreOffice"></category><category term="Linux"></category></entry><entry><title>How to assemble a fast and minimal Debian Desktop using Openbox</title><link href="/blog/2016/02/minimal-debian-desktop-setup.html" rel="alternate"></link><published>2016-02-16T07:23:00+05:30</published><updated>2016-02-16T07:23:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2016-02-16:/blog/2016/02/minimal-debian-desktop-setup.html</id><summary type="html">&lt;p&gt;Being a web developer, one of the nagging things to do is keeping your hardware in sync with your performance requirements. In the good old times, a &lt;code&gt;P4&lt;/code&gt; or even a &lt;code&gt;Celeron&lt;/code&gt; based PC or laptop was enough for programming. But with changing times, the required investment to get a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Being a web developer, one of the nagging things to do is keeping your hardware in sync with your performance requirements. In the good old times, a &lt;code&gt;P4&lt;/code&gt; or even a &lt;code&gt;Celeron&lt;/code&gt; based PC or laptop was enough for programming. But with changing times, the required investment to get a sane performance has increased to astronomical levels.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;Problem is not just with the limitations of hardware, but our requirements too have increased. Apart from the tons of most needed apps like &lt;code&gt;eclipse&lt;/code&gt;, &lt;code&gt;firefox&lt;/code&gt;, &lt;code&gt;libreoffice&lt;/code&gt;, &lt;code&gt;thunderbird&lt;/code&gt;, etc., you now have to keep VMs running in &lt;code&gt;virtualbox&lt;/code&gt; at the same time you are having a chat on &lt;code&gt;skype&lt;/code&gt; with your client. Add to that, &lt;em&gt;heavy&lt;/em&gt; things like &lt;code&gt;eclipse&lt;/code&gt; or &lt;code&gt;Android Emulator&lt;/code&gt; and your linux (or even Windows) desktop will start to buckle under the pressure.&lt;/p&gt;
+&lt;p&gt;All in all, even an Intel &lt;em&gt;i5&lt;/em&gt; or &lt;em&gt;i7&lt;/em&gt; chip isn’t sufficient today to handle multiple heavy or memory consuming apps. The only solution I have found is to use a lighter window-manager like &lt;code&gt;Openbox&lt;/code&gt;, &lt;code&gt;Fluxbox&lt;/code&gt; or &lt;code&gt;IceWM&lt;/code&gt; instead of a heavy Desktop Environment like &lt;code&gt;GNOME&lt;/code&gt;, &lt;code&gt;Unity&lt;/code&gt; or &lt;code&gt;KDE&lt;/code&gt;. This tutorial contains all the steps needed to assemble on your own light-weight DE based on &lt;code&gt;Openbox&lt;/code&gt; on Debian (or one of its compatible derivatives like Ubuntu or Linux Mint).&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Openbox" class="size-full wp-image-498" height="537" src="/uploads/2016/02/openbox.png" width="956"&gt; &lt;strong&gt;Openbox&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://openbox.org"&gt;Openbox&lt;/a&gt; is an open source project (GPL licensed) based on the good old blackbox. It provides just the minimal framework to build a no-flashy, sane desktop environment that gets out of your way, so most resources are used for running the &lt;em&gt;actual apps&lt;/em&gt; that you use. Openbox occupies less than 8 MB of RAM on your machine. Again, this kind of setup is not for everyone, in case you are a huge fan of the Unity dash or GNOME dash, you may not like Openbox at all. On the other hand, if you like the new MATE Desktop which is based on the old GNOME 2, you may find this approach interesting. In fact, Openbox is the window manager used by &lt;code&gt;LXDE&lt;/code&gt;, the DE most famous for being light on resources. You are, in fact, going to create something like your own version of &lt;code&gt;LXDE&lt;/code&gt; by following this tutorial, only its even more minimal and custom to your requirements. Here is how to do it:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Download the Debian minimal net-install ISO from &lt;a href="https://www.debian.org/CD/netinst/"&gt;here&lt;/a&gt;. It is roughly 150-200 MB in size.&lt;/li&gt;
+&lt;li&gt;Either burn the &lt;code&gt;ISO&lt;/code&gt; to a USB drive or try it out in a VM first.&lt;/li&gt;
+&lt;li&gt;Use the text based or graphical installer to complete the installation.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once you land on the command line, login as the superuser (&lt;code&gt;su&lt;/code&gt;) and install these packages:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;apt-get install network-manager
+apt-get install xorg openbox xdm
+apt-get install xbacklight pcmanfm lxappearance lxpanel gmrun gnome-terminal
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;To make the panel automatically show up, add this to &lt;code&gt;~/.config/openbox/autostart&lt;/code&gt; file using &lt;code&gt;nano&lt;/code&gt; or &lt;code&gt;vim&lt;/code&gt; editors:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;lxpanel &amp;amp;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Restart&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Note that this will create only a &lt;em&gt;bare minimum&lt;/em&gt;, workable DE with just a File Manager and no other usable apps. lxpanel is a “Windows-98 style” panel that sits on top/bottom of your desktop and gives a “start-menu” in which your programs are organized. lxappearance is a handy tool to switch GTK themes which comes very useful. You still have to install &lt;code&gt;evince&lt;/code&gt; to read PDF books, &lt;code&gt;geany&lt;/code&gt; or &lt;code&gt;gedit&lt;/code&gt; for a GUI text editor, &lt;code&gt;iceweasel&lt;/code&gt; and &lt;code&gt;icedove&lt;/code&gt; for a browser and mail client respectively, and &lt;code&gt;libreoffice-calc&lt;/code&gt; for a spreadsheet.&lt;/p&gt;
+&lt;p&gt;But the good thing is that you are the &lt;em&gt;master&lt;/em&gt; of your desktop world now. You don’t have to live with that extra load of bloated baggage that heavy DEs usually come with. If you follow the above process correctly, you will end up with an installation size of less than 500 MB! And your own custom-made DE that works!&lt;/p&gt;
+&lt;p&gt;As for customization, &lt;code&gt;Openbox&lt;/code&gt; is &lt;a href="http://openbox.org/wiki/Help:Configuration"&gt;highly customizable&lt;/a&gt;. Arch Linux also has a wonderful &lt;a href="https://wiki.archlinux.org/index.php/openbox"&gt;documentation&lt;/a&gt; on this topic, and &lt;a href="https://www.maketecheasier.com/configure-andcustomize-openbox/"&gt;here&lt;/a&gt; is another brief guide. For menus, you can either install &lt;code&gt;obmenu&lt;/code&gt; or if you are a simplicity fan like me, you can just edit your way through &lt;code&gt;~/.config/openbox/menu.xml&lt;/code&gt;. This, and the other file, &lt;code&gt;~/.config/openbox/rc.xml&lt;/code&gt; are the only two Openbox configuration files and they have all the needed options. In fact, if you decide to make use of the &lt;code&gt;lxpanel&lt;/code&gt; main menu, you don’t even have to edit the &lt;code&gt;menu.xml&lt;/code&gt; of Openbox.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Notes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;lxpanel&lt;/code&gt; is not the only option for installing a Desktop panel, there are others too like &lt;code&gt;fbpanel&lt;/code&gt;, &lt;code&gt;tint2&lt;/code&gt; and &lt;code&gt;xfce4-panel&lt;/code&gt;. Read &lt;a href="https://www.maketecheasier.com/configure-andcustomize-openbox/"&gt;this&lt;/a&gt; for more details.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;To add a battery indicator to the &lt;code&gt;lxpanel&lt;/code&gt;, add this to the &lt;code&gt;~/.config/lxpanel/default/panels/panel&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Plugin {
+  type = batt
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;To save your openbox customizations between sessions (which is a basic requirement), copy the &lt;code&gt;rc.xml&lt;/code&gt; and &lt;code&gt;menu.xml&lt;/code&gt; from &lt;code&gt;/etc/X11/openbox&lt;/code&gt; to &lt;code&gt;~/.config/openbox/&lt;/code&gt; (create this folder if it doesn’t exist).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;gmrun&lt;/code&gt; is needed to show the run dialog that pops up when you press &lt;code&gt;Alt+F2&lt;/code&gt; in any “normal” DE. Once you install &lt;code&gt;gmrun&lt;/code&gt;, just add below code to &lt;code&gt;~/.config/openbox/rc.xml&lt;/code&gt; somewhere in the &lt;code&gt;&amp;lt;keyboard&amp;gt;&lt;/code&gt; section, in order to make the keys work:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;&amp;lt;!--start: Prahlad--&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;keybind&lt;/span&gt; &lt;span class="na"&gt;key=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;A-F2&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;action&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Execute&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;command&amp;gt;&lt;/span&gt;gmrun&lt;span class="nt"&gt;&amp;lt;/command&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/action&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/keybind&amp;gt;&lt;/span&gt;
+&lt;span class="c"&gt;&amp;lt;!--end: Prahlad--&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;xdm&lt;/code&gt; is optional, but helpful if you don’t want to do a lot of configuration changes in &lt;code&gt;xorg&lt;/code&gt; files to show up the desktop automatically each time you login. Of course, you can use &lt;code&gt;lightdm&lt;/code&gt; too if you want.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;I don’t use bluetooth a lot and haven’t included any of those packages, but there are many of them such as &lt;code&gt;bluez&lt;/code&gt; in case you need one.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;References:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://openbox.org/wiki/Help:Configuration"&gt;Openbox Wiki - Configuration&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wiki.archlinux.org/index.php/openbox"&gt;Arch Linux Openbox docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.maketecheasier.com/configure-andcustomize-openbox/"&gt;Make Tech Easier - Openbox configuration guide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.debian.org/CD/netinst/"&gt;Debian Netinstall Download&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://bbs.archlinux.org/viewtopic.php?id=156272"&gt;lxpanel Battery Indicator installation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Debian"></category></entry><entry><title>Linux Desktop Survey Project - Feb/2016</title><link href="/blog/2016/02/linux-desktop-survey-project-feb2016.html" rel="alternate"></link><published>2016-02-07T21:23:00+05:30</published><updated>2016-02-07T21:23:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2016-02-07:/blog/2016/02/linux-desktop-survey-project-feb2016.html</id><summary type="html">&lt;p&gt;I will start this post by thanking the kind folks at the Reddit’s &lt;a href="https://www.reddit.com/r/linux"&gt;linux subreddit&lt;/a&gt; and Voat’s &lt;a href="https://www.voat.co/v/linux"&gt;linux subverse&lt;/a&gt; who wholeheartedly participated in this survey. &lt;a href="http://lws-rmsreturns.rhcloud.com/limesurvey/index.php/statistics_user/action/surveyid/556933/language/en"&gt;Here&lt;/a&gt; are the results and they are pretty insightful. For a developer who builds apps targetting the linux platform, it helps to know …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I will start this post by thanking the kind folks at the Reddit’s &lt;a href="https://www.reddit.com/r/linux"&gt;linux subreddit&lt;/a&gt; and Voat’s &lt;a href="https://www.voat.co/v/linux"&gt;linux subverse&lt;/a&gt; who wholeheartedly participated in this survey. &lt;a href="http://lws-rmsreturns.rhcloud.com/limesurvey/index.php/statistics_user/action/surveyid/556933/language/en"&gt;Here&lt;/a&gt; are the results and they are pretty insightful. For a developer who builds apps targetting the linux platform, it helps to know what are the preferences of users who run those apps on a desktop. Not understanding these requirements beforehand has caused a lot of &lt;a href="https://en.wikipedia.org/wiki/Unity_%28user_interface%29"&gt;unneeded backlash&lt;/a&gt; in the history of linux desktop development and a lot many forks were created which ended up causing a division of focus.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;Not only did I learn a lot about what the linux desktop users want in general, but the survey also threw some light on what distros or desktop environments are generally perceived to be either giving a better performance or providing a better user experience.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;What is the most important factor when choosing a Distro?&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="Linux Desktop Survey Project" src="http://lws-rmsreturns.rhcloud.com/limesurvey/tmp/ec2d620c7c97d4d351ad3553d3dc4161.png"&gt;&lt;/p&gt;
+&lt;p&gt;These were the options I had set:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Better Performance and speed&lt;/li&gt;
+&lt;li&gt;Better User Experience&lt;/li&gt;
+&lt;li&gt;A Mix of both&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The prevailing assumption of a lot many people is that linux users are usually those “super nerdy” tech geeks who are only interested in arcane things like computing performance and speed. But on the contrary, we learn that linux users are just like &lt;code class="highlighter-rouge"&gt;Windows&lt;/code&gt; or &lt;code class="highlighter-rouge"&gt;OSX&lt;/code&gt; users for that matter, and they prefer a better user experience over performance!&lt;/p&gt;
+&lt;p&gt;As you can see, most of the folks preferred a balance of both performance and user experience. In fact, &lt;code class="highlighter-rouge"&gt;Better Performance and speed&lt;/code&gt; was the least favored factor for most people who chose their distros, which implies that how wrong our assumptions sometimes could be! As one redditor said, I should have included &lt;code class="highlighter-rouge"&gt;Software Freedom&lt;/code&gt; as an option since that is also quite a motivating factor for a lot many linux users.&lt;/p&gt;
+&lt;p&gt;Here are two comments from participants who chose the middle-path, &lt;code class="highlighter-rouge"&gt;A Mix of both&lt;/code&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I don’t feel I have to compromise on one or the other. A good user experience also encompasses acceptable performance.&lt;/p&gt;
+&lt;p&gt;A good UX is crucial for my own comfort, but the speed and performance must be reliable.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Here is what the undecided folks (Other) have to say:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;While user experience is very important, I feel this is for nought if it is not matched with upstream packages. I find it terribly tedious to find myself on a distro which is lagging behind on the likes of gnome-shell and firefox.&lt;/p&gt;
+&lt;p&gt;Full choice over programs and user interface; my own OS&lt;/p&gt;
+&lt;p&gt;Stability and security are the most important factors for me.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Another option I should have added here was &lt;code class="highlighter-rouge"&gt;Stability and security&lt;/code&gt; since these are the very foundations upon which linux sits.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;People’s Favorite Distro&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="Most Popular Distro" src="http://lws-rmsreturns.rhcloud.com/limesurvey/tmp/dfdd05e767cc742c456552f065121e8c.png"&gt;&lt;/p&gt;
+&lt;p&gt;Ubuntu’s popularity is pretty well-known in the linux world, but what surprised me was Arch. Perhaps, it was the bias effect of lot many people on linux subbredit being Arch fans, or maybe Arch users have actually increased relative to Ubuntu during recent years, who knows! In any case, this survey result does indicate to me that if tomorrow I were to develop a linux destop app, then which distros should I test on with some priority. This is just one of the benefits of conducting this survey.&lt;/p&gt;
+&lt;p&gt;Here are a few user comments in this category:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Actually Arch derivative Antergos. This distribution has good a user experience and it is performant. It also delivers fresh software.&lt;/p&gt;
+&lt;p&gt;I use Debian on my desktop, Arch as a DOM0 on my server, and RHEL/CENTOS at work.&lt;/p&gt;
+&lt;p&gt;I honestly hate the linux desktop. It has so many bugs and is visually very hard to parse.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2&gt;The Distro with Best Performance&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="The Distro with Best Performance" src="http://lws-rmsreturns.rhcloud.com/limesurvey/tmp/2784dfd5801a114e64e2de0393a8d1e9.png"&gt;&lt;/p&gt;
+&lt;p&gt;Unlike the Phronix arcane performance benchmarks, I thought about asking the users directly which Distro gave them the best performance. I don’t doubt the benchmarks, but computing is such a complex phenomena that raw performance isn’t as much an indicator of overall performance as it used to be in the past. Besides, the best proof of pudding is in the eating. Linux enthusiasts distro-hop a lot and in that process learn about the distros a lot.&lt;/p&gt;
+&lt;p&gt;Again, Arch was at top here, followed by Gentoo. Debian came third which was not at all surprising. In fact, I expected this vanilla of a distro to be on the top. Perhaps the “Arch fans” effect of linux subreddit again! What surprised me, however, was Fedora coming such low on performance score. Here is what the participants had to say:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Crunchbang (development started so name changed to Busenlabs)&lt;/p&gt;
+&lt;p&gt;no idea but xubuntu runs ok on a dual core laptop from 2007 with 2gb of ram.&lt;/p&gt;
+&lt;p&gt;First benchmarks, then if no existing distro fits the bill, Gentoo, Yocto project, or LFS.&lt;/p&gt;
+&lt;p&gt;I tested a number of distros on a very slow AMD netbook and Mint with Cinnamon was faster than itself and others with XFCE and MATE.&lt;/p&gt;
+&lt;p&gt;If performance was the only criteria, I would use windows.&lt;/p&gt;
+&lt;p&gt;Probably, arch. Whichever one isn’t in the hands of the NSA.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2&gt;Which Distro gives the Best User Experience&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="Which Distro gives the Best User Experience" src="http://lws-rmsreturns.rhcloud.com/limesurvey/tmp/43ddb58e40e9ececf0e0ed58c106e182.png"&gt;&lt;/p&gt;
+&lt;p&gt;Ubuntu is most people’s favorite in this area, but Ubuntu’s community clone &lt;code class="highlighter-rouge"&gt;Linux Mint&lt;/code&gt; bagging away the top position is also a fitting thing. Like Ubuntu, Mint is a distro which happens to “just work” according to most users. Though I personally don’t like all the extra amount of non-free codecs and plugins it comes pre-bundled with (such as Flash and Adobe), it is a good distro for existing Windows users to hop on. Here is what participants have to say about choosing the distro which provides the best user experience:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Mint is great out of the box and requires minimal configuration to “just work”.&lt;/p&gt;
+&lt;p&gt;Enhanced user experience means more convenience and more toys; Ubuntu repos cover both.&lt;/p&gt;
+&lt;p&gt;Arch derivative Antergos. Just enough training wheels to be easy, still all the goodness of Arch. Why not Ubuntu? Ubuntu is bloated and stale and only has the name of being easiest. While once true, the competition has caught up.&lt;/p&gt;
+&lt;p&gt;Windows (See the same answer under the “performance” question.)&lt;/p&gt;
+&lt;p&gt;Mint does a very good job of providing the right apps to control settings, out of the box.&lt;/p&gt;
+&lt;p&gt;Easy to use (Linux Mint), comes with programs that I’m familiar with (Firefox, Thunderbird, LibreOffice) and the interface is simple but also powerful.&lt;/p&gt;
+&lt;p&gt;Allows heavy customization to how I want it (Gentoo).&lt;/p&gt;
+&lt;p&gt;Purely for ease of use/install (Ubuntu).&lt;/p&gt;
+&lt;p&gt;Haven’t tried that many but of of the few that I have tried Mint has had the most clear and logical meny items.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;Along with the many enthusiastic distro-hoppers, my search for the discovery of best linux desktop continues.&lt;/p&gt;</content><category term="Survey"></category><category term="Desktop"></category></entry><entry><title>Are your Firefox addons really that safe? - An Insider Story</title><link href="/blog/2015/11/are-your-firefox-addons-really-that-safe-an-insider-story.html" rel="alternate"></link><published>2015-11-09T22:36:00+05:30</published><updated>2015-11-09T22:36:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2015-11-09:/blog/2015/11/are-your-firefox-addons-really-that-safe-an-insider-story.html</id><summary type="html">&lt;p&gt;Firefox is one of the most competitive FOSS browsers out there, there is no denying it. Mozilla also has strict guidelines regarding what goes into their repos. And in the spirit of all things open source, you may naturally tend to believe that developers who have written your coolest new …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Firefox is one of the most competitive FOSS browsers out there, there is no denying it. Mozilla also has strict guidelines regarding what goes into their repos. And in the spirit of all things open source, you may naturally tend to believe that developers who have written your coolest new &lt;em&gt;million ratings plus&lt;/em&gt; addon are also held to Mozilla’s high standards and subject to all quality audits.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;Well, read this short story before subjecting yourself to that blind faith and just clicking on every &lt;code class="highlighter-rouge"&gt;Add to Firefox&lt;/code&gt; button in your browser.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Mozilla plugins" src="/uploads/old/Mozilla_plugins.png"&gt;&lt;/p&gt;
+&lt;p&gt;This story is about two popular firefox addons, &lt;em&gt;Adblock-Plus&lt;/em&gt; and &lt;em&gt;Noscript&lt;/em&gt;. A few years ago, the Noscript addon was at least partially funded by advertisements. To make a long tale short, the Noscript developer, Giorgio Maone decided to make Noscript meddle with the settings of ABP plugin to whitelist his own sites that earned him advertisement revenue. Of course, this attracted a lot of &lt;a href="https://adblockplus.org/blog/attention-noscript-users"&gt;unwanted attention&lt;/a&gt; and a code war ensued between the ABP dev Wladimir Palantir and Giorgio. Things would not have gone that far, had Giorgio just “whitelisted” his advert websites using ABP’s API or other open methods. The fact that he actually hacked into Firefox internals to make his own addon override Wladimir’s ABP is what made all hell break loose.&lt;/p&gt;
+&lt;p&gt;The most ironical about this is the fact that &lt;em&gt;Noscript&lt;/em&gt; itself is a security-plugin, meaning it is used to block adware to keep the user safe! If the developer of a plugin like &lt;em&gt;Noscript&lt;/em&gt; would do this, then just think about what all stupid things those random developers of funky little addons might be doing. Of course, Giorgio &lt;a href="http://hackademix.net/2009/05/04/dear-adblock-plus-and-noscript-users-dear-mozilla-community/"&gt;publicly apologized&lt;/a&gt; for the debacle he had caused and reading his sincere apology might almost make you forget all qualms about addon security. But the issue here is not about this little turf war between ABP and Noscript, nor is it about what Giorgio did was right or wrong, he handled the situation correctly, regardless. The larger issue here is the security architecture in the entire firefox ecosystem.&lt;/p&gt;
+&lt;p&gt;You see, when I install a Chrome addon, it asks me as a user what all permissions it needs to be granted. I will know at once, whether it is going to write to my file system, or access the HTML tags in the browser, and it most certainly tells me whether it could play havoc with the other installed addons or not (as happened in this case). Its high time that Firefox too needs to come up with such granular security levels when it comes to installing addons. Only then, incidents like the Noscript debacle can be safely prevented.&lt;/p&gt;
+&lt;p&gt;So, next time when you click on that &lt;em&gt;Add to Firefox&lt;/em&gt; button on the install page, just think about what all goes in a developer’s mind when they write those plugins. I know there are a lot of great FOSS developers (Wladimir and Giorgio included) who selflessly contribute to the open source software, but it is not always apparent whether it is purely out of selflessness or there is an insidious motive on their part to make money by using the users of their addons.&lt;/p&gt;
+&lt;p&gt;References:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://adblockplus.org/blog/attention-noscript-users"&gt;https://adblockplus.org/blog/attention-noscript-users&lt;/a&gt;\
+&lt;a href="http://hackademix.net/2009/05/04/dear-adblock-plus-and-noscript-users-dear-mozilla-community"&gt;http://hackademix.net/2009/05/04/dear-adblock-plus-and-noscript-users-dear-mozilla-community&lt;/a&gt;&lt;/p&gt;</content></entry><entry><title>How to add HTML tag highlighting to Geany</title><link href="/blog/2015/11/how-to-add-html-tag-highlighting-geany.html" rel="alternate"></link><published>2015-11-07T21:36:00+05:30</published><updated>2015-11-07T21:36:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2015-11-07:/blog/2015/11/how-to-add-html-tag-highlighting-geany.html</id><summary type="html">&lt;p&gt;Ever since I bid farewell to &lt;code&gt;Windows&lt;/code&gt; after they introduced that horrible &lt;code&gt;Metro&lt;/code&gt; interface in &lt;code&gt;Windows 8&lt;/code&gt;, I had been on the lookout for FOSS Linux alternatives that can run easily on my &lt;code&gt;ubuntu 14.04&lt;/code&gt; machine. One such lookout was a replacement for &lt;code&gt;Notepad++&lt;/code&gt; as I always need a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Ever since I bid farewell to &lt;code&gt;Windows&lt;/code&gt; after they introduced that horrible &lt;code&gt;Metro&lt;/code&gt; interface in &lt;code&gt;Windows 8&lt;/code&gt;, I had been on the lookout for FOSS Linux alternatives that can run easily on my &lt;code&gt;ubuntu 14.04&lt;/code&gt; machine. One such lookout was a replacement for &lt;code&gt;Notepad++&lt;/code&gt; as I always need a handy editor for scripting and other miscellaneous tasks (such as writing this draft in markdown syntax). For large projects, there are always “heavy” things like &lt;code&gt;eclipse&lt;/code&gt; and &lt;code&gt;netbeans&lt;/code&gt; but I generally tend to avoid them if I can.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;Now, the bread-and-butter &lt;code&gt;Linux&lt;/code&gt; alternative for &lt;code&gt;Notepad++&lt;/code&gt; is &lt;a href="http://www.geany.org/"&gt;Geany&lt;/a&gt;, a light-weight editor developed by Enrico Tröger. Geany has all the wonderful features that &lt;code&gt;Notepad++&lt;/code&gt; has, except one: There is no highlighting available for matching html tag pairs. And as any Web Developer worth his salt will know, an HTML file will soon start turning out to be a huge cosmic soup of tags and braces once the app starts evolving, and this feature can become handy in the situation. And whilst there is a plugin called &lt;code&gt;Pair Tag Highlighter&lt;/code&gt;, it isn’t readily available in the ubuntu 14.04 repository. Like many users, I decided to ignore this small nagging inconvenience and moved on. But recently, I was able to spare some time from my daily errands and decided to have a go at it.&lt;/p&gt;
+&lt;p&gt;The solution to this isn’t that apparent as even my googlefu had to go through a lot of filters before I came across this &lt;a href="http://askubuntu.com/questions/589172/html-pair-tag-highlight-alternative-for-geany-editor-on-ubuntu-14-04"&gt;only post&lt;/a&gt; that gave me the solution, though it was a bit more involved and required me to checkout a github repo and build the plugin. This means one of two things: Either a lot of people are not interested in &lt;code&gt;Geany&lt;/code&gt; any more and moved on to other editors like &lt;code&gt;Sublime Text&lt;/code&gt;, or that they have decided to live with this inconvenience. If you are from the latter group, your inconvenience is soon going to be over. All you have to do is this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo apt-get install git
+cd /tmp
+git clone https://github.com/geany/geany-plugins.git
+cd geany-plugins/
+sed -i &amp;#39;s/1.25/1.23/&amp;#39; wscript
+./waf configure --enable-plugins=pairtaghighlighter
+make all
+sudo make install
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Things to note:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The fifth line uses the &lt;code&gt;sed&lt;/code&gt; tool to change the minimum required version in &lt;code&gt;wscript&lt;/code&gt; from &lt;code&gt;1.25&lt;/code&gt; to &lt;code&gt;1.23&lt;/code&gt;. However, after I’ve written this article, the plugin developer might have raised the minimum requirement and changed it to &lt;code&gt;1.26&lt;/code&gt; or something. So, replace accordingly.&lt;/li&gt;
+&lt;li&gt;Make sure you have the latest version of &lt;code&gt;python&lt;/code&gt; installed in order to use the &lt;code&gt;waf&lt;/code&gt; tool. You also need to install &lt;code&gt;intltool&lt;/code&gt; package if it does not already exist.&lt;/li&gt;
+&lt;li&gt;If all goes well, restart Geany and go to &lt;code&gt;Tools-&amp;gt;Plugin Manager&lt;/code&gt; and enable the Plugin &lt;code&gt;Pair Tag Highlighter&lt;/code&gt;. Once you do that, your HTML code will start highlighting the opening and closing tags as shown below:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img alt="Geany with HTML pair tag highlighting" src="/uploads/old/geany-tag-highlight.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;References:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://askubuntu.com/questions/589172/html-pair-tag-highlight-alternative-for-geany-editor-on-ubuntu-14-04"&gt;http://askubuntu.com/questions/589172/html-pair-tag-highlight-alternative-for-geany-editor-on-ubuntu-14-04&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://askubuntu.com/questions/616369/a-alternative-to-install-pairtaghighlighter-for-geany-1-23-21"&gt;http://askubuntu.com/questions/616369/a-alternative-to-install-pairtaghighlighter-for-geany-1-23-21&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Geany"></category><category term="Linux"></category><category term="How To"></category></entry><entry><title>4 Ways to share your mobile internet with a PC/laptop</title><link href="/blog/2014/12/4-ways-to-share-your-mobile-internet-with-a-pclaptop.html" rel="alternate"></link><published>2014-12-20T11:47:00+05:30</published><updated>2014-12-20T11:47:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2014-12-20:/blog/2014/12/4-ways-to-share-your-mobile-internet-with-a-pclaptop.html</id><summary type="html">&lt;p&gt;The one thing I like about the world of Linux in general and also Android is the great number of options. Unlike Windows phone, where there is only one way to perform a task (if at all there is!), android provides a richer user experience in all departments.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="/uploads/old/Android_tether_options.png"&gt;&lt;img alt="Android Tethering Options" src="/uploads/old/Android_tether_options.png"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Suppose you …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The one thing I like about the world of Linux in general and also Android is the great number of options. Unlike Windows phone, where there is only one way to perform a task (if at all there is!), android provides a richer user experience in all departments.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="/uploads/old/Android_tether_options.png"&gt;&lt;img alt="Android Tethering Options" src="/uploads/old/Android_tether_options.png"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Suppose you are traveling to some place and your laptop has lost its usual source of internet connectivity. You will naturally consider surfing the web on your cell-phone, or better still, try and find a way to share the internet on your cell-phone with your laptop, so your work won't suffer.&lt;/p&gt;
+&lt;p&gt;The android OS supports multiple ways to perform tethering (a.k.a share your mobile internet with other devices such as laptop).&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;USB Tethering:&lt;/em&gt;&lt;/strong&gt; I mention this method first because it is the most power-efficient of the lot. Always try to use this method before others if you want to prioritize battery savings. The only shortcoming of this method is that you will only be able to share the  mobile internet with at most one device only (in the above example, your laptop). And of course, you will be able to keep your USB cable handy. To use this method, just hook up the USB cable to your laptop (making sure that the device drivers are installed). Then, on your cellphone, go to &lt;strong&gt;&lt;em&gt;Settings-&gt;Tethering and Portable Hotspot&lt;/em&gt;&lt;/strong&gt; and tap on the &lt;strong&gt;&lt;em&gt;USB Tethering&lt;/em&gt;&lt;/strong&gt; option to activate it. (On your particular model, the actual setting name might differ as each manufacturer customizes android to their own liking)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;Bluetooth Tethering:&lt;/em&gt;&lt;/strong&gt; This method is less efficient than USB tethering, but still quite efficient compared to others. Again, the disadvantage is that at most only one peer can be shared. Also, the speed will be much slower compared to Wifi and other techniques, but if 10mbps is workable for you, then this option could be a great help for you. To activate, tap on this option in &lt;strong&gt;&lt;em&gt;Settings-&gt;Tethering and Portable Hotspot&lt;/em&gt;&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;Wifi Access Point:&lt;/em&gt;&lt;/strong&gt; This method is the most common of the lot as the concept of turning your cellphone into a Wifi access point has turned into quite a fad nowadays. However, it is also the least efficient energy wise. The advantage, of course, is that your cellphone can provide its bandwidth to multiple devices at the same time. To activate, tap on this option in &lt;strong&gt;&lt;em&gt;Settings-&gt;Tethering and Portable Hotspot&lt;/em&gt;&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;Using a USB Dongle as Mobile broadband:&lt;/em&gt;&lt;/strong&gt; This method applies only to GSM radios (not CDMA as they are locked by providers).  Though it doesn't come under the definition of tethering, the effect is same. If none of the above methods work for you (or for some reason, you don't want to use), as an alternative, you can take out the SIM card and put it in an unlocked USB dongle (also called &lt;a href="https://en.wikipedia.org/wiki/WorldSIM#Data_SIM_Card"&gt;Data Card&lt;/a&gt;). Data Cards are manufactured by companies like ZTE and Huawei and unlocked versions are available in many &lt;a href="http://www.amazon.com/Generic-Wireless-7-2Mbps-Dongle-Function/dp/B00MHAKIFI/ref=sr_1_5?ie=UTF8&amp;amp;qid=1419075706&amp;amp;sr=8-5&amp;amp;keywords=usb+data+cards"&gt;online retail stores&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;</content><category term="Networking"></category><category term="Laptop"></category><category term="Android"></category></entry><entry><title>9 Optimizations to make your Linux Desktop fly like a Rocket!</title><link href="/blog/2014/06/9-optimizations-to-make-your-linux-desktop-fly-like-a-rocket.html" rel="alternate"></link><published>2014-06-28T03:11:00+05:30</published><updated>2014-06-28T03:11:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2014-06-28:/blog/2014/06/9-optimizations-to-make-your-linux-desktop-fly-like-a-rocket.html</id><summary type="html">&lt;p&gt;This article is the result of notes I've prepared during tweaking, twisting and optimizing ubuntu variants over the last few years. In case you use any other distro, some of these settings may not be applicable to you. For best results, these changes must be done on top of a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This article is the result of notes I've prepared during tweaking, twisting and optimizing ubuntu variants over the last few years. In case you use any other distro, some of these settings may not be applicable to you. For best results, these changes must be done on top of a fresh installation, otherwise chances of things breaking increase a bit. Each step is optional - In case of software removals, do it only if you are not going to use the concerned software. Be careful before making any changes and know exactly what and why you are doing that.&lt;!--more--&gt;&lt;/p&gt;
+&lt;h3&gt;#1 Optimize disk access with noatime:&lt;/h3&gt;
+&lt;p&gt;Each file and folder on your linux system has a file-creation timestamp and a modification timestamp. Apart from that, linux tries to keep track of "access time" for each of these files. Now keeping track of the access time has its performace-cost, and if you want to remove this performance cost, you need to specify "noatime" attribute in the disk partition entries in your /etc/fstab file. Edit this file in your text-editor and set noatime as follows:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;UUID=97102801-14e3-9752-7412-d9c57e30981w / ext4 errors=remount-ro 0,**noatime** 1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;#2 Optimize Swappiness:&lt;/h3&gt;
+&lt;p&gt;Swappiness is the tendency of the linux kernel to prefer disk-swapping vis-a-vis physical memory. The default swappiness value of 60 was kept considering server installations. If you are a desktop user having a machine with good RAM, you would normally prefer disk-swapping to be minimal. You can safely reduce this value to 10. To do so edit the file /etc/sysctl.conf and add the following:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vm.swappiness=10
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;(Just change the entry if it already exists, don't make a duplicate!)&lt;/p&gt;
+&lt;h3&gt;#3 Install preload:&lt;/h3&gt;
+&lt;p&gt;If you typically use the same programs regularly, preload will help you by loading into memory, the programs that you use most frequently. To install on ubuntu:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo apt-get install preload
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;#4 Place your mission critical apps in /dev/shm:&lt;/h3&gt;
+&lt;p&gt;Few weeks back, I was having performance issues with running Eclipse on ubuntu. After tweaking and optimizing various JVM settings in vain, the thing that really made the difference was &lt;a href="http://www.prahladyeri.com/2014/06/real-way-make-eclipse-run-faster-ubuntu/"&gt;placing the entire JDK folder in RAMDISK&lt;/a&gt;. The /dev/shm folder is like a virtual ramdisk (on ubuntu and derivatives) where you can place your temporal, high-priority stuff to run it in "best performance" mode.&lt;/p&gt;
+&lt;h3&gt;#5 Remove unwanted programs from startup:&lt;/h3&gt;
+&lt;p&gt;Many linux distros such as ubuntu come loaded with a ton of baggage, and if you are someone like me, you might feel obliged to reduce some burden off your system by removing or disabling unwanted software and daemons from it. You can do this by going to "Startup Applications" in the System menu, but ubuntu hides the pre-installed apps by default. To overcome this limitation, open your terminal and issue the below command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo sed -i &amp;#39;s/NoDisplay=true/NoDisplay=false/g&amp;#39; /etc/xdg/autostart/*.desktop
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href="http://www.prahladyeri.com/uploads/2014/06/startup.png"&gt;&lt;img alt="ubuntu startup" class="alignnone size-full wp-image-3092" height="612" src="/uploads/old/startup.png" width="649"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Now you can go through the startup programs list and can disable the unwanted ones. Common sense will tell you that if you don't use bluetooth on your machine, you can get rid of the "Bluetooth Manager". Similar is the case with "Backup Monitor" in case you don't need to sync your backups in realtime. Here is the list of services that I've safely disabled without causing any issues:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Backup Monitor&lt;/li&gt;
+&lt;li&gt;Bluetooth Manager&lt;/li&gt;
+&lt;li&gt;Chat&lt;/li&gt;
+&lt;li&gt;Desktop sharing&lt;/li&gt;
+&lt;li&gt;Gwibber&lt;/li&gt;
+&lt;li&gt;Ocra screen reader&lt;/li&gt;
+&lt;li&gt;Personal file sharing&lt;/li&gt;
+&lt;li&gt;Screen saver&lt;/li&gt;
+&lt;li&gt;Ubuntu one&lt;/li&gt;
+&lt;li&gt;update notifier&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;#6 Uninstall software that you don't use:&lt;/h3&gt;
+&lt;p&gt;The next step is to remove those software that you don't use at all. Again, some common sense but with some caution is needed here. There are some programs (like empathy) that form the core part of ubuntu, so it won't allow you to "apt-get remove.." them without removing unity itself. In such cases, we will disable such programs from starting up as services (next step). Some of the programs that you may safely remove are:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;apt-get remove samba-common\
+apt-get remove cups\
+apt-get remove avahi-daemon avahi-autoipd
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I typically uninstall all three after a new installation. The first one is needed for file-sharing in the local network if you have one. Second is the print daemon, and third is used to broadcast common network services across the local network and finding local hosts by using friendly names like "local.workstation".&lt;/p&gt;
+&lt;h3&gt;#7 Disable unwanted daemons:&lt;/h3&gt;
+&lt;p&gt;In case you don't want to remove the cups program as you might need printing in future, you can disable them for the time being. To do so, issue the below command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo sh -c &amp;quot;echo &amp;#39;manual&amp;#39; \&amp;gt;\&amp;gt; /etc/init/cups.override&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You may disable any daemon in this manner by doing a manual override, just replace the "cups.override" with the daemon name that you want removed such as:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo sh -c &amp;quot;echo &amp;#39;manual&amp;#39; \&amp;gt;\&amp;gt; /etc/init/bluetooth.override&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Later, if you want to enable that daemon, all you to do is delete the .override file.&lt;/p&gt;
+&lt;h3&gt;#8 Optimize Nautilus to behave in a speedy manner:&lt;/h3&gt;
+&lt;p&gt;This is totally optional. Nautilus, by default, tries to show thumbnails of each and every file in a directory. If the directory contains a lot of files, this causes a noticable delay. Now if you are in the habit of regularly previewing thumbnails of your images, don't do this optimization. Otherwise, if previewing thumbnails don't matter to you and all you are interested in is speed (like me), you can go to Edit-&gt;Preferences-&gt;Preview-tab and set the preview settings to Never.&lt;/p&gt;
+&lt;h3&gt;#9 Disable translation downloads in aptitude:&lt;/h3&gt;
+&lt;p&gt;This setting is for speeding up the downloads from apt repositories rather than your machine. By default, ubuntu adds additional translation repos when you issue "apt-get update" command to update your repository settings. If you only need english, you can disable translation downloads by editing /etc/apt/apt.conf.d/00aptitude and additing this line to it:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;Acquire&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nd"&gt;Languages&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;none&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;em&gt;References:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://askubuntu.com/questions/74653/how-can-i-remove-the-translation-entries-in-apt"&gt;http://askubuntu.com/questions/74653/how-can-i-remove-the-translation-entries-in-apt&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://askubuntu.com/questions/2194/how-can-i-improve-overall-system-performance"&gt;http://askubuntu.com/questions/2194/how-can-i-improve-overall-system-performance&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://askubuntu.com/questions/173094/how-can-i-use-ram-storage-for-the-tmp-directory-and-how-to-set-a-maximum-amount"&gt;http://askubuntu.com/questions/173094/how-can-i-use-ram-storage-for-the-tmp-directory-and-how-to-set-a-maximum-amount&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="Ubuntu"></category></entry><entry><title>How to make your ubuntu machine thank you for its battery life!</title><link href="/blog/2014/04/how-to-make-your-ubuntu-machine-thank-you-for-its-battery-life.html" rel="alternate"></link><published>2014-04-21T04:18:00+05:30</published><updated>2014-04-21T04:18:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2014-04-21:/blog/2014/04/how-to-make-your-ubuntu-machine-thank-you-for-its-battery-life.html</id><summary type="html">&lt;p&gt;Ever since I bought my Toshiba Dual-core Notebook and installed ubuntu on it, I was disappointed by the fact that how quickly it used to heat up and the battery started draining. Add to the equation, the Indian summer of 40 degrees Celsius plus, and you soon have your fans …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Ever since I bought my Toshiba Dual-core Notebook and installed ubuntu on it, I was disappointed by the fact that how quickly it used to heat up and the battery started draining. Add to the equation, the Indian summer of 40 degrees Celsius plus, and you soon have your fans crying with agony.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;Of course,  the Toshiba CD comes with all the bells and whistles for power saving, but thats only for the Windows users, what about us Linuxers? After some &lt;a href="http://www.noobslab.com/2013/10/enable-laptop-mode-and-other-tweaks-to.html"&gt;research&lt;/a&gt;, I came to know about some tweaks I can perform on my ubuntu system so that my laptop not only heats less, but also gets its battery life expanded!&lt;/p&gt;
+&lt;p&gt;The fact is that one of the most power hungry component of your machine is the CPU (apart from your LCD/screen). Assuming that you are already sane enough not to keep your screen brightness at its max, here is an important tweak that you may perform to prolong the life of your battery. If you are having any issues with your CPU fan making a lot of &lt;a href="http://lifehacker.com/5813003/how-can-i-quiet-a-noisy-computer-fan"&gt;noise&lt;/a&gt;, this will help with that issue too, (since by lowering your CPU consumption you will make your fan work less).&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.prahladyeri.com/uploads/2014/04/indicator-cpufreq.png"&gt;&lt;img alt="indicator-cpufreq - An ubuntu app" class="size-full wp-image-2524" height="221" src="/uploads/old/indicator-cpufreq.png" width="173"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;indicator-cpufreq - An ubuntu app&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;This small wonder of an app can be installed on ubuntu by running &lt;code&gt;sudo apt-get install indicator-cpufreq&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Once it is installed just add the command &lt;code&gt;indicator-cpufreq&lt;/code&gt; to your startup applications, and you will see the above applet in your ubuntu system tray! You may now choose to set your CPU scaling mode to &lt;code&gt;Powersave&lt;/code&gt; whenever you are performing any less cpu-intensive task (like most of us) such as editing a Libreoffice document or a spreadsheet. On the other hand, you may occasionally set the scaling mode to &lt;code&gt;Performance&lt;/code&gt; when you are doing some cpu-intensive task such as playing a 3D game.&lt;/p&gt;
+&lt;p&gt;By default, the applet starts in &lt;code&gt;Ondemand&lt;/code&gt; mode. To, set the default to &lt;code&gt;Powersave&lt;/code&gt;, all you have to do is make a small edit to script &lt;code&gt;/etc/init.d/ondemand&lt;/code&gt; as follows:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;for CPUFREQ in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+    do
+    [ -f $CPUFREQ ] || continue
+    #changed by Prahlad from ondemand to powersave
+    echo -n powersave &amp;gt; $CPUFREQ
+done
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Take this small step (if you already haven't) and see how your battery life prolongs, as your electricity bill falls!!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="http://www.noobslab.com/2013/10/enable-laptop-mode-and-other-tweaks-to.html"&gt;http://www.noobslab.com/2013/10/enable-laptop-mode-and-other-tweaks-to.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://askubuntu.com/questions/223250/how-to-tweak-powertop-to-reduce-power-consumption?rq=1"&gt;http://askubuntu.com/questions/223250/how-to-tweak-powertop-to-reduce-power-consumption?rq=1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://lifehacker.com/5866009/control-your-computers-fan-speeds-for-better-performance-when-you-need-it-silence-when-you-dont"&gt;http://lifehacker.com/5866009/control-your-computers-fan-speeds-for-better-performance-when-you-need-it-silence-when-you-dont&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://lifehacker.com/5813003/how-can-i-quiet-a-noisy-computer-fan"&gt;http://lifehacker.com/5813003/how-can-i-quiet-a-noisy-computer-fan&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://bugs.launchpad.net/indicator-cpufreq/+bug/1082868"&gt;https://bugs.launchpad.net/indicator-cpufreq/+bug/1082868&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><category term="Linux"></category><category term="How To"></category></entry></feed>

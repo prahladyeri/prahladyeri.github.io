@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Prahlad Yeri's Blog - Windows</title><link href="/" rel="alternate"></link><link href="/feeds/windows.atom.xml" rel="self"></link><id>/</id><updated>2020-07-08T04:45:00+05:30</updated><subtitle>Educate and solve problems is my mantra. I'm skilled in web development and a quick learner, I also like blogging and contributing to open source.</subtitle><entry><title>How to use robocopy for taking regular backups on windows</title><link href="/blog/2020/07/how-to-use-robocopy-windows.html" rel="alternate"></link><published>2020-07-08T04:45:00+05:30</published><updated>2020-07-08T04:45:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2020-07-08:/blog/2020/07/how-to-use-robocopy-windows.html</id><summary type="html">&lt;p&gt;Having switched from linux to windows recently, I was looking for an &lt;code&gt;rsync&lt;/code&gt; alternative. &lt;code&gt;rsync&lt;/code&gt; is a popular tool in the linux world used for taking routine backups and also general file transfer. But since I use it mostly for backups and I'm mostly a command line dude, I was …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Having switched from linux to windows recently, I was looking for an &lt;code&gt;rsync&lt;/code&gt; alternative. &lt;code&gt;rsync&lt;/code&gt; is a popular tool in the linux world used for taking routine backups and also general file transfer. But since I use it mostly for backups and I'm mostly a command line dude, I was trying to find a windows equivalent which can do the same. That's when I came across the &lt;code&gt;robocopy&lt;/code&gt; command.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="robot" src="/uploads/robot.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;Despite its trivially sounding name, &lt;code&gt;robocopy.exe&lt;/code&gt; is a versatile tool found in almost all windows installations at &lt;code&gt;C:\windows\system32&lt;/code&gt; and does a great job of taking incremental file backups. The best way to configure a &lt;code&gt;robocopy&lt;/code&gt; backup is to create a simple batch file called &lt;code&gt;backup.bat&lt;/code&gt; such as the one below:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="k"&gt;echo&lt;/span&gt; off
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="k"&gt;not&lt;/span&gt; &lt;span class="k"&gt;exist&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;e:\source\&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;backup drive not found. make sure e:\ corresponds to backup usb drive&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;goto&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nl"&gt;halt&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;echo&lt;/span&gt; Welcome!
+&lt;span class="k"&gt;echo&lt;/span&gt; ***
+
+robocopy c:\source e:\source /E /PURGE /ndl /Z
+&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nl"&gt;halt&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This example assumes that you have a directory located at &lt;code&gt;c:\source&lt;/code&gt; and you want to backup that entire directory to another drive (for example, a USB pen-drive) at &lt;code&gt;e:\source&lt;/code&gt;. If you have more directories to backup, you can add them before the &lt;code&gt;:halt&lt;/code&gt; statement like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;robocopy c:\docs e:\docs /E /PURGE /ndl /Z
+robocopy c:\music e:\music /E /PURGE /ndl /Z
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now, let's look at what those parameters to &lt;code&gt;robocopy&lt;/code&gt; command do. The source and destination folders are obvious, here is what follows:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/E      Copy subdirectories (similar to --recursive option in rsync)
+/PURGE  Delete destination files that no longer exist in source (--delete rsync option)
+/ndl    Don&amp;#39;t log directory names while copying
+/Z      Copy files in restartable mode
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can run &lt;code&gt;robocopy /?&lt;/code&gt; to see a full list of options available in this tool. If you want to schedule backups (like once a week or month), simply go to Task Scheduler from &lt;code&gt;Control Panel -&amp;gt; Administrative Tools&lt;/code&gt; and schedule the above script to run accordingly.&lt;/p&gt;
+&lt;p&gt;Enjoy, your DIY backup solution for Windows is ready!&lt;/p&gt;</content><category term="Windows"></category><category term="Backup"></category><category term="Robocopy"></category></entry><entry><title>Windows recipe: How to quickly track your active network connections using resmon utility</title><link href="/blog/2018/08/windows-recipe-how-to-quickly-track-your-active-network-connections-using-resmon-utility.html" rel="alternate"></link><published>2018-08-28T10:58:00+05:30</published><updated>2018-08-28T10:58:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2018-08-28:/blog/2018/08/windows-recipe-how-to-quickly-track-your-active-network-connections-using-resmon-utility.html</id><summary type="html">&lt;p&gt;Windows 10 is a great operating system when its clean and well-maintained but once you start cluttering it with more and more apps, your Internet speed typically starts to slow down and it becomes increasingly difficult to find out which background app is consuming your bandwidth.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;One way of tackling …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Windows 10 is a great operating system when its clean and well-maintained but once you start cluttering it with more and more apps, your Internet speed typically starts to slow down and it becomes increasingly difficult to find out which background app is consuming your bandwidth.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;One way of tackling this is to harden the windows firewall by restricting outgoing TCP connections too (incoming are already restricted by default). But this is quite cumbersome in the long run as you will have to whitelist each and every executable that needs to access the internet which can be a difficult and time consuming task.&lt;/p&gt;
+&lt;p&gt;Another quick way of finding out which app is consuming your most bandwidth (whether on the background or foreground) is to fire up the &lt;strong&gt;Windows Resource Monitor&lt;/strong&gt; by running &lt;strong&gt;resmon.exe&lt;/strong&gt; which is a nice Windows utility program that comes by default. By clicking on the Network tab and expanding the Network Activity pane, you'll come to know exactly how much bandwidth each executable is eating on your system!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Resource Monitor" src="/uploads/2018/08/resmon.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Resource Monitor (resmon.exe) running on Windows&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Once you know the culprit EXE causing the bandwidth drain, you can either uninstall that app or block it in the windows firewall. All in all, resmon.exe is a great utility in the hands of the Windows power user who wants to take control of his/her operating system. I hope you find this utility useful.&lt;/p&gt;</content><category term="Windows"></category><category term="Utility"></category></entry></feed>

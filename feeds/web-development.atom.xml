@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Prahlad Yeri's Blog - Web Development</title><link href="/" rel="alternate"></link><link href="/feeds/web-development.atom.xml" rel="self"></link><id>/</id><updated>2021-04-25T09:00:00+05:30</updated><subtitle>Educate and solve problems is my mantra. I'm skilled in web development and a quick learner, I also like blogging and contributing to open source.</subtitle><entry><title>Tackling a common CSS design problem: Footer placement at page or content bottom, whichever is lower</title><link href="/blog/2021/04/tackling-a-common-css-design-problem-footer-placement-at-page-or-content-bottom-whichever-is-lower.html" rel="alternate"></link><published>2021-04-25T09:00:00+05:30</published><updated>2021-04-25T09:00:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2021-04-25:/blog/2021/04/tackling-a-common-css-design-problem-footer-placement-at-page-or-content-bottom-whichever-is-lower.html</id><summary type="html">&lt;p&gt;This is one of those commonly occurring nags in web development which I've solved several times before but still have to scavenge the googles and stack-overflows each time I run into it. That's why I've decided to document the simple solution to it in this brief article.&lt;/p&gt;
+&lt;p&gt;What happens is …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is one of those commonly occurring nags in web development which I've solved several times before but still have to scavenge the googles and stack-overflows each time I run into it. That's why I've decided to document the simple solution to it in this brief article.&lt;/p&gt;
+&lt;p&gt;What happens is that if you position your footer div and fix it at bottom of the page (&lt;code&gt;position:fixed, bottom:0, width:100%&lt;/code&gt;), it will work great on shorter content pages (where you don't have to scroll). But the problem is that on longer pages too, instead of moving to the bottom of the content, it will be stuck there at the viewport bottom like an idiot!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="stuck viewport bottom footer" src="/uploads/stuck_viewport_bottom_footer.png"&gt;&lt;/p&gt;
+&lt;p&gt;The above situation can be seen in action in &lt;a href="https://jsfiddle.net/dwe8t6c5/10/show"&gt;this fiddle&lt;/a&gt; where multiple "lorem ipsum" blocks (&lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt; elements) are placed to simulate content growth. You'll find that the footer will work flawlessly when the content is short (only 1-2 "lorem ipsum" blocks) but the footer gets stuck at the viewport bottom as you keep adding the blocks and they extend beyond the viewport height!&lt;/p&gt;
+&lt;p&gt;On the other hand, instead of positioning your footer, if you just let it be (this is what about 90% of coders initially do), you have another problem. Your footer will now be placed correctly on longer content pages where you must scroll but on the shorter pages, they'll be hanging in the middle of the page where your content ends as shown in &lt;a href="https://jsfiddle.net/dwe8t6c5/11/show"&gt;this fiddle&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="middle of page footer" src="/uploads/middle_of_page_footer.png"&gt;&lt;/p&gt;
+&lt;p&gt;There could be multiple approaches to solve this problem. I personally prefer the old school method which is quite simple and easy to understand. Besides, it doesn't require adding of any blank HTML element like "#offset" or "#placeholder" above your footer. All it requires is that all your HTML elements above the footer must be wrapped up inside one container div element. So, the body should be structured something like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;HTML
+..BODY
+....div.container
+......header1,
+......article1,
+........p,
+......etc, etc.
+....footer
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then all you have to do is set your div.container's minimum height to viewport's height minus footer's height. Assuming your footer's height is 55px, all you have to do is:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;container&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;min-height&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;calc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="kt"&gt;vh&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;55&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can see a working demo of this in &lt;a href="https://jsfiddle.net/dwe8t6c5/14/show"&gt;this fiddle&lt;/a&gt;. Even as you start adding more and more "lorem ipsum" paragraph elements, the footer will always be placed at the "right" place irrespective of other element's positioning and content size! This is what you'd call a "properly placed footer":&lt;/p&gt;
+&lt;p&gt;&lt;img alt="properly placed footer" src="/uploads/properly_placed_footer.png"&gt;&lt;/p&gt;</content><category term="HTML"></category><category term="CSS"></category><category term="Footer"></category></entry><entry><title>The right way to architect single page web applications</title><link href="/blog/2018/07/the-right-way-to-architect-single-page-web-applications.html" rel="alternate"></link><published>2018-07-06T15:54:00+05:30</published><updated>2018-07-06T15:54:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2018-07-06:/blog/2018/07/the-right-way-to-architect-single-page-web-applications.html</id><summary type="html">&lt;p&gt;Lets face it, Web Apps are a complex and complicated beast, both on the front end and back end. The reason we had to come up with so many frameworks and libraries (angular/backbone/react/vue/marionette/require.js/etc.) is that the whole process is quite difficult and convoluted …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Lets face it, Web Apps are a complex and complicated beast, both on the front end and back end. The reason we had to come up with so many frameworks and libraries (angular/backbone/react/vue/marionette/require.js/etc.) is that the whole process is quite difficult and convoluted.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;Once your app starts to scale in complexity, even the best of ideas and best practices in this field cannot prevent your app code from becoming a spaghetti of JavaScript and jQuery callbacks and DOM manipulation functions. Turning into a mess is essentially the nature of JavaScript when left to its own mechanism (event callback model and high asynchrony do ensure that). If you only use jQuery to architect your app, this is what it'll soon end up becoming:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The Spaghetti Way" class="size-full wp-image-816" height="254" src="/uploads/2018/07/spaghetti-way.png" width="956"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The Spaghetti Way&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Once your app.js ends up with millions of these jQuery functions, it will soon become beyond understanding and sanity even for you as the author of the code. And that's exactly why we need to understand this complexity and architect some structure and foundation in our apps.&lt;/p&gt;
+&lt;p&gt;One way of handling this complexity is the easy way - just delegate this whole thing to another complex beast of an opinionated framework such as angular or vue, and work with simple abstractions like angular views and controllers. This strategy does work to an extent (and you do get some mental sense of achievement too) but only as long as your app is limited in functionality and doesn't scale in size and complexity. The problem with opinionated frameworks is that they are opinionated - they work only as long as your app is pigeonholed and fits in their own way of typically doing things, but the moment you step outside and want to do something that doesn't confirm to that way (like rendering a complex DOM element or work with a difficult third-party UI library), then you are hit with a wall - unless you are prepared to venture too deeply into that framework and learn advanced stuff (like creating complex directives or providers in angular). But if you had to resort to that at the end, then why use an opinionated framework at all!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The Opinionated Framework Way" class="size-full wp-image-818" height="400" src="/uploads/2018/07/opinionated-way.png" width="1089"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The Opinionated Framework Way&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;As you can see in above diagram, using an opinionated framework is like driving a car with automatic gear system. You cannot control the speed or acceleration, nor can you synchronize the clutch action, its the black box of the automatic gear that does it for you. But unlike this simple gearbox analogy where speed and clutch synchrony are the only two variables, your web app has lots of variables, so the chances of going wrong and getting stuck with this approach drastically increases as your web app starts to scale in complexity. Manually doing things using the Backbone way may appear to be difficult or complex initially, but that's a much better way than trading off that complexity for an opinionated black-box framework about who's inner workings you don't understand anything at all.&lt;/p&gt;
+&lt;p&gt;The first step towards building a single page app should be deciding what your app is going to do and how its going to do it. Every app is different in features, functionality and work flow, hence it pays to use an uber-light framework such as Backbone instead of any heavy and opinionated ones. Backbone in the frameworks world is pretty much like what jQuery is in the libraries world, it doesn't do much on its own besides giving you methods and objects for creating a layer of structure and organization (just as jQuery doesn't do much on its own besides adding a sugar-syntax wrapper for native DOM manipulation functions of JavaScript).&lt;/p&gt;
+&lt;p&gt;Now, because of this exact flexibility and freedom, there is no one correct way to build Backbone apps. Backbone is heavy in philosophy and light in implementation, and the philosophy being simple:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Separation of concerns (models, views and other components should be kept separate).&lt;/li&gt;
+&lt;li&gt;Separation of roles (Organizers and implementors should do their own thing, one shouldn't step into the shoes of others).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Personally, I think that if you follow only these two principles sincerely and stick to them, then you can handle whatever amount complexity life throws at your app. Of course, to architect such an app is an art in itself and you may not get it right the first time. The architecture itself may even need to evolve with time and complexity as your app grows and scales. One global event coordinator (or organizer) can be enough initially, but later on, you may have to add a DOM coordinator for handling DOM events, a data coordinator for handling connections to the database objects, etc. as you scale.&lt;/p&gt;
+&lt;p&gt;Here is a basic example architecture that you can probably use for an app of low to medium complexity:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="The Backbone Way" class="size-full wp-image-831" height="536" src="/uploads/2018/07/backbone-way1.png" width="884"&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The Backbone Way&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;And &lt;a href="https://github.com/prahladyeri/experimental-backbone"&gt;this is an example implementation&lt;/a&gt; which I'm developing as a side project. Of course, the app doesn't do much presently besides user management and routing to dummy pages,&lt;/p&gt;
+&lt;p&gt;Of course, this isn't the only Backbone way to build apps, but I think its a good one for a start. The primary problem you'll face if you stick to doing things your own way and not use an opinionated framework is that of organization. You need an organizer/coordinator object to co-ordinate with various components of your app and keep them in sync with each other and this is where the Backbone.Events API provided by the framework shines. The Backbone.View object also plays a great part in ensuring the separation of DOM manipulation code from rest of your app, and along with the underscore template library, it becomes a power combination for rendering DOM! With underscore templates, you can actually use javascript functions and variables inside a template, not just clumsy tags like ng-something!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;%&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;modal&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;buttons&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="cp"&gt;%&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;ui-button-container&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="cp"&gt;&amp;lt;%&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;buttons&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;each&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;button&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="cp"&gt;%&amp;gt;&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;ui-button ui-button-pill &lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;%=&lt;/span&gt; &lt;span class="n"&gt;button&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extra_class&lt;/span&gt; &lt;span class="cp"&gt;%&amp;gt;&lt;/span&gt;&lt;span class="s"&gt; &amp;quot;&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;%=&lt;/span&gt; &lt;span class="n"&gt;button&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;href&lt;/span&gt; &lt;span class="cp"&gt;%&amp;gt;&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;label&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class="nt"&gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;section&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;%=&lt;/span&gt; &lt;span class="n"&gt;button&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;label&lt;/span&gt; &lt;span class="cp"&gt;%&amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&lt;/span&gt; 
+        &lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    &lt;span class="cp"&gt;&amp;lt;%&lt;/span&gt; &lt;span class="p"&gt;})&lt;/span&gt; &lt;span class="cp"&gt;%&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;&amp;lt;%&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="cp"&gt;%&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Of course, its not a very good practice to mix javascript with templates, but it just shows the power and flexibility of using backbone+underscore compared to other vendor frameworks.&lt;/p&gt;
+&lt;p&gt;Ultimately, it all comes down to your preference, you can use angular or vue or react if you really want to. However, always understand the reason why you are hooking to a third party framework. If it is just for escaping the complexity of your app, then no amount of framework or libraries in the world are going to help you. Passing on the complexity to a black box like angular or vue is just a band-aid solution that will fall apart the moment you scale in complexity and you'll get stuck by the limitations of the framework. At that point, you'll have to make one of these two decisions:&lt;/p&gt;
+&lt;p&gt;1. Abandon the framework and do everything right from scratch using the manual way of Backbone.&lt;/p&gt;
+&lt;p&gt;2. Understand the framework internals too deeply and customize it to achieve what you want (but then what was the point of using this framework in the first place?)&lt;/p&gt;
+&lt;p&gt;Ultimately, its your decision to choose a framework. Consider it wisely after weighing in all the pros and cons. Best of luck!&lt;/p&gt;</content><category term="JavaScript"></category><category term="HTML"></category></entry><entry><title>What problem is React/JSX solving in your App?</title><link href="/blog/2018/07/what-problem-is-react-jsx-solving.html" rel="alternate"></link><published>2018-07-05T17:06:00+05:30</published><updated>2018-07-05T17:06:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2018-07-05:/blog/2018/07/what-problem-is-react-jsx-solving.html</id><summary type="html">&lt;p&gt;Framework wars and debates are very much a thing these days, be it Angular vs Backbone or Angular vs React, but the real debate isn't about these frameworks. The real debate essentially comes down to which is the most efficient way of structuring your app and more importantly, rendering and …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Framework wars and debates are very much a thing these days, be it Angular vs Backbone or Angular vs React, but the real debate isn't about these frameworks. The real debate essentially comes down to which is the most efficient way of structuring your app and more importantly, rendering and managing your DOM.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;Whilst the traditional jQuery/Backbone way is to render the DOM directly using methods like \$(component).html("DOM Code"), React considers it an anti-pattern and recommends the way of virtual DOM - a concept where you don't render the DOM directly as it is, but keep a virtual copy of it and render only the differential which is essentially &lt;em&gt;patching&lt;/em&gt; the DOM.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="JavaScript Frameworks" class="alignnone size-full wp-image-812" height="426" src="/uploads/2018/07/js-frameworks.jpeg" width="640"&gt;&lt;/p&gt;
+&lt;p&gt;One thing that comes to mind is that more than an improvement over the former approach, you are basically trading off CPU overhead for lesser memory usage. The former jQuery approach is more &lt;strong&gt;memory intensive&lt;/strong&gt; as the browser needs to keep large amount of DOM structural code in memory until its rendered (yeah, it gets pretty large in a non-trivial app with lots of widgets that may need to be rendered in a complex array of patterns). However, what exactly are we gaining by using the JSX virtual DOM method? The JSX approach is just as much &lt;strong&gt;CPU intensive&lt;/strong&gt; as the jQuery approach is RAM intensive because it takes just as many CPU cycles to compute the differential and come up with a "patch" version of the DOM. In fact, the trade-off may be even worse considering that React is more of a library overhead than jQuery which is just a light "write less do more" wrapper over JavaScript DOM manipulation functions.&lt;/p&gt;
+&lt;p&gt;The real question we should be asking ourselves is why do we keep looking for that holy-grail JavaScript framework every now and then? Yesterday it was angularjs, today its React and tomorrow it will be vue.js. Instead of running after the shiny new framework, why not sit down and see what you are doing wrong with the present tools you have. After all, these tools are industry proven and they still exist for a reason.&lt;/p&gt;
+&lt;p&gt;I think most of the issues with using jQuery come from incorrect usage patterns than any problems associated with actual rendering. Consider the following often used pattern for rendering view blocks:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$.get(&amp;quot;partials/navbarTemplate.html&amp;quot;, function(data){
+  $(&amp;quot;#div-navbar&amp;quot;).html(data); //render a template
+  ..
+});
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This coding pattern is typically abhorred by most React experts as they feel that rendering a whole bunch of html code (data argument in this case) is an anti pattern as the browser has to repeatedly render a lot of boiler-plate DOM unnecessarily. However, that's only true if you do this often times and repeatedly call this function. If you use a good architectural pattern for structuring your app (like the one provided by Backbone.js), you can render this same DOM in a very idempotent way:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;app.NavbarView = Backbone.View.extend({
+    el: &amp;quot;#div-navbar&amp;quot;,
+    initialize: function() {
+        var temp = this;
+        $.get(&amp;quot;partials/navbarTemplate.html&amp;quot;, function(e){
+            temp.template = _.template(e, {});
+        });
+    },
+    render: function() {
+        this.$el.html(this.template());
+    },
+
+});
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In above code, we are still using jQuery.get, but in a more organized and structured way. Firstly, we call jQuery.get only in the initialization of the view to get the template and store it in the cache, so the network overhead isn't involved each time we need to use a template. Furthermore, backbone itself caches and stores the block element to be rendered (this.\$el), so that we don't have to trouble the browser with other areas of the DOM where rendering isn't required. Finally, we just call the underscore template and render the element:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;this.$el.html(this.template());
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Of course, this could be probably further optimized by using jQuery.empty().append() instead of jQuery.html() if you want to tweak the last drop of performance!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;this.$el.empty().html(this.template());
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;However, I don't think this kind of premature optimization is really needed unless you are building a really complex app and even then this isn't required in about 90% of the cases, the browsers have become considerably fast in recent years, at least in the area of DOM rendering.&lt;/p&gt;
+&lt;p&gt;And this is exactly why I think that using virtual DOM libraries like React is an anti-pattern. You are essentially stepping into the shoes of the browser, isn't it? If the kind of partial patching implemented by React is really efficient, wouldn't the browsers be doing it themselves? Maybe they will take some of the best ideas from React and JSX, and implement it themselves in the coming future, but why should &lt;em&gt;you&lt;/em&gt; (as a programmer) be bothered with that is what I don't understand.&lt;/p&gt;
+&lt;p&gt;This whole debate about frameworks is pretty much centered on separation of concerns essentially (models, views and controllers/organizers should all be cleanly separated) and to some extent, React is going against that separation by doing what the browser is supposed to do.&lt;/p&gt;</content><category term="Backbone"></category><category term="JavaScript"></category><category term="React"></category></entry><entry><title>Webpack Project has a Vulnerability</title><link href="/blog/2018/06/webpack-project-is-sitting-on-a-vulnerability-avoid-it-at-all-costs.html" rel="alternate"></link><published>2018-06-28T19:09:00+05:30</published><updated>2018-06-28T19:09:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2018-06-28:/blog/2018/06/webpack-project-is-sitting-on-a-vulnerability-avoid-it-at-all-costs.html</id><summary type="html">&lt;p&gt;The other day, I was going through this &lt;a href="https://medium.com/p/73fac4bc5068"&gt;medium post&lt;/a&gt; which describes the kind of chaos and insecurity currently plaguing the JavaScript world, and the &lt;em&gt;numero uno&lt;/em&gt; reason for that is the astronomical number of npm packages.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;When you usually install a non-trivial library or application through a package manager …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The other day, I was going through this &lt;a href="https://medium.com/p/73fac4bc5068"&gt;medium post&lt;/a&gt; which describes the kind of chaos and insecurity currently plaguing the JavaScript world, and the &lt;em&gt;numero uno&lt;/em&gt; reason for that is the astronomical number of npm packages.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;When you usually install a non-trivial library or application through a package manager, the expectation is that the number of dependencies should be as less as possible. This not only helps you in managing the disk space (very important for cloud hosting), but also makes a manageable code audit possible. For instance, the Python's Flask package (which is a considerably large web framework, a lot more complex than Webpack which is just a JavaScript bundler) has the &lt;a href="https://github.com/pallets/flask/blob/master/setup.py"&gt;following four dependencies&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; install_requires=[
+ &amp;#39;Werkzeug&amp;gt;=0.14&amp;#39;,
+ &amp;#39;Jinja2&amp;gt;=2.10&amp;#39;,
+ &amp;#39;itsdangerous&amp;gt;=0.24&amp;#39;,
+ &amp;#39;click&amp;gt;=5.1&amp;#39;,
+],
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;On the other hand, this trivial Webpack package on NPM has an astounding &lt;a href="https://www.npmjs.com/package/webpack"&gt;25 dependencies on various 3rd party packages&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;@webassemblyjs/ast
+ @webassemblyjs/helper-module-context
+ @webassemblyjs/wasm-edit
+ @webassemblyjs/wasm-opt
+ @webassemblyjs/wasm-parser
+ acorn
+ acorn-dynamic-import
+ ajv
+ ajv-keywords
+ chrome-trace-event
+ enhanced-resolve
+ eslint-scope
+ json-parse-better-errors
+ loader-runner
+ loader-utils
+ memory-fs
+ micromatch
+ mkdirp
+ neo-async
+ node-libs-browser
+ schema-utils
+ tapable
+ uglifyjs-webpack-plugin
+ watchpack
+ webpack-sources
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;However, your worry hasn't even started yet, your real worry starts when you realize that the other super-trivial package mentioned in that article called &lt;strong&gt;&lt;a href="https://www.npmjs.com/package/is-odd"&gt;is-odd&lt;/a&gt;&lt;/strong&gt;  has a whopping statistics of &lt;strong&gt;1.4 million&lt;/strong&gt; downloads per week:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="is odd" class="alignnone size-full wp-image-699" height="445" src="/uploads/2018/06/is-odd.png" width="453"&gt;&lt;/p&gt;
+&lt;p&gt;Now, any programmer worth his salt will know that its a &lt;a href="https://stackoverflow.com/q/6211613/849365"&gt;one line coding effort&lt;/a&gt; to determine whether a given number is odd or even, even in JavaScript:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;isEven&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+ &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;n&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;isOdd&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+ &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;n&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now, our master programmer who developed this "&lt;em&gt;is-odd as a service&lt;/em&gt;" not only goes ahead and registers whole new npm packages called is-odd and is-even, but also makes a lot of his other packages depend on it. Can you even begin to imagine what kind of bureaucratic politician you have to be in order to do that!&lt;/p&gt;
+&lt;p&gt;Now, this in itself couldn't have caused any problem, the real issue here is that the highly reputed and popular &lt;strong&gt;Webpack&lt;/strong&gt; project is also using one of his packages (for doing a trivial regular expression check on a string) and the dependency chain is such that the following four packages are also pulled in whenever you install &lt;strong&gt;Webpack&lt;/strong&gt; from npm since Webpack depends on them (and this is what explains is-odd's 1.4 million weekly download figure):&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;is-odd -&amp;gt; nanomatch -&amp;gt; micromatch -&amp;gt; webpack&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Now, even a CS undergraduate should be able to see the management nightmare, not only of burdening your hard disk space of these additional packages whenever you &lt;strong&gt;npm install webpack&lt;/strong&gt;, but also the security nightmares associated with it. In future, if the developer of &lt;strong&gt;is-odd&lt;/strong&gt; package clubbed some malware in his code and propagated it throughout the node-ecosystem, can you even begin to imagine the disaster its going to cause on your production machines? I agree that this applies to other packaging systems like &lt;strong&gt;pip&lt;/strong&gt; and &lt;strong&gt;composer&lt;/strong&gt; too, but problem here is that the number of npm packages is too large and too unmanageable.&lt;/p&gt;
+&lt;p&gt;And to top it, the developers in the ecosystem are paying no heed to this, they think this is something to be proud of and worthy of chest thumping. They should try to understand that DRY (Don't Repeat Yourself) becomes a self-harming pattern beyond a certain extent, especially when you start releasing packages like is-odd and is-even. They get argumentative and counter you with a militant defense when you try to explain this point to them. For instance, I raised &lt;a href="https://github.com/webpack/webpack/issues/7591"&gt;an issue on Webpack's Github repository a few days ago&lt;/a&gt; for this exact problem (&lt;strong&gt;remove dependency from micromatch package&lt;/strong&gt;) and they simply closed it down giving some hilarious arguments. Their arguments are really interesting, but beyond sanity for someone who values security and maintainability of production applications.&lt;/p&gt;</content><category term="Open Source"></category><category term="JavaScript"></category></entry><entry><title>Google appengine tip: How to clear appcfg credential cache</title><link href="/blog/2014/01/google-appengine-tip-how-to-clear-appcfg-credential-cache.html" rel="alternate"></link><published>2014-01-19T23:19:00+05:30</published><updated>2014-01-19T23:19:00+05:30</updated><author><name>Prahlad Yeri</name></author><id>tag:None,2014-01-19:/blog/2014/01/google-appengine-tip-how-to-clear-appcfg-credential-cache.html</id><summary type="html">&lt;p&gt;Many a times, it so happens that you need to work with multiple credentials while uploading/downloading apps on Google appengine. In such a scenario, it becomes difficult to switch credentials instantly.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="/uploads/old/gae_new_Logo.png"&gt;&lt;img alt="gae_new_Logo" class="alignnone size-full wp-image-1382" height="48" src="/uploads/old/gae_new_Logo.png" width="54"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;For instance, you have just uploaded an app using appcfg.py with your google credentials and they are …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Many a times, it so happens that you need to work with multiple credentials while uploading/downloading apps on Google appengine. In such a scenario, it becomes difficult to switch credentials instantly.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="/uploads/old/gae_new_Logo.png"&gt;&lt;img alt="gae_new_Logo" class="alignnone size-full wp-image-1382" height="48" src="/uploads/old/gae_new_Logo.png" width="54"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;For instance, you have just uploaded an app using appcfg.py with your google credentials and they are still stored in the cache. So when you want to upload a new app, it won't ask you for email/password and still try to retrieve old credentials automatically ignoring any command-line parameters you have given! Thus, you keep scratching your head as to why you are getting a permission-denied error while uploading/downloading the app!&lt;/p&gt;
+&lt;p&gt;The only way out here is clearing the credential cache of appcfg. On Linux systems, these are stored in a file called:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/home/username/.appcfg_cookies
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;On Windows based systems, these are typically stored in:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;C:\Users\username\.appcfg_cookies
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Just delete this file and you are done! Next time, appcfg.py will ask you for a fresh google email and password, thus enabling you to upload/download your app.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;References:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://stackoverflow.com/q/5149914/849365"&gt;http://stackoverflow.com/q/5149914/849365&lt;/a&gt;&lt;/p&gt;</content><category term="Google App Engine"></category></entry></feed>
