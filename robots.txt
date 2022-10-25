@@ -1,0 +1,6 @@
+# Group 1
+User-agent: *
+Disallow: /drafts/
+Disallow: /theme/
+
+Sitemap: https://prahladyeri.github.io/sitemap.xml

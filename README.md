@@ -1,2 +1,1 @@
-# prahladyeri.github.io
-gh-pages repo
+Git repository to host my [weblog](https://prahladyeri.github.io/).
