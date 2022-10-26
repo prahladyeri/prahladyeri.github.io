@@ -15,9 +15,9 @@
 	<link rel="stylesheet" href="/theme/css/app.css">
 	<link rel="stylesheet" href="/theme/css/pygment.css">		
 	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
-	<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
-	<link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
-	<link href="/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
 
 
 
@@ -32,22 +32,208 @@
 	<meta name="twitter:site" content="@prahladyeri" />
 	<meta name="twitter:creator" content="@prahladyeri" />
 		<link rel="canonical" content="https://prahladyeri.github.io/blog/2018/07/wordpress-diy-adding-twitter-cards-meta-to-your-blog.html" />
-		<meta name="twitter:url" content="/blog/2018/07/wordpress-diy-adding-twitter-cards-meta-to-your-blog.html" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2018/07/wordpress-diy-adding-twitter-cards-meta-to-your-blog.html" />
 		<meta name="twitter:title" content="WordPress DIY: Adding twitter cards meta to your blog without using an external plugin" />
 		<meta name="twitter:description" content="Just like my last article, we won't be focusing on using a third party plugin, but write our own plugin. I'm a minimalist and don't prefer to use layer-2 solutions for really trivial things that can easily be achieved by writing code. Now, though trivial to implement, the twitter cards …" />
-			<meta name="twitter:image" content="/uploads/cover.jpg" />
-			<meta name="image" property="og:image" content="/uploads/cover.jpg">
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/cover.jpg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/cover.jpg">
 
 	<!-- open graph meta data (TODO) -->
 	
+	<!--start: analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6808883-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-6808883-5');
+	</script>
+	<!--end: analytics -->
 	
 <!--pinterest claim-->
 <meta name="p:domain_verify" content="eb43d46309e2766ef1b627cea2d19326"/>
 </head>
 
 <body id="index" class="home">
-<h1 class='text-center'>
-<p>It Works!</p>
-</h1>
+<!-- section bootstrap-menu -->
+<div class='container'>
+<div class='row header'>
+	<div class='col-md-12 text-center' style='margin: 10px 0 0 0'>
+		<h2>Prahlad Yeri</h2>
+		<h6 class='text-muted'>Freelance Programmer and Writer</h6>
+	</div>
+	<div class='col-md-12 text-center' >
+		<ul class="nav nav-fill text-center site-links col-md-8 ml-auto mr-auto">
+		<li class="nav-item"><a class="nav-link btn btn-primary" href="/">Home</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-success" href="/blog">Blog</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-danger" href="/portfolio">Portfolio</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-secondary" href="https://github.com/prahladyeri/resume">Resume</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-warning" href="/hire-me">Hire Me</a></li>
+		<li class='nav-item dropdown'>
+			<a class="nav-link dropdown-toggle btn btn-dark" id='btnSocial' href="javascript:" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+			<div class="dropdown-menu" aria-labelledby="btnSocial">
+				<a class="dropdown-item" href="https://twitter.com/prahladyeri">Twitter</a>
+				<a class="dropdown-item" href="https://github.com/prahladyeri">Github</a>
+				<a class="dropdown-item" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a>
+				<a class="dropdown-item" href="https://prahladyeri.medium.com/">Medium</a>
+				<a class="dropdown-item" href="https://www.quora.com/profile/Prahlad-Yeri">Quora</a>
+				<a class="dropdown-item" href="https://www.instagram.com/prahladyeri14/">Instagram</a>
+				<a class="dropdown-item" href="mailto:prahladyeri@yahoo.com">Email</a>
+			</div>
+		</li>
+		<li class='btn-group'>
+			<a class="nav-link dropdown-toggle btn btn-info" role='button' id='btnFeeds' href="javascript:" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a>
+			<div class="dropdown-menu" aria-labelledby="btnFeeds">
+				<a class="dropdown-item" href="/feeds/all.rss.xml">RSS</a>
+				<a class="dropdown-item" href="/feeds/all.atom.xml">ATOM</a>
+				<!-- <a class="dropdown-item" href="https://feedburner.google.com/fb/a/mailverify?uri=prahladyeri&amp;loc=en_US">Feedburner</a> -->
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='ml-auto col-md-8 mr-auto'>
+	</div>
+</div>
+</div>
+
+		<div id="main" class='mt-2 container content '>
+			<div class='row'>
+				<div class='offset-md-2 col-md-8'>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2018/07/wordpress-diy-adding-twitter-cards-meta-to-your-blog.html" rel="bookmark" 
+      title="Permalink to WordPress DIY: Adding twitter cards meta to your blog without using an external plugin">WordPress DIY: Adding twitter cards meta to your blog without using an external plugin</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2018-07-08T11:46:00+05:30">Sun 08 July 2018</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/php">PHP</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/php">PHP</a>
+            <a href="https://prahladyeri.github.io/blog/tag/wordpress">Wordpress</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p>Just like my <a href="https://prahladyeri.com/blog/2018/07/wordpress-diy-adding-google-analytics-script-to-your-blog.html">last article</a>, we won't be focusing on using a third party plugin, but write our own plugin. I'm a minimalist and don't prefer to use layer-2 solutions for really trivial things that can easily be achieved by writing code.<!--more--></p>
+<p>Now, though trivial to implement, the twitter cards support is a very important and useful thing for your blog. To understand why, consider the following example tweet from Python Software Foundation:</p>
+<p><img alt="Links had no Twitter Card Meta" src="/uploads/2018/07/no_twitter_card.png"></p>
+<p><strong>Links had no Twitter Card Meta</strong></p>
+<p>As you can see, the posted links on this tweet from the domain djangoproject.com didn't expand into a preview because they didn't have twitter card meta tags in their pages. Unlike Facebook who expands all posted links, Twitter doesn't do that automatically, but only after parsing some meta tags which should be in their required format. Only after that, the tweets expand into a full preview like this:</p>
+<p><img alt="Link had Twitter Meta" src="/uploads/2018/07/twitter_card.png"></p>
+<p><strong>Link had Twitter Card Meta</strong></p>
+<p>So as the owner of a WordPress blog, you'd be certainly interested in having the tweets containing links to your own site expand into these previews, right? So, let's go about doing it.</p>
+<p>Essentially, your web page should contain the following meta tags that twitter parses in order to come up with a preview:</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:card&quot;</span> <span class="na">content=</span><span class="s">&quot;summary&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:site&quot;</span> <span class="na">content=</span><span class="s">&quot;@prahladyeri&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:creator&quot;</span> <span class="na">value=</span><span class="s">&quot;@prahladyeri&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:url&quot;</span> <span class="na">content=</span><span class="s">&quot;https://prahladyeri.com/blog/2018/06/people-migrating-from-github-to-gitlab-should-learn-about-these-details-first.html&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:title&quot;</span> <span class="na">content=</span><span class="s">&quot;People migrating from Github to Gitlab should learn about these details first&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:description&quot;</span> <span class="na">content=</span><span class="s">&quot;After &lt;a href=&amp;quot;https://www.prahladyeri.com/blog/2018/06/microsofts-github-acquisition-an-unbiased-perspective.html&amp;quot;&gt;Microsoft&amp;#039;s recent acquisition of Github&lt;/a&gt;, a mass exodus has kind of begun and many small and large projects are moving their code bases to the much hyped &lt;a href=&amp;quot;https://gitlab.com/&amp;quot;&gt;Gitlab&lt;/a&gt; in a hurry, and these include both open and closed source projects. However, before migrating to Gitlab, they should take a pause and learn something about Gitlab and consider evaluating other alternatives too.&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:image&quot;</span> <span class="na">content=</span><span class="s">&quot;https://secure.gravatar.com/avatar/3f253507b82dd33f352c08f649caaa54?rating=PG&amp;size=75&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+
+
+<p>All these meta tags have different meanings. For example, <strong>twitter:url</strong> is for the canonical URL of your page, <strong>twitter:title</strong> is for the title that should be displayed in the preview, etc.</p>
+<p>Now, let's add a simple PHP plugin file that automatically adds these tags in all the pages of our WordPress blog. Firstly, create a text file called <strong>"/wp-content/plugins/custom_headers.php"</strong> in your WordPress installation folder (no need to create if you had done already by following the last article).</p>
+<p>After that, just add the below function and call it using <strong>add_action()</strong>:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">add_twitter_card_header() {</span>
+    <span class="err">#</span><span class="nx">twitter</span> <span class="nx">cards</span> <span class="nx">hack</span>
+    <span class="nx">global</span> <span class="nx">$post</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">is_single</span><span class="p">()</span> <span class="o">||</span> <span class="nx">is_page</span><span class="p">())</span> <span class="p">{</span>
+        <span class="nx">$twitter_url</span>    <span class="o">=</span> <span class="nx">get_permalink</span><span class="p">();</span>
+        <span class="nx">$twitter_title</span>  <span class="o">=</span> <span class="nx">get_the_title</span><span class="p">();</span>
+        <span class="nx">$content</span> <span class="o">=</span> <span class="nx">get_extended</span><span class="p">(</span> <span class="nx">$post</span><span class="o">-&gt;</span><span class="nx">post_content</span> <span class="p">);</span>
+        <span class="nx">$attch_id</span> <span class="o">=</span> <span class="nx">get_post_thumbnail_id</span><span class="p">(</span><span class="nx">$post</span><span class="o">-&gt;</span><span class="nx">ID</span><span class="p">);</span>
+        <span class="nx">$twitter_thumbs</span> <span class="o">=</span> <span class="nx">wp_get_attachment_image_src</span><span class="p">(</span><span class="nx">$attch_id</span><span class="p">,</span> <span class="nx">full</span><span class="p">);</span>
+        <span class="nx">$twitter_thumb</span>  <span class="o">=</span> <span class="nx">$twitter_thumbs</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">$twitter_thumb</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">$twitter_thumb</span> <span class="o">=</span> <span class="s1">&#39;https://secure.gravatar.com/avatar/3f253507b82dd33f352c08f649caaa54?rating=PG&amp;size=75&#39;</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="o">?&gt;</span>
+        <span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;twitter:card&quot;</span> <span class="nx">content</span><span class="o">=</span><span class="s2">&quot;summary&quot;</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;twitter:site&quot;</span> <span class="nx">content</span><span class="o">=</span><span class="s2">&quot;@prahladyeri&quot;</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;twitter:creator&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;@prahladyeri&quot;</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;twitter:url&quot;</span> <span class="nx">content</span><span class="o">=</span><span class="s2">&quot;&lt;?php echo $twitter_url; ?&gt;&quot;</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;twitter:title&quot;</span> <span class="nx">content</span><span class="o">=</span><span class="s2">&quot;&lt;?php echo $twitter_title; ?&gt;&quot;</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;twitter:description&quot;</span> <span class="nx">content</span><span class="o">=</span><span class="s2">&quot;&lt;?php echo esc_html($content[&#39;main&#39;]); ?&gt;&quot;</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;twitter:image&quot;</span> <span class="nx">content</span><span class="o">=</span><span class="s2">&quot;&lt;?php echo $twitter_thumb; ?&gt;&quot;</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;?</span><span class="nx">php</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">add_action</span><span class="p">(</span><span class="s1">&#39;wp_head&#39;</span><span class="p">,</span> <span class="s1">&#39;add_twitter_card_header&#39;</span><span class="p">);</span>
+</pre></div>
+
+
+<p>This simple block of code will pick up all required things such as the post's title content excerpt, etc. and supply them to twitter via the meta tags. Few important things you need to remember:</p>
+<p>1. Firstly, update the \$twitter_thumb variable in the following block with your own gravatar:</p>
+<div class="highlight"><pre><span></span><span class="nt">if</span><span class="o">(!$</span><span class="nt">twitter_thumb</span><span class="o">)</span> <span class="p">{</span> <span class="err">$twitter_thumb</span> <span class="err">=</span> <span class="err">&#39;</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">secure</span><span class="o">.</span><span class="n">gravatar</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">avatar</span><span class="o">/</span><span class="mi">3</span><span class="n">f253507b82dd33f352c08f649caaa54</span><span class="o">?</span><span class="n">rating</span><span class="o">=</span><span class="n">PG</span><span class="o">&amp;</span><span class="k">size</span><span class="o">=</span><span class="mi">75</span><span class="err">&#39;</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<p>This will show the gravatar by default if you haven't set a featured image in your post.</p>
+<p>2. You'll need to add the <strong>"Read More"</strong> meta tag in all your posts, otherwise <strong>\$content['main']</strong> will return the whole thing instead of just the excerpt.</p>
+<p>Once you do this and publish your post, head over to the <a href="https://cards-dev.twitter.com/validator">Twitter Cards Validator Service</a> and test your link. Its as easy as that!</p>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+				</div>
+				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
+					<div style='margin-top: 50px;'>
+
+<!-- AMAZON AFFILIATE ADS -->
+<!--
+<a href="https://www.amazon.in/Automate-Boring-Stuff-Python-2nd/dp/1593279922/ref=as_li_ss_il?crid=JA705IOUH74O&keywords=automate+the+boring+stuff+with+python&qid=1583912586&sprefix=automate+the+,aps,460&sr=8-1&linkCode=li2&tag=prahladyeri-21&linkId=5f899269cc1aea74977c02963a9a6caf&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1593279922&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=1593279922" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.in/PYTHON-PROGRAMMING-BEGINNERS-GUIDE-LEARN-ebook/dp/B01GSODGZC/ref=as_li_ss_il?crid=33LIIMVDMW1U3&keywords=python+programming&qid=1583912662&sprefix=python,aps,527&sr=8-4&linkCode=li2&tag=prahladyeri-21&linkId=6b3a8b38eda1d6c51546a1a0c321cfea&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01GSODGZC&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=B01GSODGZC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class='container-fluid'>
+<div class='row'>
+		<footer id ="footer" class="col-md-12 text-center bg-dark text-white pt-1 pb-1 pl-1 pr-1">
+		Copyright (&copy;) 2014-2022 Prahlad Yeri. This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+		</footer>
+</div>
+</div>		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="/theme/js/popper.min.js"></script> -->
+<!-- <script src="/theme/js/bootstrap.min.js"></script> -->
 </body>
 </html>

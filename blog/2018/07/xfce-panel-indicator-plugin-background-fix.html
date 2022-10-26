@@ -15,9 +15,9 @@
 	<link rel="stylesheet" href="/theme/css/app.css">
 	<link rel="stylesheet" href="/theme/css/pygment.css">		
 	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
-	<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
-	<link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
-	<link href="/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
 
 
 
@@ -32,22 +32,186 @@
 	<meta name="twitter:site" content="@prahladyeri" />
 	<meta name="twitter:creator" content="@prahladyeri" />
 		<link rel="canonical" content="https://prahladyeri.github.io/blog/2018/07/xfce-panel-indicator-plugin-background-fix.html" />
-		<meta name="twitter:url" content="/blog/2018/07/xfce-panel-indicator-plugin-background-fix.html" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2018/07/xfce-panel-indicator-plugin-background-fix.html" />
 		<meta name="twitter:title" content="XFCE panel indicator plugin background fix" />
 		<meta name="twitter:description" content="The indicator plugin in XFCE panel has been a very useful but also a very controversial plugin! The reason is that its the only plugin on the XFCE panel developed in GTK3 (whereas rest of the panel is developed in GTK2) and this causes some theming issues. Specifically, only those …" />
-			<meta name="twitter:image" content="/uploads/cover.jpg" />
-			<meta name="image" property="og:image" content="/uploads/cover.jpg">
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/cover.jpg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/cover.jpg">
 
 	<!-- open graph meta data (TODO) -->
 	
+	<!--start: analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6808883-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-6808883-5');
+	</script>
+	<!--end: analytics -->
 	
 <!--pinterest claim-->
 <meta name="p:domain_verify" content="eb43d46309e2766ef1b627cea2d19326"/>
 </head>
 
 <body id="index" class="home">
-<h1 class='text-center'>
-<p>It Works!</p>
-</h1>
+<!-- section bootstrap-menu -->
+<div class='container'>
+<div class='row header'>
+	<div class='col-md-12 text-center' style='margin: 10px 0 0 0'>
+		<h2>Prahlad Yeri</h2>
+		<h6 class='text-muted'>Freelance Programmer and Writer</h6>
+	</div>
+	<div class='col-md-12 text-center' >
+		<ul class="nav nav-fill text-center site-links col-md-8 ml-auto mr-auto">
+		<li class="nav-item"><a class="nav-link btn btn-primary" href="/">Home</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-success" href="/blog">Blog</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-danger" href="/portfolio">Portfolio</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-secondary" href="https://github.com/prahladyeri/resume">Resume</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-warning" href="/hire-me">Hire Me</a></li>
+		<li class='nav-item dropdown'>
+			<a class="nav-link dropdown-toggle btn btn-dark" id='btnSocial' href="javascript:" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+			<div class="dropdown-menu" aria-labelledby="btnSocial">
+				<a class="dropdown-item" href="https://twitter.com/prahladyeri">Twitter</a>
+				<a class="dropdown-item" href="https://github.com/prahladyeri">Github</a>
+				<a class="dropdown-item" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a>
+				<a class="dropdown-item" href="https://prahladyeri.medium.com/">Medium</a>
+				<a class="dropdown-item" href="https://www.quora.com/profile/Prahlad-Yeri">Quora</a>
+				<a class="dropdown-item" href="https://www.instagram.com/prahladyeri14/">Instagram</a>
+				<a class="dropdown-item" href="mailto:prahladyeri@yahoo.com">Email</a>
+			</div>
+		</li>
+		<li class='btn-group'>
+			<a class="nav-link dropdown-toggle btn btn-info" role='button' id='btnFeeds' href="javascript:" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a>
+			<div class="dropdown-menu" aria-labelledby="btnFeeds">
+				<a class="dropdown-item" href="/feeds/all.rss.xml">RSS</a>
+				<a class="dropdown-item" href="/feeds/all.atom.xml">ATOM</a>
+				<!-- <a class="dropdown-item" href="https://feedburner.google.com/fb/a/mailverify?uri=prahladyeri&amp;loc=en_US">Feedburner</a> -->
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='ml-auto col-md-8 mr-auto'>
+	</div>
+</div>
+</div>
+
+		<div id="main" class='mt-2 container content '>
+			<div class='row'>
+				<div class='offset-md-2 col-md-8'>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2018/07/xfce-panel-indicator-plugin-background-fix.html" rel="bookmark" 
+      title="Permalink to XFCE panel indicator plugin background fix">XFCE panel indicator plugin background fix</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2018-07-21T00:14:00+05:30">Sat 21 July 2018</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/linux">Linux</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/xfce">XFCE</a>
+            <a href="https://prahladyeri.github.io/blog/tag/xubuntu">Xubuntu</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p>The indicator plugin in XFCE panel has been a very useful but also a very controversial plugin! The reason is that its the only plugin on the XFCE panel developed in GTK3 (whereas rest of the panel is developed in GTK2) and this causes some theming issues.<!--more--></p>
+<p>Specifically, only those themes will work for the panel who's developers have taken care to style both the GTK2 and GTK3 components, otherwise it results in an odd background color around the indicator plugin which isn't in sync with rest of the theme:</p>
+<p><img alt="xfce-indicator-plugin-background-issue" class="size-full wp-image-976" height="130" src="/uploads/2018/07/xfce-indicator-plugin-background-issue.png" width="380"></p>
+<p><strong>XFCE indicator-plugin background issue</strong></p>
+<p><a href="https://bugs.launchpad.net/bugs/1408979">Bug #1408979</a> has been reported on launchpad for this and even askubuntu is filled with <a href="https://askubuntu.com/questions/663248/xubuntu-indicator-plugin-background">a bunch of questions</a> pertaining to this issue. I came across this while trying to port <a href="https://prahladyeri.com/blog/2018/07/how-to-make-your-xubuntu-desktop-look-and-behave-like-ubuntu-mate.html">ambiance looks to my xubuntu desktop</a>.</p>
+<p>The fix is really simple if your theme already has GTK3 support (but not for the indicator plugin specifically). GTK3 support typically exists for your theme if it has <strong>/gtk-3.0</strong> folder in its root folder. All you have to do is open the <strong>/\&lt;your_theme>/gtk-3.0/gtk.css</strong> and add this style patch to it:</p>
+<div class="highlight"><pre><span></span><span class="c">/*xfce panel workaround */</span>
+
+<span class="p">.</span><span class="nc">xfce4-panel</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="p">:</span> <span class="o">@</span><span class="n">dark_bg_color</span><span class="p">;</span> 
+  <span class="k">font</span><span class="p">:</span> <span class="kc">normal</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">xfce4-panel</span> <span class="p">.</span><span class="nc">button</span> <span class="p">{</span>
+  <span class="k">background-image</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+  <span class="k">background-color</span><span class="p">:</span> <span class="o">@</span><span class="n">dark_bg_color</span><span class="p">;</span>
+  <span class="k">border-radius</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">xfce4-panel</span> <span class="p">.</span><span class="nc">button</span><span class="p">:</span><span class="nd">active</span><span class="o">,</span>
+<span class="p">.</span><span class="nc">xfce4-panel</span> <span class="p">.</span><span class="nc">button</span><span class="p">:</span><span class="nd">checked</span> <span class="p">{</span>
+  <span class="k">background-image</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+  <span class="k">background-color</span><span class="p">:</span> <span class="nb">shade</span><span class="p">(</span><span class="err">@</span><span class="n">dark_bg_color</span><span class="p">,</span> <span class="mf">1.20</span><span class="p">);</span>
+  <span class="k">border</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">xfce4-panel</span> <span class="p">.</span><span class="nc">button</span><span class="p">:</span><span class="nd">hover</span><span class="o">,</span>
+<span class="p">.</span><span class="nc">xfce4-panel</span> <span class="p">.</span><span class="nc">button</span><span class="p">:</span><span class="nd">active</span><span class="p">:</span><span class="nd">hover</span><span class="o">,</span>
+<span class="p">.</span><span class="nc">xfce4-panel</span> <span class="p">.</span><span class="nc">button</span><span class="p">:</span><span class="nd">checked</span><span class="p">:</span><span class="nd">hover</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="p">:</span> <span class="nb">shade</span><span class="p">(</span><span class="err">@</span><span class="n">dark_bg_color</span><span class="p">,</span> <span class="mf">1.20</span><span class="p">);</span>
+  <span class="k">border</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Make sure to replace the <strong>\@dark_bg_color</strong> with whatever your theme's background color is. After the above change, just apply your theme using the theme switcher and you will see this problem magically fixed!</p>
+<p>Now in cases where your theme doesn't have GTK3 support, it might get tricky. I faced this same issue with the <a href="https://www.xfce-look.org/p/1016446/">Ambiance XFCE theme</a>, for instance. What I did as a workaround was copy the <strong>gtk-3.0</strong> folder from the official Ambiance theme from <strong>ubuntu-mate-themes</strong> package to the linked XFCE theme's folder and then did the above fix. Of course, I could have used the official theme itself in the first place, but it doesn't support xfwm4.</p>
+<p>I hope the above information helps you if you were looking for a fix to this exact same issue.</p>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+				</div>
+				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
+					<div style='margin-top: 50px;'>
+
+<!-- AMAZON AFFILIATE ADS -->
+<!--
+<a href="https://www.amazon.in/Automate-Boring-Stuff-Python-2nd/dp/1593279922/ref=as_li_ss_il?crid=JA705IOUH74O&keywords=automate+the+boring+stuff+with+python&qid=1583912586&sprefix=automate+the+,aps,460&sr=8-1&linkCode=li2&tag=prahladyeri-21&linkId=5f899269cc1aea74977c02963a9a6caf&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1593279922&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=1593279922" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.in/PYTHON-PROGRAMMING-BEGINNERS-GUIDE-LEARN-ebook/dp/B01GSODGZC/ref=as_li_ss_il?crid=33LIIMVDMW1U3&keywords=python+programming&qid=1583912662&sprefix=python,aps,527&sr=8-4&linkCode=li2&tag=prahladyeri-21&linkId=6b3a8b38eda1d6c51546a1a0c321cfea&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01GSODGZC&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=B01GSODGZC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class='container-fluid'>
+<div class='row'>
+		<footer id ="footer" class="col-md-12 text-center bg-dark text-white pt-1 pb-1 pl-1 pr-1">
+		Copyright (&copy;) 2014-2022 Prahlad Yeri. This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+		</footer>
+</div>
+</div>		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="/theme/js/popper.min.js"></script> -->
+<!-- <script src="/theme/js/bootstrap.min.js"></script> -->
 </body>
 </html>

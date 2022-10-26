@@ -15,9 +15,9 @@
 	<link rel="stylesheet" href="/theme/css/app.css">
 	<link rel="stylesheet" href="/theme/css/pygment.css">		
 	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
-	<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
-	<link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
-	<link href="/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
 
 
 
@@ -33,22 +33,230 @@
 	<meta name="twitter:site" content="@prahladyeri" />
 	<meta name="twitter:creator" content="@prahladyeri" />
 		<link rel="canonical" content="https://prahladyeri.github.io/blog/2013/12/how-to-host-your-own-mail-server-using-google-appengine.html" />
-		<meta name="twitter:url" content="/blog/2013/12/how-to-host-your-own-mail-server-using-google-appengine.html" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2013/12/how-to-host-your-own-mail-server-using-google-appengine.html" />
 		<meta name="twitter:title" content="How to host your own mail server using Google appengine" />
 		<meta name="twitter:description" content="Google has an outstanding habit of bringing the power of elites to the masses. Firstly, they took over the world of smartphones with android, and now the buzzword everywhere is Google Appengine. Once you get the basics of GAE and start looking beyond your first HelloWorld application, you will start …" />
-			<meta name="twitter:image" content="/uploads/cover.jpg" />
-			<meta name="image" property="og:image" content="/uploads/cover.jpg">
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/cover.jpg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/cover.jpg">
 
 	<!-- open graph meta data (TODO) -->
 	
+	<!--start: analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6808883-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-6808883-5');
+	</script>
+	<!--end: analytics -->
 	
 <!--pinterest claim-->
 <meta name="p:domain_verify" content="eb43d46309e2766ef1b627cea2d19326"/>
 </head>
 
 <body id="index" class="home">
-<h1 class='text-center'>
-<p>It Works!</p>
-</h1>
+<!-- section bootstrap-menu -->
+<div class='container'>
+<div class='row header'>
+	<div class='col-md-12 text-center' style='margin: 10px 0 0 0'>
+		<h2>Prahlad Yeri</h2>
+		<h6 class='text-muted'>Freelance Programmer and Writer</h6>
+	</div>
+	<div class='col-md-12 text-center' >
+		<ul class="nav nav-fill text-center site-links col-md-8 ml-auto mr-auto">
+		<li class="nav-item"><a class="nav-link btn btn-primary" href="/">Home</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-success" href="/blog">Blog</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-danger" href="/portfolio">Portfolio</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-secondary" href="https://github.com/prahladyeri/resume">Resume</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-warning" href="/hire-me">Hire Me</a></li>
+		<li class='nav-item dropdown'>
+			<a class="nav-link dropdown-toggle btn btn-dark" id='btnSocial' href="javascript:" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+			<div class="dropdown-menu" aria-labelledby="btnSocial">
+				<a class="dropdown-item" href="https://twitter.com/prahladyeri">Twitter</a>
+				<a class="dropdown-item" href="https://github.com/prahladyeri">Github</a>
+				<a class="dropdown-item" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a>
+				<a class="dropdown-item" href="https://prahladyeri.medium.com/">Medium</a>
+				<a class="dropdown-item" href="https://www.quora.com/profile/Prahlad-Yeri">Quora</a>
+				<a class="dropdown-item" href="https://www.instagram.com/prahladyeri14/">Instagram</a>
+				<a class="dropdown-item" href="mailto:prahladyeri@yahoo.com">Email</a>
+			</div>
+		</li>
+		<li class='btn-group'>
+			<a class="nav-link dropdown-toggle btn btn-info" role='button' id='btnFeeds' href="javascript:" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a>
+			<div class="dropdown-menu" aria-labelledby="btnFeeds">
+				<a class="dropdown-item" href="/feeds/all.rss.xml">RSS</a>
+				<a class="dropdown-item" href="/feeds/all.atom.xml">ATOM</a>
+				<!-- <a class="dropdown-item" href="https://feedburner.google.com/fb/a/mailverify?uri=prahladyeri&amp;loc=en_US">Feedburner</a> -->
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='ml-auto col-md-8 mr-auto'>
+	</div>
+</div>
+</div>
+
+		<div id="main" class='mt-2 container content '>
+			<div class='row'>
+				<div class='offset-md-2 col-md-8'>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2013/12/how-to-host-your-own-mail-server-using-google-appengine.html" rel="bookmark" 
+      title="Permalink to How to host your own mail server using Google appengine">How to host your own mail server using Google appengine</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2013-12-30T21:23:00+05:30">Mon 30 December 2013</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/python">Python</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/python">Python</a>
+            <a href="https://prahladyeri.github.io/blog/tag/google-app-engine">Google App Engine</a>
+            <a href="https://prahladyeri.github.io/blog/tag/how-to">How To</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p>Google has an outstanding habit of bringing the power of elites to the masses. Firstly, they took over the world of smartphones with android, and now the buzzword everywhere is Google Appengine.<!--more--></p>
+<p>Once you get the basics of GAE and start looking beyond your first <a href="/blog/2013/12/how-to-create-a-pythonic-app-in-google-app-engine/" title="How to create a Python app in Google App Engine">HelloWorld</a> application, you will start appreciating the sheer power it provides compared to other paid hosting providers. GAE provides you the ability to send mails from your app without paying a single penny. Only if your app starts exceeding the usage quotas, you will have to pay in order to continue using the services.</p>
+<p>An application of the above is creating and hosting your own email server through your app. Below is a single python script which acts as an http mail server that can route your email requests. It also doubles up as a test server so you can test the hosted service by appending the "/test" subdirectory to the url. You may pass http POST requests to your app including fields like username, to, cc, subject etc. once you build this script and host your app in the google cloud.</p>
+<div class="highlight"><pre><span></span><span class="c1">#main.py</span>
+<span class="kn">import</span> <span class="nn">webapp2</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">from</span> <span class="nn">google.appengine.api</span> <span class="kn">import</span> <span class="n">users</span><span class="p">,</span><span class="n">mail</span>
+
+<span class="k">class</span> <span class="nc">TestPage</span><span class="p">(</span><span class="n">webapp2</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        &lt;form method=&quot;post&quot; action=&quot;http://your-app-id.appspot.com&quot;&gt;</span>
+<span class="s2">        Full Name: &lt;input name=&quot;fullname&quot; /&gt;&lt;br /&gt;</span>
+<span class="s2">        user: &lt;input name=&quot;username&quot; /&gt;&lt;br /&gt;</span>
+<span class="s2">        to: &lt;input name=&quot;to&quot; /&gt;&lt;br /&gt;</span>
+<span class="s2">        cc: &lt;input name=&quot;cc&quot; /&gt;&lt;br /&gt;</span>
+<span class="s2">        bcc: &lt;input name=&quot;bcc&quot; /&gt;&lt;br /&gt;</span>
+<span class="s2">        subject: &lt;input name=&quot;subject&quot; /&gt;&lt;br /&gt;</span>
+<span class="s2">        body: &lt;textarea name=&quot;body&quot;&gt;&lt;/textarea&gt;&lt;br /&gt;</span>
+<span class="s2">        &lt;input type=&quot;submit&quot; /&gt;</span>
+<span class="s2">        &lt;/form&gt;</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">MainPage</span><span class="p">(</span><span class="n">webapp2</span><span class="o">.</span><span class="n">RequestHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#TODO: check if password is correct.</span>
+
+        <span class="c1">#From will actually be a placeholder, since only your own appspotmail addresses would be allowed.</span>
+        <span class="n">tfullname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;fullname&#39;</span><span class="p">)</span>
+        <span class="n">tusername</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span>
+        <span class="n">tto</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;to&#39;</span><span class="p">)</span>
+        <span class="n">tcc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cc&#39;</span><span class="p">)</span>
+        <span class="n">tbcc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;bcc&#39;</span><span class="p">)</span>
+        <span class="n">tsubject</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;subject&#39;</span><span class="p">)</span>
+        <span class="n">tbody</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)</span>
+        <span class="n">tattachment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;attachment&#39;</span><span class="p">)</span>
+        <span class="n">send_mail</span><span class="p">(</span><span class="n">fullname</span><span class="o">=</span><span class="n">tfullname</span><span class="p">,</span><span class="n">username</span><span class="o">=</span><span class="n">tusername</span><span class="p">,</span><span class="n">to</span><span class="o">=</span><span class="n">tto</span><span class="p">,</span><span class="n">subject</span><span class="o">=</span><span class="n">tsubject</span><span class="p">,</span><span class="n">body</span><span class="o">=</span><span class="n">tbody</span><span class="p">,</span><span class="n">cc</span><span class="o">=</span><span class="n">tcc</span><span class="p">,</span><span class="n">bcc</span><span class="o">=</span><span class="n">tbcc</span><span class="p">,</span><span class="n">attachment</span><span class="o">=</span><span class="n">tattachment</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;success&quot;</span><span class="p">)</span>
+        <span class="c1">#self.response.write(tto)</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#self.response.headers[&#39;Content-Type&#39;] = &#39;text/plain&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;your-app-id http mail service version 1.0.&lt;br /&gt;</span>
+<span class="s2">        post vars:</span>
+<span class="s2">        [password]</span>
+<span class="s2">        [fullname]</span>
+<span class="s2">        [username]</span>
+<span class="s2">        [to]</span>
+<span class="s2">        [cc]</span>
+<span class="s2">        [bcc]</span>
+<span class="s2">        [subject]</span>
+<span class="s2">        [body]</span>
+<span class="s2">        [attachment]</span>
+
+<span class="s2">        &lt;br /&gt;</span>
+<span class="s2">        &lt;br /&gt;</span>
+
+<span class="s2">        &lt;a type=&quot;button&quot; href=&quot;test&quot;&gt;Click here for a demo&lt;/a&gt;</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">send_mail</span><span class="p">(</span><span class="n">fullname</span><span class="p">,</span><span class="n">username</span><span class="p">,</span><span class="n">to</span><span class="p">,</span><span class="n">subject</span><span class="p">,</span><span class="n">body</span><span class="p">,</span><span class="n">cc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">bcc</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">attachment</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">sender</span><span class="o">=</span><span class="n">fullname</span> <span class="o">+</span> <span class="s2">&quot; &lt;&quot;</span> <span class="o">+</span> <span class="n">username</span> <span class="o">+</span> <span class="s2">&quot;@your-app-id.appspotmail.com&gt;&quot;</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="n">mail</span><span class="o">.</span><span class="n">EmailMessage</span><span class="p">(</span><span class="n">sender</span><span class="o">=</span><span class="n">sender</span><span class="p">)</span>
+    <span class="n">message</span><span class="o">.</span><span class="n">to</span> <span class="o">=</span> <span class="n">to</span>
+    <span class="k">if</span> <span class="n">cc</span><span class="o">!=</span><span class="bp">None</span> <span class="ow">and</span> <span class="n">cc</span><span class="o">!=</span><span class="s1">&#39;&#39;</span><span class="p">:</span>
+        <span class="n">message</span><span class="o">.</span><span class="n">cc</span><span class="o">=</span><span class="n">cc</span>
+    <span class="k">if</span> <span class="n">bcc</span><span class="o">!=</span><span class="bp">None</span> <span class="ow">and</span> <span class="n">bcc</span><span class="o">!=</span><span class="s1">&#39;&#39;</span><span class="p">:</span>
+        <span class="n">message</span><span class="o">.</span><span class="n">bcc</span> <span class="o">=</span> <span class="n">bcc</span>
+    <span class="n">message</span><span class="o">.</span><span class="n">subject</span> <span class="o">=</span> <span class="n">subject</span>
+    <span class="n">message</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">body</span>
+    <span class="n">message</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+
+<span class="n">application</span> <span class="o">=</span> <span class="n">webapp2</span><span class="o">.</span><span class="n">WSGIApplication</span><span class="p">([</span>
+                                       <span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">MainPage</span><span class="p">),</span>
+                                       <span class="p">(</span><span class="s1">&#39;/test&#39;</span><span class="p">,</span> <span class="n">TestPage</span><span class="p">)</span>
+                                       <span class="p">],</span> <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+
+
+<p>So now, you may bid farewell to third party mail services like mail-chimp and others - since you have your own mail server.</p>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+				</div>
+				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
+					<div style='margin-top: 50px;'>
+
+<!-- AMAZON AFFILIATE ADS -->
+<!--
+<a href="https://www.amazon.in/Automate-Boring-Stuff-Python-2nd/dp/1593279922/ref=as_li_ss_il?crid=JA705IOUH74O&keywords=automate+the+boring+stuff+with+python&qid=1583912586&sprefix=automate+the+,aps,460&sr=8-1&linkCode=li2&tag=prahladyeri-21&linkId=5f899269cc1aea74977c02963a9a6caf&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1593279922&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=1593279922" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.in/PYTHON-PROGRAMMING-BEGINNERS-GUIDE-LEARN-ebook/dp/B01GSODGZC/ref=as_li_ss_il?crid=33LIIMVDMW1U3&keywords=python+programming&qid=1583912662&sprefix=python,aps,527&sr=8-4&linkCode=li2&tag=prahladyeri-21&linkId=6b3a8b38eda1d6c51546a1a0c321cfea&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01GSODGZC&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=B01GSODGZC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class='container-fluid'>
+<div class='row'>
+		<footer id ="footer" class="col-md-12 text-center bg-dark text-white pt-1 pb-1 pl-1 pr-1">
+		Copyright (&copy;) 2014-2022 Prahlad Yeri. This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+		</footer>
+</div>
+</div>		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="/theme/js/popper.min.js"></script> -->
+<!-- <script src="/theme/js/bootstrap.min.js"></script> -->
 </body>
 </html>

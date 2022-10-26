@@ -15,9 +15,9 @@
 	<link rel="stylesheet" href="/theme/css/app.css">
 	<link rel="stylesheet" href="/theme/css/pygment.css">		
 	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
-	<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
-	<link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
-	<link href="/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
 
 
 
@@ -31,22 +31,248 @@
 	<meta name="twitter:site" content="@prahladyeri" />
 	<meta name="twitter:creator" content="@prahladyeri" />
 		<link rel="canonical" content="https://prahladyeri.github.io/blog/2015/12/rockstar-java-dev-series-using-lambda-expressions.html" />
-		<meta name="twitter:url" content="/blog/2015/12/rockstar-java-dev-series-using-lambda-expressions.html" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2015/12/rockstar-java-dev-series-using-lambda-expressions.html" />
 		<meta name="twitter:title" content="Rockstar Java Series: Using Lambda expressions to up your game" />
 		<meta name="twitter:description" content="Java 8 comes with a lot more improvements and features than most people seem to realize. One such feature that can boost your productivity as a Java Programmer is Lambda expressions. To learn just how beneficial this oft less understood feature is, lets take a very simple example: A Product …" />
-			<meta name="twitter:image" content="/uploads/cover.jpg" />
-			<meta name="image" property="og:image" content="/uploads/cover.jpg">
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/cover.jpg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/cover.jpg">
 
 	<!-- open graph meta data (TODO) -->
 	
+	<!--start: analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6808883-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-6808883-5');
+	</script>
+	<!--end: analytics -->
 	
 <!--pinterest claim-->
 <meta name="p:domain_verify" content="eb43d46309e2766ef1b627cea2d19326"/>
 </head>
 
 <body id="index" class="home">
-<h1 class='text-center'>
-<p>It Works!</p>
-</h1>
+<!-- section bootstrap-menu -->
+<div class='container'>
+<div class='row header'>
+	<div class='col-md-12 text-center' style='margin: 10px 0 0 0'>
+		<h2>Prahlad Yeri</h2>
+		<h6 class='text-muted'>Freelance Programmer and Writer</h6>
+	</div>
+	<div class='col-md-12 text-center' >
+		<ul class="nav nav-fill text-center site-links col-md-8 ml-auto mr-auto">
+		<li class="nav-item"><a class="nav-link btn btn-primary" href="/">Home</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-success" href="/blog">Blog</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-danger" href="/portfolio">Portfolio</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-secondary" href="https://github.com/prahladyeri/resume">Resume</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-warning" href="/hire-me">Hire Me</a></li>
+		<li class='nav-item dropdown'>
+			<a class="nav-link dropdown-toggle btn btn-dark" id='btnSocial' href="javascript:" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+			<div class="dropdown-menu" aria-labelledby="btnSocial">
+				<a class="dropdown-item" href="https://twitter.com/prahladyeri">Twitter</a>
+				<a class="dropdown-item" href="https://github.com/prahladyeri">Github</a>
+				<a class="dropdown-item" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a>
+				<a class="dropdown-item" href="https://prahladyeri.medium.com/">Medium</a>
+				<a class="dropdown-item" href="https://www.quora.com/profile/Prahlad-Yeri">Quora</a>
+				<a class="dropdown-item" href="https://www.instagram.com/prahladyeri14/">Instagram</a>
+				<a class="dropdown-item" href="mailto:prahladyeri@yahoo.com">Email</a>
+			</div>
+		</li>
+		<li class='btn-group'>
+			<a class="nav-link dropdown-toggle btn btn-info" role='button' id='btnFeeds' href="javascript:" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a>
+			<div class="dropdown-menu" aria-labelledby="btnFeeds">
+				<a class="dropdown-item" href="/feeds/all.rss.xml">RSS</a>
+				<a class="dropdown-item" href="/feeds/all.atom.xml">ATOM</a>
+				<!-- <a class="dropdown-item" href="https://feedburner.google.com/fb/a/mailverify?uri=prahladyeri&amp;loc=en_US">Feedburner</a> -->
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='ml-auto col-md-8 mr-auto'>
+	</div>
+</div>
+</div>
+
+		<div id="main" class='mt-2 container content '>
+			<div class='row'>
+				<div class='offset-md-2 col-md-8'>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2015/12/rockstar-java-dev-series-using-lambda-expressions.html" rel="bookmark" 
+      title="Permalink to Rockstar Java Series: Using Lambda expressions to up your game">Rockstar Java Series: Using Lambda expressions to up your game</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2015-12-16T21:23:00+05:30">Wed 16 December 2015</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/java">Java</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/java">Java</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p><strong>Java 8</strong> comes with a lot more improvements and features than most people seem to realize. One such feature that can boost your productivity as a Java Programmer is <strong>Lambda expressions</strong>.<!--more--></p>
+<p>To learn just how beneficial this oft less understood feature is, lets take a very simple example: A <code>Product search function</code>, and see how various traditional approaches to this problem fare out. Since eCommerce stores and shopping cart apps have become quite a buzzword of late, lets make a simple implementation of product search by name:</p>
+<div class="highlight"><pre><span></span>//Navie approach
+public static List&lt;Product&gt; search(List&lt;Product&gt; stock, String name) 
+{
+    ArrayList&lt;Product&gt; r = new ArrayList&lt;Product&gt;();
+    for (Product p : stock)
+    {
+        if (p.name.compareTo(name)==0) {
+            r.add(p);
+        }
+    }
+    return r;
+}
+</pre></div>
+
+
+<p>This is the naivest approach a programmer can possibly take when writing a product search method. The assumption here is that name is going to be the only criteria to search the product catalog. Suppose, you were working as a Java Programmer for a small eCommerce store and you wrote this function, only to realize that your users want a price comparison feature too. So, you add two extra parameters for price range to the search method like this:</p>
+<div class="highlight"><pre><span></span>//Classic Java Programmer approach
+public static List&lt;Product&gt; searchWithRange(List&lt;Product&gt; stock, String name, double minValue, double maxValue)
+{
+    ArrayList&lt;Product&gt; r = new ArrayList&lt;Product&gt;();
+    for (Product p : stock)
+    {
+        if (p.name.compareTo(name)==0 &amp;&amp; (p.price&gt;=minValue &amp;&amp; p.price&lt;=maxValue)) {
+            r.add(p);
+        }
+    }
+    return r;
+}
+</pre></div>
+
+
+<p>This is the classic Java Programmer pattern - if you want to change behavior of a class, just add more parameters to methods. Even a lot of experts do this forgetting the repercussions. For one, each and every change impacts the <code>public interface</code> of your class. Meaning, if you have distributed this class as part of a library <code>jar</code> to any fellow programmers, you must recompile your library package again just for adding one extra parameter. Expert programmers realize this, so they come up with <code>Interfaces</code>. In this example, an Expert programmer will try to separate out the search comparison logic from the search scanning (for loop) and define a <code>ProductFilter</code> interface such as this:</p>
+<div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">ProductFilter</span>
+<span class="p">{</span>
+    <span class="kr">public</span> <span class="kr">boolean</span> <span class="nx">run</span><span class="p">(</span><span class="nx">Product</span> <span class="nx">p</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>This interface is just a “contract” that asks users to define a <code>run</code> method for comparing a product and return a matching boolean result to include it in the result or not. With this interface, our search method becomes lot more flexible:</p>
+<div class="highlight"><pre><span></span>//Expert Java Programmer approach
+public static List&lt;Product&gt; searchWithInterface(List&lt;Product&gt; stock, ProductFilter filter)
+{
+    ArrayList&lt;Product&gt; r = new ArrayList&lt;Product&gt;();
+    for (Product p : stock)
+    {
+        if (filter.run(p)) {
+            r.add(p);
+        }
+    }
+    return r;
+}
+</pre></div>
+
+
+<p>You see, the class is more generic and flexible now. It can take up whatever new criteria like product size (“15+ inch LCD screens”) or product ratings (“four stars plus”) you come up with. Here is a simple example of using this search method:</p>
+<div class="highlight"><pre><span></span>List&lt;Product&gt; r =  Product.searchWithInterface(list,new ProductFilter(){
+    public boolean run(Product p) {
+            return (p.name==&quot;foo&quot; &amp;&amp; (p.price&gt;=10 &amp;&amp; p.price&lt;=50) &amp;&amp; p.size==&quot;15in&quot;);
+        }
+    });
+</pre></div>
+
+
+<p>This is how you would have done things if you were an Expert Java programmer until JDK 7.0, but JDK 8.0 has changed everything! With <em>lambdas</em>, the above implementation becomes even more flexible and powerful. Firstly, because the interface <code>ProductFilter</code> has only one method, it is a <code>functional interface</code>. With functional interfaces, you can directly assign them <code>lambda expressions</code>, so the above search application becomes as simple as this:</p>
+<div class="highlight"><pre><span></span>  List&lt;Product&gt; r =  Product.searchWithLambda(list,
+    (Product p) -&gt; (p.name.equals(&quot;foo&quot;) &amp;&amp; (p.price&gt;=10 &amp;&amp; p.price&lt;=50) &amp;&amp; p.size.equals(&quot;15in&quot;))); //rockstar2
+</pre></div>
+
+
+<p>The syntax for a lamdba is as follows: Arguments in braces, followed by the arrow symbol, followed by statements that return a value:</p>
+<div class="highlight"><pre><span></span>(arguments) -&gt; (statements)
+</pre></div>
+
+
+<p>In fact, a Rockstar Java programmer will think that he/she no longer needs the <code>ProductFilter</code> interface now. That’s because the package <code>java.util.function</code> comes bundled with several generic interfaces that are pretty easy to use with lambdas. For instance, using the <code>Predicate&lt;T&gt;</code> Interface, our search method no longer needs an interface now!</p>
+<div class="highlight"><pre><span></span>//Rockstar Java Programmer approach
+public static List&lt;Product&gt;  searchWithLambda(List&lt;Product&gt; stock, Predicate&lt;Product&gt; filter) 
+{
+    ArrayList&lt;Product&gt; r = new ArrayList&lt;Product&gt;();
+    for (Product p : stock)
+    {
+        if (filter.test(p)) {
+            r.add(p);
+        }
+    }
+    return r;
+}
+</pre></div>
+
+
+<p>The interface <code>java.util.function.Predicate</code> is a generic interface that contains a generic method named <code>test()</code> (notice we changed <code>run</code> to <code>test</code> in order to use this interface). The package <code>java.util.function.*</code> contains several other useful interfaces like <code>Predicate</code> that can help you in many such situations.</p>
+<p>Good programming is all about minimalism and reducing code-bloat. Whilst implementing a new paradigm in your existing code might sometime clash with your other constraints like delivery time and number of available developers, I personally think that in the long run, all these efforts spent usually pay off. The pay-off could be in the form of more re-usability, more readability of code, fewer bugs and in most cases all of them.</p>
+<p><a href="https://gist.github.com/prahladyeri/0577b5a01ccaa8206e80">Here</a> is the complete implementation of <code>Product.java</code>. Today we learned about Lambda expressions, an important new feature in Java 8. In the next part of the series we will learn about <code>default methods</code>, another great Java feature to make your life easier!</p>
+<p><em>References:</em></p>
+<ul>
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html">https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html</a></li>
+<li><a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html</a></li>
+</ul>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+				</div>
+				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
+					<div style='margin-top: 50px;'>
+
+<!-- AMAZON AFFILIATE ADS -->
+<!--
+<a href="https://www.amazon.in/Automate-Boring-Stuff-Python-2nd/dp/1593279922/ref=as_li_ss_il?crid=JA705IOUH74O&keywords=automate+the+boring+stuff+with+python&qid=1583912586&sprefix=automate+the+,aps,460&sr=8-1&linkCode=li2&tag=prahladyeri-21&linkId=5f899269cc1aea74977c02963a9a6caf&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1593279922&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=1593279922" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.in/PYTHON-PROGRAMMING-BEGINNERS-GUIDE-LEARN-ebook/dp/B01GSODGZC/ref=as_li_ss_il?crid=33LIIMVDMW1U3&keywords=python+programming&qid=1583912662&sprefix=python,aps,527&sr=8-4&linkCode=li2&tag=prahladyeri-21&linkId=6b3a8b38eda1d6c51546a1a0c321cfea&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01GSODGZC&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=B01GSODGZC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class='container-fluid'>
+<div class='row'>
+		<footer id ="footer" class="col-md-12 text-center bg-dark text-white pt-1 pb-1 pl-1 pr-1">
+		Copyright (&copy;) 2014-2022 Prahlad Yeri. This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+		</footer>
+</div>
+</div>		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="/theme/js/popper.min.js"></script> -->
+<!-- <script src="/theme/js/bootstrap.min.js"></script> -->
 </body>
 </html>

@@ -15,9 +15,9 @@
 	<link rel="stylesheet" href="/theme/css/app.css">
 	<link rel="stylesheet" href="/theme/css/pygment.css">		
 	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
-	<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
-	<link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
-	<link href="/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
 
 
 
@@ -34,22 +34,245 @@
 	<meta name="twitter:site" content="@prahladyeri" />
 	<meta name="twitter:creator" content="@prahladyeri" />
 		<link rel="canonical" content="https://prahladyeri.github.io/blog/2016/12/how-to-create-google-drive-app-python-flask.html" />
-		<meta name="twitter:url" content="/blog/2016/12/how-to-create-google-drive-app-python-flask.html" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2016/12/how-to-create-google-drive-app-python-flask.html" />
 		<meta name="twitter:title" content="How to create a Google Drive App in Flask" />
 		<meta name="twitter:description" content="This is the first in a series of articles for web programmers that explain in detail about using the Google Drive API in your web applications to access files/folders on behalf of the users of your application. In my last project, I had to develop a python flask app …" />
-			<meta name="twitter:image" content="/uploads/cover.jpg" />
-			<meta name="image" property="og:image" content="/uploads/cover.jpg">
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/cover.jpg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/cover.jpg">
 
 	<!-- open graph meta data (TODO) -->
 	
+	<!--start: analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6808883-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-6808883-5');
+	</script>
+	<!--end: analytics -->
 	
 <!--pinterest claim-->
 <meta name="p:domain_verify" content="eb43d46309e2766ef1b627cea2d19326"/>
 </head>
 
 <body id="index" class="home">
-<h1 class='text-center'>
-<p>It Works!</p>
-</h1>
+<!-- section bootstrap-menu -->
+<div class='container'>
+<div class='row header'>
+	<div class='col-md-12 text-center' style='margin: 10px 0 0 0'>
+		<h2>Prahlad Yeri</h2>
+		<h6 class='text-muted'>Freelance Programmer and Writer</h6>
+	</div>
+	<div class='col-md-12 text-center' >
+		<ul class="nav nav-fill text-center site-links col-md-8 ml-auto mr-auto">
+		<li class="nav-item"><a class="nav-link btn btn-primary" href="/">Home</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-success" href="/blog">Blog</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-danger" href="/portfolio">Portfolio</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-secondary" href="https://github.com/prahladyeri/resume">Resume</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-warning" href="/hire-me">Hire Me</a></li>
+		<li class='nav-item dropdown'>
+			<a class="nav-link dropdown-toggle btn btn-dark" id='btnSocial' href="javascript:" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+			<div class="dropdown-menu" aria-labelledby="btnSocial">
+				<a class="dropdown-item" href="https://twitter.com/prahladyeri">Twitter</a>
+				<a class="dropdown-item" href="https://github.com/prahladyeri">Github</a>
+				<a class="dropdown-item" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a>
+				<a class="dropdown-item" href="https://prahladyeri.medium.com/">Medium</a>
+				<a class="dropdown-item" href="https://www.quora.com/profile/Prahlad-Yeri">Quora</a>
+				<a class="dropdown-item" href="https://www.instagram.com/prahladyeri14/">Instagram</a>
+				<a class="dropdown-item" href="mailto:prahladyeri@yahoo.com">Email</a>
+			</div>
+		</li>
+		<li class='btn-group'>
+			<a class="nav-link dropdown-toggle btn btn-info" role='button' id='btnFeeds' href="javascript:" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a>
+			<div class="dropdown-menu" aria-labelledby="btnFeeds">
+				<a class="dropdown-item" href="/feeds/all.rss.xml">RSS</a>
+				<a class="dropdown-item" href="/feeds/all.atom.xml">ATOM</a>
+				<!-- <a class="dropdown-item" href="https://feedburner.google.com/fb/a/mailverify?uri=prahladyeri&amp;loc=en_US">Feedburner</a> -->
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='ml-auto col-md-8 mr-auto'>
+	</div>
+</div>
+</div>
+
+		<div id="main" class='mt-2 container content '>
+			<div class='row'>
+				<div class='offset-md-2 col-md-8'>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2016/12/how-to-create-google-drive-app-python-flask.html" rel="bookmark" 
+      title="Permalink to How to create a Google Drive App in Flask">How to create a Google Drive App in Flask</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2016-12-29T04:21:00+05:30">Thu 29 December 2016</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/python">Python</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/flask">Flask</a>
+            <a href="https://prahladyeri.github.io/blog/tag/google-drive">Google Drive</a>
+            <a href="https://prahladyeri.github.io/blog/tag/python">Python</a>
+            <a href="https://prahladyeri.github.io/blog/tag/how-to">How To</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p>This is the first in a series of articles for web programmers that explain in detail about using the Google Drive API in your web applications to access files/folders on behalf of the users of your application. In my last project, I had to develop a python flask app for my users that required to access the files stored in their google drive account.<!--more--></p>
+<p>The major challenge for me was to authenticate to google and access the drive on the user’s behalf once they grant permission to my app. This method of authentication is called <a href="https://en.wikipedia.org/wiki/OAuth">OAuth</a> and is very much needed for implementing the drive api.</p>
+<p>However, a good documentation to implement this in a backend app, especially a python web-based app is very much lacking. The so called <a href="https://developers.google.com/drive/v3/web/quickstart/python">quickstart for drive api</a> shows some example code, but what I needed was a step-by-step tutorial of how to go about doing it. Since I couldn’t find any such tutorial online, I thought about writing one myself.</p>
+<h3>I: Register a google app by visiting the <a href="https://console.developers.google.com/">Google API console</a>:</h3>
+<p>The way the latest version (V3) of drive API works is only through OAuth. It means you cannot put a password or API key inside your code and access the drive files. You need to register your backend app and generate OAuth credentials for the app, so that it can access the drive on the user’s behalf once the user grants permission to the app. So the first step is going to the <a href="https://console.developers.google.com/">Google API console</a>, registering the app itself and generating OAuth credentials. The registration process is pretty straightforward, you just select “Create Project” from the dropdown and give a nice name for your project such as <code class="highlighter-rouge">Flask Drive Example App</code> in our case.</p>
+<p><img alt="Register Google App" src="/uploads/old/google-apis/drive_api_steps.png"></p>
+<h3 id="ii-configure-the-credentials-and-download-the-client_idjson-file">II: Configure the credentials and download the client_id.json file:</h3>
+<p>This is the credential file that validates to Google who you are (as a developer) and also your app that acts on your behalf. Download and save it as <code class="highlighter-rouge">client_id.json</code> in the same directory as the flask app.</p>
+<p><img alt="Configure Credentials" src="/uploads/old/google-apis/configuration_steps.png"></p>
+<h3>III: Write your back-end app:</h3>
+<p>The most important thing to know before building your app is to install these dependencies:</p>
+<div class="highlight"><pre><span></span>pip install flask google-api-python-client
+</pre></div>
+
+
+<p>You can replace flask with django, pylons or any other framework you use, but this tutorial and code example is based on flask. The principle of accessing the drive api should still apply, so you should be able to make use of this code.</p>
+<p>The first thing to do is create a flask object and handle the home page url. It could in fact be any other url in your app, but in this example, I’ve used the home page url (/) to do the OAuth authentication on behalf of the logged in user.</p>
+<div class="highlight"><pre><span></span>app = flask.Flask(__name__)
+
+@app.route(&#39;/&#39;)
+def index():
+    credentials = get_credentials()
+    if credentials == False:
+        return flask.redirect(flask.url_for(&#39;oauth2callback&#39;))
+    elif credentials.access_token_expired:
+        return flask.redirect(flask.url_for(&#39;oauth2callback&#39;))
+    else:
+        print(&#39;now calling fetch&#39;)
+        all_files = fetch(&quot;&#39;root&#39; in parents and mimeType = &#39;application/vnd.google-apps.folder&#39;&quot;, sort=&#39;modifiedTime desc&#39;)
+        s = &quot;&quot;
+        for file in all_files:
+            s += &quot;%s, %s&lt;br&gt;&quot; % (file[&#39;name&#39;],file[&#39;id&#39;])
+        return s
+</pre></div>
+
+
+<p>We first check whether we have the drive access credentials for the user locally stored in a file. This is done by the <code class="highlighter-rouge">get_credentials()</code> function that checks the local access token file credentials.json (not to be confused with client_id.json we downloaded earlier which is for developer credentials). Again, we are assuming a single user scenario here. If your drive app needs to authenticate with multiple users, you’ll have to store separate credentials.json for each logged-in user in the database, and access that through a session or something.</p>
+<p>Further, if credentials aren’t found locally or have expired, we direct them to <code class="highlighter-rouge">/oauth2callback</code>, so google will authenticate them and send us the token for accessing the drive, post which, we will put that token into the local file, credentials.json and redirect the user back to this index site. Finally, if the credentials are valid, we call the <code class="highlighter-rouge">fetch()</code> function that displays the list of all root folders in that user’s drive along with their IDs. Here is the code for <code class="highlighter-rouge">oauth2callback</code>:</p>
+<div class="highlight"><pre><span></span>@app.route(&#39;/oauth2callback&#39;)
+def oauth2callback():
+    flow = client.flow_from_clientsecrets(&#39;client_id.json&#39;,
+            scope=&#39;https://www.googleapis.com/auth/drive&#39;,
+            redirect_uri=flask.url_for(&#39;oauth2callback&#39;, _external=True)) # access drive api using developer credentials
+    flow.params[&#39;include_granted_scopes&#39;] = &#39;true&#39;
+    if &#39;code&#39; not in flask.request.args:
+        auth_uri = flow.step1_get_authorize_url()
+        return flask.redirect(auth_uri)
+    else:
+        auth_code = flask.request.args.get(&#39;code&#39;)
+        credentials = flow.step2_exchange(auth_code)
+        open(&#39;credentials.json&#39;,&#39;w&#39;).write(credentials.to_json()) # write access token to credentials.json locally
+        return flask.redirect(flask.url_for(&#39;index&#39;))
+</pre></div>
+
+
+<p>Once you have the credentials locally (in the form of <code class="highlighter-rouge">credentials.json</code>), you can just use it to access the drive API. Thus, the result of this whole exercise is that only on first page load is the user redirected to google site to authenticate themselves. Once the app has the access token (credentials.json), its no longer required, the result is displayed directly on the page from then on. If all goes well, you should be able to see a screen such as this when you test this example app for the first time:</p>
+<p><img alt="Google OAuth Screen" src="/uploads/old/google-apis/oauth_screen.png"></p>
+<p>I’ve also included the functions to download and upload files to the drive as they will be very useful:</p>
+<div class="highlight"><pre><span></span>def download_file(file_id, output_file):
+    credentials = get_credentials()
+    http = credentials.authorize(httplib2.Http())
+    service = discovery.build(&#39;drive&#39;, &#39;v3&#39;, http=http)
+    #file_id = &#39;0BwwA4oUTeiV1UVNwOHItT0xfa2M&#39;
+    request = service.files().export_media(fileId=file_id,mimeType=&#39;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&#39;)
+    #request = service.files().get_media(fileId=file_id)
+
+    fh = open(output_file,&#39;wb&#39;) #io.BytesIO()
+    downloader = MediaIoBaseDownload(fh, request)
+    done = False
+    while done is False:
+        status, done = downloader.next_chunk()
+        #print (&quot;Download %d%%.&quot; % int(status.progress() * 100))
+    fh.close()
+    #return fh
+
+def update_file(file_id, local_file):
+    credentials = get_credentials()
+    http = credentials.authorize(httplib2.Http())
+    service = discovery.build(&#39;drive&#39;, &#39;v3&#39;, http=http)
+    # First retrieve the file from the API.
+    file = service.files().get(fileId=file_id).execute()
+    # File&#39;s new content.
+    media_body = MediaFileUpload(local_file, resumable=True)
+    # Send the request to the API.
+    updated_file = service.files().update(
+        fileId=file_id,
+        #body=file,
+        #newRevision=True,
+        media_body=media_body).execute()
+</pre></div>
+
+
+<hr>
+<p>I’ll leave the more comprehensive use of these functions as an exercise to the reader who wants to develop a more fully featured app out of this. Click the below link to download the <code class="highlighter-rouge">flask_drive_example.py</code> script for this example implementation from the Github gist:</p>
+<p><a class="btn btn-md btn-success" href="https://gist.githubusercontent.com/prahladyeri/0b92b9ca837a0f5474c732876220db78"> flask_drive_example.py</a></p>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+				</div>
+				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
+					<div style='margin-top: 50px;'>
+
+<!-- AMAZON AFFILIATE ADS -->
+<!--
+<a href="https://www.amazon.in/Automate-Boring-Stuff-Python-2nd/dp/1593279922/ref=as_li_ss_il?crid=JA705IOUH74O&keywords=automate+the+boring+stuff+with+python&qid=1583912586&sprefix=automate+the+,aps,460&sr=8-1&linkCode=li2&tag=prahladyeri-21&linkId=5f899269cc1aea74977c02963a9a6caf&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1593279922&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=1593279922" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.in/PYTHON-PROGRAMMING-BEGINNERS-GUIDE-LEARN-ebook/dp/B01GSODGZC/ref=as_li_ss_il?crid=33LIIMVDMW1U3&keywords=python+programming&qid=1583912662&sprefix=python,aps,527&sr=8-4&linkCode=li2&tag=prahladyeri-21&linkId=6b3a8b38eda1d6c51546a1a0c321cfea&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01GSODGZC&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=B01GSODGZC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class='container-fluid'>
+<div class='row'>
+		<footer id ="footer" class="col-md-12 text-center bg-dark text-white pt-1 pb-1 pl-1 pr-1">
+		Copyright (&copy;) 2014-2022 Prahlad Yeri. This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+		</footer>
+</div>
+</div>		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="/theme/js/popper.min.js"></script> -->
+<!-- <script src="/theme/js/bootstrap.min.js"></script> -->
 </body>
 </html>

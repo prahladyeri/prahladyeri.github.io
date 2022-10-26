@@ -15,9 +15,9 @@
 	<link rel="stylesheet" href="/theme/css/app.css">
 	<link rel="stylesheet" href="/theme/css/pygment.css">		
 	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
-	<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
-	<link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
-	<link href="/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
 
 
 
@@ -33,22 +33,267 @@
 	<meta name="twitter:site" content="@prahladyeri" />
 	<meta name="twitter:creator" content="@prahladyeri" />
 		<link rel="canonical" content="https://prahladyeri.github.io/blog/2014/06/php-fpm-vs-node-js-the-real-performance-battle.html" />
-		<meta name="twitter:url" content="/blog/2014/06/php-fpm-vs-node-js-the-real-performance-battle.html" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2014/06/php-fpm-vs-node-js-the-real-performance-battle.html" />
 		<meta name="twitter:title" content="PHP-FPM vs node.js - The REAL Performance Battle" />
 		<meta name="twitter:description" content="Even after my last article about PHP and node.js benchmarking, my search for the holy grail of performance truth still continues. However, I do understand now that pitting PHP running on apache against a stand-alone node was a bit unfair with PHP for it was limited by what the …" />
-			<meta name="twitter:image" content="/uploads/cover.jpg" />
-			<meta name="image" property="og:image" content="/uploads/cover.jpg">
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/cover.jpg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/cover.jpg">
 
 	<!-- open graph meta data (TODO) -->
 	
+	<!--start: analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6808883-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-6808883-5');
+	</script>
+	<!--end: analytics -->
 	
 <!--pinterest claim-->
 <meta name="p:domain_verify" content="eb43d46309e2766ef1b627cea2d19326"/>
 </head>
 
 <body id="index" class="home">
-<h1 class='text-center'>
-<p>It Works!</p>
-</h1>
+<!-- section bootstrap-menu -->
+<div class='container'>
+<div class='row header'>
+	<div class='col-md-12 text-center' style='margin: 10px 0 0 0'>
+		<h2>Prahlad Yeri</h2>
+		<h6 class='text-muted'>Freelance Programmer and Writer</h6>
+	</div>
+	<div class='col-md-12 text-center' >
+		<ul class="nav nav-fill text-center site-links col-md-8 ml-auto mr-auto">
+		<li class="nav-item"><a class="nav-link btn btn-primary" href="/">Home</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-success" href="/blog">Blog</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-danger" href="/portfolio">Portfolio</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-secondary" href="https://github.com/prahladyeri/resume">Resume</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-warning" href="/hire-me">Hire Me</a></li>
+		<li class='nav-item dropdown'>
+			<a class="nav-link dropdown-toggle btn btn-dark" id='btnSocial' href="javascript:" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+			<div class="dropdown-menu" aria-labelledby="btnSocial">
+				<a class="dropdown-item" href="https://twitter.com/prahladyeri">Twitter</a>
+				<a class="dropdown-item" href="https://github.com/prahladyeri">Github</a>
+				<a class="dropdown-item" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a>
+				<a class="dropdown-item" href="https://prahladyeri.medium.com/">Medium</a>
+				<a class="dropdown-item" href="https://www.quora.com/profile/Prahlad-Yeri">Quora</a>
+				<a class="dropdown-item" href="https://www.instagram.com/prahladyeri14/">Instagram</a>
+				<a class="dropdown-item" href="mailto:prahladyeri@yahoo.com">Email</a>
+			</div>
+		</li>
+		<li class='btn-group'>
+			<a class="nav-link dropdown-toggle btn btn-info" role='button' id='btnFeeds' href="javascript:" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a>
+			<div class="dropdown-menu" aria-labelledby="btnFeeds">
+				<a class="dropdown-item" href="/feeds/all.rss.xml">RSS</a>
+				<a class="dropdown-item" href="/feeds/all.atom.xml">ATOM</a>
+				<!-- <a class="dropdown-item" href="https://feedburner.google.com/fb/a/mailverify?uri=prahladyeri&amp;loc=en_US">Feedburner</a> -->
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='ml-auto col-md-8 mr-auto'>
+	</div>
+</div>
+</div>
+
+		<div id="main" class='mt-2 container content '>
+			<div class='row'>
+				<div class='offset-md-2 col-md-8'>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2014/06/php-fpm-vs-node-js-the-real-performance-battle.html" rel="bookmark" 
+      title="Permalink to PHP-FPM vs node.js - The REAL Performance Battle">PHP-FPM vs node.js - The REAL Performance Battle</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2014-06-22T21:15:00+05:30">Sun 22 June 2014</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/php">PHP</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/php">PHP</a>
+            <a href="https://prahladyeri.github.io/blog/tag/javascript">JavaScript</a>
+            <a href="https://prahladyeri.github.io/blog/tag/node">Node</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p>Even after my last <a href="/blog/2014/06/php-vs-node-js-real-statistics.html">article</a> about PHP and node.js benchmarking, my search for the holy grail of performance truth still continues. However, I do understand now that pitting PHP running on apache against a stand-alone node was a bit unfair with PHP for it was limited by what the apache configuration could handle.<!--more--></p>
+<p><a href="/uploads/old/benchmark.png"><img alt="Benchmark" class="alignnone size-full wp-image-3082" height="622" src="/uploads/old/benchmark.png" width="1021"></a></p>
+<p>No, this time I went with nginx, a light and performance oriented server that was specifically designed to solve the <a href="https://en.wikipedia.org/wiki/C10k">C10K</a> problem from the ground-up. And who better than <a href="http://php-fpm.org/">PHP-FPM</a>, the enhanced Fastcgi process manager that implements asynchronous features (at least in theory) to take on <a href="http://nodejs.org/">node.js</a>. node.js is the one server that implements all its features primarily using callbacks in javascript, and thus drastically improvising performance by leveraging the benefits of <a href="https://en.wikipedia.org/wiki/Functional_programming">functional programming</a> (again, in theory).</p>
+<p>I used the same code I had used earlier but did a small improvement to it so that the random filenames generated for performing I/O are unique:</p>
+<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span> 
+<span class="c1">//asyncdemo.php</span>
+<span class="nv">$s</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">;</span> <span class="c1">//generate a random string of 108KB and a random filename</span>
+<span class="nv">$filename</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="c1">//generate a random filename</span>
+<span class="k">do</span> <span class="p">{</span>
+    <span class="nv">$fname</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">99999</span><span class="p">)</span><span class="o">.</span><span class="s1">&#39;.txt&#39;</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="nb">file_exists</span><span class="p">(</span><span class="nv">$fname</span><span class="p">));</span>
+
+<span class="c1">//generate a random string of 108kb</span>
+<span class="k">for</span><span class="p">(</span><span class="nv">$i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nv">$i</span><span class="o">&lt;</span><span class="mi">108000</span><span class="p">;</span><span class="nv">$i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$n</span><span class="o">=</span><span class="nb">rand</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">57</span><span class="p">)</span><span class="o">+</span><span class="mi">65</span><span class="p">;</span>
+    <span class="nv">$s</span><span class="o">.=</span><span class="nb">chr</span><span class="p">(</span><span class="nv">$n</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//write the string to disk</span>
+<span class="nb">file_put_contents</span><span class="p">(</span><span class="nv">$fname</span><span class="p">,</span><span class="nv">$s</span><span class="p">);</span>
+
+<span class="c1">//read the string back from disk</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="nv">$fname</span><span class="p">);</span>
+
+<span class="c1">//write the string back on the response stream</span>
+<span class="k">echo</span> <span class="nv">$result</span><span class="p">;</span>
+</pre></div>
+
+
+<p>And here is the Javascript version:</p>
+<div class="highlight"><pre><span></span><span class="c1">//server.js</span>
+<span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">);</span>    
+<span class="kd">var</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">handler</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">handler</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span> <span class="s1">&#39;text/plain&#39;</span><span class="p">});</span>
+
+    <span class="c1">//generate a random filename</span>
+    <span class="k">do</span><span class="p">{</span><span class="nx">fname</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="mi">99999999</span><span class="p">))</span><span class="o">+</span><span class="s1">&#39;.txt&#39;</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">existsSync</span><span class="p">(</span><span class="nx">fname</span><span class="p">));</span>
+
+    <span class="c1">//generate a random string of 108kb</span>
+    <span class="kd">var</span> <span class="nx">payload</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">108000</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nx">n</span><span class="o">=</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="mi">65</span> <span class="o">+</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="p">(</span><span class="mi">122</span><span class="o">-</span><span class="mi">65</span><span class="p">))</span> <span class="p">);</span>
+        <span class="nx">payload</span><span class="o">+=</span><span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">//write the string to disk in async manner</span>
+    <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFile</span><span class="p">(</span><span class="nx">fname</span><span class="p">,</span> <span class="nx">payload</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+
+            <span class="c1">//read the string back from disk in async manner</span>
+            <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="nx">fname</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+                <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span> <span class="c1">//write the string back on the response stream</span>
+            <span class="p">});</span>  
+        <span class="p">}</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Running on localhost:8080&#39;</span><span class="p">);</span>
+</pre></div>
+
+
+<p>So, what happens when we run a piece of web application code performing async I/O for two thousand times (with two hundred concurrent) using a tool like apache-bench? Who is faster - PHP-FPM or node.js? Here is the answer.</p>
+<p>So, moral of the story is that even the latest and greatest of PHP world falls behind node.js (though by a much smaller margin than before). Now, I do understand that PHP's market is very large, and with so many opensource CMSes like wordpress, mediawiki and drupal already powered by PHP, it is quite difficult to shake PHP's market share in the near future.</p>
+<p>On the other hand, with the performance advantage that node.js offers, its a very lucrative option for startups small businesses that don't have the funding to develop high-end enterprise apps in say, Java or SAP. More importantly, if tommorrow I were to given a task of developing a performance-driven app, is there one reason why I should not write it in node.js and go for PHP-FPM instead? Some food for thought. Comments are Welcome!</p>
+<div class="highlight"><pre><span></span>Summarized results:
+PHP-FPM: 64.447 secondsnode.js: 42.441 seconds
+
+The Machine:
+Intel Pentium Dual-Core 2.30GHz running Linux 3.2.0
+
+The Configurations:
+PHP-FPM: PHP 5.4.23 (fpm-fcgi) (built: Jun 22 2014 14:51:15
+NODE: node v0.10.28
+
+Detailed Results:
+--PHP-FPM-----
+ab -c 200 -n 2000 http://localhost:8080/asyncdemo/asyncdemo.php
+
+Concurrency Level:      200
+Time taken for tests:   64.447 seconds
+Complete requests:      2000
+Failed requests:        6
+   (Connect: 0, Receive: 0, Length: 6, Exceptions: 0)
+Write errors:           0
+Non-2xx responses:      6
+Total transferred:      215649378 bytes
+HTML transferred:       215355222 bytes
+Requests per second:    31.03 [#/sec] (mean)
+Time per request:       6444.742 [ms] (mean)
+Time per request:       32.224 [ms] (mean, across all concurrent requests)
+Transfer rate:          3267.70 [Kbytes/sec] receive
+
+
+--NODE-----
+ab -c 200 -n 2000 http://localhost:8080/
+
+Concurrency Level:      200
+Time taken for tests:   42.441 seconds
+Complete requests:      2000
+Failed requests:        1
+   (Connect: 0, Receive: 0, Length: 1, Exceptions: 0)
+Write errors:           0
+Total transferred:      216155440 bytes
+HTML transferred:       215953440 bytes
+Requests per second:    47.12 [#/sec] (mean)
+Time per request:       4244.115 [ms] (mean)
+Time per request:       21.221 [ms] (mean, across all concurrent requests)
+Transfer rate:          4973.69 [Kbytes/sec] received
+</pre></div>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+				</div>
+				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
+					<div style='margin-top: 50px;'>
+
+<!-- AMAZON AFFILIATE ADS -->
+<!--
+<a href="https://www.amazon.in/Automate-Boring-Stuff-Python-2nd/dp/1593279922/ref=as_li_ss_il?crid=JA705IOUH74O&keywords=automate+the+boring+stuff+with+python&qid=1583912586&sprefix=automate+the+,aps,460&sr=8-1&linkCode=li2&tag=prahladyeri-21&linkId=5f899269cc1aea74977c02963a9a6caf&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1593279922&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=1593279922" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.in/PYTHON-PROGRAMMING-BEGINNERS-GUIDE-LEARN-ebook/dp/B01GSODGZC/ref=as_li_ss_il?crid=33LIIMVDMW1U3&keywords=python+programming&qid=1583912662&sprefix=python,aps,527&sr=8-4&linkCode=li2&tag=prahladyeri-21&linkId=6b3a8b38eda1d6c51546a1a0c321cfea&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01GSODGZC&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=B01GSODGZC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class='container-fluid'>
+<div class='row'>
+		<footer id ="footer" class="col-md-12 text-center bg-dark text-white pt-1 pb-1 pl-1 pr-1">
+		Copyright (&copy;) 2014-2022 Prahlad Yeri. This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+		</footer>
+</div>
+</div>		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="/theme/js/popper.min.js"></script> -->
+<!-- <script src="/theme/js/bootstrap.min.js"></script> -->
 </body>
 </html>

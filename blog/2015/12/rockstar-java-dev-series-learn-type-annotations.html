@@ -15,9 +15,9 @@
 	<link rel="stylesheet" href="/theme/css/app.css">
 	<link rel="stylesheet" href="/theme/css/pygment.css">		
 	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
-	<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
-	<link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
-	<link href="/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
 
 
 
@@ -31,22 +31,243 @@
 	<meta name="twitter:site" content="@prahladyeri" />
 	<meta name="twitter:creator" content="@prahladyeri" />
 		<link rel="canonical" content="https://prahladyeri.github.io/blog/2015/12/rockstar-java-dev-series-learn-type-annotations.html" />
-		<meta name="twitter:url" content="/blog/2015/12/rockstar-java-dev-series-learn-type-annotations.html" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2015/12/rockstar-java-dev-series-learn-type-annotations.html" />
 		<meta name="twitter:title" content="Rockstar Java Series: Learn type annotations and be a better coder" />
 		<meta name="twitter:description" content="Java SE 8 comes with a bundle of new features, and not many of them catch the attention of coders until they learn what they are and realize their usefulness. One such feature that can help you become a better Java coder is the ability to declare type annotations to …" />
-			<meta name="twitter:image" content="/uploads/cover.jpg" />
-			<meta name="image" property="og:image" content="/uploads/cover.jpg">
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/cover.jpg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/cover.jpg">
 
 	<!-- open graph meta data (TODO) -->
 	
+	<!--start: analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6808883-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-6808883-5');
+	</script>
+	<!--end: analytics -->
 	
 <!--pinterest claim-->
 <meta name="p:domain_verify" content="eb43d46309e2766ef1b627cea2d19326"/>
 </head>
 
 <body id="index" class="home">
-<h1 class='text-center'>
-<p>It Works!</p>
-</h1>
+<!-- section bootstrap-menu -->
+<div class='container'>
+<div class='row header'>
+	<div class='col-md-12 text-center' style='margin: 10px 0 0 0'>
+		<h2>Prahlad Yeri</h2>
+		<h6 class='text-muted'>Freelance Programmer and Writer</h6>
+	</div>
+	<div class='col-md-12 text-center' >
+		<ul class="nav nav-fill text-center site-links col-md-8 ml-auto mr-auto">
+		<li class="nav-item"><a class="nav-link btn btn-primary" href="/">Home</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-success" href="/blog">Blog</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-danger" href="/portfolio">Portfolio</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-secondary" href="https://github.com/prahladyeri/resume">Resume</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-warning" href="/hire-me">Hire Me</a></li>
+		<li class='nav-item dropdown'>
+			<a class="nav-link dropdown-toggle btn btn-dark" id='btnSocial' href="javascript:" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+			<div class="dropdown-menu" aria-labelledby="btnSocial">
+				<a class="dropdown-item" href="https://twitter.com/prahladyeri">Twitter</a>
+				<a class="dropdown-item" href="https://github.com/prahladyeri">Github</a>
+				<a class="dropdown-item" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a>
+				<a class="dropdown-item" href="https://prahladyeri.medium.com/">Medium</a>
+				<a class="dropdown-item" href="https://www.quora.com/profile/Prahlad-Yeri">Quora</a>
+				<a class="dropdown-item" href="https://www.instagram.com/prahladyeri14/">Instagram</a>
+				<a class="dropdown-item" href="mailto:prahladyeri@yahoo.com">Email</a>
+			</div>
+		</li>
+		<li class='btn-group'>
+			<a class="nav-link dropdown-toggle btn btn-info" role='button' id='btnFeeds' href="javascript:" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a>
+			<div class="dropdown-menu" aria-labelledby="btnFeeds">
+				<a class="dropdown-item" href="/feeds/all.rss.xml">RSS</a>
+				<a class="dropdown-item" href="/feeds/all.atom.xml">ATOM</a>
+				<!-- <a class="dropdown-item" href="https://feedburner.google.com/fb/a/mailverify?uri=prahladyeri&amp;loc=en_US">Feedburner</a> -->
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='ml-auto col-md-8 mr-auto'>
+	</div>
+</div>
+</div>
+
+		<div id="main" class='mt-2 container content '>
+			<div class='row'>
+				<div class='offset-md-2 col-md-8'>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2015/12/rockstar-java-dev-series-learn-type-annotations.html" rel="bookmark" 
+      title="Permalink to Rockstar Java Series: Learn type annotations and be a better coder">Rockstar Java Series: Learn type annotations and be a better coder</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2015-12-24T21:23:00+05:30">Thu 24 December 2015</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/java">Java</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/java">Java</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p><em>Java SE 8</em> comes with a bundle of new features, and not many of them catch the attention of coders until they learn what they are and realize their usefulness. One such feature that can help you become a better Java coder is the ability to declare <em>type annotations</em> to any type use.<!--more--></p>
+<p>Before <em>Java SE 8</em> came out, <em>type annotations</em> could only be applied to declarations, but now they can be applied to any type use such as declarations of variables or methods, <em>class instance</em> creation, <em>casts</em>, <em>interface</em> creation, <em>implements</em> clauses, <em>throws</em> clauses, etc.</p>
+<p><em>Type annotations</em> were created to support improved analysis of Java programs by introducing stronger type checking. The more the <em>Java compiler</em> and <em>JVM</em> knows about your <code>bytecode</code>, the more equipped they are to perform better in the real world across all platforms.</p>
+<h2>What are Type Annotations?</h2>
+<p>In its basic form, an annotation looks like the following:</p>
+<div class="highlight"><pre><span></span>@entity
+</pre></div>
+
+
+<p>The variable after <code>@</code> symbol tells the Java compiler that what follows is a type annotation. A standard example of a built-in type annotation is <code>@Override</code>:</p>
+<div class="highlight"><pre><span></span>@Override
+public void talk()
+{
+    System.out.println(&quot;I am an overridden method&quot;);
+}
+</pre></div>
+
+
+<p>The <code>@Override</code> type annotation tells the Java compiler that what follows is an overridden method from the base class. Of course, you can even place multiple type annotations for the same declaration:</p>
+<div class="highlight"><pre><span></span>@Override
+@SuppressWarnings(&quot;unchecked&quot;)
+void myMethod() { ... }
+</pre></div>
+
+
+<p><em>Java SE 8</em> is so flexible that it allows you to define your own type annotations!</p>
+<h2>How to create your own Type Annotations?</h2>
+<p>Imagine there is a Software firm called <em>Acme Corporation</em> that develops Java software for its large number of clients. The standard Java practice there is to declare header files in each and every Java source file (*.java) like this:</p>
+<div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm"> * @copyright Amce Corporation Inc.</span>
+<span class="cm"> * @author Prahlad Yeri</span>
+<span class="cm"> * @date 25-12-2015</span>
+<span class="cm"> * @version 1.1</span>
+<span class="cm"> * */</span>
+<span class="kr">class</span> <span class="nx">Duck</span> 
+<span class="p">{</span>
+    <span class="kr">public</span> <span class="k">void</span> <span class="nx">talk() {</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Sound familiar? This is a pretty much common header style nowadays. This same information could be structured by using your own type annotation and it becomes so, so simple:</p>
+<div class="highlight"><pre><span></span><span class="kd">@Classinfo</span><span class="p">(</span>
+    <span class="nx">author</span> <span class="o">=</span> <span class="s2">&quot;Prahlad Yeri&quot;</span><span class="p">,</span>
+    <span class="nx">date</span> <span class="o">=</span> <span class="s2">&quot;25-12-2015&quot;</span>
+<span class="p">)</span>
+<span class="kr">class</span> <span class="nx">Duck</span> 
+<span class="p">{</span>
+    <span class="kr">public</span> <span class="k">void</span> <span class="nx">talk() {</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>In order to use your <code>@Classinfo</code> type annotation, you must declare it. Annotation declaration in Java is similar to how interfaces are declared. In fact, annotations are a kind of interface themselves:</p>
+<div class="highlight"><pre><span></span>@interface Classinfo 
+{
+    String copyright() default &quot;Acme Corporation Inc.&quot;;
+    String author();
+    String date();
+    String version() default &quot;1.1&quot;;
+    String lastModified() default &quot;&quot;;
+    String lastModifiedBy() default &quot;&quot;;
+    String codeReviewBy() default &quot;&quot;; 
+}
+</pre></div>
+
+
+<p>You can see that default values are given for <code>copyright</code>, <code>version</code>, <code>lastModifiedBy</code>, etc. so they are not basically required. If you need multiple author declaration, you can turn it into a list:</p>
+<div class="highlight"><pre><span></span>String[] author();
+</pre></div>
+
+
+<p>And then proceed to define multiple authors when using the type annotation in this manner:</p>
+<div class="highlight"><pre><span></span>@Classinfo(
+    author = {&quot;Prahlad Yeri&quot;, &quot;John Doe&quot;},
+    date = &quot;25-12-2015&quot;
+)
+</pre></div>
+
+
+<h2>Built-in type annotations in Java</h2>
+<p>Java comes with a bunch of type annotations pre defined. The ones we saw in this tutorial were <code>@Override</code> and <code>@SuppressWarnings</code>. Here is the entire list:</p>
+<ul>
+<li>@Deprecated annotation indicates that the marked element is deprecated and should no longer be used.</li>
+<li>@Override annotation informs the compiler that the element is meant to override an element declared in a superclass.</li>
+<li>@SuppressWarnings annotation tells the compiler to suppress specific warnings that it would otherwise generate.</li>
+<li>@SafeVarargs annotation, when applied to a method or constructor, asserts that the code does not perform potentially unsafe operations on its varargs parameter.</li>
+<li>@FunctionalInterface annotation, introduced in Java SE 8, indicates that the type declaration is intended to be a functional interface, as defined by the Java Language Specification.</li>
+<li>@Documented annotation (<em>only to be used in case of annotation declaration</em>) indicates that whenever the specified annotation is used those elements should be documented using the Javadoc tool. (By default, annotations are not included in Javadoc.)</li>
+</ul>
+<p><em>References:</em></p>
+<ul>
+<li><a href="https://docs.oracle.com/javase/tutorial/java/annotations/index.html">Official Oracle docs - Type Annotations</a></li>
+<li><a href="https://docs.oracle.com/javase/tutorial/java/annotations/basics.html">Official Oracle docs - Type Annotations Basics</a></li>
+<li><a href="https://docs.oracle.com/javase/tutorial/java/annotations/predefined.html">Official Oracle docs - Predefined Type Annotations</a></li>
+</ul>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+				</div>
+				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
+					<div style='margin-top: 50px;'>
+
+<!-- AMAZON AFFILIATE ADS -->
+<!--
+<a href="https://www.amazon.in/Automate-Boring-Stuff-Python-2nd/dp/1593279922/ref=as_li_ss_il?crid=JA705IOUH74O&keywords=automate+the+boring+stuff+with+python&qid=1583912586&sprefix=automate+the+,aps,460&sr=8-1&linkCode=li2&tag=prahladyeri-21&linkId=5f899269cc1aea74977c02963a9a6caf&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1593279922&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=1593279922" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.in/PYTHON-PROGRAMMING-BEGINNERS-GUIDE-LEARN-ebook/dp/B01GSODGZC/ref=as_li_ss_il?crid=33LIIMVDMW1U3&keywords=python+programming&qid=1583912662&sprefix=python,aps,527&sr=8-4&linkCode=li2&tag=prahladyeri-21&linkId=6b3a8b38eda1d6c51546a1a0c321cfea&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01GSODGZC&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=B01GSODGZC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class='container-fluid'>
+<div class='row'>
+		<footer id ="footer" class="col-md-12 text-center bg-dark text-white pt-1 pb-1 pl-1 pr-1">
+		Copyright (&copy;) 2014-2022 Prahlad Yeri. This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+		</footer>
+</div>
+</div>		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="/theme/js/popper.min.js"></script> -->
+<!-- <script src="/theme/js/bootstrap.min.js"></script> -->
 </body>
 </html>

@@ -15,9 +15,9 @@
 	<link rel="stylesheet" href="/theme/css/app.css">
 	<link rel="stylesheet" href="/theme/css/pygment.css">		
 	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
-	<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
-	<link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
-	<link href="/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
 
 
 
@@ -33,22 +33,269 @@
 	<meta name="twitter:site" content="@prahladyeri" />
 	<meta name="twitter:creator" content="@prahladyeri" />
 		<link rel="canonical" content="https://prahladyeri.github.io/blog/2018/07/how-to-create-a-server-less-google-drive-client-using-only-htmljavascript.html" />
-		<meta name="twitter:url" content="/blog/2018/07/how-to-create-a-server-less-google-drive-client-using-only-htmljavascript.html" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2018/07/how-to-create-a-server-less-google-drive-client-using-only-htmljavascript.html" />
 		<meta name="twitter:title" content="How to create a Server-less Google Drive client using only HTML and JavaScript" />
 		<meta name="twitter:description" content="A few days ago, I had to work on a project of this kind and the information and documentation available on this topic was quite bewildering. As a result, I decided to write this article in order to make everything available at one place. Almost everyone knows about the Google …" />
-			<meta name="twitter:image" content="/uploads/cover.jpg" />
-			<meta name="image" property="og:image" content="/uploads/cover.jpg">
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/cover.jpg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/cover.jpg">
 
 	<!-- open graph meta data (TODO) -->
 	
+	<!--start: analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6808883-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-6808883-5');
+	</script>
+	<!--end: analytics -->
 	
 <!--pinterest claim-->
 <meta name="p:domain_verify" content="eb43d46309e2766ef1b627cea2d19326"/>
 </head>
 
 <body id="index" class="home">
-<h1 class='text-center'>
-<p>It Works!</p>
-</h1>
+<!-- section bootstrap-menu -->
+<div class='container'>
+<div class='row header'>
+	<div class='col-md-12 text-center' style='margin: 10px 0 0 0'>
+		<h2>Prahlad Yeri</h2>
+		<h6 class='text-muted'>Freelance Programmer and Writer</h6>
+	</div>
+	<div class='col-md-12 text-center' >
+		<ul class="nav nav-fill text-center site-links col-md-8 ml-auto mr-auto">
+		<li class="nav-item"><a class="nav-link btn btn-primary" href="/">Home</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-success" href="/blog">Blog</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-danger" href="/portfolio">Portfolio</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-secondary" href="https://github.com/prahladyeri/resume">Resume</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-warning" href="/hire-me">Hire Me</a></li>
+		<li class='nav-item dropdown'>
+			<a class="nav-link dropdown-toggle btn btn-dark" id='btnSocial' href="javascript:" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+			<div class="dropdown-menu" aria-labelledby="btnSocial">
+				<a class="dropdown-item" href="https://twitter.com/prahladyeri">Twitter</a>
+				<a class="dropdown-item" href="https://github.com/prahladyeri">Github</a>
+				<a class="dropdown-item" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a>
+				<a class="dropdown-item" href="https://prahladyeri.medium.com/">Medium</a>
+				<a class="dropdown-item" href="https://www.quora.com/profile/Prahlad-Yeri">Quora</a>
+				<a class="dropdown-item" href="https://www.instagram.com/prahladyeri14/">Instagram</a>
+				<a class="dropdown-item" href="mailto:prahladyeri@yahoo.com">Email</a>
+			</div>
+		</li>
+		<li class='btn-group'>
+			<a class="nav-link dropdown-toggle btn btn-info" role='button' id='btnFeeds' href="javascript:" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a>
+			<div class="dropdown-menu" aria-labelledby="btnFeeds">
+				<a class="dropdown-item" href="/feeds/all.rss.xml">RSS</a>
+				<a class="dropdown-item" href="/feeds/all.atom.xml">ATOM</a>
+				<!-- <a class="dropdown-item" href="https://feedburner.google.com/fb/a/mailverify?uri=prahladyeri&amp;loc=en_US">Feedburner</a> -->
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='ml-auto col-md-8 mr-auto'>
+	</div>
+</div>
+</div>
+
+		<div id="main" class='mt-2 container content '>
+			<div class='row'>
+				<div class='offset-md-2 col-md-8'>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2018/07/how-to-create-a-server-less-google-drive-client-using-only-htmljavascript.html" rel="bookmark" 
+      title="Permalink to How to create a Server-less Google Drive client using only HTML and JavaScript">How to create a Server-less Google Drive client using only HTML and JavaScript</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2018-07-09T12:23:00+05:30">Mon 09 July 2018</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/javascript">JavaScript</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/html">HTML</a>
+            <a href="https://prahladyeri.github.io/blog/tag/javascript">JavaScript</a>
+            <a href="https://prahladyeri.github.io/blog/tag/how-to">How To</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p>A few days ago, I had to work on a project of this kind and the information and documentation available on this topic was quite bewildering. As a result, I decided to write this article in order to make everything available at one place.<!--more--></p>
+<p>Almost everyone knows about the <a href="https://github.com/google/google-api-python-client">Google API Python Client</a>(and similar others in Java, PHP, etc.) which can be accessed from the server, but few are aware that Google even supports a totally server-less implementation of a client using only client-side technology (HTML/JavaScript). The only caveat here is that your app won't get a permanent access token like the server side apps do, but instead, has a temporary access until your web page isn't closed. Here is how to go about doing it:</p>
+<h2>Step-1: Register your App by visiting the Google Cloud Console:</h2>
+<p>As usual, visit the <a href="https://console.cloud.google.com/">Google Cloud Console</a>and register your app first, enable the Google Drive API by visiting "APIs &amp; Services"=>"Dashboard", then click on "Credentials" to create an API Key, an OAuth credential and setup the authentication screen for your user. While setting credentials, remember to add your app's URL in authorized Redirect-URIs section. If you have multiple URLs for your app (like localhost for testing, www.YourSite.com for production, etc., then add them all to the list):</p>
+<p><img alt="Credentials Configuration Redirect URIs" src="/uploads/2018/07/credentials_config_redirect_uri.png"></p>
+<p><strong>Credentials Configuration: Redirect URIs</strong></p>
+<h2>Step-2: Setup the OAuth consent screen.</h2>
+<p>This is what your user will see when they visit your app and it redirects them to Google for getting permissions for Drive access. Click on the "OAuth consent screen" tab and configure it with your app's name, logo, etc.</p>
+<h2>Step-3: Add script references.</h2>
+<p>After you create the credentials and get your ClientID, API Key and secret key (not useful for our app, really), the next step is to start building the app. I usually prefer to keep the JavaScript logic in a separate file such as app.js instead of keeping it in the main index.html. Just add a script tag in your main index.html and add a reference to this app.js in which you'll write the Google Drive logic:</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;/static/app.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+
+<p>I've kept the app.js in a sub-folder named /static, if yours is different, then adjust the path accordingly. You'll also need to add a reference to Google authentication library in order to perform the OAuth authentication:</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;script</span> <span class="err">async</span> <span class="err">defer</span> <span class="na">src=</span><span class="s">&quot;https://apis.google.com/js/api.js&quot;</span> 
+ <span class="na">onload=</span><span class="s">&quot;this.onload=function(){};handleClientLoad()&quot;</span> 
+ <span class="na">onreadystatechange=</span><span class="s">&quot;if (this.readyState === &#39;complete&#39;) this.onload()&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+
+<p>Finally, also add a reference to jQuery if you want to use it. In most apps, its usually a must!</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+
+<h2>Step-4: Build the app.</h2>
+<p>Now, in your app.js, first add global variables that you'll need throughout your app:</p>
+<div class="highlight"><pre><span></span><span class="nt">var</span> <span class="nt">GoogleAuth</span><span class="o">;</span>
+<span class="nt">var</span> <span class="nt">SCOPE</span> <span class="o">=</span> <span class="s1">&#39;https://www.googleapis.com/auth/drive&#39;</span><span class="o">;</span> <span class="o">//</span><span class="p">.</span><span class="nc">metadata</span><span class="p">.</span><span class="nc">readonly</span>
+<span class="nt">SCOPE</span> <span class="o">+=</span> <span class="s2">&quot; https://www.googleapis.com/auth/drive.install&quot;</span><span class="o">;</span>
+<span class="nt">SCOPE</span> <span class="o">+=</span> <span class="s2">&quot; https://www.googleapis.com/auth/drive.file&quot;</span><span class="o">;</span>
+
+<span class="nt">var</span> <span class="nt">files</span> <span class="o">=</span> <span class="cp">[]</span><span class="o">;</span> <span class="o">//</span><span class="nt">array</span> <span class="nt">to</span> <span class="nt">store</span> <span class="nt">the</span> <span class="nt">list</span> <span class="nt">of</span> <span class="nt">files</span> <span class="nt">in</span> <span class="nt">user</span><span class="err">&#39;</span><span class="nt">s</span> <span class="nt">drive</span><span class="o">.</span>
+</pre></div>
+
+
+<p>Add the scopes as per your requirements, I had included <strong>auth/drive.install</strong> and <strong>auth/drive.file</strong> only because I had to provide an "open with this app" feature in the user's own google drive interface so that they may visit our app and run their files through it, and thus use it as a "file opener". If you don't need to provide such extended features and just want full access to the user's files, then the first one (<strong>auth/drive</strong>) is sufficient.</p>
+<p>After that, write the entry point for our app in app.js. As per the script attribute, you'll be redirected here by the Google authentication library:</p>
+<div class="highlight"><pre><span></span><span class="cm">/**</span>
+<span class="cm">* This is the entry-point that gapi calls.</span>
+<span class="cm">* </span>
+<span class="cm">* */</span>
+<span class="kd">function</span> <span class="nx">handleClientLoad() {</span>
+ <span class="c1">// Load the API&#39;s client and auth2 modules.</span>
+ <span class="c1">// Call the initClient function after the modules load.</span>
+ <span class="nx">gapi</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s1">&#39;client:auth2&#39;</span><span class="p">,</span> <span class="nx">initClient</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p><strong>gapi.load()</strong> loads the auth library and prepares your app for authentication, then signals the control to <strong>initClient()</strong> function where you'll perform the actual authentication like this:</p>
+<div class="highlight"><pre><span></span> <span class="cm">/**</span>
+<span class="cm"> * starts the client authorization, most useful for debugging.</span>
+<span class="cm"> * </span>
+<span class="cm"> * */</span>
+<span class="kd">function</span> <span class="nx">initClient() {</span>
+    <span class="c1">// Retrieve the discovery document for version 3 of Google Drive API.</span>
+    <span class="c1">// In practice, your app can retrieve one or more discovery documents.</span>
+    <span class="kd">var</span> <span class="nx">discoveryUrl</span> <span class="o">=</span> <span class="s1">&#39;https://www.googleapis.com/discovery/v1/apis/drive/v3/rest&#39;</span><span class="p">;</span>
+
+    <span class="c1">// Initialize the gapi.client object, which app uses to make API requests.</span>
+    <span class="c1">// Get API key and client ID from API Console.</span>
+    <span class="c1">// &#39;scope&#39; field specifies space-delimited list of access scopes.</span>
+    <span class="nx">gapi</span><span class="p">.</span><span class="nx">client</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+        <span class="nx">apiKey</span><span class="o">:</span> <span class="s1">&#39;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#39;</span><span class="p">,</span>
+        <span class="nx">discoveryDocs</span><span class="o">:</span> <span class="p">[</span><span class="nx">discoveryUrl</span><span class="p">],</span>
+        <span class="nx">clientId</span><span class="o">:</span> <span class="s1">&#39;yyyyyyyyyy-yyyyyyyyyyyyyy.apps.googleusercontent.com&#39;</span><span class="p">,</span>
+        <span class="nx">scope</span>: <span class="kt">SCOPE</span>
+    <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;init happened successfully.&quot;</span><span class="p">);</span>
+      <span class="nx">GoogleAuth</span> <span class="o">=</span> <span class="nx">gapi</span><span class="p">.</span><span class="nx">auth2</span><span class="p">.</span><span class="nx">getAuthInstance</span><span class="p">();</span>
+
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;now binding updateSigninStatus&quot;</span><span class="p">);</span>
+      <span class="nx">GoogleAuth</span><span class="p">.</span><span class="nx">isSignedIn</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">updateSigninStatus</span><span class="p">);</span> <span class="c1">// Listen for sign-in state changes.</span>
+
+      <span class="c1">// Listen for sign-in state changes.</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;now calling updateSigninStatus&quot;</span><span class="p">);</span>
+      <span class="nx">updateSigninStatus</span><span class="p">(</span><span class="nx">GoogleAuth</span><span class="p">.</span><span class="nx">isSignedIn</span><span class="p">.</span><span class="nx">get</span><span class="p">());</span>
+
+      <span class="c1">// Handle initial sign-in state. (Determine if user is already signed in.)</span>
+      <span class="c1">//var user = GoogleAuth.currentUser.get();</span>
+
+      <span class="c1">// Call handleAuthClick function when user clicks on</span>
+      <span class="c1">//      &quot;Sign In/Authorize&quot; button.</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#sign-in-or-out-button&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">handleAuthClick</span><span class="p">();</span>
+      <span class="p">});</span> 
+      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#revoke-access-button&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">revokeAccess</span><span class="p">();</span>
+      <span class="p">});</span>
+
+    <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;ERROR in gapi.init:&quot;</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>(Remember to replace the long string of "xxxxxx..." with your own API Key, and the long string of "yyyyyy...." with your own Client ID)</p>
+<p><strong>gapi.client.init()</strong> is an important function which does all the hard work of checking whether a user is authenticated, and if not, then redirect them to Google's servers, perform the authentication, and if successful, redirect them back to your server and inside the <strong>.then()</strong> block in which you'll handle your applications logic (like displaying the logged-in user's name which you get using <strong>GoogleAuth.currentUser.get()</strong>, update the logged-in status (toggle sign-in and sign-out buttons accordingly), etc:</p>
+<p><strong>gapi.client</strong> is your global variable that could be used for doing all kinds of stuff. For example, this is how you can list the files available in the Google Drive's root folder of the user as links in your document:</p>
+<div class="highlight"><pre><span></span>   <span class="nt">gapi</span><span class="p">.</span><span class="nc">client</span><span class="p">.</span><span class="nc">drive</span><span class="p">.</span><span class="nc">files</span><span class="p">.</span><span class="nc">get</span><span class="o">(</span><span class="p">{</span>
+        <span class="n">fileId</span><span class="p">:</span> <span class="n">id</span><span class="p">,</span>
+        <span class="n">fields</span><span class="o">:</span> <span class="s1">&#39;name,webContentLink&#39;</span>
+    <span class="p">}</span><span class="o">)</span><span class="p">.</span><span class="nc">then</span><span class="o">(</span><span class="nt">function</span><span class="o">(</span><span class="nt">success</span><span class="o">)</span> <span class="p">{</span>
+        <span class="err">var</span> <span class="err">webContentLink</span> <span class="err">=</span> <span class="err">success.result.webContentLink</span><span class="p">;</span>
+        <span class="err">var</span> <span class="err">fileName</span> <span class="err">=</span> <span class="err">success.result.name</span><span class="p">;</span>
+        <span class="err">console.log(&quot;SUCCESS!</span> <span class="err">name</span> <span class="n">is</span><span class="p">:</span> <span class="s2">&quot;, webContentLink);</span>
+<span class="s2">        console.log(&quot;</span><span class="n">SUCCESS</span><span class="o">!</span> <span class="n">webContentLink</span> <span class="n">is</span><span class="o">:</span> <span class="s2">&quot;, webContentLink);</span>
+<span class="s2">        $source = $(&quot;</span><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;&quot; + webContentLink + &quot;&#39;</span> <span class="o">&gt;</span><span class="s2">&quot; + fileName + &quot;</span><span class="o">&lt;</span><span class="n">a</span><span class="o">&gt;</span><span class="err">&quot;</span><span class="p">);</span>
+        <span class="err">$(&#39;body&#39;).append($source)</span><span class="p">;</span>
+    <span class="p">}</span><span class="o">,</span> <span class="nt">function</span><span class="o">(</span><span class="nt">fail</span><span class="o">)</span><span class="p">{</span>
+        <span class="err">console.log(fail)</span><span class="p">;</span>
+        <span class="err">console.log(&#39;Error</span> <span class="err">&#39;+</span> <span class="err">fail.result.error.message)</span><span class="p">;</span>
+    <span class="p">}</span><span class="o">);</span>
+</pre></div>
+
+
+<p>The <strong>name</strong> field represents the file name and <strong>webContentLink</strong> is the actual link to the file in the user's drive, you can use it however in your app once you get it (like download it using the AJAX <strong>jquery.get()</strong> method, etc.).</p>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+				</div>
+				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
+					<div style='margin-top: 50px;'>
+
+<!-- AMAZON AFFILIATE ADS -->
+<!--
+<a href="https://www.amazon.in/Automate-Boring-Stuff-Python-2nd/dp/1593279922/ref=as_li_ss_il?crid=JA705IOUH74O&keywords=automate+the+boring+stuff+with+python&qid=1583912586&sprefix=automate+the+,aps,460&sr=8-1&linkCode=li2&tag=prahladyeri-21&linkId=5f899269cc1aea74977c02963a9a6caf&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1593279922&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=1593279922" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.in/PYTHON-PROGRAMMING-BEGINNERS-GUIDE-LEARN-ebook/dp/B01GSODGZC/ref=as_li_ss_il?crid=33LIIMVDMW1U3&keywords=python+programming&qid=1583912662&sprefix=python,aps,527&sr=8-4&linkCode=li2&tag=prahladyeri-21&linkId=6b3a8b38eda1d6c51546a1a0c321cfea&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01GSODGZC&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=B01GSODGZC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class='container-fluid'>
+<div class='row'>
+		<footer id ="footer" class="col-md-12 text-center bg-dark text-white pt-1 pb-1 pl-1 pr-1">
+		Copyright (&copy;) 2014-2022 Prahlad Yeri. This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+		</footer>
+</div>
+</div>		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="/theme/js/popper.min.js"></script> -->
+<!-- <script src="/theme/js/bootstrap.min.js"></script> -->
 </body>
 </html>

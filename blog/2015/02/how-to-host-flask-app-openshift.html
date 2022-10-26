@@ -15,9 +15,9 @@
 	<link rel="stylesheet" href="/theme/css/app.css">
 	<link rel="stylesheet" href="/theme/css/pygment.css">		
 	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
-	<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
-	<link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
-	<link href="/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
 
 
 
@@ -34,22 +34,272 @@
 	<meta name="twitter:site" content="@prahladyeri" />
 	<meta name="twitter:creator" content="@prahladyeri" />
 		<link rel="canonical" content="https://prahladyeri.github.io/blog/2015/02/how-to-host-flask-app-openshift.html" />
-		<meta name="twitter:url" content="/blog/2015/02/how-to-host-flask-app-openshift.html" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2015/02/how-to-host-flask-app-openshift.html" />
 		<meta name="twitter:title" content="How to host a Flask app on Openshift" />
 		<meta name="twitter:description" content="Note: This article may no longer be relevant as Red Hat has recently changed the openshift stack with docker and kubernetes. Openshift free tier is an excellent way to host your python web app for staging or testing, and you can even host a low to medium traffic production site …" />
-			<meta name="twitter:image" content="/uploads/cover.jpg" />
-			<meta name="image" property="og:image" content="/uploads/cover.jpg">
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/cover.jpg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/cover.jpg">
 
 	<!-- open graph meta data (TODO) -->
 	
+	<!--start: analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6808883-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-6808883-5');
+	</script>
+	<!--end: analytics -->
 	
 <!--pinterest claim-->
 <meta name="p:domain_verify" content="eb43d46309e2766ef1b627cea2d19326"/>
 </head>
 
 <body id="index" class="home">
-<h1 class='text-center'>
-<p>It Works!</p>
-</h1>
+<!-- section bootstrap-menu -->
+<div class='container'>
+<div class='row header'>
+	<div class='col-md-12 text-center' style='margin: 10px 0 0 0'>
+		<h2>Prahlad Yeri</h2>
+		<h6 class='text-muted'>Freelance Programmer and Writer</h6>
+	</div>
+	<div class='col-md-12 text-center' >
+		<ul class="nav nav-fill text-center site-links col-md-8 ml-auto mr-auto">
+		<li class="nav-item"><a class="nav-link btn btn-primary" href="/">Home</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-success" href="/blog">Blog</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-danger" href="/portfolio">Portfolio</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-secondary" href="https://github.com/prahladyeri/resume">Resume</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-warning" href="/hire-me">Hire Me</a></li>
+		<li class='nav-item dropdown'>
+			<a class="nav-link dropdown-toggle btn btn-dark" id='btnSocial' href="javascript:" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+			<div class="dropdown-menu" aria-labelledby="btnSocial">
+				<a class="dropdown-item" href="https://twitter.com/prahladyeri">Twitter</a>
+				<a class="dropdown-item" href="https://github.com/prahladyeri">Github</a>
+				<a class="dropdown-item" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a>
+				<a class="dropdown-item" href="https://prahladyeri.medium.com/">Medium</a>
+				<a class="dropdown-item" href="https://www.quora.com/profile/Prahlad-Yeri">Quora</a>
+				<a class="dropdown-item" href="https://www.instagram.com/prahladyeri14/">Instagram</a>
+				<a class="dropdown-item" href="mailto:prahladyeri@yahoo.com">Email</a>
+			</div>
+		</li>
+		<li class='btn-group'>
+			<a class="nav-link dropdown-toggle btn btn-info" role='button' id='btnFeeds' href="javascript:" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a>
+			<div class="dropdown-menu" aria-labelledby="btnFeeds">
+				<a class="dropdown-item" href="/feeds/all.rss.xml">RSS</a>
+				<a class="dropdown-item" href="/feeds/all.atom.xml">ATOM</a>
+				<!-- <a class="dropdown-item" href="https://feedburner.google.com/fb/a/mailverify?uri=prahladyeri&amp;loc=en_US">Feedburner</a> -->
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='ml-auto col-md-8 mr-auto'>
+	</div>
+</div>
+</div>
+
+		<div id="main" class='mt-2 container content '>
+			<div class='row'>
+				<div class='offset-md-2 col-md-8'>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2015/02/how-to-host-flask-app-openshift.html" rel="bookmark" 
+      title="Permalink to How to host a Flask app on Openshift">How to host a Flask app on Openshift</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2015-02-06T18:30:00+05:30">Fri 06 February 2015</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/python">Python</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/python">Python</a>
+            <a href="https://prahladyeri.github.io/blog/tag/flask">Flask</a>
+            <a href="https://prahladyeri.github.io/blog/tag/openshift">Openshift</a>
+            <a href="https://prahladyeri.github.io/blog/tag/how-to">How To</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p><em>Note: This article may no longer be relevant as Red Hat has recently changed the openshift stack with docker and kubernetes.</em></p>
+<p><a href="https://www.openshift.com/">Openshift free tier</a> is an excellent way to host your python web app for staging or testing, and you can even host a low to medium traffic production site. Openshift provides several options (cartridges) for hosting including <code>python, php, node.js, etc.</code> but <code>python</code> being my favorite language and <code>Flask</code> being a minimalist and flexible framework, this combination is what I usually end up with.<!--more--></p>
+<h3>Create an Openshift account</h3>
+<p>In case you haven’t already, head over to <a href="https://www.openshift.com/">Openshift</a> and sign up for a free tier. You will be able to host at most three apps for each account. Openshift apps are hosted on <code>rhcloud.com</code> domain and you’ll have to setup a subdomain first which will be part of your app url. For instance, if I register <code>prahladyeri.rhcloud.com</code> subdomain, I can create the following apps with that:</p>
+<div class="highlight"><pre><span></span>myflaskapp-prahladyeri.rhcloud.com
+myphpapp-prahladyeri.rhcloud.com
+blog-prahladyeri.rhcloud.com
+</pre></div>
+
+
+<h3>Install the necessary tools</h3>
+<p>You will need the following:</p>
+<ol>
+<li><a href="git-scm.com/">Git</a>: Your app resides in a git repository, so you’ll need git installed on your machine to push changes. App is deployed automatically once you push.</li>
+<li><a href="http://python.org">Python and Flask</a>: Obviously, you are going to need them if you are building a Flask app.</li>
+<li><a href="https://rubygems.org/gems/rhc">Openshift rhc tool</a>: This <code>ruby</code> based tool is optional, only use it if you don’t want to use their online portal for creating apps or you aren’t familiar with ssh. Personally, I didn’t want to install <code>ruby</code> on my machine just for this one purpose.</li>
+</ol>
+<h3>Pull the remote repo</h3>
+<p>Once you create a python app, Openshift will provide you a git repository url as follows:</p>
+<p><img alt="Openshift git url" src="/uploads/old/openshift-git-repo.png"></p>
+<p>Now open your command line and pull this starter repo to your local machine:</p>
+<div class="highlight"><pre><span></span>git clone &lt;YOUR_SOURCE_URL&gt; myFlaskApp
+</pre></div>
+
+
+<p>Now, the remote repository will be cloned in the <code>myFlaskApp</code> folder. Browse it to see the scaffolding.</p>
+<h3>Add your flask app</h3>
+<p>The scaffolding structure will be as follows:</p>
+<div class="highlight"><pre><span></span>wsgi.py
+setup.py
+.openshift/..
+.settings/..
+wsgi/..         =&gt; your python source files go here.
+wsgi/static..   =&gt; your static folders viz css, img, fonts, et al. go here.
+</pre></div>
+
+
+<p>If the wsgi/ folder doesn’t exist, you’ll have to create it. Just modify the setup.py and add Flask and SQLAlchemy as your app dependencies along with your app name. This tells openshift to make sure that dependency packages are available whenever you push any code changes.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
+
+<span class="n">setup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;myFlaskApp&#39;</span><span class="p">,</span>
+      <span class="n">version</span><span class="o">=</span><span class="s1">&#39;1.0&#39;</span><span class="p">,</span>
+      <span class="n">description</span><span class="o">=</span><span class="s1">&#39;myFlaskApp&#39;</span><span class="p">,</span>
+      <span class="n">author</span><span class="o">=</span><span class="s1">&#39;Prahlad Yeri&#39;</span><span class="p">,</span>
+      <span class="n">author_email</span><span class="o">=</span><span class="s1">&#39;prahladyeri@yahoo.com&#39;</span><span class="p">,</span>
+      <span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://www.python.org/sigs/distutils-sig/&#39;</span><span class="p">,</span>
+      <span class="n">install_requires</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Flask==0.10.1&#39;</span><span class="p">,</span><span class="s1">&#39;SQLAlchemy==0.9.8&#39;</span><span class="p">],</span>
+     <span class="p">)</span>
+</pre></div>
+
+
+<p>Now, create a text file named <code>application</code> in the wsgi/ folder with the following contents:</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">virtenv</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;OPENSHIFT_PYTHON_DIR&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/virtenv/&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;PYTHON_EGG_CACHE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">virtenv</span><span class="p">,</span> <span class="s1">&#39;lib/python2.7/site-packages&#39;</span><span class="p">)</span>
+<span class="n">virtualenv</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">virtenv</span><span class="p">,</span> <span class="s1">&#39;bin/activate_this.py&#39;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">execfile</span><span class="p">(</span><span class="n">virtualenv</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="vm">__file__</span><span class="o">=</span><span class="n">virtualenv</span><span class="p">))</span>
+<span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="kn">from</span> <span class="nn">myFlaskApp</span> <span class="kn">import</span> <span class="n">app</span> <span class="k">as</span> <span class="n">application</span>       
+</pre></div>
+
+
+<p>This is a configuration file that tells openshift where your Flask app script resides. Now create a python file called myFlaskApp.py, this will be your HelloWorld script:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">request</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;Hello World&quot;</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The last part of the code (app.run) is there so that you may test the Flask app by running this script on your local machine before pushing these changes.</p>
+<h3>Push your changes</h3>
+<p>All that is left to be done now is committing your changes and pushing them to openshift:</p>
+<div class="highlight"><pre><span></span>git add .
+git commit -m &quot;Initial commit for myFlaskApp&quot;
+git push origin master
+</pre></div>
+
+
+<h3>Voila! You are done</h3>
+<p>Wasn’t it almost as easy as deploying a <code>php</code> script on your web host? If everything goes right, your Flask app will be hosted on <code>http://myFlaskApp-mydomain.rhcloud.com/</code>. Visit your app link and check it out.</p>
+<h3>Few important things</h3>
+<ul>
+<li>In case you aren’t familiar about how git over ssl works, the remote machine authenticates your machine using an SSL public key you have already provided them. So if this is your fist time, you’ll have to generate a private-public key pair (using ssh in linux or putty on windows). After that, you’ll have to update your public key to Openshift, so they can authenticate your machine. You can add it using the Settings menu on the Openshift portal.</li>
+<li>Its very important that all your static files reside in <strong>wsgi/static</strong> folder and that folder only. Openshift uses that path by default. But in case you are really stuck with using <code>/css</code> and <code>/js</code> in your existing app, as a solution you can clear the <code>static_url_path</code> in your flask app as follows:<div class="highlight"><pre><span></span>app = Flask(__name__, static_url_path=&#39;&#39;, static_folder=&#39;static&#39;)
+</pre></div>
+
+
+</li>
+</ul>
+<p>Refer to this Openshift <a href="https://blog.openshift.com/build-your-app-on-openshift-using-flask-sqlalchemy-and-postgresql-92/">tutorial</a> for more details.</p>
+<ul>
+<li>Make the most of SSH. Some times, you may want to connect with the remote server using secured shell (ssh/putty) for troubleshooting, viewing logs, etc. Your SSH url is included in your git source url. So, if your git url is of the form:<div class="highlight"><pre><span></span>ssh://500XXXXXXXXXXXX01061a@prahladyeri-inn.rhcloud.com/~/git/prahladyeri.git/
+</pre></div>
+
+
+</li>
+</ul>
+<p>Just remove the <code>ssh://</code> from the beginning and the other things after the domain, so the SSH host url becomes:</p>
+<div class="highlight"><pre><span></span>500XXXXXXXXXXXX01061a@prahladyeri-inn.rhcloud.com
+</pre></div>
+
+
+<p><em>References:</em></p>
+<ul>
+<li><a href="https://blog.openshift.com/build-your-app-on-openshift-using-flask-sqlalchemy-and-postgresql-92/">Build an app using Flask, SQLAlchemy and PostgreSQL</a></li>
+<li><a href="https://rubygems.org/gems/rhc">Openshift rhc tool</a></li>
+<li><a href="https://www.openshift.com/">Openshift Homepage</a></li>
+</ul>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+				</div>
+				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
+					<div style='margin-top: 50px;'>
+
+<!-- AMAZON AFFILIATE ADS -->
+<!--
+<a href="https://www.amazon.in/Automate-Boring-Stuff-Python-2nd/dp/1593279922/ref=as_li_ss_il?crid=JA705IOUH74O&keywords=automate+the+boring+stuff+with+python&qid=1583912586&sprefix=automate+the+,aps,460&sr=8-1&linkCode=li2&tag=prahladyeri-21&linkId=5f899269cc1aea74977c02963a9a6caf&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1593279922&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=1593279922" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.in/PYTHON-PROGRAMMING-BEGINNERS-GUIDE-LEARN-ebook/dp/B01GSODGZC/ref=as_li_ss_il?crid=33LIIMVDMW1U3&keywords=python+programming&qid=1583912662&sprefix=python,aps,527&sr=8-4&linkCode=li2&tag=prahladyeri-21&linkId=6b3a8b38eda1d6c51546a1a0c321cfea&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01GSODGZC&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=B01GSODGZC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class='container-fluid'>
+<div class='row'>
+		<footer id ="footer" class="col-md-12 text-center bg-dark text-white pt-1 pb-1 pl-1 pr-1">
+		Copyright (&copy;) 2014-2022 Prahlad Yeri. This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+		</footer>
+</div>
+</div>		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="/theme/js/popper.min.js"></script> -->
+<!-- <script src="/theme/js/bootstrap.min.js"></script> -->
 </body>
 </html>

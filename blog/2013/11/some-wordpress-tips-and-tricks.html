@@ -15,9 +15,9 @@
 	<link rel="stylesheet" href="/theme/css/app.css">
 	<link rel="stylesheet" href="/theme/css/pygment.css">		
 	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
-	<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
-	<link href="/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
-	<link href="/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
 
 
 
@@ -32,22 +32,219 @@
 	<meta name="twitter:site" content="@prahladyeri" />
 	<meta name="twitter:creator" content="@prahladyeri" />
 		<link rel="canonical" content="https://prahladyeri.github.io/blog/2013/11/some-wordpress-tips-and-tricks.html" />
-		<meta name="twitter:url" content="/blog/2013/11/some-wordpress-tips-and-tricks.html" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2013/11/some-wordpress-tips-and-tricks.html" />
 		<meta name="twitter:title" content="Some Wordpress tips and tricks" />
 		<meta name="twitter:description" content="Wordpress is a universally recognized and robust blogging platform written in the PHP language. Below are a bunch of Wordpress tricks that I've learned during my deployments, and I'd like to share with you. 1. Change breadcrumbs to start from "Home" instead of \<Site-Title> (Works for Mantra theme): When I …" />
-			<meta name="twitter:image" content="/uploads/cover.jpg" />
-			<meta name="image" property="og:image" content="/uploads/cover.jpg">
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/cover.jpg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/cover.jpg">
 
 	<!-- open graph meta data (TODO) -->
 	
+	<!--start: analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6808883-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-6808883-5');
+	</script>
+	<!--end: analytics -->
 	
 <!--pinterest claim-->
 <meta name="p:domain_verify" content="eb43d46309e2766ef1b627cea2d19326"/>
 </head>
 
 <body id="index" class="home">
-<h1 class='text-center'>
-<p>It Works!</p>
-</h1>
+<!-- section bootstrap-menu -->
+<div class='container'>
+<div class='row header'>
+	<div class='col-md-12 text-center' style='margin: 10px 0 0 0'>
+		<h2>Prahlad Yeri</h2>
+		<h6 class='text-muted'>Freelance Programmer and Writer</h6>
+	</div>
+	<div class='col-md-12 text-center' >
+		<ul class="nav nav-fill text-center site-links col-md-8 ml-auto mr-auto">
+		<li class="nav-item"><a class="nav-link btn btn-primary" href="/">Home</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-success" href="/blog">Blog</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-danger" href="/portfolio">Portfolio</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-secondary" href="https://github.com/prahladyeri/resume">Resume</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-warning" href="/hire-me">Hire Me</a></li>
+		<li class='nav-item dropdown'>
+			<a class="nav-link dropdown-toggle btn btn-dark" id='btnSocial' href="javascript:" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+			<div class="dropdown-menu" aria-labelledby="btnSocial">
+				<a class="dropdown-item" href="https://twitter.com/prahladyeri">Twitter</a>
+				<a class="dropdown-item" href="https://github.com/prahladyeri">Github</a>
+				<a class="dropdown-item" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a>
+				<a class="dropdown-item" href="https://prahladyeri.medium.com/">Medium</a>
+				<a class="dropdown-item" href="https://www.quora.com/profile/Prahlad-Yeri">Quora</a>
+				<a class="dropdown-item" href="https://www.instagram.com/prahladyeri14/">Instagram</a>
+				<a class="dropdown-item" href="mailto:prahladyeri@yahoo.com">Email</a>
+			</div>
+		</li>
+		<li class='btn-group'>
+			<a class="nav-link dropdown-toggle btn btn-info" role='button' id='btnFeeds' href="javascript:" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a>
+			<div class="dropdown-menu" aria-labelledby="btnFeeds">
+				<a class="dropdown-item" href="/feeds/all.rss.xml">RSS</a>
+				<a class="dropdown-item" href="/feeds/all.atom.xml">ATOM</a>
+				<!-- <a class="dropdown-item" href="https://feedburner.google.com/fb/a/mailverify?uri=prahladyeri&amp;loc=en_US">Feedburner</a> -->
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='ml-auto col-md-8 mr-auto'>
+	</div>
+</div>
+</div>
+
+		<div id="main" class='mt-2 container content '>
+			<div class='row'>
+				<div class='offset-md-2 col-md-8'>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2013/11/some-wordpress-tips-and-tricks.html" rel="bookmark" 
+      title="Permalink to Some Wordpress tips and tricks">Some Wordpress tips and tricks</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2013-11-23T12:19:00+05:30">Sat 23 November 2013</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/php">PHP</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/wordpress">WordPress</a>
+            <a href="https://prahladyeri.github.io/blog/tag/php">PHP</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p>Wordpress is a universally recognized and robust blogging platform written in the PHP language. Below are a bunch of Wordpress tricks that I've learned during my deployments, and I'd like to share with you.<!--more--></p>
+<p><strong><em>1. Change breadcrumbs to start from "Home" instead of \&lt;Site-Title></em></strong> (Works for Mantra theme): When I set up this site, the breadcrumbs in the post used to read like this:</p>
+<p><a href="http://www.prahladyeri.com/">Prahlad Yeri » </a><a href="http://www.prahladyeri.com/category/wordpress/">wordpress » </a>WordPress installation quick-start guide</p>
+<p>However, I wanted it to look like this:</p>
+<p><a href="http://www.prahladyeri.com/">Home » </a><a href="http://www.prahladyeri.com/category/wordpress/">wordpress » </a>WordPress installation quick-start guide</p>
+<p>In order to do that, you need to look into your theme-functions.php file and see where wordpress is echoing your breadcrumbs. In the mantra theme, I found this in the function mantra_breadcrumbs(). So accordingly, I changed get_bloginfo('name') and hard-coded it to 'Home':</p>
+<div class="highlight"><pre><span></span>//changed by prahlad
+//echo &#39;<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;&#39;.get_bloginfo(&#39;url&#39;).&#39;&quot;</span><span class="nt">&gt;</span>&#39;.get_bloginfo(&#39;name&#39;).&#39; <span class="ni">&amp;raquo;</span> <span class="nt">&lt;/a&gt;</span>&#39;; 
+echo &#39;<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;&#39;.get_bloginfo(&#39;url&#39;).&#39;&quot;</span><span class="nt">&gt;</span>&#39;.&#39;Home&#39;.&#39; <span class="ni">&amp;raquo;</span> <span class="nt">&lt;/a&gt;</span>&#39;;
+</pre></div>
+
+
+<p>You have to do this at multiple places in the mantra_breadcrumbs() (or your theme's equivalent function) wherever get_bloginfo('name') is used and replace it with 'Home'.</p>
+<p><strong><em>2. How to crop off the big page-title that appears on top of pages:</em> </strong>This is a nice little css trick.  Just open your theme's style.css and switch off the display for "entry-title" class elements within the "page" class elements. This will hide the page titles only on page-titles (and not posts!):</p>
+<div class="highlight"><pre><span></span><span class="c">/*start: prahlad - used to hide post-titles on all pages (not posts)*/</span>
+<span class="p">.</span><span class="nc">page</span> <span class="p">.</span><span class="nc">entry-title</span> <span class="p">{</span>
+ <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c">/*end: prahlad*/</span>
+</pre></div>
+
+
+<p>If you notice that some whitespace is still left on top of the page, you can try some of these modifiers:</p>
+<div class="highlight"><pre><span></span><span class="na">.site-header</span> <span class="err">{</span>
+ <span class="nl">padding-bottom:</span> <span class="err">0</span><span class="c">;</span>
+<span class="err">}</span>
+
+<span class="na">.site-content</span> <span class="err">{</span>
+ <span class="nl">margin-top:</span> <span class="err">0</span><span class="c">;</span>
+<span class="err">}</span>
+
+<span class="c">#content {</span>
+ <span class="nl">margin-top:</span> <span class="err">-20</span><span class="nf">px</span><span class="c">;</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<p><strong><em>3. How to add a contact-form to your post or page:</em></strong>  In order to do that you need a Contact-Form plugin. The most popular and well-maintained plugin at that is "Contact-Forms 7":</p>
+<p><a href="http://wordpress.org/plugins/contact-form-7/">http://wordpress.org/plugins/contact-form-7/</a></p>
+<p>This is a pretty decent form plugin that, from a single line of short-code (in your page or post), creates a basic all-purpose contact-form such as this:</p>
+<p><a href="/uploads/old/Contact-Forms-7.png"><img alt="Page created with Contact Forms 7" class="size-medium wp-image-120" height="164" src="/uploads/old/Contact-Forms-7-300x164.png" width="300"></a></p>
+<p><strong>Page created with Contact Forms 7</strong></p>
+<p>When you install this plugin, you will see an additional "Contact" tab in your dashboard. When you click that, you will see a default form with a short-code like this:</p>
+<div class="highlight"><pre><span></span>[contact-form-7 id=&quot;116&quot; title=&quot;Contact form 1&quot;]
+</pre></div>
+
+
+<p>You can copy-paste this short-code anywhere in the editor for your page or post. For this site's contact page, it looked something like this:</p>
+<div class="highlight"><pre><span></span>[contact-form-7 id=&quot;116&quot; title=&quot;Contact form 1&quot;]
+</pre></div>
+
+
+<p>By default, the information in the text-fields are mailed to the admin user's email-address when a user submits this form. You can change all this by editing the default form that you find in the "Contact" tab of your dashboard. You can add/remove the text-fields, add validation and much <a href="http://contactform7.com/tag-syntax/">more</a>.</p>
+<p>Another plugin that works in combination with this is the <a href="http://wordpress.org/plugins/flamingo">flamingo plugin</a>. It is useful in case you want to store the contact information in the wordpress database in addition to getting it mailed to your email address.</p>
+<p><strong><em>4: Change the footer notices (such as "Powered by Wordpress", etc..):</em></strong> Just open your footer.php from editor and try to find a snippet such as this:</p>
+<div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nx">footer</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;colophon&quot;</span> <span class="nx">role</span><span class="o">=</span><span class="s2">&quot;contentinfo&quot;</span><span class="o">&gt;</span>
+ <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;site-info&quot;</span><span class="o">&gt;</span>
+ <span class="cp">&lt;?php</span> <span class="nx">do_action</span><span class="p">(</span> <span class="s1">&#39;twentytwelve_credits&#39;</span> <span class="p">);</span> <span class="cp">?&gt;</span>
+</pre></div>
+
+
+<p>Change it accordingly to suit your needs.</p>
+<p><strong><em>References:</em></strong></p>
+<ul>
+<li>http://www.cryoutcreations.eu/forums/t/breadcrumbs-how-to-show-home-instead-of-site-title-in-the-breadcrumbs</li>
+<li>http://wordpress.org/plugins/contact-form-7/</li>
+<li>http://www.wpsquared.com/top-10-wordpress-contact-form-plugins/</li>
+<li>http://wordpress.org/support/topic/plugin-contact-form-7-16?replies=5</li>
+<li>http://contactform7.com/text-fields/</li>
+<li>http://contactform7.com/tag-syntax/</li>
+</ul>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+				</div>
+				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
+					<div style='margin-top: 50px;'>
+
+<!-- AMAZON AFFILIATE ADS -->
+<!--
+<a href="https://www.amazon.in/Automate-Boring-Stuff-Python-2nd/dp/1593279922/ref=as_li_ss_il?crid=JA705IOUH74O&keywords=automate+the+boring+stuff+with+python&qid=1583912586&sprefix=automate+the+,aps,460&sr=8-1&linkCode=li2&tag=prahladyeri-21&linkId=5f899269cc1aea74977c02963a9a6caf&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1593279922&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=1593279922" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.in/PYTHON-PROGRAMMING-BEGINNERS-GUIDE-LEARN-ebook/dp/B01GSODGZC/ref=as_li_ss_il?crid=33LIIMVDMW1U3&keywords=python+programming&qid=1583912662&sprefix=python,aps,527&sr=8-4&linkCode=li2&tag=prahladyeri-21&linkId=6b3a8b38eda1d6c51546a1a0c321cfea&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01GSODGZC&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=B01GSODGZC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class='container-fluid'>
+<div class='row'>
+		<footer id ="footer" class="col-md-12 text-center bg-dark text-white pt-1 pb-1 pl-1 pr-1">
+		Copyright (&copy;) 2014-2022 Prahlad Yeri. This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+		</footer>
+</div>
+</div>		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="/theme/js/popper.min.js"></script> -->
+<!-- <script src="/theme/js/bootstrap.min.js"></script> -->
 </body>
 </html>
