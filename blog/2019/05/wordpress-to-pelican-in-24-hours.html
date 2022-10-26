@@ -4,7 +4,7 @@
   	<meta charset="utf-8" />
 	<title>Wordpress to Pelican in 24 hours</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" property="og:description" content="Today, I finished migration of my blog https://prahladyeri.com from a self-hosted Wordpress site to a statically hosted Github Pages site. For the static site generator, instead of choosing Jekyll which is a hot favorite of rubyists, I went for Pelican instead as I figured my Python skills might …">
+	<meta name="description" property="og:description" content="Today, I finished migration of my blog from a self-hosted Wordpress site to a statically hosted Github Pages site. For the static site generator, instead of choosing Jekyll which is a hot favorite of rubyists, I went for Pelican instead as I figured my Python skills might be somewhat useful …">
 	<meta name="author" content="Prahlad Yeri">
 	<!-- Google Fonts -->
 	<!--link rel="preconnect" href="https://fonts.gstatic.com">
@@ -35,7 +35,7 @@
 		<link rel="canonical" content="https://prahladyeri.github.io/blog/2019/05/wordpress-to-pelican-in-24-hours.html" />
 		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2019/05/wordpress-to-pelican-in-24-hours.html" />
 		<meta name="twitter:title" content="Wordpress to Pelican in 24 hours" />
-		<meta name="twitter:description" content="Today, I finished migration of my blog https://prahladyeri.com from a self-hosted Wordpress site to a statically hosted Github Pages site. For the static site generator, instead of choosing Jekyll which is a hot favorite of rubyists, I went for Pelican instead as I figured my Python skills might …" />
+		<meta name="twitter:description" content="Today, I finished migration of my blog from a self-hosted Wordpress site to a statically hosted Github Pages site. For the static site generator, instead of choosing Jekyll which is a hot favorite of rubyists, I went for Pelican instead as I figured my Python skills might be somewhat useful …" />
 			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/cover.jpg" />
 			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/cover.jpg">
 
@@ -133,7 +133,7 @@
   </footer><!-- /.post-info -->
   <br>
   <div class="entry-content">
-    <p>Today, I finished migration of my blog <a href="https://prahladyeri.com">https://prahladyeri.com</a> from a self-hosted Wordpress site to a statically hosted <a href="https://pages.github.com/">Github Pages</a> site. For the static site generator, instead of choosing Jekyll which is a hot favorite of rubyists, I went for <a href="https://github.com/getpelican/pelican/">Pelican</a> instead as I figured my Python skills might be somewhat useful in dealing with that.</p>
+    <p>Today, I finished migration of my blog from a self-hosted Wordpress site to a statically hosted <a href="https://pages.github.com/">Github Pages</a> site. For the static site generator, instead of choosing Jekyll which is a hot favorite of rubyists, I went for <a href="https://github.com/getpelican/pelican/">Pelican</a> instead as I figured my Python skills might be somewhat useful in dealing with that.</p>
 <p>Having used Jekyll earlier, I felt that Pelican is pretty much the same thing. There is a configuration file in which you define your site parameters, a folder hierarchy for defining your posts and pages, and a bunch of templates (<code>pelican theme</code>) to make some serious customizations.</p>
 <p>In this post, I'll briefly go through the migration process:</p>
 <ol>
@@ -157,10 +157,10 @@
 <li>
 <p>Install <code>pandoc</code> as it's needed for <code>markdown-xml</code> conversion during the Wordpress import. Instructions for installing it for your OS can be found <a href="https://pandoc.org/">here</a>.</p>
 </li>
-<li>Create a new folder (such as <code>PRAHLADYERI.COM</code>) for your new blog writing/publishing.</li>
+<li>Create a new folder (such as <code>prahladyeri.github.io</code>) for your new blog writing/publishing.</li>
 <li>
 <p>Traverse to that folder through command line and run <code>pelican-quickstart</code>. It'll ask some basic questions like your blog name, title, etc. You can leave most to their defaults. Once done, it'll create a folder structure like below:</p>
-<div class="highlight"><pre><span></span>d:\source\PRAHLADYERI.COM
+<div class="highlight"><pre><span></span>d:\source\prahladyeri.github.io
 ├───content                                            
 │   ├───pages                                          
 │   ├───uploads                                        
@@ -213,7 +213,7 @@ Tags: Wordpress, PHP, Python
 Status: published
 Cover: uploads/cover.jpg
 
-Today, I finished migration of my blog &lt;https://prahladyeri.com&gt; from a self-hosted Wordpress site to a statically hosted <span class="o">[</span>Github Pages<span class="o">](</span>https://pages.github.com/<span class="o">)</span> site. For the static site generator, instead of choosing Jekyll which is a hot favorite of rubyists, I went <span class="k">for</span> <span class="o">[</span>Pelican<span class="o">](</span>https://github.com/getpelican/pelican/<span class="o">)</span> instead as I figured my Python skills might be somewhat useful in dealing with that.
+Today, I finished migration of my blog from a self-hosted Wordpress site to a statically hosted <span class="o">[</span>Github Pages<span class="o">](</span>https://pages.github.com/<span class="o">)</span> site. For the static site generator, instead of choosing Jekyll which is a hot favorite of rubyists, I went <span class="k">for</span> <span class="o">[</span>Pelican<span class="o">](</span>https://github.com/getpelican/pelican/<span class="o">)</span> instead as I figured my Python skills might be somewhat useful in dealing with that.
 </pre></div>
 
 

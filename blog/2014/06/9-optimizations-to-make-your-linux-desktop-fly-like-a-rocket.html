@@ -150,14 +150,14 @@
 
 
 <h3>#4 Place your mission critical apps in /dev/shm:</h3>
-<p>Few weeks back, I was having performance issues with running Eclipse on ubuntu. After tweaking and optimizing various JVM settings in vain, the thing that really made the difference was <a href="http://www.prahladyeri.com/2014/06/real-way-make-eclipse-run-faster-ubuntu/">placing the entire JDK folder in RAMDISK</a>. The /dev/shm folder is like a virtual ramdisk (on ubuntu and derivatives) where you can place your temporal, high-priority stuff to run it in "best performance" mode.</p>
+<p>Few weeks back, I was having performance issues with running Eclipse on ubuntu. After tweaking and optimizing various JVM settings in vain, the thing that really made the difference was <a href="https://prahladyeri.github.io/blog/2014/06/real-way-make-eclipse-run-faster-ubuntu.html">placing the entire JDK folder in RAMDISK</a>. The /dev/shm folder is like a virtual ramdisk (on ubuntu and derivatives) where you can place your temporal, high-priority stuff to run it in "best performance" mode.</p>
 <h3>#5 Remove unwanted programs from startup:</h3>
 <p>Many linux distros such as ubuntu come loaded with a ton of baggage, and if you are someone like me, you might feel obliged to reduce some burden off your system by removing or disabling unwanted software and daemons from it. You can do this by going to "Startup Applications" in the System menu, but ubuntu hides the pre-installed apps by default. To overcome this limitation, open your terminal and issue the below command:</p>
 <div class="highlight"><pre><span></span>sudo sed -i &#39;s/NoDisplay=true/NoDisplay=false/g&#39; /etc/xdg/autostart/*.desktop
 </pre></div>
 
 
-<p><a href="http://www.prahladyeri.com/uploads/2014/06/startup.png"><img alt="ubuntu startup" class="alignnone size-full wp-image-3092" height="612" src="/uploads/old/startup.png" width="649"></a></p>
+<p><a href="https://prahladyeri.github.io/uploads/old/startup.png"><img alt="ubuntu startup" class="alignnone size-full wp-image-3092" height="612" src="/uploads/old/startup.png" width="649"></a></p>
 <p>Now you can go through the startup programs list and can disable the unwanted ones. Common sense will tell you that if you don't use bluetooth on your machine, you can get rid of the "Bluetooth Manager". Similar is the case with "Backup Monitor" in case you don't need to sync your backups in realtime. Here is the list of services that I've safely disabled without causing any issues:</p>
 <ul>
 <li>Backup Monitor</li>

@@ -133,9 +133,9 @@
   <div class="entry-content">
     <p>Wordpress is a universally recognized and robust blogging platform written in the PHP language. Below are a bunch of Wordpress tricks that I've learned during my deployments, and I'd like to share with you.<!--more--></p>
 <p><strong><em>1. Change breadcrumbs to start from "Home" instead of Site-Title</em></strong>: When I set up this site, the breadcrumbs in the post used to read like this:</p>
-<p><a href="http://www.prahladyeri.com/">Prahlad Yeri » </a><a href="http://www.prahladyeri.com/category/wordpress/">wordpress » </a>WordPress installation quick-start guide</p>
+<p><a href="https://prahladyeri.github.io/">Prahlad Yeri » </a><a href="https://prahladyeri.github.io/category/wordpress/">wordpress » </a>WordPress installation quick-start guide</p>
 <p>However, I wanted it to look like this:</p>
-<p><a href="http://www.prahladyeri.com/">Home » </a><a href="http://www.prahladyeri.com/category/wordpress/">wordpress » </a>WordPress installation quick-start guide</p>
+<p><a href="https://prahladyeri.github.io/">Home » </a><a href="https://prahladyeri.github.io/category/wordpress/">wordpress » </a>WordPress installation quick-start guide</p>
 <p>In order to do that, you need to look into your theme-functions.php file and see where wordpress is echoing your breadcrumbs. In the mantra theme, I found this in the function mantra_breadcrumbs(). So accordingly, I changed get_bloginfo('name') and hard-coded it to 'Home':</p>
 <div class="highlight"><pre><span></span>//changed by prahlad
 //echo &#39;<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;&#39;.get_bloginfo(&#39;url&#39;).&#39;&quot;</span><span class="nt">&gt;</span>&#39;.get_bloginfo(&#39;name&#39;).&#39; <span class="ni">&amp;raquo;</span> <span class="nt">&lt;/a&gt;</span>&#39;; 
