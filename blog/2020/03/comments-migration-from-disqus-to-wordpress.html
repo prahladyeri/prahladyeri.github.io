@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset="utf-8" />
+	<title>Migrating Disqus comments into Wordpress</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" property="og:description" content="Further to my earlier blog post about How to Import Disqus comments into Wordpress, I've found that script solution to be a bit trickier for first time users who want to migrate disqus comments from their earlier blog to the new wordpress blog. The disqus_parse.php is exactly the same …">
+	<link rel="canonical" content="https://prahladyeri.github.io/blog/2020/03/comments-migration-from-disqus-to-wordpress.html" />
+	<meta name="author" content="Prahlad Yeri">
+	<!-- Google Fonts -->
+	<!--link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet"-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="/theme/css/app.css">
+	<link rel="stylesheet" href="/theme/css/pygment.css">		
+	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+
+
+
+
+    <meta name="tags" content="Blogging" />
+    <meta name="tags" content="Disqus" />
+    <meta name="tags" content="Wordpress" />
+
+	
+	
+	
+	<!-- twitter card meta data -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@prahladyeri" />
+	<meta name="twitter:creator" content="@prahladyeri" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2020/03/comments-migration-from-disqus-to-wordpress.html" />
+		<meta name="twitter:title" content="Migrating Disqus comments into Wordpress" />
+		<meta name="twitter:description" content="Further to my earlier blog post about How to Import Disqus comments into Wordpress, I've found that script solution to be a bit trickier for first time users who want to migrate disqus comments from their earlier blog to the new wordpress blog. The disqus_parse.php is exactly the same …" />
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/code-php.jpeg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/code-php.jpeg">
+
+	<!-- open graph meta data (TODO) -->
+	
+	<!--start: analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6808883-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-6808883-5');
+	</script>
+	<!--end: analytics -->
+	
+<!--pinterest claim-->
+<meta name="p:domain_verify" content="eb43d46309e2766ef1b627cea2d19326"/>
+</head>
+
+<body id="index" class="home">
+<!-- section bootstrap-menu -->
+<div class='container'>
+<div class='row header'>
+	<div class='col-md-12 text-center' style='margin: 10px 0 0 0'>
+		<h2>Prahlad Yeri</h2>
+		<h6 class='text-muted'>Freelance Programmer and Writer</h6>
+	</div>
+	<div class='col-md-12 text-center' >
+		<ul class="nav nav-fill text-center site-links col-md-8 ml-auto mr-auto">
+		<li class="nav-item"><a class="nav-link btn btn-primary" href="/">Home</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-success" href="/blog">Blog</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-danger" href="/portfolio">Portfolio</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-secondary" href="https://github.com/prahladyeri/resume">Resume</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-warning" href="/hire-me">Hire Me</a></li>
+		<li class='nav-item dropdown'>
+			<a class="nav-link dropdown-toggle btn btn-dark" id='btnSocial' href="javascript:" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+			<div class="dropdown-menu" aria-labelledby="btnSocial">
+				<a class="dropdown-item" href="https://twitter.com/prahladyeri">Twitter</a>
+				<a class="dropdown-item" href="https://github.com/prahladyeri">Github</a>
+				<a class="dropdown-item" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a>
+				<a class="dropdown-item" href="https://prahladyeri.medium.com/">Medium</a>
+				<a class="dropdown-item" href="https://www.quora.com/profile/Prahlad-Yeri">Quora</a>
+				<a class="dropdown-item" href="https://www.instagram.com/prahladyeri14/">Instagram</a>
+				<a class="dropdown-item" href="mailto:prahladyeri@yahoo.com">Email</a>
+			</div>
+		</li>
+		<li class='btn-group'>
+			<a class="nav-link dropdown-toggle btn btn-info" role='button' id='btnFeeds' href="javascript:" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a>
+			<div class="dropdown-menu" aria-labelledby="btnFeeds">
+				<a class="dropdown-item" href="/feeds/all.rss.xml">RSS</a>
+				<a class="dropdown-item" href="/feeds/all.atom.xml">ATOM</a>
+				<!-- <a class="dropdown-item" href="https://feedburner.google.com/fb/a/mailverify?uri=prahladyeri&amp;loc=en_US">Feedburner</a> -->
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='ml-auto col-md-8 mr-auto'>
+	</div>
+</div>
+</div>
+
+		<div id="main" class='mt-2 container content '>
+			<div class='row'>
+				<div class='offset-md-2 col-md-8'>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2020/03/comments-migration-from-disqus-to-wordpress.html" rel="bookmark" 
+      title="Permalink to Migrating Disqus comments into Wordpress">Migrating Disqus comments into Wordpress</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2020-03-11T13:25:00+05:30">Wed 11 March 2020</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/blogging">Blogging</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/blogging">Blogging</a>
+            <a href="https://prahladyeri.github.io/blog/tag/disqus">Disqus</a>
+            <a href="https://prahladyeri.github.io/blog/tag/wordpress">Wordpress</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p>Further to my earlier blog post about <a href="/blog/2017/09/demystifying-comments-migration-from-disqus-to-wordpress.html">How to Import Disqus comments into Wordpress</a>, I've found that script solution to be a bit trickier for first time users who want to migrate disqus comments from their earlier blog to the new wordpress blog.</p>
+<p><img alt="PHP Code" src="/uploads/code-php.jpeg"></p>
+<p>The <code>disqus_parse.php</code> is exactly the same as it is because the parsing logic hasn't changed. However, a lot has changed in actual running of the console script (<code>console.php</code>), so I've updated the same as follows:</p>
+<ol>
+<li>
+<p>Modified the URL check which ensures that disqus post's URL path is the same as Wordpress post's URL path. I've found that its much more effective to match only the "path" portions of the respective URLs instead of including the entire domain, so I used <code>parse_url</code> PHP function accordingly:</p>
+<p>$cpath = parse_url($comment['url'], PHP_URL_PATH);
+$tpath = parse_url($t_url, PHP_URL_PATH);
+if ($cpath === $tpath) {
+...</p>
+</li>
+<li>
+<p>Added a <code>$sleep_interval</code> parameter at the top of the script (default value is 2), this is needed sometimes because some Wordpress installations throw the error <em>"You are posting comments too quickly"</em> when you try to append comments through a script. If this happens, you'll have to increase this parameter's value to 6 or sometimes 11 depending on the commenting user's status. If you want to avoid this check altogether and insert comments quickly, you can temporarily add the below line to the bottom of your <code>functions.php</code> (but remember to revert back later once your comments are migrated!).</p>
+<div class="highlight"><pre><span></span>add_filter(&#39;comment_flood_filter&#39;, &#39;__return_false&#39;);
+</pre></div>
+
+
+</li>
+<li>
+<p>The <code>$post-&gt;author-&gt;name</code> XML value may be in the array form sometimes, so I've added that check:</p>
+<p>if (is_array($comment['name'])) {
+    $comment_author = (string)$comment['name'][0];
+}
+else {
+    $comment_author = (string)$comment['name'];
+}</p>
+</li>
+<li>
+<p>Passed the <code>$avoid_die</code> parameter as <code>true</code> to the <a href="https://developer.wordpress.org/reference/functions/wp_new_comment/">wp_new_comment</a> function as its more useful and practical.</p>
+</li>
+</ol>
+<p>Below are the links to the latest scripts which you must run from inside a plugin directory such as <code>/wp-content/plugins/test/</code>:</p>
+<p><strong>console.php:</strong></p>
+<p><a href="https://gist.github.com/prahladyeri/e22e4e232416ff841be670601b396c62">https://gist.github.com/prahladyeri/e22e4e232416ff841be670601b396c62</a></p>
+<p><strong>disqus_parse.php:</strong></p>
+<p><a href="https://gist.github.com/prahladyeri/d1e19d8a6d0c7ff23fe3e15f9050b6d3">https://gist.github.com/prahladyeri/d1e19d8a6d0c7ff23fe3e15f9050b6d3</a></p>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+				</div>
+				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
+					<div style='margin-top: 50px;'>
+
+<!-- AMAZON AFFILIATE ADS -->
+<!--
+<a href="https://www.amazon.in/Automate-Boring-Stuff-Python-2nd/dp/1593279922/ref=as_li_ss_il?crid=JA705IOUH74O&keywords=automate+the+boring+stuff+with+python&qid=1583912586&sprefix=automate+the+,aps,460&sr=8-1&linkCode=li2&tag=prahladyeri-21&linkId=5f899269cc1aea74977c02963a9a6caf&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1593279922&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=1593279922" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.in/PYTHON-PROGRAMMING-BEGINNERS-GUIDE-LEARN-ebook/dp/B01GSODGZC/ref=as_li_ss_il?crid=33LIIMVDMW1U3&keywords=python+programming&qid=1583912662&sprefix=python,aps,527&sr=8-4&linkCode=li2&tag=prahladyeri-21&linkId=6b3a8b38eda1d6c51546a1a0c321cfea&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01GSODGZC&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=B01GSODGZC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class='container-fluid'>
+<div class='row'>
+		<footer id ="footer" class="col-md-12 text-center bg-dark text-white pt-1 pb-1 pl-1 pr-1">
+		Copyright (&copy;) 2014-2022 Prahlad Yeri. This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+		</footer>
+</div>
+</div>		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="/theme/js/popper.min.js"></script> -->
+<!-- <script src="/theme/js/bootstrap.min.js"></script> -->
+</body>
+</html>

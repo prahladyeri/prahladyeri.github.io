@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset="utf-8" />
+	<title>How to Unbrick and revive a totally lifeless Xiaomi Mi-Pad</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" property="og:description" content="Last week, my brand new Xiaomi Mi-Pad arrived via Flipkart and no sooner did I have it in my hands, I started installing useful apps like Greenify, ES File Explorer, etc. Two days went by and I was disappointed to learn that it doesn’t support a USB Dongle (Data …">
+	<link rel="canonical" content="https://prahladyeri.github.io/blog/2016/07/how-to-unbrick-lifeless-xiaomi-mi-pad.html" />
+	<meta name="author" content="Prahlad Yeri">
+	<!-- Google Fonts -->
+	<!--link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet"-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="/theme/css/app.css">
+	<link rel="stylesheet" href="/theme/css/pygment.css">		
+	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+
+
+
+
+    <meta name="tags" content="Android" />
+    <meta name="tags" content="Hardware" />
+    <meta name="tags" content="Xiaomi" />
+    <meta name="tags" content="How To" />
+
+	
+	
+	
+	<!-- twitter card meta data -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@prahladyeri" />
+	<meta name="twitter:creator" content="@prahladyeri" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2016/07/how-to-unbrick-lifeless-xiaomi-mi-pad.html" />
+		<meta name="twitter:title" content="How to Unbrick and revive a totally lifeless Xiaomi Mi-Pad" />
+		<meta name="twitter:description" content="Last week, my brand new Xiaomi Mi-Pad arrived via Flipkart and no sooner did I have it in my hands, I started installing useful apps like Greenify, ES File Explorer, etc. Two days went by and I was disappointed to learn that it doesn’t support a USB Dongle (Data …" />
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/cover.jpg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/cover.jpg">
+
+	<!-- open graph meta data (TODO) -->
+	
+	<!--start: analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6808883-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-6808883-5');
+	</script>
+	<!--end: analytics -->
+	
+<!--pinterest claim-->
+<meta name="p:domain_verify" content="eb43d46309e2766ef1b627cea2d19326"/>
+</head>
+
+<body id="index" class="home">
+<!-- section bootstrap-menu -->
+<div class='container'>
+<div class='row header'>
+	<div class='col-md-12 text-center' style='margin: 10px 0 0 0'>
+		<h2>Prahlad Yeri</h2>
+		<h6 class='text-muted'>Freelance Programmer and Writer</h6>
+	</div>
+	<div class='col-md-12 text-center' >
+		<ul class="nav nav-fill text-center site-links col-md-8 ml-auto mr-auto">
+		<li class="nav-item"><a class="nav-link btn btn-primary" href="/">Home</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-success" href="/blog">Blog</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-danger" href="/portfolio">Portfolio</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-secondary" href="https://github.com/prahladyeri/resume">Resume</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-warning" href="/hire-me">Hire Me</a></li>
+		<li class='nav-item dropdown'>
+			<a class="nav-link dropdown-toggle btn btn-dark" id='btnSocial' href="javascript:" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+			<div class="dropdown-menu" aria-labelledby="btnSocial">
+				<a class="dropdown-item" href="https://twitter.com/prahladyeri">Twitter</a>
+				<a class="dropdown-item" href="https://github.com/prahladyeri">Github</a>
+				<a class="dropdown-item" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a>
+				<a class="dropdown-item" href="https://prahladyeri.medium.com/">Medium</a>
+				<a class="dropdown-item" href="https://www.quora.com/profile/Prahlad-Yeri">Quora</a>
+				<a class="dropdown-item" href="https://www.instagram.com/prahladyeri14/">Instagram</a>
+				<a class="dropdown-item" href="mailto:prahladyeri@yahoo.com">Email</a>
+			</div>
+		</li>
+		<li class='btn-group'>
+			<a class="nav-link dropdown-toggle btn btn-info" role='button' id='btnFeeds' href="javascript:" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a>
+			<div class="dropdown-menu" aria-labelledby="btnFeeds">
+				<a class="dropdown-item" href="/feeds/all.rss.xml">RSS</a>
+				<a class="dropdown-item" href="/feeds/all.atom.xml">ATOM</a>
+				<!-- <a class="dropdown-item" href="https://feedburner.google.com/fb/a/mailverify?uri=prahladyeri&amp;loc=en_US">Feedburner</a> -->
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='ml-auto col-md-8 mr-auto'>
+	</div>
+</div>
+</div>
+
+		<div id="main" class='mt-2 container content '>
+			<div class='row'>
+				<div class='offset-md-2 col-md-8'>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2016/07/how-to-unbrick-lifeless-xiaomi-mi-pad.html" rel="bookmark" 
+      title="Permalink to How to Unbrick and revive a totally lifeless Xiaomi Mi-Pad">How to Unbrick and revive a totally lifeless Xiaomi Mi-Pad</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2016-07-13T04:21:00+05:30">Wed 13 July 2016</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/android">Android</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/android">Android</a>
+            <a href="https://prahladyeri.github.io/blog/tag/hardware">Hardware</a>
+            <a href="https://prahladyeri.github.io/blog/tag/xiaomi">Xiaomi</a>
+            <a href="https://prahladyeri.github.io/blog/tag/how-to">How To</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p>Last week, my brand new Xiaomi Mi-Pad arrived via Flipkart and no sooner did I have it in my hands, I started installing useful apps like Greenify, ES File Explorer, etc. Two days went by and I was disappointed to learn that it doesn’t support a USB Dongle (Data Card) which is a very common method of Internet access in India. The only way I could have it was to root the tablet. And it was while rooting using SuperSU app that I foolishly selected a wrong click and ended up bricking my brand new tablet.<!--more--></p>
+<h2>The Problem</h2>
+<p>It was a <em>hard brick</em>, meaning my tablet showed no signs of life when switched on or connected to a PC through a USB cable. Had it been a <em>soft brick</em>, meaning that I were able to boot to MIUI Recovery by pressing Power+UpVolume or to FastBoot Recovery by pressing Power+DnVolume button, it would have been easy to recover. But my tablet was totally dead. Even after charging for next 6 hours, all it did was light up a black LED screen for a second or two and then vanished for any combination of those buttons.</p>
+<p>The problem was that the wrong click that I made had caused the tablet bootloader to be corrupted. And in the android world, if the bootloader is lost, then your device is literally as useful as a brick! Unlike 8086 PCs, android tablets don’t have a hard-wired BIOS to recover things from, the bootloader is as good as the BIOS.</p>
+<h2>The Research</h2>
+<p>Now obviously, I was disappointed and annoyed. After spending ₹10,999 on a brand new tablet, this was not what I was hoping for. Getting service from a Xiaomi service center was not an option as they are very rare in India. Besides, OEMs hardly provide warranty/support to people who try and root their devices, do they? So naturally, I had to myself find a way out of this. My research finally led me to a post by a Russian hacker who had successfully revived the tablet from this very situation. In this article, I’ll note down exactly what steps I had taken to revive it and hope that someone might find it useful.</p>
+<h2>The Solution</h2>
+<p>Though the solution is easy and straight-forward, there are some tricky areas where you might run into trouble. If you don’t have the confidence to open up an electronic device using a screwdriver or flash a stock ROM, just say quits and if possible, ask help from someone you know who is used to do it. Basically, the process involves this:</p>
+<ol>
+<li>Open the back-cover by separating it from the screen (fingernails or a sharp object will do) and unscrew the plastic panel that covers the top area of the motherboard.</li>
+<li>Disconnect the battery by slowly pulling the power belt (using a flat-head screwdriver or any sharp object).</li>
+<li>Connect the USB cable to Mi-Pad end (but not the PC end).</li>
+<li>Create a short circuit between the two tiny pads inside the MicroSD card slot using a metal object or wire.</li>
+<li>Connect the USB cable to the PC end.</li>
+</ol>
+<p>If done properly, the PC will detect a <em>Nvidia Boot Recovery for Mobile</em> USB device and then you can flash your stock ROM using Xiaomi’s flashing software, Mi Flash Tool, thus putting the life back into your tablet.</p>
+<h2>The Magic</h2>
+<p>The most tricky and magical aspect of this whole process is the short-circuiting in step four. Firstly, it is not easily diagnosable. The Nvidia USB driver is in fact detected by the PC even if you don’t create the short-circuit (but the battery needs to be disconnected of course), but then it will disappear instantly and you won’t get the time to flash your stock ROM. For some unknown laws of electricity (or maybe the laws coded inside this Nvidia driver), the short-circuit may not work instantly the first time. You’ll create the short-circuit, connect to the USB port and hear the Windows beep sound for USB connection, but moments later you will hear another beep of disconnection. If that happens, you’ll have to disconnect the USB cable and repeat from step-4: Create the short-circuit again and reconnect to the USB port - I had to do this about 50 times before the connection was stable enough for me to flash the ROM.</p>
+<p>Some forum posts advice you to plug in the power belt at exactly the same time as the USB connection is detected in the PC. However, I’ve found that its not true. Not once did I put the power belt back in the whole process until the ROM had been flashed completely.</p>
+<h2>The Weapon</h2>
+<p>You can use any metallic object to create the short circuit, even a tiny wire could be used. The important thing is that those two minuscule pads inside the MicroSD slot are connected by a metal. Personally, I used this tiny pin that came with the booklet along with the Mi-Pad itself!</p>
+<p><img alt="Short circuit on the two pads inside the MicroSD slot" class="size-large" src="/uploads/old/short.jpg"></p>
+<p>All I did was place that pin inside the MicroSD slot, so it created a bridge on top of those two pads, and supported the pin using any available object (in this case a screwdriver).</p>
+<p>You’ll also need a 2.0mm screwdriver to open the back-panel above the motherboard. Please remember that opening those screws are going to void your warranty (which is going to happen in any case since you either tried to root or used the <code class="highlighter-rouge">dd</code> command to rewrite partitions in order to reach this stage!).</p>
+<p>On your Windows PC, you need the following installed:</p>
+<ol>
+<li>Latest version of Mi Flash Tool (Can be downloaded <a href="http://xiaomitips.com/download/miui-rom-flashing-tool/">here</a>).</li>
+<li>Latest version of Mi Phone Manager PC Suite for the Nvidia drivers (Can be downloaded <a href="http://en.miui.com/thread-92720-1-1.html">here</a>).</li>
+</ol>
+<p>Alternatively, you can download the whole bundled software from <a href="https://androidmtk.com/download-xiaomi-mi-flash-tool">here</a> that comes with Mi Flash Tool, NVidia Drivers and ADB Drivers too.</p>
+<p>You’ll also need to download the latest MIUI stock ROM for Mi-Pad from <a href="http://en.miui.com/download-229.html">here</a> and extract somewhere on your PC to flash it later.</p>
+<p>Once your short-circuit works and the connection stays stable, waste no more time. Just fire up the Mi Flash tool and select the path to the ROM image you just extracted and click the flash button. Once the flash is successful, assemble back your Mi-Pad and on pressing the power button, you should see this:</p>
+<p><img alt="MI-Pad Recovered" src="/uploads/old/MIUI.jpg"></p>
+<h2>Summary</h2>
+<p>Keep a cool mind and do it, it can be done! If you can’t do it, try and find a mobile repair shop nearby or catch a tech enthusiast in your circle who can do it.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://xiaomi.eu/community/threads/mipad-is-dead-brick.25162/page-3#post-228543">Post by original Russian Hacker (BogNik) who did it first</a></li>
+<li><a href="http://xiaomitips.com/download/miui-rom-flashing-tool/">Latest Mi Flash Tool</a></li>
+<li><a href="http://en.miui.com/thread-92720-1-1.html">Latest Mi Phone Manager PC Suite</a></li>
+<li><a href="https://androidmtk.com/download-xiaomi-mi-flash-tool">Latest Bundled Software - Flash Tool with Nvidia and ADB Drivers</a></li>
+<li><a href="http://en.miui.com/download-229.html">Latest MIUI stock ROM</a></li>
+</ul>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+				</div>
+				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
+					<div style='margin-top: 50px;'>
+
+<!-- AMAZON AFFILIATE ADS -->
+<!--
+<a href="https://www.amazon.in/Automate-Boring-Stuff-Python-2nd/dp/1593279922/ref=as_li_ss_il?crid=JA705IOUH74O&keywords=automate+the+boring+stuff+with+python&qid=1583912586&sprefix=automate+the+,aps,460&sr=8-1&linkCode=li2&tag=prahladyeri-21&linkId=5f899269cc1aea74977c02963a9a6caf&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1593279922&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=1593279922" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.in/PYTHON-PROGRAMMING-BEGINNERS-GUIDE-LEARN-ebook/dp/B01GSODGZC/ref=as_li_ss_il?crid=33LIIMVDMW1U3&keywords=python+programming&qid=1583912662&sprefix=python,aps,527&sr=8-4&linkCode=li2&tag=prahladyeri-21&linkId=6b3a8b38eda1d6c51546a1a0c321cfea&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01GSODGZC&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=B01GSODGZC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class='container-fluid'>
+<div class='row'>
+		<footer id ="footer" class="col-md-12 text-center bg-dark text-white pt-1 pb-1 pl-1 pr-1">
+		Copyright (&copy;) 2014-2022 Prahlad Yeri. This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+		</footer>
+</div>
+</div>		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="/theme/js/popper.min.js"></script> -->
+<!-- <script src="/theme/js/bootstrap.min.js"></script> -->
+</body>
+</html>

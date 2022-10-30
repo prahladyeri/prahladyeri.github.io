@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset="utf-8" />
+	<title>Backbone.Events+Promises+async/await is a great combination for building javascript apps</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" property="og:description" content="At the risk of being a contrarian, I'd like to show in this article how exactly can the Backbone's Events model be combined with the more modern constructs of Promises and async/await to build a killer app using JavaScript. First, let's try to understand why do we need these …">
+	<link rel="canonical" content="https://prahladyeri.github.io/blog/2018/07/backbone-events-promises-async_await-combination.html" />
+	<meta name="author" content="Prahlad Yeri">
+	<!-- Google Fonts -->
+	<!--link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet"-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="/theme/css/app.css">
+	<link rel="stylesheet" href="/theme/css/pygment.css">		
+	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+
+
+
+
+    <meta name="tags" content="Backbone" />
+    <meta name="tags" content="JavaScript" />
+
+	
+	
+	
+	<!-- twitter card meta data -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@prahladyeri" />
+	<meta name="twitter:creator" content="@prahladyeri" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2018/07/backbone-events-promises-async_await-combination.html" />
+		<meta name="twitter:title" content="Backbone.Events+Promises+async/await is a great combination for building javascript apps" />
+		<meta name="twitter:description" content="At the risk of being a contrarian, I'd like to show in this article how exactly can the Backbone's Events model be combined with the more modern constructs of Promises and async/await to build a killer app using JavaScript. First, let's try to understand why do we need these …" />
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/cover.jpg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/cover.jpg">
+
+	<!-- open graph meta data (TODO) -->
+	
+	<!--start: analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6808883-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-6808883-5');
+	</script>
+	<!--end: analytics -->
+	
+<!--pinterest claim-->
+<meta name="p:domain_verify" content="eb43d46309e2766ef1b627cea2d19326"/>
+</head>
+
+<body id="index" class="home">
+<!-- section bootstrap-menu -->
+<div class='container'>
+<div class='row header'>
+	<div class='col-md-12 text-center' style='margin: 10px 0 0 0'>
+		<h2>Prahlad Yeri</h2>
+		<h6 class='text-muted'>Freelance Programmer and Writer</h6>
+	</div>
+	<div class='col-md-12 text-center' >
+		<ul class="nav nav-fill text-center site-links col-md-8 ml-auto mr-auto">
+		<li class="nav-item"><a class="nav-link btn btn-primary" href="/">Home</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-success" href="/blog">Blog</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-danger" href="/portfolio">Portfolio</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-secondary" href="https://github.com/prahladyeri/resume">Resume</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-warning" href="/hire-me">Hire Me</a></li>
+		<li class='nav-item dropdown'>
+			<a class="nav-link dropdown-toggle btn btn-dark" id='btnSocial' href="javascript:" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+			<div class="dropdown-menu" aria-labelledby="btnSocial">
+				<a class="dropdown-item" href="https://twitter.com/prahladyeri">Twitter</a>
+				<a class="dropdown-item" href="https://github.com/prahladyeri">Github</a>
+				<a class="dropdown-item" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a>
+				<a class="dropdown-item" href="https://prahladyeri.medium.com/">Medium</a>
+				<a class="dropdown-item" href="https://www.quora.com/profile/Prahlad-Yeri">Quora</a>
+				<a class="dropdown-item" href="https://www.instagram.com/prahladyeri14/">Instagram</a>
+				<a class="dropdown-item" href="mailto:prahladyeri@yahoo.com">Email</a>
+			</div>
+		</li>
+		<li class='btn-group'>
+			<a class="nav-link dropdown-toggle btn btn-info" role='button' id='btnFeeds' href="javascript:" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a>
+			<div class="dropdown-menu" aria-labelledby="btnFeeds">
+				<a class="dropdown-item" href="/feeds/all.rss.xml">RSS</a>
+				<a class="dropdown-item" href="/feeds/all.atom.xml">ATOM</a>
+				<!-- <a class="dropdown-item" href="https://feedburner.google.com/fb/a/mailverify?uri=prahladyeri&amp;loc=en_US">Feedburner</a> -->
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='ml-auto col-md-8 mr-auto'>
+	</div>
+</div>
+</div>
+
+		<div id="main" class='mt-2 container content '>
+			<div class='row'>
+				<div class='offset-md-2 col-md-8'>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2018/07/backbone-events-promises-async_await-combination.html" rel="bookmark" 
+      title="Permalink to Backbone.Events+Promises+async/await is a great combination for building javascript apps">Backbone.Events+Promises+async/await is a great combination for building javascript apps</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2018-07-12T11:59:00+05:30">Thu 12 July 2018</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/javascript">JavaScript</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/backbone">Backbone</a>
+            <a href="https://prahladyeri.github.io/blog/tag/javascript">JavaScript</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p>At the risk of being a contrarian, I'd like to show in this article how exactly can the Backbone's Events model be combined with the more modern constructs of Promises and async/await to build a killer app using JavaScript.<!--more--></p>
+<p>First, let's try to understand why do we need these constructs for asynchronous programming when JavaScript itself is a mostly asynchronous language featuring events and function callbacks. The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise API</a> was introduced in ES6 standard as a way of preventing callback hell:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">someFunction</span><span class="p">(</span><span class="kd">function</span> <span class="nx">anotherFunction</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+  <span class="kd">function</span> <span class="nx">yetAnotherFunction() {</span>
+    <span class="kd">function</span> <span class="nx">reallyCoreFunction() {</span>
+      <span class="c1">//readability sucks now!</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+
+<p>This is only three layers of callbacks, imagine what will happen when there are a hundred of them which is quite possible in a medium sized web app with multiple ajax calls and a dynamic interface. To solve this problem, functions started returning a "Promise" object instead of a callback function, so instead of multiple layers of callbacks, we can now use "function chaining" using the <strong>then</strong> keyword like this:</p>
+<div class="highlight"><pre><span></span>someFunction()
+.then(function(){
+  yetAnotherFunction();
+})
+.then(function(){
+  reallyCoreFunction();
+})
+//readability is better now!
+</pre></div>
+
+
+<p>As you can see, the Promise API has improved the readability to a considerable extent. Instead of a callback mechanism, the callee returns an object called <strong>Promise</strong> which can be chained for further execution. For this to happen, the callee has to call resolve() in order for the caller to end the wait and trigger further execution in the next chain:</p>
+<p><img alt="Promise Model" class="size-full wp-image-921" height="222" src="/uploads/2018/07/promise_model.png" width="755"> </p>
+<p><strong>Promise Model</strong></p>
+<p>But the async/await construct goes even further than this. You don't even need to do function chaining using <strong>then</strong>, but the <strong>await</strong> keyword itself is enough to do this. Internally, the async/await model uses the Promise API to achieve its end because even in this model, the callee has to make the resolve() call in order to return execution control to the caller and the process continues after the next await statement:</p>
+<p><img alt="async await Model" class="size-full wp-image-922" height="222" src="/uploads/2018/07/async_await_model.png" width="755"></p>
+<p><strong>async await Model</strong></p>
+<p>However, one disadvantage of async/await is that the caller can only wait, it cannot receive a returned value which is possible in the Promise model. Another disadvantage is that the caller function itself who invoked the await statement needs to be declared as async which means it cannot be a part of a sequential statements in another process, but has to work independently as shown <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function#Examples">in this example</a>:</p>
+<div class="highlight"><pre><span></span>var sequentialStart = async function() {
+  console.log(&#39;==SEQUENTIAL START==&#39;);
+  const slow = await resolveAfter2Seconds(); // If the value of the expression following the await operator is not a Promise, it&#39;s converted to a resolved Promise.
+  const fast = await resolveAfter1Second();
+  console.log(slow);
+  console.log(fast);
+}
+</pre></div>
+
+
+<p>Finally, the most important thing here is to realize that both Promises and async/await are just one level of asynchrony, let's call this detail asynchrony or <strong>micro asynchrony</strong>, but there is also the other kind that works at the broader level which can be termed <strong>macro asynchrony</strong>, and this is where Backbone.Events comes into the picture.</p>
+<p>Consider that you have a complex web application with several views and each component should be able to trigger a message or event to any other component asynchronously in order for the app to render and function properly. Consider an app with a <strong>loginView</strong> that needs to trigger an alert that a user has just signed in. Now, keeping the separation of concerns, the best practice here would be that the loginView shouldn't try to render that part of the DOM and leave it to the other component: <strong>navbarView</strong>. Now, how can our loginView be able to "tell" the navbarView asynchronously over the wire to display that alert? Both Promises and async/await are of no use here, and hence we need a macro-level all-purpose <strong>Event Bus</strong>, similar to the one that Backbone.js provides us:</p>
+<p><img alt="backbone.events Model" class="size-full wp-image-920" height="278" src="/uploads/2018/07/backbone.events_model.png" width="757"></p>
+<p><strong>backbone.events Model</strong></p>
+<p>In this case, our caller and callee are inside separate components and don't even know each other. And separation of concerns imply that they cannot even contact each other directly. Now, Backbone provides this useful trigger/listen mechanism called <strong>Backbone.Events</strong> using which any object in your app can listen to the events triggered on any other object! In this case, the loginView triggers an event called "navbarView.alert" and thus "tells" the navbarView that it has to do something (in this case show an alert). This mechanism also supports passing of any kind of data along with the triggering of event (in this case the <em>message</em> parameter).</p>
+<p>Thus, we can see that combining the power of all these asynchronous models, we can easily handle any level of complexity in our app, provided that our <a href="https://prahladyeri.github.io/blog/2018/07/the-right-way-to-architect-single-page-web-applications.html">app itself is structured in the right way from the start</a>.</p>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+				</div>
+				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
+					<div style='margin-top: 50px;'>
+
+<!-- AMAZON AFFILIATE ADS -->
+<!--
+<a href="https://www.amazon.in/Automate-Boring-Stuff-Python-2nd/dp/1593279922/ref=as_li_ss_il?crid=JA705IOUH74O&keywords=automate+the+boring+stuff+with+python&qid=1583912586&sprefix=automate+the+,aps,460&sr=8-1&linkCode=li2&tag=prahladyeri-21&linkId=5f899269cc1aea74977c02963a9a6caf&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1593279922&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=1593279922" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.in/PYTHON-PROGRAMMING-BEGINNERS-GUIDE-LEARN-ebook/dp/B01GSODGZC/ref=as_li_ss_il?crid=33LIIMVDMW1U3&keywords=python+programming&qid=1583912662&sprefix=python,aps,527&sr=8-4&linkCode=li2&tag=prahladyeri-21&linkId=6b3a8b38eda1d6c51546a1a0c321cfea&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01GSODGZC&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=B01GSODGZC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class='container-fluid'>
+<div class='row'>
+		<footer id ="footer" class="col-md-12 text-center bg-dark text-white pt-1 pb-1 pl-1 pr-1">
+		Copyright (&copy;) 2014-2022 Prahlad Yeri. This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+		</footer>
+</div>
+</div>		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="/theme/js/popper.min.js"></script> -->
+<!-- <script src="/theme/js/bootstrap.min.js"></script> -->
+</body>
+</html>

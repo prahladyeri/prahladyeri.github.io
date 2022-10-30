@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset="utf-8" />
+	<title>The right way to architect single page web applications</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" property="og:description" content="Lets face it, Web Apps are a complex and complicated beast, both on the front end and back end. The reason we had to come up with so many frameworks and libraries (angular/backbone/react/vue/marionette/require.js/etc.) is that the whole process is quite difficult and convoluted …">
+	<link rel="canonical" content="https://prahladyeri.github.io/blog/2018/07/the-right-way-to-architect-single-page-web-applications.html" />
+	<meta name="author" content="Prahlad Yeri">
+	<!-- Google Fonts -->
+	<!--link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet"-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="/theme/css/app.css">
+	<link rel="stylesheet" href="/theme/css/pygment.css">		
+	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+
+
+
+
+    <meta name="tags" content="JavaScript" />
+    <meta name="tags" content="HTML" />
+
+	
+	
+	
+	<!-- twitter card meta data -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@prahladyeri" />
+	<meta name="twitter:creator" content="@prahladyeri" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2018/07/the-right-way-to-architect-single-page-web-applications.html" />
+		<meta name="twitter:title" content="The right way to architect single page web applications" />
+		<meta name="twitter:description" content="Lets face it, Web Apps are a complex and complicated beast, both on the front end and back end. The reason we had to come up with so many frameworks and libraries (angular/backbone/react/vue/marionette/require.js/etc.) is that the whole process is quite difficult and convoluted …" />
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/cover.jpg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/cover.jpg">
+
+	<!-- open graph meta data (TODO) -->
+	
+	<!--start: analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6808883-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-6808883-5');
+	</script>
+	<!--end: analytics -->
+	
+<!--pinterest claim-->
+<meta name="p:domain_verify" content="eb43d46309e2766ef1b627cea2d19326"/>
+</head>
+
+<body id="index" class="home">
+<!-- section bootstrap-menu -->
+<div class='container'>
+<div class='row header'>
+	<div class='col-md-12 text-center' style='margin: 10px 0 0 0'>
+		<h2>Prahlad Yeri</h2>
+		<h6 class='text-muted'>Freelance Programmer and Writer</h6>
+	</div>
+	<div class='col-md-12 text-center' >
+		<ul class="nav nav-fill text-center site-links col-md-8 ml-auto mr-auto">
+		<li class="nav-item"><a class="nav-link btn btn-primary" href="/">Home</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-success" href="/blog">Blog</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-danger" href="/portfolio">Portfolio</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-secondary" href="https://github.com/prahladyeri/resume">Resume</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-warning" href="/hire-me">Hire Me</a></li>
+		<li class='nav-item dropdown'>
+			<a class="nav-link dropdown-toggle btn btn-dark" id='btnSocial' href="javascript:" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+			<div class="dropdown-menu" aria-labelledby="btnSocial">
+				<a class="dropdown-item" href="https://twitter.com/prahladyeri">Twitter</a>
+				<a class="dropdown-item" href="https://github.com/prahladyeri">Github</a>
+				<a class="dropdown-item" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a>
+				<a class="dropdown-item" href="https://prahladyeri.medium.com/">Medium</a>
+				<a class="dropdown-item" href="https://www.quora.com/profile/Prahlad-Yeri">Quora</a>
+				<a class="dropdown-item" href="https://www.instagram.com/prahladyeri14/">Instagram</a>
+				<a class="dropdown-item" href="mailto:prahladyeri@yahoo.com">Email</a>
+			</div>
+		</li>
+		<li class='btn-group'>
+			<a class="nav-link dropdown-toggle btn btn-info" role='button' id='btnFeeds' href="javascript:" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a>
+			<div class="dropdown-menu" aria-labelledby="btnFeeds">
+				<a class="dropdown-item" href="/feeds/all.rss.xml">RSS</a>
+				<a class="dropdown-item" href="/feeds/all.atom.xml">ATOM</a>
+				<!-- <a class="dropdown-item" href="https://feedburner.google.com/fb/a/mailverify?uri=prahladyeri&amp;loc=en_US">Feedburner</a> -->
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='ml-auto col-md-8 mr-auto'>
+	</div>
+</div>
+</div>
+
+		<div id="main" class='mt-2 container content '>
+			<div class='row'>
+				<div class='offset-md-2 col-md-8'>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2018/07/the-right-way-to-architect-single-page-web-applications.html" rel="bookmark" 
+      title="Permalink to The right way to architect single page web applications">The right way to architect single page web applications</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2018-07-06T15:54:00+05:30">Fri 06 July 2018</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/web-development">Web Development</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/javascript">JavaScript</a>
+            <a href="https://prahladyeri.github.io/blog/tag/html">HTML</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p>Lets face it, Web Apps are a complex and complicated beast, both on the front end and back end. The reason we had to come up with so many frameworks and libraries (angular/backbone/react/vue/marionette/require.js/etc.) is that the whole process is quite difficult and convoluted.<!--more--></p>
+<p>Once your app starts to scale in complexity, even the best of ideas and best practices in this field cannot prevent your app code from becoming a spaghetti of JavaScript and jQuery callbacks and DOM manipulation functions. Turning into a mess is essentially the nature of JavaScript when left to its own mechanism (event callback model and high asynchrony do ensure that). If you only use jQuery to architect your app, this is what it'll soon end up becoming:</p>
+<p><img alt="The Spaghetti Way" class="size-full wp-image-816" height="254" src="/uploads/2018/07/spaghetti-way.png" width="956"></p>
+<p><strong>The Spaghetti Way</strong></p>
+<p>Once your app.js ends up with millions of these jQuery functions, it will soon become beyond understanding and sanity even for you as the author of the code. And that's exactly why we need to understand this complexity and architect some structure and foundation in our apps.</p>
+<p>One way of handling this complexity is the easy way - just delegate this whole thing to another complex beast of an opinionated framework such as angular or vue, and work with simple abstractions like angular views and controllers. This strategy does work to an extent (and you do get some mental sense of achievement too) but only as long as your app is limited in functionality and doesn't scale in size and complexity. The problem with opinionated frameworks is that they are opinionated - they work only as long as your app is pigeonholed and fits in their own way of typically doing things, but the moment you step outside and want to do something that doesn't confirm to that way (like rendering a complex DOM element or work with a difficult third-party UI library), then you are hit with a wall - unless you are prepared to venture too deeply into that framework and learn advanced stuff (like creating complex directives or providers in angular). But if you had to resort to that at the end, then why use an opinionated framework at all!</p>
+<p><img alt="The Opinionated Framework Way" class="size-full wp-image-818" height="400" src="/uploads/2018/07/opinionated-way.png" width="1089"></p>
+<p><strong>The Opinionated Framework Way</strong></p>
+<p>As you can see in above diagram, using an opinionated framework is like driving a car with automatic gear system. You cannot control the speed or acceleration, nor can you synchronize the clutch action, its the black box of the automatic gear that does it for you. But unlike this simple gearbox analogy where speed and clutch synchrony are the only two variables, your web app has lots of variables, so the chances of going wrong and getting stuck with this approach drastically increases as your web app starts to scale in complexity. Manually doing things using the Backbone way may appear to be difficult or complex initially, but that's a much better way than trading off that complexity for an opinionated black-box framework about who's inner workings you don't understand anything at all.</p>
+<p>The first step towards building a single page app should be deciding what your app is going to do and how its going to do it. Every app is different in features, functionality and work flow, hence it pays to use an uber-light framework such as Backbone instead of any heavy and opinionated ones. Backbone in the frameworks world is pretty much like what jQuery is in the libraries world, it doesn't do much on its own besides giving you methods and objects for creating a layer of structure and organization (just as jQuery doesn't do much on its own besides adding a sugar-syntax wrapper for native DOM manipulation functions of JavaScript).</p>
+<p>Now, because of this exact flexibility and freedom, there is no one correct way to build Backbone apps. Backbone is heavy in philosophy and light in implementation, and the philosophy being simple:</p>
+<ol>
+<li>Separation of concerns (models, views and other components should be kept separate).</li>
+<li>Separation of roles (Organizers and implementors should do their own thing, one shouldn't step into the shoes of others).</li>
+</ol>
+<p>Personally, I think that if you follow only these two principles sincerely and stick to them, then you can handle whatever amount complexity life throws at your app. Of course, to architect such an app is an art in itself and you may not get it right the first time. The architecture itself may even need to evolve with time and complexity as your app grows and scales. One global event coordinator (or organizer) can be enough initially, but later on, you may have to add a DOM coordinator for handling DOM events, a data coordinator for handling connections to the database objects, etc. as you scale.</p>
+<p>Here is a basic example architecture that you can probably use for an app of low to medium complexity:</p>
+<p><img alt="The Backbone Way" class="size-full wp-image-831" height="536" src="/uploads/2018/07/backbone-way1.png" width="884"> </p>
+<p><strong>The Backbone Way</strong></p>
+<p>And <a href="https://github.com/prahladyeri/experimental-backbone">this is an example implementation</a> which I'm developing as a side project. Of course, the app doesn't do much presently besides user management and routing to dummy pages,</p>
+<p>Of course, this isn't the only Backbone way to build apps, but I think its a good one for a start. The primary problem you'll face if you stick to doing things your own way and not use an opinionated framework is that of organization. You need an organizer/coordinator object to co-ordinate with various components of your app and keep them in sync with each other and this is where the Backbone.Events API provided by the framework shines. The Backbone.View object also plays a great part in ensuring the separation of DOM manipulation code from rest of your app, and along with the underscore template library, it becomes a power combination for rendering DOM! With underscore templates, you can actually use javascript functions and variables inside a template, not just clumsy tags like ng-something!</p>
+<div class="highlight"><pre><span></span><span class="cp">&lt;%</span> <span class="k">if</span><span class="p">(</span><span class="n">modal</span><span class="o">[</span><span class="s1">&#39;buttons&#39;</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span> <span class="cp">%&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;ui-button-container&quot;</span><span class="nt">&gt;</span>
+    <span class="cp">&lt;%</span> <span class="n">_</span><span class="p">(</span><span class="n">model</span><span class="o">[</span><span class="s1">&#39;buttons&#39;</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">button</span><span class="p">)</span> <span class="p">{</span> <span class="cp">%&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;ui-button ui-button-pill </span><span class="cp">&lt;%=</span> <span class="n">button</span><span class="o">.</span><span class="n">extra_class</span> <span class="cp">%&gt;</span><span class="s"> &quot;</span> <span class="na">href=</span><span class="s">&quot;</span><span class="cp">&lt;%=</span> <span class="n">button</span><span class="o">.</span><span class="n">href</span> <span class="cp">%&gt;</span><span class="s">&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;label&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;section&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;%=</span> <span class="n">button</span><span class="o">.</span><span class="n">label</span> <span class="cp">%&gt;</span><span class="nt">&lt;/span&gt;</span> 
+        <span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;/a&gt;</span>
+    <span class="cp">&lt;%</span> <span class="p">})</span> <span class="cp">%&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="cp">&lt;%</span> <span class="p">}</span> <span class="cp">%&gt;</span>
+</pre></div>
+
+
+<p>Of course, its not a very good practice to mix javascript with templates, but it just shows the power and flexibility of using backbone+underscore compared to other vendor frameworks.</p>
+<p>Ultimately, it all comes down to your preference, you can use angular or vue or react if you really want to. However, always understand the reason why you are hooking to a third party framework. If it is just for escaping the complexity of your app, then no amount of framework or libraries in the world are going to help you. Passing on the complexity to a black box like angular or vue is just a band-aid solution that will fall apart the moment you scale in complexity and you'll get stuck by the limitations of the framework. At that point, you'll have to make one of these two decisions:</p>
+<p>1. Abandon the framework and do everything right from scratch using the manual way of Backbone.</p>
+<p>2. Understand the framework internals too deeply and customize it to achieve what you want (but then what was the point of using this framework in the first place?)</p>
+<p>Ultimately, its your decision to choose a framework. Consider it wisely after weighing in all the pros and cons. Best of luck!</p>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+				</div>
+				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
+					<div style='margin-top: 50px;'>
+
+<!-- AMAZON AFFILIATE ADS -->
+<!--
+<a href="https://www.amazon.in/Automate-Boring-Stuff-Python-2nd/dp/1593279922/ref=as_li_ss_il?crid=JA705IOUH74O&keywords=automate+the+boring+stuff+with+python&qid=1583912586&sprefix=automate+the+,aps,460&sr=8-1&linkCode=li2&tag=prahladyeri-21&linkId=5f899269cc1aea74977c02963a9a6caf&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1593279922&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=1593279922" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.in/PYTHON-PROGRAMMING-BEGINNERS-GUIDE-LEARN-ebook/dp/B01GSODGZC/ref=as_li_ss_il?crid=33LIIMVDMW1U3&keywords=python+programming&qid=1583912662&sprefix=python,aps,527&sr=8-4&linkCode=li2&tag=prahladyeri-21&linkId=6b3a8b38eda1d6c51546a1a0c321cfea&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01GSODGZC&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=B01GSODGZC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class='container-fluid'>
+<div class='row'>
+		<footer id ="footer" class="col-md-12 text-center bg-dark text-white pt-1 pb-1 pl-1 pr-1">
+		Copyright (&copy;) 2014-2022 Prahlad Yeri. This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+		</footer>
+</div>
+</div>		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="/theme/js/popper.min.js"></script> -->
+<!-- <script src="/theme/js/bootstrap.min.js"></script> -->
+</body>
+</html>

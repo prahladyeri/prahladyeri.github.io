@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset="utf-8" />
+	<title>Converting Userscript to Chrome Extension: The monkeys are no longer needed</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" property="og:description" content="Userscripts are a very useful and handy tool in the hands of power users. Just like customized garnishing, salt and pepper, etc. we put on our food before we eat, we can add custom javascript tweaks on the websites we visit. For example, you may want Reddit to automatically highlight …">
+	<link rel="canonical" content="https://prahladyeri.github.io/blog/2022/10/converting-userscripts-to-chrome-extensions.html" />
+	<meta name="author" content="Prahlad Yeri">
+	<!-- Google Fonts -->
+	<!--link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet"-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="/theme/css/app.css">
+	<link rel="stylesheet" href="/theme/css/pygment.css">		
+	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+
+
+
+
+    <meta name="tags" content="JavaScript" />
+    <meta name="tags" content="Userscripts" />
+    <meta name="tags" content="Extensions" />
+
+	
+	
+	
+	<!-- twitter card meta data -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@prahladyeri" />
+	<meta name="twitter:creator" content="@prahladyeri" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2022/10/converting-userscripts-to-chrome-extensions.html" />
+		<meta name="twitter:title" content="Converting Userscript to Chrome Extension: The monkeys are no longer needed" />
+		<meta name="twitter:description" content="Userscripts are a very useful and handy tool in the hands of power users. Just like customized garnishing, salt and pepper, etc. we put on our food before we eat, we can add custom javascript tweaks on the websites we visit. For example, you may want Reddit to automatically highlight …" />
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/code.jpg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/code.jpg">
+
+	<!-- open graph meta data (TODO) -->
+	
+	<!--start: analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6808883-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-6808883-5');
+	</script>
+	<!--end: analytics -->
+	
+<!--pinterest claim-->
+<meta name="p:domain_verify" content="eb43d46309e2766ef1b627cea2d19326"/>
+</head>
+
+<body id="index" class="home">
+<!-- section bootstrap-menu -->
+<div class='container'>
+<div class='row header'>
+	<div class='col-md-12 text-center' style='margin: 10px 0 0 0'>
+		<h2>Prahlad Yeri</h2>
+		<h6 class='text-muted'>Freelance Programmer and Writer</h6>
+	</div>
+	<div class='col-md-12 text-center' >
+		<ul class="nav nav-fill text-center site-links col-md-8 ml-auto mr-auto">
+		<li class="nav-item"><a class="nav-link btn btn-primary" href="/">Home</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-success" href="/blog">Blog</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-danger" href="/portfolio">Portfolio</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-secondary" href="https://github.com/prahladyeri/resume">Resume</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-warning" href="/hire-me">Hire Me</a></li>
+		<li class='nav-item dropdown'>
+			<a class="nav-link dropdown-toggle btn btn-dark" id='btnSocial' href="javascript:" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+			<div class="dropdown-menu" aria-labelledby="btnSocial">
+				<a class="dropdown-item" href="https://twitter.com/prahladyeri">Twitter</a>
+				<a class="dropdown-item" href="https://github.com/prahladyeri">Github</a>
+				<a class="dropdown-item" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a>
+				<a class="dropdown-item" href="https://prahladyeri.medium.com/">Medium</a>
+				<a class="dropdown-item" href="https://www.quora.com/profile/Prahlad-Yeri">Quora</a>
+				<a class="dropdown-item" href="https://www.instagram.com/prahladyeri14/">Instagram</a>
+				<a class="dropdown-item" href="mailto:prahladyeri@yahoo.com">Email</a>
+			</div>
+		</li>
+		<li class='btn-group'>
+			<a class="nav-link dropdown-toggle btn btn-info" role='button' id='btnFeeds' href="javascript:" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a>
+			<div class="dropdown-menu" aria-labelledby="btnFeeds">
+				<a class="dropdown-item" href="/feeds/all.rss.xml">RSS</a>
+				<a class="dropdown-item" href="/feeds/all.atom.xml">ATOM</a>
+				<!-- <a class="dropdown-item" href="https://feedburner.google.com/fb/a/mailverify?uri=prahladyeri&amp;loc=en_US">Feedburner</a> -->
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='ml-auto col-md-8 mr-auto'>
+	</div>
+</div>
+</div>
+
+		<div id="main" class='mt-2 container content '>
+			<div class='row'>
+				<div class='offset-md-2 col-md-8'>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2022/10/converting-userscripts-to-chrome-extensions.html" rel="bookmark" 
+      title="Permalink to Converting Userscript to Chrome Extension: The monkeys are no longer needed">Converting Userscript to Chrome Extension: The monkeys are no longer needed</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2022-10-14T08:00:00+05:30">Fri 14 October 2022</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/javascript">JavaScript</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/javascript">JavaScript</a>
+            <a href="https://prahladyeri.github.io/blog/tag/userscripts">Userscripts</a>
+            <a href="https://prahladyeri.github.io/blog/tag/extensions">Extensions</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p><a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/userScripts">Userscripts</a> are a very useful and handy tool in the hands of power users. Just like customized garnishing, salt and pepper, etc. we put on our food before we eat, we can add custom javascript tweaks on the websites we visit.</p>
+<p>For example, you may want Reddit to automatically highlight the recently posted (unread) comments on a post or thread. Another example is that when you perform a Google search, you may want trusted sites highlighted specifically (based on a pre-filtered list if you have one).</p>
+<p>The classical or traditional way of running these userscripts is by using the "monkey" extensions, the most popular of them being <a href="https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/">Greasemonkey</a> and <a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en">Tampermonkey</a>.</p>
+<p>These extensions allow you to write scripts that execute when you visit the particular sites for them. While this is a great way of using userscripts, the better and more efficient way is to always convert them into browser extensions.</p>
+<p>Extensions run natively in your browsers as you're using one less execution layer. Besides, some extensions like Tampermonkey also update themselves too frequently (perhaps to keep up with the browser updates) and that might cause compatibility issues.</p>
+<p>While comprehensive extension development is beyond the scope of this blog post, the conversion from a userscript to a basic chrome extension is quite straightforward. All you have to create is a folder for your extension and create two files named <code>manifest.json</code> and <code>content.js</code>. The <code>content.js</code> is where you'll place the javascript code presently in your script file. Two important points to note here is that there should be no use of special <code>GM_*</code> functions and you must not use any <code>return</code> statement unless it's inside a function.</p>
+<p>Here is a very basic <code>manifest.json</code> example.</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="s2">&quot;manifest_version&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Reddit Plus&quot;</span><span class="p">,</span>
+<span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;Highlight unread comments and mark them in blue.&quot;</span><span class="p">,</span>
+<span class="s2">&quot;version&quot;</span><span class="o">:</span> <span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="s2">&quot;icons&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;16&quot;</span><span class="o">:</span> <span class="s2">&quot;icon.png&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;48&quot;</span><span class="o">:</span> <span class="s2">&quot;icon.png&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;128&quot;</span><span class="o">:</span> <span class="s2">&quot;icon.png&quot;</span>
+  <span class="p">},</span>
+<span class="s2">&quot;content_scripts&quot;</span><span class="o">:</span><span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;matches&quot;</span><span class="o">:</span><span class="p">[</span>
+        <span class="s2">&quot;https://*.reddit.com/*&quot;</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;exclude_matches&quot;</span><span class="o">:</span><span class="p">[</span>
+        <span class="s2">&quot;https://*.reddit.com/test/*&quot;</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;js&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;lib/jquery.min.js&quot;</span><span class="p">,</span> <span class="s2">&quot;content.js&quot;</span><span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+<span class="s2">&quot;browser_action&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;default_icon&quot;</span><span class="o">:</span> <span class="s2">&quot;icon.png&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;default_popup&quot;</span><span class="o">:</span> <span class="s2">&quot;popup.html&quot;</span>
+  <span class="p">},</span>
+
+  <span class="s2">&quot;background&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;scripts&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;background.js&quot;</span><span class="p">],</span>
+      <span class="s2">&quot;persistent&quot;</span><span class="o">:</span> <span class="kc">false</span>
+    <span class="p">},</span>
+<span class="s2">&quot;permissions&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">&quot;activeTab&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;storage&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://ajax.googleapis.com/&quot;</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>My userscript also depends on jquery and instead of calling it through the CDN, I've included it as a separate script under "lib" folder as "lib/jquery.min.js". Having an <code>icon.png</code> helps you distinguish the extension form others. The <code>background.js</code> is required as an empty placeholder. So, there are 5 files in total (the last one being optional):</p>
+<ul>
+<li>manifest.json</li>
+<li>content.js</li>
+<li>icon.png</li>
+<li>background.js</li>
+<li>lib/jquery.min.js</li>
+</ul>
+<p>Once you have this structure, just go to <code>chrome://extensions</code> on your browser and switch on the "Developer Mode". This will allow you to install unpacked extensions. Just click on the "Load Unpacked" and browse your extension folder.</p>
+<p>That's it! You can now test your extension by visiting the site just like you did with userscripts and the monkey extensions. This was for chrome browser which I happen to use but extension development workflow for other browsers like firefox or edge shouldn't be much different than this. Let me know how your userscript to extension conversion goes in the comments below.</p>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+				</div>
+				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
+					<div style='margin-top: 50px;'>
+
+<!-- AMAZON AFFILIATE ADS -->
+<!--
+<a href="https://www.amazon.in/Automate-Boring-Stuff-Python-2nd/dp/1593279922/ref=as_li_ss_il?crid=JA705IOUH74O&keywords=automate+the+boring+stuff+with+python&qid=1583912586&sprefix=automate+the+,aps,460&sr=8-1&linkCode=li2&tag=prahladyeri-21&linkId=5f899269cc1aea74977c02963a9a6caf&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1593279922&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=1593279922" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.in/PYTHON-PROGRAMMING-BEGINNERS-GUIDE-LEARN-ebook/dp/B01GSODGZC/ref=as_li_ss_il?crid=33LIIMVDMW1U3&keywords=python+programming&qid=1583912662&sprefix=python,aps,527&sr=8-4&linkCode=li2&tag=prahladyeri-21&linkId=6b3a8b38eda1d6c51546a1a0c321cfea&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01GSODGZC&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=B01GSODGZC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class='container-fluid'>
+<div class='row'>
+		<footer id ="footer" class="col-md-12 text-center bg-dark text-white pt-1 pb-1 pl-1 pr-1">
+		Copyright (&copy;) 2014-2022 Prahlad Yeri. This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+		</footer>
+</div>
+</div>		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="/theme/js/popper.min.js"></script> -->
+<!-- <script src="/theme/js/bootstrap.min.js"></script> -->
+</body>
+</html>

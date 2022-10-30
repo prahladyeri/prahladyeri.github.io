@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset="utf-8" />
+	<title>How to approach and evaluate programming languages for a project</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" property="og:description" content="While it's a topic which has already invited hair splitting debates ad nauseam, it has also invited a lot of hype and there is a need to unclutter that hype and think about this topic objectively. The Toolbox Approach This has been the classic or traditional approach when programming used …">
+	<link rel="canonical" content="https://prahladyeri.github.io/blog/2022/09/how-to-approach-and-evaluate-programming-languages-for-a-project.html" />
+	<meta name="author" content="Prahlad Yeri">
+	<!-- Google Fonts -->
+	<!--link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet"-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="/theme/css/app.css">
+	<link rel="stylesheet" href="/theme/css/pygment.css">		
+	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+
+
+
+
+    <meta name="tags" content="Programming" />
+    <meta name="tags" content="PHP" />
+    <meta name="tags" content="Python" />
+    <meta name="tags" content="OOP" />
+
+	
+	
+	
+	<!-- twitter card meta data -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@prahladyeri" />
+	<meta name="twitter:creator" content="@prahladyeri" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2022/09/how-to-approach-and-evaluate-programming-languages-for-a-project.html" />
+		<meta name="twitter:title" content="How to approach and evaluate programming languages for a project" />
+		<meta name="twitter:description" content="While it's a topic which has already invited hair splitting debates ad nauseam, it has also invited a lot of hype and there is a need to unclutter that hype and think about this topic objectively. The Toolbox Approach This has been the classic or traditional approach when programming used …" />
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/code-php.jpeg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/code-php.jpeg">
+
+	<!-- open graph meta data (TODO) -->
+	
+	<!--start: analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6808883-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-6808883-5');
+	</script>
+	<!--end: analytics -->
+	
+<!--pinterest claim-->
+<meta name="p:domain_verify" content="eb43d46309e2766ef1b627cea2d19326"/>
+</head>
+
+<body id="index" class="home">
+<!-- section bootstrap-menu -->
+<div class='container'>
+<div class='row header'>
+	<div class='col-md-12 text-center' style='margin: 10px 0 0 0'>
+		<h2>Prahlad Yeri</h2>
+		<h6 class='text-muted'>Freelance Programmer and Writer</h6>
+	</div>
+	<div class='col-md-12 text-center' >
+		<ul class="nav nav-fill text-center site-links col-md-8 ml-auto mr-auto">
+		<li class="nav-item"><a class="nav-link btn btn-primary" href="/">Home</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-success" href="/blog">Blog</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-danger" href="/portfolio">Portfolio</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-secondary" href="https://github.com/prahladyeri/resume">Resume</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-warning" href="/hire-me">Hire Me</a></li>
+		<li class='nav-item dropdown'>
+			<a class="nav-link dropdown-toggle btn btn-dark" id='btnSocial' href="javascript:" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+			<div class="dropdown-menu" aria-labelledby="btnSocial">
+				<a class="dropdown-item" href="https://twitter.com/prahladyeri">Twitter</a>
+				<a class="dropdown-item" href="https://github.com/prahladyeri">Github</a>
+				<a class="dropdown-item" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a>
+				<a class="dropdown-item" href="https://prahladyeri.medium.com/">Medium</a>
+				<a class="dropdown-item" href="https://www.quora.com/profile/Prahlad-Yeri">Quora</a>
+				<a class="dropdown-item" href="https://www.instagram.com/prahladyeri14/">Instagram</a>
+				<a class="dropdown-item" href="mailto:prahladyeri@yahoo.com">Email</a>
+			</div>
+		</li>
+		<li class='btn-group'>
+			<a class="nav-link dropdown-toggle btn btn-info" role='button' id='btnFeeds' href="javascript:" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a>
+			<div class="dropdown-menu" aria-labelledby="btnFeeds">
+				<a class="dropdown-item" href="/feeds/all.rss.xml">RSS</a>
+				<a class="dropdown-item" href="/feeds/all.atom.xml">ATOM</a>
+				<!-- <a class="dropdown-item" href="https://feedburner.google.com/fb/a/mailverify?uri=prahladyeri&amp;loc=en_US">Feedburner</a> -->
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='ml-auto col-md-8 mr-auto'>
+	</div>
+</div>
+</div>
+
+		<div id="main" class='mt-2 container content '>
+			<div class='row'>
+				<div class='offset-md-2 col-md-8'>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2022/09/how-to-approach-and-evaluate-programming-languages-for-a-project.html" rel="bookmark" 
+      title="Permalink to How to approach and evaluate programming languages for a project">How to approach and evaluate programming languages for a project</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2022-09-21T07:50:00+05:30">Wed 21 September 2022</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/software-engineering">Software Engineering</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/programming">Programming</a>
+            <a href="https://prahladyeri.github.io/blog/tag/php">PHP</a>
+            <a href="https://prahladyeri.github.io/blog/tag/python">Python</a>
+            <a href="https://prahladyeri.github.io/blog/tag/oop">OOP</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p>While it's a topic which has already invited hair splitting debates ad nauseam, it has also invited a lot of hype and there is a need to unclutter that hype and think about this topic objectively.</p>
+<p><strong>The Toolbox Approach</strong></p>
+<p>This has been the classic or traditional approach when programming used to be much simpler in the earlier days! <em>"Right tool for the right job"</em> used to be the motto once and you never thought of using a hammer when a chisel was needed. Around the early part of this century, languages began to consolidate and the result is that we only have a handful of highly popular ones used in the industry today and the rest are cast away into specialized domains.</p>
+<p><strong>The Paradigm Approach</strong></p>
+<p>The paradigm approach once was and still is popular today, in fact this is one way of thinking that contributes to the toolbox approach. Procedural languages like C and Rust are naturally built for system programming work or in situations where that last bit of computing performance is needed. The OOP paradigm in languages like C++ and C# helped build most of the desktop world citizens we use today such as operating systems, office suites, internet browsers, IDEs, etc. Python's dynamic nature is similarly suited for data analysis work and PHP's "all paradigms embracing" philosophy once made it a popular choice for web development. Same could be said about JavaScript to some extent, though it's a language choice that's more like thrust upon the web developers instead of being a natural choice! This is a highly subjective view, of course, all kinds of arguments can be made here depending on your own tastes and preferences.</p>
+<p><strong>The Ecosystem Approach</strong></p>
+<p>This is what I consider to be a modern approach of evaluating languages. Programming is no longer simple like it used to be once, today each major language has a comprehensive open source ecosystem built around it, and since these communities collaborate among themselves to not only build redistributable software packages but also help their users on coding forums, etc., they become a very important factor or consideration in taking the decision to use that language itself!</p>
+<p>Consider the strange case of PHP, for instance. It's almost treated like a pariah in many programming circles, you'll find very few courses having PHP in their curriculum and not one major <a href="https://github.com/prahladyeri/CuratedLists/blob/master/lists/programming.md#coding-forums-weblogs-and-discussion-sites">coding forum, blog or discussion site</a> has a PHP topic included except Stack Overflow. But still the language is almost entirely powered by its community or ecosystem! It's also a language that pioneered open source development and collaboration by involving contributors on massive scales with projects like Wordpress, Drupal, Joomla, Laravel, etc. which have all become ecosystems in their own right.</p>
+<p>A technology startup which is already hard-pressed in today's economically stressing times will obviously want to leverage the power of open source software and free tools, and that's where the ecosystem comes into picture! How friendly is the community on discussion forums and how large is the package ecosystem are typically the top questions in the minds of technology startup entrepreneurs.</p>
+<p>In this regard, Python, PHP and JavaScript are the major champion ecosystems and perhaps top the list of usage surveys, they've developed elaborate package management systems to serve their bases - PyPi, Composer and npm respectively. This trend has caught to some extent in the C# and Java world too with nuget and gradle/maven but theirs seem to cater to mostly the enterprise world, there doesn't seem to be the same kind of buzz among the startups for these languages.</p>
+<p>Summarily, these are the three major approaches for evaluating a programming language. There are others too, a major one being local availability of professionals skilled in a language. But in the age of remote working, I'm hoping that factor should become less important as time progresses. And there are "contrarian coders" too who will invest in learning long obsolete languages like COBOL and FORTRAN hoping that the skewed supply/demand ratio for these skills arising due to the need for maintaining legacy systems will ensure they get hired with handsome perks. Indeed, that's an approach or way of looking at things too!</p>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+				</div>
+				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
+					<div style='margin-top: 50px;'>
+
+<!-- AMAZON AFFILIATE ADS -->
+<!--
+<a href="https://www.amazon.in/Automate-Boring-Stuff-Python-2nd/dp/1593279922/ref=as_li_ss_il?crid=JA705IOUH74O&keywords=automate+the+boring+stuff+with+python&qid=1583912586&sprefix=automate+the+,aps,460&sr=8-1&linkCode=li2&tag=prahladyeri-21&linkId=5f899269cc1aea74977c02963a9a6caf&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1593279922&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=1593279922" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.in/PYTHON-PROGRAMMING-BEGINNERS-GUIDE-LEARN-ebook/dp/B01GSODGZC/ref=as_li_ss_il?crid=33LIIMVDMW1U3&keywords=python+programming&qid=1583912662&sprefix=python,aps,527&sr=8-4&linkCode=li2&tag=prahladyeri-21&linkId=6b3a8b38eda1d6c51546a1a0c321cfea&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01GSODGZC&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=B01GSODGZC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class='container-fluid'>
+<div class='row'>
+		<footer id ="footer" class="col-md-12 text-center bg-dark text-white pt-1 pb-1 pl-1 pr-1">
+		Copyright (&copy;) 2014-2022 Prahlad Yeri. This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+		</footer>
+</div>
+</div>		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="/theme/js/popper.min.js"></script> -->
+<!-- <script src="/theme/js/bootstrap.min.js"></script> -->
+</body>
+</html>

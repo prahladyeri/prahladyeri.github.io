@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset="utf-8" />
+	<title>The gimp, the git and the sacred rules that govern offensive behavior</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" property="og:description" content="Yesterday, I was reading this heated debate on the GIMP issue tracker which was also perhaps the most discussed topic of the day. Offensive behavior is a very serious and delicate topic, and needs to be handled with care. More importantly, rules should be codified which can objectively determine whether …">
+	<link rel="canonical" content="https://prahladyeri.github.io/blog/2019/07/the-gimp-the-git-and-the-sacred-rules-that-govern-offensive-behavior.html" />
+	<meta name="author" content="Prahlad Yeri">
+	<!-- Google Fonts -->
+	<!--link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet"-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="/theme/css/app.css">
+	<link rel="stylesheet" href="/theme/css/pygment.css">		
+	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+
+
+
+
+    <meta name="tags" content="Productivity" />
+    <meta name="tags" content="Internet" />
+
+	
+	
+	
+	<!-- twitter card meta data -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@prahladyeri" />
+	<meta name="twitter:creator" content="@prahladyeri" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2019/07/the-gimp-the-git-and-the-sacred-rules-that-govern-offensive-behavior.html" />
+		<meta name="twitter:title" content="The gimp, the git and the sacred rules that govern offensive behavior" />
+		<meta name="twitter:description" content="Yesterday, I was reading this heated debate on the GIMP issue tracker which was also perhaps the most discussed topic of the day. Offensive behavior is a very serious and delicate topic, and needs to be handled with care. More importantly, rules should be codified which can objectively determine whether …" />
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/cover.jpg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/cover.jpg">
+
+	<!-- open graph meta data (TODO) -->
+	
+	<!--start: analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6808883-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-6808883-5');
+	</script>
+	<!--end: analytics -->
+	
+<!--pinterest claim-->
+<meta name="p:domain_verify" content="eb43d46309e2766ef1b627cea2d19326"/>
+</head>
+
+<body id="index" class="home">
+<!-- section bootstrap-menu -->
+<div class='container'>
+<div class='row header'>
+	<div class='col-md-12 text-center' style='margin: 10px 0 0 0'>
+		<h2>Prahlad Yeri</h2>
+		<h6 class='text-muted'>Freelance Programmer and Writer</h6>
+	</div>
+	<div class='col-md-12 text-center' >
+		<ul class="nav nav-fill text-center site-links col-md-8 ml-auto mr-auto">
+		<li class="nav-item"><a class="nav-link btn btn-primary" href="/">Home</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-success" href="/blog">Blog</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-danger" href="/portfolio">Portfolio</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-secondary" href="https://github.com/prahladyeri/resume">Resume</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-warning" href="/hire-me">Hire Me</a></li>
+		<li class='nav-item dropdown'>
+			<a class="nav-link dropdown-toggle btn btn-dark" id='btnSocial' href="javascript:" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+			<div class="dropdown-menu" aria-labelledby="btnSocial">
+				<a class="dropdown-item" href="https://twitter.com/prahladyeri">Twitter</a>
+				<a class="dropdown-item" href="https://github.com/prahladyeri">Github</a>
+				<a class="dropdown-item" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a>
+				<a class="dropdown-item" href="https://prahladyeri.medium.com/">Medium</a>
+				<a class="dropdown-item" href="https://www.quora.com/profile/Prahlad-Yeri">Quora</a>
+				<a class="dropdown-item" href="https://www.instagram.com/prahladyeri14/">Instagram</a>
+				<a class="dropdown-item" href="mailto:prahladyeri@yahoo.com">Email</a>
+			</div>
+		</li>
+		<li class='btn-group'>
+			<a class="nav-link dropdown-toggle btn btn-info" role='button' id='btnFeeds' href="javascript:" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a>
+			<div class="dropdown-menu" aria-labelledby="btnFeeds">
+				<a class="dropdown-item" href="/feeds/all.rss.xml">RSS</a>
+				<a class="dropdown-item" href="/feeds/all.atom.xml">ATOM</a>
+				<!-- <a class="dropdown-item" href="https://feedburner.google.com/fb/a/mailverify?uri=prahladyeri&amp;loc=en_US">Feedburner</a> -->
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='ml-auto col-md-8 mr-auto'>
+	</div>
+</div>
+</div>
+
+		<div id="main" class='mt-2 container content '>
+			<div class='row'>
+				<div class='offset-md-2 col-md-8'>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2019/07/the-gimp-the-git-and-the-sacred-rules-that-govern-offensive-behavior.html" rel="bookmark" 
+      title="Permalink to The gimp, the git and the sacred rules that govern offensive behavior">The gimp, the git and the sacred rules that govern offensive behavior</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2019-07-06T10:00:00+05:30">Sat 06 July 2019</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/technology">Technology</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/productivity">Productivity</a>
+            <a href="https://prahladyeri.github.io/blog/tag/internet">Internet</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p>Yesterday, I was reading <a href="https://gitlab.gnome.org/GNOME/gimp/issues/3617">this heated debate</a> on the GIMP issue tracker which was also perhaps the most discussed topic of the day.</p>
+<p>Offensive behavior is a very serious and delicate topic, and needs to be handled with care. More importantly, rules should be codified which can objectively determine whether or not a term/sentence is offensive because anything left in the undecided grey area becomes a breeding ground for turf wars and hurt emotions like it happened yesterday!</p>
+<p>Rules are nothing but a listing of what is (and isn't) acceptable in a given domain based on a pre-defined logic. They don't necessarily have to be entirely objective or pre-determined too, sometimes their result might depend on context and sometimes they may also be subjective bringing in the bias of their creator. Considering the progress in neuro-linguistic programming, that day isn't far when an AI might decide on these rules automatically for us. Hence, its important to debate and settle matters on this topic now.</p>
+<p>Depending on the popularity of these codified rules, they may gain wide acceptability in the society at large but that doesn't mean they are perfect as they always keep evolving with time. In the ancient days, they were called "Hammurabi's code", then they started calling it "ten commandments" in the middle ages and these days, they are popularly known as CoC (Code of Conduct). But the thing that's common in them is rules governing human behavior which as I said are constantly evolving and sometimes subjective.</p>
+<p>That doesn't mean that there isn't an objective side to them though. The first thing we must do is determine what those objective words are which universally offends everyone (or at least most humans) without any question and in a deterministic way. If an AI were to decide on this, this is exactly how it will proceed. Let's call this the objective black list (OBL) or something, this list might include words like "ni**er", "sl**", "id**t", "wh**e", etc. There is no doubt that utterance of such words will mentally hurt most dudes or dudettes of the English speaking world. Except under certain contexts like meta discussions about curbing online offensive behavior and linguistic study, these words can be auto-blocked on most internet forums and I don't think many people will have any problem with it.</p>
+<p>But on the other hand, what about subjectively offensive words like gimp and git, how should we treat them? I'm calling them subjective because only a small subset of people find it offensive (like some  people on that linked post), not everyone. Personally, I didn't even knew that gimp actually means something else other than a linux paint application until I checked the merriam webster dictionary yesterday!</p>
+<p>I'm not a linguistic expert but from what I've learned from that discussion and <a href="https://old.reddit.com/r/linux/comments/c9gvgf/consider_renaming_gimp_to_a_less_offensive_name/">this reddit post about the same topic</a> is that the other meaning of gimp (a limp or crippled person) is only used by a small subset of British/European English speakers. Most American or Asian English speakers may not even be aware of this second meaning and gimp only means a linux app for them. So the question of taking offense never arises in the first place.</p>
+<p>At this point, it comes down to "individual vs collective liberties". The name change of a popular open source project like gimp isn't a trivial effort. You not only have to change the name in the build process (compile commands, make &amp; config files, translation files, etc.), but all the various distros like ubuntu, debian, fedora, suse, etc. have to change it in their repositories too. Is it justifiable that such a large expense of time and efforts be incurred to keep a very small subset of individuals happy who happen to subjectively take offense in that project's name?</p>
+<p>And besides, if we allow this to happen, where does the train stop? Speaking of translations, why should only the English speaking public have the luxury of taking offenses! gimp is translated into several other languages, why not the French, Spanish, Russian, Arabic and Hindi speaking public have a say in it too? I'm sure there is plenty of offense resembling substance to be found among all those linux packages if you consider all these languages!</p>
+<p>Even if you stick to English, what about other linux programs like git and fsck as the former is actually an offensive word whereas the latter resembles it to some extent (just as the GIMP acronym does)? I learned the meaning of git a very long time ago (perhaps in one of Harry Potter books), whereas GIMP was only an acronym for me until yesterday. And the first time I came across the version control system, I was mildly annoyed that what kind of a person would name a program as "git". But even then, I never found that word to be offensive or troubling at all. As time went on and I started using git and github for almost every project, I forgot that other meaning of git and only recall it when I come across it these days (like today!).</p>
+<p>But me, I'm a programmer and I can understand how a non-tech dude would feel about it. Especially if you are a Brit, I'm sure you'll take offense if anyone casually calls you a "git" in a conversation, irrespective of whether you are a programmer or not. But will you actually take offense at that word and take your fight to the git forums and ask them to rename that project? Is all that effort worth spending on a name change? </p>
+<p>Most importantly, <strong><em>if the whole world starts taking offense on some words used in technical contexts, can you even imagine how many hours of coding, testing, documentation, builds and project maintenance will be wasted on name change alone?</em></strong></p>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+				</div>
+				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
+					<div style='margin-top: 50px;'>
+
+<!-- AMAZON AFFILIATE ADS -->
+<!--
+<a href="https://www.amazon.in/Automate-Boring-Stuff-Python-2nd/dp/1593279922/ref=as_li_ss_il?crid=JA705IOUH74O&keywords=automate+the+boring+stuff+with+python&qid=1583912586&sprefix=automate+the+,aps,460&sr=8-1&linkCode=li2&tag=prahladyeri-21&linkId=5f899269cc1aea74977c02963a9a6caf&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1593279922&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=1593279922" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.in/PYTHON-PROGRAMMING-BEGINNERS-GUIDE-LEARN-ebook/dp/B01GSODGZC/ref=as_li_ss_il?crid=33LIIMVDMW1U3&keywords=python+programming&qid=1583912662&sprefix=python,aps,527&sr=8-4&linkCode=li2&tag=prahladyeri-21&linkId=6b3a8b38eda1d6c51546a1a0c321cfea&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01GSODGZC&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=B01GSODGZC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class='container-fluid'>
+<div class='row'>
+		<footer id ="footer" class="col-md-12 text-center bg-dark text-white pt-1 pb-1 pl-1 pr-1">
+		Copyright (&copy;) 2014-2022 Prahlad Yeri. This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+		</footer>
+</div>
+</div>		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="/theme/js/popper.min.js"></script> -->
+<!-- <script src="/theme/js/bootstrap.min.js"></script> -->
+</body>
+</html>

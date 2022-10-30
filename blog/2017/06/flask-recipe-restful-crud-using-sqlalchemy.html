@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset="utf-8" />
+	<title>Flask Recipe - RESTful CRUD using sqlalchemy</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" property="og:description" content="RESTful apps are a thing these days. When your application’s userbase gets quite large and the client could vary from a laptop to an android device to an iOS device, it pays to keep the backend code separate and use the server only for making RESTful calls using HTTP …">
+	<link rel="canonical" content="https://prahladyeri.github.io/blog/2017/06/flask-recipe-restful-crud-using-sqlalchemy.html" />
+	<meta name="author" content="Prahlad Yeri">
+	<!-- Google Fonts -->
+	<!--link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet"-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="/theme/css/app.css">
+	<link rel="stylesheet" href="/theme/css/pygment.css">		
+	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+
+
+
+
+    <meta name="tags" content="Flask" />
+    <meta name="tags" content="Python" />
+    <meta name="tags" content="SQLAlchemy" />
+    <meta name="tags" content="How To" />
+
+	
+	
+	
+	<!-- twitter card meta data -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@prahladyeri" />
+	<meta name="twitter:creator" content="@prahladyeri" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2017/06/flask-recipe-restful-crud-using-sqlalchemy.html" />
+		<meta name="twitter:title" content="Flask Recipe - RESTful CRUD using sqlalchemy" />
+		<meta name="twitter:description" content="RESTful apps are a thing these days. When your application’s userbase gets quite large and the client could vary from a laptop to an android device to an iOS device, it pays to keep the backend code separate and use the server only for making RESTful calls using HTTP …" />
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/cover.jpg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/cover.jpg">
+
+	<!-- open graph meta data (TODO) -->
+	
+	<!--start: analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6808883-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-6808883-5');
+	</script>
+	<!--end: analytics -->
+	
+<!--pinterest claim-->
+<meta name="p:domain_verify" content="eb43d46309e2766ef1b627cea2d19326"/>
+</head>
+
+<body id="index" class="home">
+<!-- section bootstrap-menu -->
+<div class='container'>
+<div class='row header'>
+	<div class='col-md-12 text-center' style='margin: 10px 0 0 0'>
+		<h2>Prahlad Yeri</h2>
+		<h6 class='text-muted'>Freelance Programmer and Writer</h6>
+	</div>
+	<div class='col-md-12 text-center' >
+		<ul class="nav nav-fill text-center site-links col-md-8 ml-auto mr-auto">
+		<li class="nav-item"><a class="nav-link btn btn-primary" href="/">Home</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-success" href="/blog">Blog</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-danger" href="/portfolio">Portfolio</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-secondary" href="https://github.com/prahladyeri/resume">Resume</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-warning" href="/hire-me">Hire Me</a></li>
+		<li class='nav-item dropdown'>
+			<a class="nav-link dropdown-toggle btn btn-dark" id='btnSocial' href="javascript:" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+			<div class="dropdown-menu" aria-labelledby="btnSocial">
+				<a class="dropdown-item" href="https://twitter.com/prahladyeri">Twitter</a>
+				<a class="dropdown-item" href="https://github.com/prahladyeri">Github</a>
+				<a class="dropdown-item" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a>
+				<a class="dropdown-item" href="https://prahladyeri.medium.com/">Medium</a>
+				<a class="dropdown-item" href="https://www.quora.com/profile/Prahlad-Yeri">Quora</a>
+				<a class="dropdown-item" href="https://www.instagram.com/prahladyeri14/">Instagram</a>
+				<a class="dropdown-item" href="mailto:prahladyeri@yahoo.com">Email</a>
+			</div>
+		</li>
+		<li class='btn-group'>
+			<a class="nav-link dropdown-toggle btn btn-info" role='button' id='btnFeeds' href="javascript:" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a>
+			<div class="dropdown-menu" aria-labelledby="btnFeeds">
+				<a class="dropdown-item" href="/feeds/all.rss.xml">RSS</a>
+				<a class="dropdown-item" href="/feeds/all.atom.xml">ATOM</a>
+				<!-- <a class="dropdown-item" href="https://feedburner.google.com/fb/a/mailverify?uri=prahladyeri&amp;loc=en_US">Feedburner</a> -->
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='ml-auto col-md-8 mr-auto'>
+	</div>
+</div>
+</div>
+
+		<div id="main" class='mt-2 container content '>
+			<div class='row'>
+				<div class='offset-md-2 col-md-8'>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2017/06/flask-recipe-restful-crud-using-sqlalchemy.html" rel="bookmark" 
+      title="Permalink to Flask Recipe - RESTful CRUD using sqlalchemy">Flask Recipe - RESTful CRUD using sqlalchemy</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2017-06-25T04:21:00+05:30">Sun 25 June 2017</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/python">Python</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/flask">Flask</a>
+            <a href="https://prahladyeri.github.io/blog/tag/python">Python</a>
+            <a href="https://prahladyeri.github.io/blog/tag/sqlalchemy">SQLAlchemy</a>
+            <a href="https://prahladyeri.github.io/blog/tag/how-to">How To</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p>RESTful apps are a thing these days. When your application’s userbase gets quite large and the client could vary from a laptop to an android device to an iOS device, it pays to keep the backend code separate and use the server only for making RESTful calls using HTTP methods that pertain to basic OLTP transactions: SELECT, INSERT, UPDATE and DELETE.<!--more--></p>
+<p>Popular third-party apps like <a href="https://en.wikipedia.org/wiki/Firebase#Realtime_Database">Firebase</a> essentially provide you this same thing - A REST based front to a database that could be accessed online using simple HTTP methods. But in this tutorial, we will learn how to create such a backend ourselves using Python’s <code class="highlighter-rouge">flask</code> framework and <code class="highlighter-rouge">sqlalchemy</code>, a light-weight but powerful ORM library that can access ANY database using its flexible <em>sql expression language</em>.</p>
+<p><img alt="RESTful CRUD App" src="/uploads/old/restful-crud.png"></p>
+<p>Rather than using firebase, if you develop your own implementation of your back-end, not only will it help you learn and become a better programmer, but also give you a flexible solution that you can scale and change as per your needs. Its also much cheaper to host your own solution on Amazon EC2 (or Lambda) compared to other costlier alternatives.</p>
+<p>Contrary to popular thinking, its not very difficult to create a database agnostic backend such as the one represented in the above diagram. With a minimal and powerful web framework such as <code class="highlighter-rouge">flask</code>, combined with the power of <code class="highlighter-rouge">sqlalchemy</code>, you can get up and running within minutes. In fact, I’ve developed a prototype version called <a href="https://github.com/prahladyeri/tiddly">Tiddly</a> that essentially does the same thing as above using just 172 lines of Python code. You can refer to that github repository for reference as we proceed through this tutorial, or directly start using it. But make sure you install the following dependencies before running it:</p>
+<div class="highlight"><pre><span></span>pip install flask
+pip install sqlalchemy
+</pre></div>
+
+
+<p>The first step towards creating the app is creating your database models. Once you’ve done the brainstorming and decided what tables and fields you are going to need, you can create a <code class="highlighter-rouge">models.py</code> source file with something like this:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlalchemy</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">Integer</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.ext.declarative</span> <span class="kn">import</span> <span class="n">declarative_base</span>
+
+<span class="c1">#TODO: Change as needed:</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">&quot;sqlite:///tiddly.db&quot;</span><span class="p">,</span> <span class="n">echo</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">Base</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
+
+<span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+<span class="n">dbsession</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;user&quot;</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;&lt;User(name=</span><span class="si">%s</span><span class="s2">, email=</span><span class="si">%s</span><span class="s2">, )&gt;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">email</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Dual</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;dual&quot;</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;&lt;Dual(id=</span><span class="si">%s</span><span class="s2">, text=</span><span class="si">%s</span><span class="s2">, )&gt;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+</pre></div>
+
+
+<p>I’m using sqlite database for example here, but you can use any one of your choice. A <code class="highlighter-rouge">user</code> table is a pretty basic one in almost every app as it is used for authentication. Apart from that, I’ve also created a <code class="highlighter-rouge">dual</code> table just to play around with.</p>
+<p>After that, create the second file <code class="highlighter-rouge">app.py</code> that contains our application code. Define the following import statements along with your models as they will come very handy:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span><span class="p">,</span> <span class="n">session</span>
+<span class="kn">import</span> <span class="nn">sqlalchemy</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">inspect</span><span class="p">,</span> <span class="n">desc</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">models</span>
+<span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="n">engine</span><span class="p">,</span> <span class="n">dbsession</span>
+</pre></div>
+
+
+<p>Now, the only thing that remains to be done is the plumbing the <code class="highlighter-rouge">HTTP</code> methods to their respective database operations. You can either create a separate view function for each one or use a single one for all of them. In this example, I’m using a single function for simplicity.</p>
+<div class="highlight"><pre><span></span><span class="s s-Atom">@app</span><span class="p">.</span><span class="nf">route</span><span class="p">(</span><span class="s2">&quot;/&lt;table_name&gt;&quot;</span><span class="p">,</span> <span class="s s-Atom">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="s2">&quot;PUT&quot;</span><span class="p">,</span> <span class="s2">&quot;DELETE&quot;</span><span class="p">,</span> <span class="s2">&quot;FETCH&quot;</span><span class="p">])</span>
+<span class="s s-Atom">def</span> <span class="nf">fetch</span><span class="p">(</span><span class="s s-Atom">table_name</span><span class="p">)</span><span class="s s-Atom">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s2">&quot;verb: %s, tablename: %s&quot;</span> <span class="c1">% (request.method, table_name))</span>
+    <span class="s s-Atom">if</span> <span class="s s-Atom">request</span><span class="p">.</span><span class="s s-Atom">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span> <span class="s s-Atom">or</span> <span class="s s-Atom">request</span><span class="p">.</span><span class="s s-Atom">method</span> <span class="o">==</span> <span class="s2">&quot;PUT&quot;</span><span class="s s-Atom">:</span>
+        <span class="s s-Atom">data</span> <span class="o">=</span> <span class="s s-Atom">request</span><span class="p">.</span><span class="nf">get_json</span><span class="p">(</span><span class="s s-Atom">force</span><span class="o">=</span><span class="nv">True</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s2">&quot;data:&quot;</span><span class="p">,</span> <span class="s s-Atom">data</span><span class="p">)</span>
+        <span class="nn">try</span><span class="p">:</span>
+            <span class="nv">TableClass</span> <span class="o">=</span> <span class="s s-Atom">models</span><span class="p">.</span><span class="nf">get_class_by_tablename</span><span class="p">(</span><span class="s s-Atom">table_name</span><span class="p">)</span>
+            <span class="s s-Atom">if</span> <span class="nv">TableClass</span> <span class="o">==</span> <span class="nv">None</span><span class="s s-Atom">:</span> <span class="s s-Atom">raise</span> <span class="nv">Exception</span><span class="p">(</span><span class="s2">&quot;Table not found: %s&quot;</span> <span class="c1">% table_name)</span>
+            <span class="s s-Atom">if</span> <span class="s s-Atom">request</span><span class="p">.</span><span class="s s-Atom">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="s s-Atom">:</span> <span class="s s-Atom">#insert</span> <span class="s s-Atom">data</span>
+                <span class="s s-Atom">object</span> <span class="o">=</span> <span class="nv">TableClass</span><span class="p">(</span><span class="s s-Atom">**data</span><span class="p">)</span>
+                <span class="s s-Atom">dbsession</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="s s-Atom">object</span><span class="p">)</span>
+                <span class="s s-Atom">dbsession</span><span class="p">.</span><span class="nf">commit</span><span class="p">()</span>
+            <span class="nn">else</span><span class="p">:</span> <span class="s s-Atom">#update</span> <span class="s s-Atom">data</span>
+                <span class="s s-Atom">object</span> <span class="o">=</span> <span class="s s-Atom">dbsession</span><span class="p">.</span><span class="nf">query</span><span class="p">(</span><span class="nv">TableClass</span><span class="p">).</span><span class="nf">filter_by</span><span class="p">(</span><span class="s s-Atom">**</span><span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="s s-Atom">:id</span><span class="p">}).</span><span class="nf">first</span><span class="p">()</span>
+                <span class="s s-Atom">if</span> <span class="s s-Atom">object</span> <span class="o">==</span> <span class="nv">None</span><span class="s s-Atom">:</span> <span class="s s-Atom">raise</span> <span class="nv">Exception</span><span class="p">(</span><span class="s2">&quot;No data found.&quot;</span><span class="p">)</span>
+                <span class="s s-Atom">#object</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="s s-Atom">**data</span><span class="p">)</span>
+                <span class="s s-Atom">for</span> <span class="s s-Atom">key</span> <span class="s s-Atom">in</span> <span class="s s-Atom">data</span><span class="p">.</span><span class="nf">keys</span><span class="p">()</span><span class="s s-Atom">:</span>
+                    <span class="nf">setattr</span><span class="p">(</span><span class="s s-Atom">object</span><span class="p">,</span> <span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">data</span><span class="p">[</span><span class="s s-Atom">key</span><span class="p">])</span>
+                <span class="s s-Atom">#dbsession</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="s s-Atom">object</span><span class="p">)</span>
+                <span class="s s-Atom">dbsession</span><span class="p">.</span><span class="nf">commit</span><span class="p">()</span>
+            <span class="s s-Atom">return</span> <span class="nf">jsonify</span><span class="p">({</span>
+                <span class="s2">&quot;status&quot;</span><span class="s s-Atom">:</span> <span class="s2">&quot;success&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;id&quot;</span><span class="s s-Atom">:</span> <span class="s s-Atom">object</span><span class="p">.</span><span class="s s-Atom">id</span><span class="p">,</span>
+                <span class="p">})</span>
+        <span class="s s-Atom">except</span> <span class="nv">Exception</span> <span class="s s-Atom">as</span> <span class="nn">e</span><span class="p">:</span>
+            <span class="s s-Atom">return</span> <span class="nf">jsonify</span><span class="p">({</span>
+                <span class="s2">&quot;status&quot;</span><span class="s s-Atom">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;error&quot;</span><span class="s s-Atom">:</span> <span class="nf">str</span><span class="p">(</span><span class="s s-Atom">e</span><span class="p">),</span>
+                <span class="p">})</span>
+    <span class="s s-Atom">elif</span> <span class="s s-Atom">request</span><span class="p">.</span><span class="s s-Atom">method</span> <span class="o">==</span> <span class="s2">&quot;DELETE&quot;</span><span class="s s-Atom">:</span>
+        <span class="nn">try</span><span class="p">:</span>
+            <span class="nv">TableClass</span> <span class="o">=</span> <span class="s s-Atom">models</span><span class="p">.</span><span class="nf">get_class_by_tablename</span><span class="p">(</span><span class="s s-Atom">table_name</span><span class="p">)</span>
+            <span class="s s-Atom">if</span> <span class="nv">TableClass</span> <span class="o">==</span> <span class="nv">None</span><span class="s s-Atom">:</span> <span class="s s-Atom">raise</span> <span class="nv">Exception</span><span class="p">(</span><span class="s2">&quot;Table not found: %s&quot;</span> <span class="c1">% table_name)</span>
+            <span class="s s-Atom">object</span> <span class="o">=</span> <span class="s s-Atom">dbsession</span><span class="p">.</span><span class="nf">query</span><span class="p">(</span><span class="nv">TableClass</span><span class="p">).</span><span class="nf">filter_by</span><span class="p">(</span><span class="s s-Atom">**</span><span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="s s-Atom">:id</span><span class="p">}).</span><span class="nf">first</span><span class="p">()</span>
+            <span class="s s-Atom">if</span> <span class="s s-Atom">object</span> <span class="o">==</span> <span class="nv">None</span><span class="s s-Atom">:</span> <span class="s s-Atom">raise</span> <span class="nv">Exception</span><span class="p">(</span><span class="s2">&quot;No data found.&quot;</span><span class="p">)</span>
+            <span class="s s-Atom">dbsession</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="s s-Atom">object</span><span class="p">)</span>
+            <span class="s s-Atom">dbsession</span><span class="p">.</span><span class="nf">commit</span><span class="p">()</span>
+            <span class="s s-Atom">return</span> <span class="nf">jsonify</span><span class="p">({</span>
+                <span class="s2">&quot;status&quot;</span><span class="s s-Atom">:</span> <span class="s2">&quot;success&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;id&quot;</span><span class="s s-Atom">:</span> <span class="s s-Atom">object</span><span class="p">.</span><span class="s s-Atom">id</span><span class="p">,</span>
+                <span class="p">})</span>
+        <span class="s s-Atom">except</span> <span class="nv">Exception</span> <span class="s s-Atom">as</span> <span class="nn">e</span><span class="p">:</span>
+            <span class="s s-Atom">return</span> <span class="nf">jsonify</span><span class="p">({</span>
+                <span class="s2">&quot;status&quot;</span><span class="s s-Atom">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;error&quot;</span><span class="s s-Atom">:</span> <span class="nf">str</span><span class="p">(</span><span class="s s-Atom">e</span><span class="p">),</span>
+                <span class="p">})</span>
+    <span class="s s-Atom">elif</span> <span class="s s-Atom">request</span><span class="p">.</span><span class="s s-Atom">method</span> <span class="o">==</span> <span class="s2">&quot;FETCH&quot;</span><span class="s s-Atom">:</span>
+        <span class="nn">try</span><span class="p">:</span>
+            <span class="s s-Atom">data</span> <span class="o">=</span> <span class="s s-Atom">request</span><span class="p">.</span><span class="nf">get_json</span><span class="p">(</span><span class="s s-Atom">force</span><span class="o">=</span><span class="nv">True</span><span class="p">)</span>
+            <span class="s s-Atom">data</span> <span class="o">=</span> <span class="s s-Atom">json</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="s s-Atom">data</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s2">&quot;data: &quot;</span><span class="p">,</span> <span class="s s-Atom">data</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s2">&quot;data-type: &quot;</span><span class="p">,</span> <span class="nf">type</span><span class="p">(</span><span class="s s-Atom">data</span><span class="p">))</span>
+            <span class="nv">TableClass</span> <span class="o">=</span> <span class="s s-Atom">models</span><span class="p">.</span><span class="nf">get_class_by_tablename</span><span class="p">(</span><span class="s s-Atom">table_name</span><span class="p">)</span>
+            <span class="s s-Atom">if</span> <span class="nv">TableClass</span> <span class="o">==</span> <span class="nv">None</span><span class="s s-Atom">:</span> <span class="s s-Atom">raise</span> <span class="nv">Exception</span><span class="p">(</span><span class="s2">&quot;Table not found: %s&quot;</span> <span class="c1">% table_name)</span>
+
+            <span class="s s-Atom">query</span> <span class="o">=</span> <span class="s s-Atom">dbsession</span><span class="p">.</span><span class="nf">query</span><span class="p">(</span><span class="nv">TableClass</span><span class="p">).</span><span class="nf">filter_by</span><span class="p">(</span><span class="s s-Atom">**data</span><span class="p">[</span><span class="s s-Atom">&#39;where&#39;</span><span class="p">])</span>
+            <span class="s s-Atom">if</span> <span class="s s-Atom">&#39;orderby&#39;</span> <span class="s s-Atom">in</span> <span class="nn">data</span><span class="p">:</span>
+                <span class="s s-Atom">for</span> <span class="s s-Atom">cname</span> <span class="s s-Atom">in</span> <span class="s s-Atom">data</span><span class="p">[</span><span class="s s-Atom">&#39;orderby&#39;</span><span class="p">].</span><span class="nf">split</span><span class="p">(</span><span class="s s-Atom">&#39;,&#39;</span><span class="p">)</span><span class="s s-Atom">:</span>
+                    <span class="s s-Atom">reverse</span> <span class="o">=</span> <span class="nv">False</span>
+                    <span class="s s-Atom">if</span> <span class="s s-Atom">cname</span><span class="p">.</span><span class="nf">endswith</span><span class="p">(</span><span class="s s-Atom">&#39; desc&#39;</span><span class="p">)</span><span class="s s-Atom">:</span>
+                        <span class="s s-Atom">reverse</span> <span class="o">=</span> <span class="nv">True</span>
+                        <span class="s s-Atom">cname</span> <span class="o">=</span> <span class="s s-Atom">cname</span><span class="p">[:-</span><span class="mi">5</span><span class="p">]</span>
+                    <span class="s s-Atom">elif</span> <span class="s s-Atom">cname</span><span class="p">.</span><span class="nf">endswith</span><span class="p">(</span><span class="s s-Atom">&#39; asc&#39;</span><span class="p">)</span><span class="s s-Atom">:</span>
+                        <span class="s s-Atom">cname</span> <span class="o">=</span> <span class="s s-Atom">cname</span><span class="p">[:-</span><span class="mi">4</span><span class="p">]</span>
+                    <span class="nf">print</span><span class="p">(</span><span class="s2">&quot;cname: &quot;</span><span class="p">,</span> <span class="s s-Atom">cname</span><span class="p">)</span>
+                    <span class="s s-Atom">column</span> <span class="o">=</span> <span class="nf">getattr</span><span class="p">(</span><span class="nv">TableClass</span><span class="p">,</span> <span class="s s-Atom">cname</span><span class="p">)</span>
+                    <span class="s s-Atom">if</span> <span class="nn">reverse</span><span class="p">:</span> <span class="s s-Atom">column</span> <span class="o">=</span> <span class="nf">desc</span><span class="p">(</span><span class="s s-Atom">column</span><span class="p">)</span>
+                    <span class="s s-Atom">query</span> <span class="o">=</span> <span class="s s-Atom">query</span><span class="p">.</span><span class="nf">order_by</span><span class="p">(</span><span class="s s-Atom">column</span><span class="p">)</span>
+            <span class="s s-Atom">if</span> <span class="s s-Atom">&#39;limit&#39;</span> <span class="s s-Atom">in</span> <span class="nn">data</span><span class="p">:</span>
+                <span class="s s-Atom">query</span> <span class="o">=</span> <span class="s s-Atom">query</span><span class="p">.</span><span class="nf">limit</span><span class="p">(</span><span class="s s-Atom">data</span><span class="p">[</span><span class="s s-Atom">&#39;limit&#39;</span><span class="p">])</span>
+                <span class="s s-Atom">query</span> <span class="o">=</span> <span class="s s-Atom">query</span><span class="p">.</span><span class="nf">offset</span><span class="p">(</span><span class="s s-Atom">data</span><span class="p">[</span><span class="s s-Atom">&#39;offset&#39;</span><span class="p">])</span>
+            <span class="s s-Atom">object</span> <span class="o">=</span> <span class="s s-Atom">query</span><span class="p">.</span><span class="nf">all</span><span class="p">()</span>
+            <span class="s s-Atom">data</span> <span class="o">=</span> <span class="p">[</span><span class="nf">object_as_dict</span><span class="p">(</span><span class="s s-Atom">t</span><span class="p">)</span> <span class="s s-Atom">for</span> <span class="s s-Atom">t</span> <span class="s s-Atom">in</span> <span class="s s-Atom">object</span><span class="p">]</span>
+            <span class="s s-Atom">return</span> <span class="nf">jsonify</span><span class="p">({</span>
+                <span class="s2">&quot;status&quot;</span><span class="s s-Atom">:</span> <span class="s2">&quot;success&quot;</span><span class="p">,</span> 
+                <span class="s2">&quot;data&quot;</span><span class="s s-Atom">:</span> <span class="s s-Atom">data</span>
+                <span class="p">})</span>
+        <span class="s s-Atom">except</span> <span class="nv">Exception</span> <span class="s s-Atom">as</span> <span class="nn">e</span><span class="p">:</span>
+            <span class="s s-Atom">return</span> <span class="nf">jsonify</span><span class="p">({</span>
+                <span class="s2">&quot;status&quot;</span><span class="s s-Atom">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;error&quot;</span><span class="s s-Atom">:</span> <span class="nf">str</span><span class="p">(</span><span class="s s-Atom">e</span><span class="p">),</span>
+                <span class="p">})</span>
+    <span class="nn">else</span><span class="p">:</span>
+        <span class="s s-Atom">return</span> <span class="nf">jsonify</span><span class="p">({</span>
+            <span class="s2">&quot;status&quot;</span><span class="s s-Atom">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;error&quot;</span><span class="s s-Atom">:</span> <span class="s2">&quot;Unrecognized verb.&quot;</span><span class="p">,</span>
+            <span class="p">})</span>
+</pre></div>
+
+
+<p>I’ve used a non-standard HTTP method, <code class="highlighter-rouge">FETCH</code> for the <code class="highlighter-rouge">SELECT</code> action. That’s because if you use the <code class="highlighter-rouge">GET</code> method, you aren’t allowed to actually post data (as in actual posting, don’t confuse with <code class="highlighter-rouge">POST</code> method) as per the HTTP specification. The other methods, viz <code class="highlighter-rouge">POST</code>, <code class="highlighter-rouge">PUT</code> and <code class="highlighter-rouge">DELETE</code> are self-apparent and they stand for <code class="highlighter-rouge">INSERT</code>, <code class="highlighter-rouge">UPDATE</code> and <code class="highlighter-rouge">DELETE</code> actions respectively.</p>
+<p>As you can see, the app makes good use of the sql expression language of sqlalchemy to dynamically query any kind of data, not only using the usual <code class="highlighter-rouge">where</code> clause, but also using ordering and pagination (limit/offset) parameters:</p>
+<div class="highlight"><pre><span></span><span class="s s-Atom">if</span> <span class="s s-Atom">&#39;orderby&#39;</span> <span class="s s-Atom">in</span> <span class="nn">data</span><span class="p">:</span>
+    <span class="s s-Atom">for</span> <span class="s s-Atom">cname</span> <span class="s s-Atom">in</span> <span class="s s-Atom">data</span><span class="p">[</span><span class="s s-Atom">&#39;orderby&#39;</span><span class="p">].</span><span class="nf">split</span><span class="p">(</span><span class="s s-Atom">&#39;,&#39;</span><span class="p">)</span><span class="s s-Atom">:</span>
+        <span class="s s-Atom">reverse</span> <span class="o">=</span> <span class="nv">False</span>
+        <span class="s s-Atom">if</span> <span class="s s-Atom">cname</span><span class="p">.</span><span class="nf">endswith</span><span class="p">(</span><span class="s s-Atom">&#39; desc&#39;</span><span class="p">)</span><span class="s s-Atom">:</span>
+            <span class="s s-Atom">reverse</span> <span class="o">=</span> <span class="nv">True</span>
+            <span class="s s-Atom">cname</span> <span class="o">=</span> <span class="s s-Atom">cname</span><span class="p">[:-</span><span class="mi">5</span><span class="p">]</span>
+        <span class="s s-Atom">elif</span> <span class="s s-Atom">cname</span><span class="p">.</span><span class="nf">endswith</span><span class="p">(</span><span class="s s-Atom">&#39; asc&#39;</span><span class="p">)</span><span class="s s-Atom">:</span>
+            <span class="s s-Atom">cname</span> <span class="o">=</span> <span class="s s-Atom">cname</span><span class="p">[:-</span><span class="mi">4</span><span class="p">]</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s2">&quot;cname: &quot;</span><span class="p">,</span> <span class="s s-Atom">cname</span><span class="p">)</span>
+        <span class="s s-Atom">column</span> <span class="o">=</span> <span class="nf">getattr</span><span class="p">(</span><span class="nv">TableClass</span><span class="p">,</span> <span class="s s-Atom">cname</span><span class="p">)</span>
+        <span class="s s-Atom">if</span> <span class="nn">reverse</span><span class="p">:</span> <span class="s s-Atom">column</span> <span class="o">=</span> <span class="nf">desc</span><span class="p">(</span><span class="s s-Atom">column</span><span class="p">)</span>
+        <span class="s s-Atom">query</span> <span class="o">=</span> <span class="s s-Atom">query</span><span class="p">.</span><span class="nf">order_by</span><span class="p">(</span><span class="s s-Atom">column</span><span class="p">)</span>
+<span class="s s-Atom">if</span> <span class="s s-Atom">&#39;limit&#39;</span> <span class="s s-Atom">in</span> <span class="nn">data</span><span class="p">:</span>
+    <span class="s s-Atom">query</span> <span class="o">=</span> <span class="s s-Atom">query</span><span class="p">.</span><span class="nf">limit</span><span class="p">(</span><span class="s s-Atom">data</span><span class="p">[</span><span class="s s-Atom">&#39;limit&#39;</span><span class="p">])</span>
+    <span class="s s-Atom">query</span> <span class="o">=</span> <span class="s s-Atom">query</span><span class="p">.</span><span class="nf">offset</span><span class="p">(</span><span class="s s-Atom">data</span><span class="p">[</span><span class="s s-Atom">&#39;offset&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<p>The front-end sends whatever it needs to the back-end using JSON format and the result is also in JSON. For example, the following JSON when posted to <code class="highlighter-rouge">/user</code> endpoint using <code class="highlighter-rouge">FETCH</code> method, returns the record from user table where <code class="highlighter-rouge">name</code> field matches <code class="highlighter-rouge">admin</code> and orders the results by email in descending order.</p>
+<div class="highlight"><pre><span></span>{&quot;where&quot;: {&quot;name&quot;:&quot;admin&quot;}, &quot;orderby&quot;: &quot;email desc&quot;}
+</pre></div>
+
+
+<p>Adding the <code class="highlighter-rouge">limit</code> and <code class="highlighter-rouge">offset</code> clauses to the same can help the front-end with pagination.</p>
+<div class="highlight"><pre><span></span>{&quot;where&quot;: {&quot;name&quot;:&quot;admin&quot;}, &quot;orderby&quot;: &quot;email desc&quot;, &quot;limit&quot;:2, &quot;offset&quot;: 2}
+</pre></div>
+
+
+<p>Its also pretty trivial to implement user authentication with this design. I haven’t done it in this example for simplicity, but you can find it in the <a href="https://github.com/prahladyeri/tiddly">github code</a>.</p>
+<p>All code in this tutorial and on github is <code class="highlighter-rouge">MIT</code> licensed and free to use. So, enjoy coding, build your own RESTful CRUD app!</p>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+				</div>
+				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
+					<div style='margin-top: 50px;'>
+
+<!-- AMAZON AFFILIATE ADS -->
+<!--
+<a href="https://www.amazon.in/Automate-Boring-Stuff-Python-2nd/dp/1593279922/ref=as_li_ss_il?crid=JA705IOUH74O&keywords=automate+the+boring+stuff+with+python&qid=1583912586&sprefix=automate+the+,aps,460&sr=8-1&linkCode=li2&tag=prahladyeri-21&linkId=5f899269cc1aea74977c02963a9a6caf&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1593279922&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=1593279922" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.in/PYTHON-PROGRAMMING-BEGINNERS-GUIDE-LEARN-ebook/dp/B01GSODGZC/ref=as_li_ss_il?crid=33LIIMVDMW1U3&keywords=python+programming&qid=1583912662&sprefix=python,aps,527&sr=8-4&linkCode=li2&tag=prahladyeri-21&linkId=6b3a8b38eda1d6c51546a1a0c321cfea&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01GSODGZC&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=B01GSODGZC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class='container-fluid'>
+<div class='row'>
+		<footer id ="footer" class="col-md-12 text-center bg-dark text-white pt-1 pb-1 pl-1 pr-1">
+		Copyright (&copy;) 2014-2022 Prahlad Yeri. This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+		</footer>
+</div>
+</div>		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="/theme/js/popper.min.js"></script> -->
+<!-- <script src="/theme/js/bootstrap.min.js"></script> -->
+</body>
+</html>

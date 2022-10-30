@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset="utf-8" />
+	<title>Was buying LinkedIn a good decision by Microsoft?</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" property="og:description" content="A few days ago, on 13th of June, Microsoft bought LinkedIn for around \$26 billion at \$196 a share. So, was this buying a good decision? Even before thinking about that, lets try to understand why was LinkedIn sold to Microsoft in the first place. After all, a company proclaiming …">
+	<link rel="canonical" content="https://prahladyeri.github.io/blog/2016/06/was-buying-linkedin-a-good-decision-by-microsoft.html" />
+	<meta name="author" content="Prahlad Yeri">
+	<!-- Google Fonts -->
+	<!--link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet"-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="/theme/css/app.css">
+	<link rel="stylesheet" href="/theme/css/pygment.css">		
+	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+
+
+
+
+    <meta name="tags" content="LinkedIn" />
+    <meta name="tags" content="Microsoft" />
+
+	
+	
+	
+	<!-- twitter card meta data -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@prahladyeri" />
+	<meta name="twitter:creator" content="@prahladyeri" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2016/06/was-buying-linkedin-a-good-decision-by-microsoft.html" />
+		<meta name="twitter:title" content="Was buying LinkedIn a good decision by Microsoft?" />
+		<meta name="twitter:description" content="A few days ago, on 13th of June, Microsoft bought LinkedIn for around \$26 billion at \$196 a share. So, was this buying a good decision? Even before thinking about that, lets try to understand why was LinkedIn sold to Microsoft in the first place. After all, a company proclaiming …" />
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/cover.jpg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/cover.jpg">
+
+	<!-- open graph meta data (TODO) -->
+	
+	<!--start: analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6808883-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-6808883-5');
+	</script>
+	<!--end: analytics -->
+	
+<!--pinterest claim-->
+<meta name="p:domain_verify" content="eb43d46309e2766ef1b627cea2d19326"/>
+</head>
+
+<body id="index" class="home">
+<!-- section bootstrap-menu -->
+<div class='container'>
+<div class='row header'>
+	<div class='col-md-12 text-center' style='margin: 10px 0 0 0'>
+		<h2>Prahlad Yeri</h2>
+		<h6 class='text-muted'>Freelance Programmer and Writer</h6>
+	</div>
+	<div class='col-md-12 text-center' >
+		<ul class="nav nav-fill text-center site-links col-md-8 ml-auto mr-auto">
+		<li class="nav-item"><a class="nav-link btn btn-primary" href="/">Home</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-success" href="/blog">Blog</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-danger" href="/portfolio">Portfolio</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-secondary" href="https://github.com/prahladyeri/resume">Resume</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-warning" href="/hire-me">Hire Me</a></li>
+		<li class='nav-item dropdown'>
+			<a class="nav-link dropdown-toggle btn btn-dark" id='btnSocial' href="javascript:" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+			<div class="dropdown-menu" aria-labelledby="btnSocial">
+				<a class="dropdown-item" href="https://twitter.com/prahladyeri">Twitter</a>
+				<a class="dropdown-item" href="https://github.com/prahladyeri">Github</a>
+				<a class="dropdown-item" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a>
+				<a class="dropdown-item" href="https://prahladyeri.medium.com/">Medium</a>
+				<a class="dropdown-item" href="https://www.quora.com/profile/Prahlad-Yeri">Quora</a>
+				<a class="dropdown-item" href="https://www.instagram.com/prahladyeri14/">Instagram</a>
+				<a class="dropdown-item" href="mailto:prahladyeri@yahoo.com">Email</a>
+			</div>
+		</li>
+		<li class='btn-group'>
+			<a class="nav-link dropdown-toggle btn btn-info" role='button' id='btnFeeds' href="javascript:" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a>
+			<div class="dropdown-menu" aria-labelledby="btnFeeds">
+				<a class="dropdown-item" href="/feeds/all.rss.xml">RSS</a>
+				<a class="dropdown-item" href="/feeds/all.atom.xml">ATOM</a>
+				<!-- <a class="dropdown-item" href="https://feedburner.google.com/fb/a/mailverify?uri=prahladyeri&amp;loc=en_US">Feedburner</a> -->
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='ml-auto col-md-8 mr-auto'>
+	</div>
+</div>
+</div>
+
+		<div id="main" class='mt-2 container content '>
+			<div class='row'>
+				<div class='offset-md-2 col-md-8'>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2016/06/was-buying-linkedin-a-good-decision-by-microsoft.html" rel="bookmark" 
+      title="Permalink to Was buying LinkedIn a good decision by Microsoft?">Was buying LinkedIn a good decision by Microsoft?</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2016-06-29T04:21:00+05:30">Wed 29 June 2016</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/business">Business</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/linkedin">LinkedIn</a>
+            <a href="https://prahladyeri.github.io/blog/tag/microsoft">Microsoft</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p>A few days ago, on 13th of June, Microsoft bought LinkedIn for around \$26 billion at \$196 a share. So, was this buying a good decision? Even before thinking about that, lets try to understand why was LinkedIn sold to Microsoft in the first place. After all, a company proclaiming to remain an independent entity doesn’t liquidate itself all of a sudden.<!--more--></p>
+<h3>LinkedIn’s community was dwindling</h3>
+<p>The primary asset of any company working on ad-revenue model is its <em>community</em>. Community creates interesting content and readers read and share that content and thus the ad-revenue model works. In case of Facebook, its the timeline content that the friends network keeps generating (and to some extent, also the Facebook groups which generate some intellectual discussions). In case of Twitter, its the tweet feed, for Reddit, its the subreddits where Redditors post links and comments and so on.</p>
+<p>LinkedIn’s position was very uncomfortable with regard to this community factor. Their only interesting content was (and still is) the resumes that individual users post. However, that factor alone is not enough to keep the audience engaged for a lot of time in order for the ad-revenue model to work. Sure enough, they also have this thing called “LinkedIn Groups” which was a very good content stream earlier. I remember that I used to have great intellectual discussions on the VB.NET group somewhere around 2011. But LinkedIn seems to have neglected this content stream over the years which has cost them their community. Nowadays, these groups are full of distracting ads, promotions and other useless content:</p>
+<p><img alt="LinkedIn Groups" class="size-large" src="/uploads/old/LinkedIn_Groups.png">\
+<em>Courtesy: LinkedIn</em></p>
+<p>As you can see, the groups are not at all interesting any more. If LinkedIn had paid some attention to this content stream earlier and ensured its continuity by way of moderation and quality control (like Reddit, Voat, Facebook, et al do), it was quite possible that their ad-revenue may not have fallen at all and they may not have even faced the need to get acquired by Microsoft! Which brings us to the next point.</p>
+<h3>LinkedIn’s ad business was slowing down</h3>
+<p>As a <a href="http://www.recode.net/2016/6/13/11920416/linkedin-acquisition-microsoft-reasons">lot of analysts now say</a> that LinkedIn’s ad business was slowing down which was a natural outcome of their lack of paying attention to the community factor that was mentioned above. As the linked source says:</p>
+<blockquote>
+<p>When LinkedIn reported Q4 earnings earlier in February, one of the concerns was that its ad business grew just 20 percent for the quarter year over year; that compared to growth of 56 percent in the same quarter the year before. Research firm eMarketer predicted LinkedIn’s U.S. digital ad revenue would fall from 35 percent growth in 2015 to less than 10 percent growth this year.</p>
+</blockquote>
+<p>The problem here was that there was no <em>wow</em> factor with LinkedIn that could have kept the readers glued to the content. And as we all know, unless readers are kept glued to the content, ad-revenue naturally dwindles!</p>
+<h3>LinkedIn’s growth was a concern</h3>
+<p>Like I said, LinkedIn worked primarily on ad-revenue model. Their so-called premium subscription model worked to an extent, but the most that could do is pay off your hosting fees and other small bills. You can’t bank on subscription model to pay off your salaries and other bills, especially when you are as large a company as LinkedIn. Barring that, there was no scope for growth, though if the LinkedIn management was any creative, they could have used their existing large social network in multiple ways to increase growth (ways that now Microsoft will have to implement in order to salvage its LinkedIn Investment):</p>
+<ol>
+<li>Moderation and Quality Control of Forums: This is actually a no-brainer and doesn’t even cost a lot. As I said, LinkedIn Groups had a great potential to grow, all LinkedIn had to do was ask volunteers for moderating the groups! Reddit mods and admins, for example, are resourceful folks who gladly contribute their time freely to manage and administer the subreddit content. If LinkedIn had done this much earlier, their ad-revenue would have spiraled up with good quality content of the forums.</li>
+<li>Value Added Services: The premium subscription wasn’t that big a deal, all it offered to subscribers was the ability to see a bit more stats like who else had viewed their profile pages and how many times, etc. But LinkedIn could have used their resourceful software developers to provide a lot more things like a chat service, specialized apps such as a job tracker, an outsourcing app/module (such as Upwork), etc. These services may not have directly paid off initially, but when clubbed with premium subscription model, they would have had a lot more to offer on the table with that.</li>
+<li>Tie-ups with job sites: A site like LinkedIn could have made an excellent partner to one of the job sites like Monster.com or Naukri.com. These sites have loads of recruiters searching for worthy candidates. LinkedIn has other part of the equation: A database of such candidates categorized and sorted by their skills, resources, experience details and connections! Both of them could have made an excellent pair and I’m sure Microsoft was thinking along the same lines when it thought of acquiring LinkedIn.</li>
+</ol>
+<h3>Was it a right decision?</h3>
+<p>Coming back to our original question, was buying LinkedIn a correct decision by Microsoft? Only time will tell (and the stock market price of course!). Like I said, I’m not a fortune teller, but those in the trade of stock markets analyses know very well that technical analysis comes very useful in predicting the future of the business than fundamental analysis. The people who invest billions in stock markets are some of the smartest folks on the planet who have access to the most up-to-date market information (a ton of more information than what this article contains!) and the best resources to analyze that information. So, the bid price of these investors reflect all that up-to-date information and this is what the NASDAQ monthly chart of LinkedIn says:</p>
+<p><img alt="LinkedIn monthly chart on NASDAQ" class="size-large" src="/uploads/old/LinkedIn_Chart.png">\
+<em>Courtesy: Yahoo Finance</em></p>
+<p>As you can see, LinkedIn is presently being traded at \$189.50 which is a lot less than what Microsoft bid for LinkedIn (\$196 per share). In other words, the market doesn’t think that Microsoft’s decision to purchase LinkedIn was right otherwise it would have been ready to bid a lot more than \$196 per share, not less. This, of course, is the short-term view. In the long-term, its quite possible that Microsoft might do some structural changes to LinkedIn (like the ones I described earlier) and thus improve LinkedIn’s growth and profitability. But will Microsoft actually do it, or is LinkedIn just going to be put inside a fancy showcase by a large corporation? That, only time will tell!</p>
+<p>References:</p>
+<ul>
+<li><a href="http://www.recode.net/2016/6/13/11920416/linkedin-acquisition-microsoft-reasons">http://www.recode.net/2016/6/13/11920416/linkedin-acquisition-microsoft-reasons</a></li>
+</ul>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+				</div>
+				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
+					<div style='margin-top: 50px;'>
+
+<!-- AMAZON AFFILIATE ADS -->
+<!--
+<a href="https://www.amazon.in/Automate-Boring-Stuff-Python-2nd/dp/1593279922/ref=as_li_ss_il?crid=JA705IOUH74O&keywords=automate+the+boring+stuff+with+python&qid=1583912586&sprefix=automate+the+,aps,460&sr=8-1&linkCode=li2&tag=prahladyeri-21&linkId=5f899269cc1aea74977c02963a9a6caf&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1593279922&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=1593279922" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.in/PYTHON-PROGRAMMING-BEGINNERS-GUIDE-LEARN-ebook/dp/B01GSODGZC/ref=as_li_ss_il?crid=33LIIMVDMW1U3&keywords=python+programming&qid=1583912662&sprefix=python,aps,527&sr=8-4&linkCode=li2&tag=prahladyeri-21&linkId=6b3a8b38eda1d6c51546a1a0c321cfea&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01GSODGZC&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=B01GSODGZC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class='container-fluid'>
+<div class='row'>
+		<footer id ="footer" class="col-md-12 text-center bg-dark text-white pt-1 pb-1 pl-1 pr-1">
+		Copyright (&copy;) 2014-2022 Prahlad Yeri. This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+		</footer>
+</div>
+</div>		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="/theme/js/popper.min.js"></script> -->
+<!-- <script src="/theme/js/bootstrap.min.js"></script> -->
+</body>
+</html>

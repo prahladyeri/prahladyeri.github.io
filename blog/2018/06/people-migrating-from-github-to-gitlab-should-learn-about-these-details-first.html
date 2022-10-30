@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset="utf-8" />
+	<title>People migrating from Github to Gitlab should learn about these details first</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" property="og:description" content="After Microsoft's recent acquisition of Github, a mass exodus has kind of begun and many small and large projects are moving their code bases to the much hyped Gitlab in a hurry, and these include both open and closed source projects. However, before migrating to Gitlab, they should take a …">
+	<link rel="canonical" content="https://prahladyeri.github.io/blog/2018/06/people-migrating-from-github-to-gitlab-should-learn-about-these-details-first.html" />
+	<meta name="author" content="Prahlad Yeri">
+	<!-- Google Fonts -->
+	<!--link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet"-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="/theme/css/app.css">
+	<link rel="stylesheet" href="/theme/css/pygment.css">		
+	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+
+
+
+
+    <meta name="tags" content="Git" />
+    <meta name="tags" content="Github" />
+    <meta name="tags" content="Gitlab" />
+    <meta name="tags" content="Microsoft" />
+    <meta name="tags" content="Open Source" />
+
+	
+	
+	
+	<!-- twitter card meta data -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@prahladyeri" />
+	<meta name="twitter:creator" content="@prahladyeri" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2018/06/people-migrating-from-github-to-gitlab-should-learn-about-these-details-first.html" />
+		<meta name="twitter:title" content="People migrating from Github to Gitlab should learn about these details first" />
+		<meta name="twitter:description" content="After Microsoft's recent acquisition of Github, a mass exodus has kind of begun and many small and large projects are moving their code bases to the much hyped Gitlab in a hurry, and these include both open and closed source projects. However, before migrating to Gitlab, they should take a …" />
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/cover.jpg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/cover.jpg">
+
+	<!-- open graph meta data (TODO) -->
+	
+	<!--start: analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6808883-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-6808883-5');
+	</script>
+	<!--end: analytics -->
+	
+<!--pinterest claim-->
+<meta name="p:domain_verify" content="eb43d46309e2766ef1b627cea2d19326"/>
+</head>
+
+<body id="index" class="home">
+<!-- section bootstrap-menu -->
+<div class='container'>
+<div class='row header'>
+	<div class='col-md-12 text-center' style='margin: 10px 0 0 0'>
+		<h2>Prahlad Yeri</h2>
+		<h6 class='text-muted'>Freelance Programmer and Writer</h6>
+	</div>
+	<div class='col-md-12 text-center' >
+		<ul class="nav nav-fill text-center site-links col-md-8 ml-auto mr-auto">
+		<li class="nav-item"><a class="nav-link btn btn-primary" href="/">Home</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-success" href="/blog">Blog</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-danger" href="/portfolio">Portfolio</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-secondary" href="https://github.com/prahladyeri/resume">Resume</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-warning" href="/hire-me">Hire Me</a></li>
+		<li class='nav-item dropdown'>
+			<a class="nav-link dropdown-toggle btn btn-dark" id='btnSocial' href="javascript:" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+			<div class="dropdown-menu" aria-labelledby="btnSocial">
+				<a class="dropdown-item" href="https://twitter.com/prahladyeri">Twitter</a>
+				<a class="dropdown-item" href="https://github.com/prahladyeri">Github</a>
+				<a class="dropdown-item" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a>
+				<a class="dropdown-item" href="https://prahladyeri.medium.com/">Medium</a>
+				<a class="dropdown-item" href="https://www.quora.com/profile/Prahlad-Yeri">Quora</a>
+				<a class="dropdown-item" href="https://www.instagram.com/prahladyeri14/">Instagram</a>
+				<a class="dropdown-item" href="mailto:prahladyeri@yahoo.com">Email</a>
+			</div>
+		</li>
+		<li class='btn-group'>
+			<a class="nav-link dropdown-toggle btn btn-info" role='button' id='btnFeeds' href="javascript:" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a>
+			<div class="dropdown-menu" aria-labelledby="btnFeeds">
+				<a class="dropdown-item" href="/feeds/all.rss.xml">RSS</a>
+				<a class="dropdown-item" href="/feeds/all.atom.xml">ATOM</a>
+				<!-- <a class="dropdown-item" href="https://feedburner.google.com/fb/a/mailverify?uri=prahladyeri&amp;loc=en_US">Feedburner</a> -->
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='ml-auto col-md-8 mr-auto'>
+	</div>
+</div>
+</div>
+
+		<div id="main" class='mt-2 container content '>
+			<div class='row'>
+				<div class='offset-md-2 col-md-8'>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2018/06/people-migrating-from-github-to-gitlab-should-learn-about-these-details-first.html" rel="bookmark" 
+      title="Permalink to People migrating from Github to Gitlab should learn about these details first">People migrating from Github to Gitlab should learn about these details first</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2018-06-11T14:37:00+05:30">Mon 11 June 2018</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/open-source">Open Source</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/git">Git</a>
+            <a href="https://prahladyeri.github.io/blog/tag/github">Github</a>
+            <a href="https://prahladyeri.github.io/blog/tag/gitlab">Gitlab</a>
+            <a href="https://prahladyeri.github.io/blog/tag/microsoft">Microsoft</a>
+            <a href="https://prahladyeri.github.io/blog/tag/open-source">Open Source</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p>After <a href="https://prahladyeri.github.io/blog/2018/06/microsofts-github-acquisition-an-unbiased-perspective.html">Microsoft's recent acquisition of Github</a>, a mass exodus has kind of begun and many small and large projects are moving their code bases to the much hyped <a href="https://gitlab.com/">Gitlab</a> in a hurry, and these include both open and closed source projects. However, before migrating to Gitlab, they should take a pause and learn something about Gitlab and consider evaluating other alternatives too.<!--more--></p>
+<p><img alt="Gitlab Stack" class="size-full wp-image-644" height="605" src="/uploads/2018/06/gitlab_stack.png" width="692"> </p>
+<p><strong>Gitlab Stack</strong></p>
+<p>According to above <a href="https://stackshare.io/gitlab/gitlab">StackShare.io chart</a>, Gitlab basically runs on Microsoft Azure cloud hosting facility. So, if you are leaving Github in order to escape the clutches of Microsoft, then you are headed to a totally wrong place! Microsoft is exactly the place where your source code will reside in this case, only difference is that instead of controlling it directly (as in the case of Github), Microsoft will be controlling your code only technically.</p>
+<p>I know, some of you will be saying that you are self-hosting an open source copy of Gitlab and not actually moving to <a href="https://gitlab.com">Gitlab.com</a>. In that case, please have a look at another item in that stack, namely Rails (RoR or Ruby on Rails framework).</p>
+<p>Though Rails is a great framework that developers enjoy to code with, its a performance hog when it comes to actually running on production! There is a reason why <a href="https://jaredfriedman.wordpress.com/2015/09/15/why-i-wouldnt-use-rails-for-a-new-company/">Twitter ditched Rails</a> in favor of Node.js instead of fixing the interpreter like Facebook did with PHP. Apart from Rails being a performance hog, consider that a git hosting facility is not a simple CRUD app. Its very difficult to do advanced things like CI/CD right in a framework like Rails and the effect is showing. It may work out initially, but once your code base starts to increase and your integrations start to scale, you'll hit the RoR scaling limit sooner or later, like <a href="https://serverfault.com/questions/818489/gitlab-extremely-high-memory-consumption-by-ruby-bundle-process">many others have</a>. Its not uncommon for Gitlab to eat gigabytes of your RAM or consume 100% CPU. So, if you are trying to host Gitlab in a small Digital Ocean droplet or Amazon AWS Micro instance, you can just forget about it!</p>
+<p>Or, you can sit back and evaluate your options, it really depends on what you basically want. If you just want a free git hosting facility and don't want to self-host, there is already Github. If you don't like Microsoft, then you have Bitbucket, SourceForge, <a href="http://salsa.debian.org/">Debian Salsa</a> and others too apart from Gitlab, so consider those options too before blindly deciding on Gitlab and falling for their marketing trap.</p>
+<p>On the other hand, if you are ready to self-host and have a smaller budget (just for an AWS Micro or Digital Ocean droplet, for instance), then you can use one of the several open source and light-weight git hosting software like <a href="https://try.gogs.io/">gogs</a>, <a href="https://try.gitea.io/">gitea</a>, <a href="https://github.com/phacility/phabricator">phabricator</a> and many others and self-host.</p>
+<p>Finally, if you have a budget for hosting Gitlab on a larger instance (like AWS Large instance or 2GB droplet from Digital Ocean), then the first question I'd ask you is why not just stick to paid hosting plans of Github (or Gitlab/Bitbucket if you don't like Microsoft). That will be a lot cheaper and lenient on your pockets than self hosting a copy of Gitlab on a larger instance.</p>
+<p>Whatever route you end up choosing, it should be a calmly taken logical decision after due consideration to all facts, not in this Github acquisition frenzy. All the best.</p>
+<p><strong>Links:</strong></p>
+<ul>
+<li><a href="https://prahladyeri.github.io/blog/2018/06/microsofts-github-acquisition-an-unbiased-perspective.html">https://prahladyeri.github.io/blog/2018/06/microsofts-github-acquisition-an-unbiased-perspective.html</a></li>
+<li><a href="https://stackshare.io/gitlab/gitlab">https://stackshare.io/gitlab/gitlab</a></li>
+<li><a href="https://gitlab.com">https://gitlab.com</a></li>
+<li><a href="https://jaredfriedman.wordpress.com/2015/09/15/why-i-wouldnt-use-rails-for-a-new-company/">https://jaredfriedman.wordpress.com/2015/09/15/why-i-wouldnt-use-rails-for-a-new-company/</a></li>
+<li><a href="https://serverfault.com/questions/818489/gitlab-extremely-high-memory-consumption-by-ruby-bundle-process">https://serverfault.com/questions/818489/gitlab-extremely-high-memory-consumption-by-ruby-bundle-process</a></li>
+<li><a href="https://news.ycombinator.com/item?id=10235446">https://news.ycombinator.com/item?id=10235446</a></li>
+<li><a href="https://medium.com/osldev-blog/our-first-eight-months-with-gitlab-2f447af92e50">https://medium.com/osldev-blog/our-first-eight-months-with-gitlab-2f447af92e50</a></li>
+<li><a href="http://salsa.debian.org/">http://salsa.debian.org/</a></li>
+<li><a href="https://try.gogs.io/">https://try.gogs.io/</a></li>
+<li><a href="https://try.gitea.io/">https://try.gitea.io/</a></li>
+<li><a href="https://github.com/phacility/phabricator">https://github.com/phacility/phabricator</a></li>
+</ul>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+				</div>
+				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
+					<div style='margin-top: 50px;'>
+
+<!-- AMAZON AFFILIATE ADS -->
+<!--
+<a href="https://www.amazon.in/Automate-Boring-Stuff-Python-2nd/dp/1593279922/ref=as_li_ss_il?crid=JA705IOUH74O&keywords=automate+the+boring+stuff+with+python&qid=1583912586&sprefix=automate+the+,aps,460&sr=8-1&linkCode=li2&tag=prahladyeri-21&linkId=5f899269cc1aea74977c02963a9a6caf&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1593279922&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=1593279922" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.in/PYTHON-PROGRAMMING-BEGINNERS-GUIDE-LEARN-ebook/dp/B01GSODGZC/ref=as_li_ss_il?crid=33LIIMVDMW1U3&keywords=python+programming&qid=1583912662&sprefix=python,aps,527&sr=8-4&linkCode=li2&tag=prahladyeri-21&linkId=6b3a8b38eda1d6c51546a1a0c321cfea&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01GSODGZC&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=B01GSODGZC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class='container-fluid'>
+<div class='row'>
+		<footer id ="footer" class="col-md-12 text-center bg-dark text-white pt-1 pb-1 pl-1 pr-1">
+		Copyright (&copy;) 2014-2022 Prahlad Yeri. This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+		</footer>
+</div>
+</div>		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="/theme/js/popper.min.js"></script> -->
+<!-- <script src="/theme/js/bootstrap.min.js"></script> -->
+</body>
+</html>

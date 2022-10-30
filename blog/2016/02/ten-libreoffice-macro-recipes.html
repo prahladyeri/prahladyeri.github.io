@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset="utf-8" />
+	<title>Ten useful LibreOffice Macro Recipes</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" property="og:description" content="Macros are a great way to automate tasks in Spreadsheet applications, be it the good old Microsoft Excel or the equally efficient FOSS alternative, LibreOffice Calc. The best thing about macros is that they are written in a very easy language called Basic. © The LibreOffice Project As it’s very …">
+	<link rel="canonical" content="https://prahladyeri.github.io/blog/2016/02/ten-libreoffice-macro-recipes.html" />
+	<meta name="author" content="Prahlad Yeri">
+	<!-- Google Fonts -->
+	<!--link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet"-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="/theme/css/app.css">
+	<link rel="stylesheet" href="/theme/css/pygment.css">		
+	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+
+
+
+
+    <meta name="tags" content="LibreOffice" />
+    <meta name="tags" content="Linux" />
+
+	
+	
+	
+	<!-- twitter card meta data -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@prahladyeri" />
+	<meta name="twitter:creator" content="@prahladyeri" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2016/02/ten-libreoffice-macro-recipes.html" />
+		<meta name="twitter:title" content="Ten useful LibreOffice Macro Recipes" />
+		<meta name="twitter:description" content="Macros are a great way to automate tasks in Spreadsheet applications, be it the good old Microsoft Excel or the equally efficient FOSS alternative, LibreOffice Calc. The best thing about macros is that they are written in a very easy language called Basic. © The LibreOffice Project As it’s very …" />
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/cover.jpg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/cover.jpg">
+
+	<!-- open graph meta data (TODO) -->
+	
+	<!--start: analytics -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6808883-5"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-6808883-5');
+	</script>
+	<!--end: analytics -->
+	
+<!--pinterest claim-->
+<meta name="p:domain_verify" content="eb43d46309e2766ef1b627cea2d19326"/>
+</head>
+
+<body id="index" class="home">
+<!-- section bootstrap-menu -->
+<div class='container'>
+<div class='row header'>
+	<div class='col-md-12 text-center' style='margin: 10px 0 0 0'>
+		<h2>Prahlad Yeri</h2>
+		<h6 class='text-muted'>Freelance Programmer and Writer</h6>
+	</div>
+	<div class='col-md-12 text-center' >
+		<ul class="nav nav-fill text-center site-links col-md-8 ml-auto mr-auto">
+		<li class="nav-item"><a class="nav-link btn btn-primary" href="/">Home</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-success" href="/blog">Blog</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-danger" href="/portfolio">Portfolio</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-secondary" href="https://github.com/prahladyeri/resume">Resume</a></li>
+		<li class="nav-item"><a class="nav-link btn btn-warning" href="/hire-me">Hire Me</a></li>
+		<li class='nav-item dropdown'>
+			<a class="nav-link dropdown-toggle btn btn-dark" id='btnSocial' href="javascript:" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Social</a>
+			<div class="dropdown-menu" aria-labelledby="btnSocial">
+				<a class="dropdown-item" href="https://twitter.com/prahladyeri">Twitter</a>
+				<a class="dropdown-item" href="https://github.com/prahladyeri">Github</a>
+				<a class="dropdown-item" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a>
+				<a class="dropdown-item" href="https://prahladyeri.medium.com/">Medium</a>
+				<a class="dropdown-item" href="https://www.quora.com/profile/Prahlad-Yeri">Quora</a>
+				<a class="dropdown-item" href="https://www.instagram.com/prahladyeri14/">Instagram</a>
+				<a class="dropdown-item" href="mailto:prahladyeri@yahoo.com">Email</a>
+			</div>
+		</li>
+		<li class='btn-group'>
+			<a class="nav-link dropdown-toggle btn btn-info" role='button' id='btnFeeds' href="javascript:" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Feeds</a>
+			<div class="dropdown-menu" aria-labelledby="btnFeeds">
+				<a class="dropdown-item" href="/feeds/all.rss.xml">RSS</a>
+				<a class="dropdown-item" href="/feeds/all.atom.xml">ATOM</a>
+				<!-- <a class="dropdown-item" href="https://feedburner.google.com/fb/a/mailverify?uri=prahladyeri&amp;loc=en_US">Feedburner</a> -->
+			</div>
+		</li>
+		</ul>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='ml-auto col-md-8 mr-auto'>
+	</div>
+</div>
+</div>
+
+		<div id="main" class='mt-2 container content '>
+			<div class='row'>
+				<div class='offset-md-2 col-md-8'>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2016/02/ten-libreoffice-macro-recipes.html" rel="bookmark" 
+      title="Permalink to Ten useful LibreOffice Macro Recipes">Ten useful LibreOffice Macro Recipes</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2016-02-26T02:23:00+05:30">Fri 26 February 2016</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/linux">Linux</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/libreoffice">LibreOffice</a>
+            <a href="https://prahladyeri.github.io/blog/tag/linux">Linux</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p>Macros are a great way to automate tasks in Spreadsheet applications, be it the good old Microsoft Excel or the equally efficient FOSS alternative, LibreOffice Calc. The best thing about macros is that they are written in a very easy language called <a href="https://en.wikipedia.org/wiki/BASIC">Basic</a>.<!--more--></p>
+<p><img alt="LibreOffice Logo" src="/uploads/old/libreofficeCalcLogo.jpg"></p>
+<p><em>© The LibreOffice Project</em></p>
+<p>As it’s very name suggests, Basic is a lenient programming language actually designed with ease of use in mind. For instance, upper/lower case doesn’t matter for variable names or keywords (<code class="highlighter-rouge">if/IF</code>, <code class="highlighter-rouge">sub/Sub</code>, <code class="highlighter-rouge">function/Function</code> are equivalents), function braces are optional like Ruby and type-conversion happens automatically. This makes Basic equally useful for both power users and programmers. A LibreOffice Basic macro is just a function or sub procedure which does a specific useful task. In this tutorial, we will see ten such useful macros that can help you with various automation tasks.</p>
+<ol>
+<li><a href="#howto">Recipe 0: How to create a LibreOffice macro</a></li>
+<li><a href="#readcell">Recipe 1: Read cell contents</a></li>
+<li><a href="#changecell">Recipe 2: Change cell contents</a></li>
+<li><a href="#searchandrepl">Recipe 3: Search and Replace text</a></li>
+<li><a href="#regex">Recipe 4: Regular Expressions</a></li>
+<li><a href="#showopendialog">Recipe 5: Show File-open dialog</a></li>
+<li><a href="#showsavedialog">Recipe 6: Show File-save dialog</a></li>
+<li><a href="#readfromfiles">Recipe 7: File I/O: Read from files</a></li>
+<li><a href="#writetofiles">Recipe 8: File I/O: Write to files</a></li>
+<li><a href="#loadfromcsv">Recipe 9: Load data from a CSV file</a></li>
+<li><a href="#copytoclipboard">Recipe 10: Copy text to clipboard</a></li>
+<li><a href="#demo">Demo</a></li>
+<li><a href="#references">References</a></li>
+</ol>
+<h2 id="howto">Recipe 0: How to create a LibreOffice macro</h2>
+<p>Whilst macros can be created in Writer and Draw too, in this specific tutorial, we will restrict ourselves to spreadsheets (Calc). To create a macro, just open the spreadsheet in LibreOffice and go to <code class="highlighter-rouge">Tools-&gt;Macros-&gt;Organize Macros-&gt;LibreOffice Basic</code> menu. After that, if you want to create a macro specific to your spreadsheet (as usually is the case), expand your spreadsheet file on left and select <code class="highlighter-rouge">Standard</code> and click <code class="highlighter-rouge">New</code>. This will open the LibreOffice Macro Editor as a separate window.</p>
+<p><img alt="Macros Menu" src="/uploads/old/macros_menu.png"></p>
+<h2 id="readcell">Recipe 1: Read cell contents</h2>
+<p>One of the most basic things needed for automation is reading a cell’s contents. The following piece of code does exactly this:</p>
+<div class="highlight"><pre><span></span>Sub read_cell
+    dim document as object
+    document = ThisComponent
+    sheet = document.Sheets(0)
+    MsgBox(sheet.getCellByPosition(0, 0).String)
+End Sub
+</pre></div>
+
+
+<p><code class="highlighter-rouge">dim</code> is a keyword used to declare a variable but declaration is totally optional unless <code class="highlighter-rouge">Option Explicit</code> is specified at the beginning of the module. <code class="highlighter-rouge">ThisComponent</code> is the LibreOffice object that references the current spreadsheet (or a written document in case of Writer). The important thing here is the expression, <code class="highlighter-rouge">sheet.getCellByPosition(0, 0).String</code> which gets the contents of first cell in the first row. Cells can be referenced using the co-ordinate system where (0,0) refers to cell at row-0 and column-0. Thus, any value across the entire spreadsheet can be fetched using this simple method.</p>
+<p>To run a macro from the editor, just place the cursor inside the <code class="highlighter-rouge">sub</code> or <code class="highlighter-rouge">function</code> body of any macro and press <code class="highlighter-rouge">F5</code> (or alternatively, click the <code class="highlighter-rouge">Run BASIC</code> icon on the toolbar).</p>
+<h2 id="changecell">Recipe 2: Change cell contents</h2>
+<p>Another often needed thing is the ability to change the cell contents. The following code sets the first cell in the first row to “Hola! Mundo”, the Spanish expression for “Hello! World”:</p>
+<div class="highlight"><pre><span></span>Sub change_cell
+    dim document as object
+    document = ThisComponent
+    sheet = document.Sheets(0)
+    sheet.getCellByPosition(0, 0).String = &quot;Hola Mundo!&quot;
+    MsgBox(&quot;Done&quot;)
+End Sub
+</pre></div>
+
+
+<h2 id="searchandrepl">Recipe 3: Search and Replace</h2>
+<p>Searching and replacing specific strings could be an important part of your automation routine. Below is a fun macro that searches for the first names of some Linux experts (like Linus, Richard, Peter, etc.) and replaces it with their last names (Torvalds, Stallman, Anvin):</p>
+<div class="highlight"><pre><span></span>Sub replace_text
+    Dim names() As String
+    Dim surnames() As String
+    Dim n As Long
+    Dim document As Object
+    Dim sheets as Object
+    Dim sheet as Object
+    Dim replace As Object
+
+    names() = Array(&quot;Linus&quot;, &quot;Richard&quot;, &quot;Peter&quot;, &quot;Greg&quot;, &quot;Bill&quot;)
+    surnames() = Array(&quot;Torvalds&quot;, &quot;Stallman&quot;, &quot;Anvin&quot;, &quot;Kroah&quot;, &quot;Gates&quot;)
+    document = ThisComponent rem .CurrentController.Frame
+    rem sheet = doc.CurrentSelection.Spreadsheet
+    sheets = document.getSheets()
+    sheet = sheets.getByIndex(0)
+    replace = sheet.createReplaceDescriptor rem document.createReplaceDescriptor in case of Writer
+    rem replace.SearchRegularExpression = True
+    For n = lbound(names()) To ubound(names())
+        replace.SearchString = names(n)
+        replace.ReplaceString = surnames(n)
+        sheet.replaceAll(replace)
+    Next n
+    MsgBox(&quot;Done&quot;)
+End Sub
+</pre></div>
+
+
+<p><code class="highlighter-rouge">names()</code> and <code class="highlighter-rouge">surnames()</code> are actually arrays. Unlike C and Java, arrays in Basic are declared and accessed using round braces and not square ones. Also, what gets declared in an array declaration is the upper-bound, not the total size. Thus, <code class="highlighter-rouge">foo(2)</code> is actually a size-3 array ranging from indices 0 to 2.</p>
+<h2 id="regex">Recipe 4: Regular Expressions</h2>
+<p>Regular expressions are very useful in searching and replacing text based on specific patterns. The following macro searches for all the email addresses in your spreadsheet and replaces each one with <code class="highlighter-rouge">foo@bar.com</code>:</p>
+<div class="highlight"><pre><span></span>Sub replace_with_regex
+  Dim names() As String
+  Dim surnames() As String
+  Dim n As Long
+  Dim document As Object
+  Dim sheets as Object
+  Dim sheet as Object
+  Dim replace As Object
+
+  pattern = &quot;\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b&quot; rem regex pattern to match any email address
+  document = ThisComponent rem .CurrentController.Frame
+  sheets = document.getSheets()
+  sheet = sheets.getByIndex(0)
+  replace = sheet.createReplaceDescriptor rem document.createReplaceDescriptor in case of Writer
+  replace.SearchRegularExpression = True
+  replace.SearchString = pattern
+  replace.ReplaceString = &quot;foo@bar.com&quot;
+  sheet.replaceAll(replace)
+
+  MsgBox(&quot;Done&quot;)
+End Sub
+</pre></div>
+
+
+<h2 id="showopendialog">Recipe 5: Show File-open dialog</h2>
+<p>Showing the File-open dialog is a very common requirement, especially when you want to open an external file for processing. The below code uses the <code class="highlighter-rouge">FilePicker</code> object to show the file-open dialog and return the selected file-name:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">show_open_dialog</span>
+    <span class="nx">dim</span> <span class="nx">aurl</span> <span class="kr">as</span> <span class="nx">object</span>
+    <span class="nx">dim</span> <span class="nx">s</span> <span class="kr">as</span> <span class="kt">string</span>
+    <span class="nx">dim</span> <span class="nx">oDlg</span> <span class="kr">as</span> <span class="nx">object</span>
+
+    <span class="nx">oDlg</span> <span class="o">=</span> <span class="nx">createUnoService</span><span class="p">(</span><span class="s2">&quot;com.sun.star.ui.dialogs.FilePicker&quot;</span><span class="p">)</span>
+    <span class="nx">oDlg</span><span class="p">.</span><span class="nx">setMultiSelectionMode</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+    <span class="nx">oDlg</span><span class="p">.</span><span class="nx">appendFilter</span><span class="p">(</span><span class="s2">&quot;CSV Files (.csv)&quot;</span><span class="p">,</span> <span class="s2">&quot;*.csv&quot;</span> <span class="p">)</span> 
+    <span class="nx">oDlg</span><span class="p">.</span><span class="nx">execute</span>
+    <span class="nx">aUrl</span> <span class="o">=</span> <span class="nx">oDlg</span><span class="p">.</span><span class="nx">getFiles</span><span class="p">()</span>
+
+    <span class="nx">s</span> <span class="o">=</span> <span class="nx">aUrl</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">len</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="nx">then</span>
+        <span class="nx">MsgBox</span><span class="p">(</span><span class="s2">&quot;File Selected: &quot;</span> <span class="o">&amp;</span> <span class="nx">s</span> <span class="o">&amp;</span> <span class="nx">chr</span><span class="p">(</span><span class="mi">13</span><span class="p">))</span>
+    <span class="nx">end</span> <span class="k">if</span>
+    <span class="nx">show_open_dialog</span> <span class="o">=</span> <span class="nx">s</span>
+<span class="nx">end</span> <span class="kd">function</span>
+</pre></div>
+
+
+<p><code class="highlighter-rouge">createUnoService</code> is a LibreOffice specific method for creating helper objects like <code class="highlighter-rouge">FilePicker</code> in this example. The <code class="highlighter-rouge">appendFilter</code> method is used to filter out only <code class="highlighter-rouge">CSV</code> files in the dialog.</p>
+<h2 id="showsavedialog">Recipe 6: Show File-save dialog</h2>
+<p>For showing a File-save dialog, the same <code class="highlighter-rouge">FilePicker</code> object is used, initializing it with the <code class="highlighter-rouge">FILESAVE_AUTOEXTENSION</code> argument:</p>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">show_save_dialog</span>
+    <span class="nx">dim</span> <span class="nx">aurl</span> <span class="kr">as</span> <span class="nx">object</span>
+    <span class="nx">dim</span> <span class="nx">s</span> <span class="kr">as</span> <span class="kt">string</span>
+    <span class="nx">dim</span> <span class="nx">oDlg</span> <span class="kr">as</span> <span class="nx">object</span>
+
+    <span class="nx">sFilePickerArgs</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">_</span>
+    <span class="nx">com</span><span class="p">.</span><span class="nb">sun</span><span class="p">.</span><span class="nx">star</span><span class="p">.</span><span class="nx">ui</span><span class="p">.</span><span class="nx">dialogs</span><span class="p">.</span><span class="nx">TemplateDescription</span><span class="p">.</span><span class="nx">FILESAVE_AUTOEXTENSION</span> <span class="p">)</span>    
+    <span class="nx">oDlg</span> <span class="o">=</span> <span class="nx">createUnoService</span><span class="p">(</span><span class="s2">&quot;com.sun.star.ui.dialogs.FilePicker&quot;</span><span class="p">)</span>
+    <span class="nx">oDlg</span><span class="p">.</span><span class="nx">initialize</span><span class="p">(</span><span class="nx">sFilePickerArgs</span><span class="p">())</span>
+    <span class="nx">oDlg</span><span class="p">.</span><span class="nx">setMultiSelectionMode</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+    <span class="nx">oDlg</span><span class="p">.</span><span class="nx">appendFilter</span><span class="p">(</span><span class="s2">&quot;CSV Files (.csv)&quot;</span><span class="p">,</span> <span class="s2">&quot;*.csv&quot;</span> <span class="p">)</span> 
+    <span class="nx">oDlg</span><span class="p">.</span><span class="nx">setTitle</span><span class="p">(</span><span class="s2">&quot;Save As....&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nx">oDlg</span><span class="p">.</span><span class="nx">execute</span><span class="p">()</span> <span class="nx">then</span>
+        <span class="nx">aUrl</span> <span class="o">=</span> <span class="nx">oDlg</span><span class="p">.</span><span class="nx">getFiles</span><span class="p">()</span>
+        <span class="nx">s</span> <span class="o">=</span> <span class="nx">aUrl</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nx">len</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="nx">then</span>
+            <span class="nx">MsgBox</span><span class="p">(</span><span class="s2">&quot;File Selected: &quot;</span> <span class="o">&amp;</span> <span class="nx">s</span> <span class="o">&amp;</span> <span class="nx">chr</span><span class="p">(</span><span class="mi">13</span><span class="p">))</span>
+        <span class="nx">end</span> <span class="k">if</span>
+    <span class="k">else</span>
+        <span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="nx">end</span> <span class="k">if</span>
+    <span class="nx">show_save_dialog</span> <span class="o">=</span> <span class="nx">s</span>
+<span class="nx">end</span> <span class="kd">function</span>
+</pre></div>
+
+
+<h2 id="readfromfiles">Recipe 7: File I/O: Read from files</h2>
+<p>Raw file I/O is a feature provided by almost every language and Basic macros make it almost too easy. Below code is used to read a CSV file with three columns. Name of the file is set in the <code class="highlighter-rouge">filename</code> variable. The variable <code class="highlighter-rouge">num</code> is a numerical tag used to reference the file-handler and <code class="highlighter-rouge">FreeFile()</code> returns a free available number that can be used for tagging. The <code class="highlighter-rouge">open</code> statement is self-explanatory. In Basic, files can be opened in Input, Output and Binary modes. Finally, the <code class="highlighter-rouge">input</code> statement is used to actually read the file into the variables line after line.</p>
+<div class="highlight"><pre><span></span>sub file_io_read
+    dim v1, v2, v3
+    filename = &quot;/home/prahlad/data/test.csv&quot;
+    num = FreeFile()
+    open filename for input as #num 
+    do while not eof(num)
+        input #num, v1, v2, v3
+        print v1 &amp; &quot;::&quot; &amp; v2 &amp; &quot;::&quot; &amp; v3
+    loop
+    close #num
+    msgbox &quot;Done&quot;
+end sub
+</pre></div>
+
+
+<h2 id="writetofiles">Recipe 8: File I/O: Write to files</h2>
+<p>For writing to files, a handler is opened in <code class="highlighter-rouge">output</code> mode instead of <code class="highlighter-rouge">input</code>, and the <code class="highlighter-rouge">write</code> statement is used to actually write the variables to a file.</p>
+<div class="highlight"><pre><span></span>sub file_io_write
+    filename = &quot;/home/prahlad/data/dummy.csv&quot;
+    num = FreeFile()
+    open filename for output as #num 
+    write #num, &quot;col1&quot;, &quot;col2&quot;, &quot;col3&quot;
+    write #num, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;
+    write #num, &quot;4&quot;, &quot;5&quot;, &quot;6&quot;
+    close #num
+    msgbox &quot;Done&quot;
+end sub
+</pre></div>
+
+
+<h2 id="loadfromcsv">Recipe 9: Load data from a CSV file</h2>
+<p>Apart from working in raw I/O mode, it is sometimes required to load a complete CSV as a sheet in the current document. Using the <code class="highlighter-rouge">show_open_dialog</code> function that we studied earlier, the following macro first prompts a user with a File-open dialog and then loads the specified CSV file as a new sheet:</p>
+<div class="highlight"><pre><span></span>sub load_from_csv
+    fname = show_open_dialog
+    if len(fname)&gt;0 then
+        dim fileProps(1) as new com.sun.star.beans.PropertyValue
+        fileProps(0).Name = &quot;FilterName&quot;
+        fileProps(0).Value = &quot;Text - txt - csv (StarCalc)&quot;
+        fileProps(1).Name = &quot;FilterOptions&quot;
+        fileProps(1).Value = &quot;44,34,76,1,,0,false,true,true,false&quot;
+        document = StarDesktop.loadComponentFromURL(fname, &quot;_blank&quot;, 0, fileProps())        
+    end if
+    msgbox &quot;Done&quot;
+end sub
+</pre></div>
+
+
+<p><code class="highlighter-rouge">fileProps(0)</code> is a property variable used for specifying the CSV file format, while <code class="highlighter-rouge">fileProps(1)</code> specifies the default formatting options for the CSV (such as a delimiter, charset, etc.)</p>
+<h2 id="copytoclipboard">Recipe 10: Copy text to clipboard</h2>
+<p>Your custom processing might involve putting a specific text to the clipboard from LibreOffice Calc. Following code shows how to put the string “Hola!” to the system clipboard:</p>
+<div class="highlight"><pre><span></span>sub copy_to_clipboard
+    oClip = CreateUnoService(&quot;com.sun.star.datatransfer.clipboard.SystemClipboard&quot;)
+    oTR = createUnoListener(&quot;TR_&quot;, &quot;com.sun.star.datatransfer.XTransferable&quot;)
+    oClip.setContents(oTR, null)
+    msgbox &quot;Done&quot;
+end sub
+
+Function TR_getTransferData( aFlavor As com.sun.star.datatransfer.DataFlavor ) As Any
+    If (aFlavor.MimeType = &quot;text/plain;charset=utf-16&quot;) Then
+        TR_getTransferData = &quot;Hola!&quot;
+    EndIf
+End Function
+
+Function TR_getTransferDataFlavors() As Any
+    Dim aF As new com.sun.star.datatransfer.DataFlavor
+    aF.MimeType = &quot;text/plain;charset=utf-16&quot;
+    aF.HumanPresentableName = &quot;Unicode-Text&quot;
+    TR_getTransferDataFlavors = Array(aF)
+End Function
+
+Function TR_isDataFlavorSupported( aFlavor As com.sun.star.datatransfer.DataFlavor ) As Boolean
+    TR_isDataFlavorSupported = (aFlavor.MimeType = &quot;text/plain;charset=utf-16&quot;)
+End Function
+</pre></div>
+
+
+<p>Second function is a callback and is used for storing the string to clipboard. The last two are helper functions used by the <code class="highlighter-rouge">SystemClipboard</code> and <code class="highlighter-rouge">XTransferable</code> helper objects and are required.</p>
+<h2>Demo</h2>
+<p>Finally, the working LibreOffice Calc spreadsheet implementing all these examples can be found <a href="/uploads/old/macro_recipes.ods">here</a>.</p>
+<p><em>Reference:</em></p>
+<ul>
+<li><a href="http://api.libreoffice.org/examples/examples.html#Basic_examples">http://api.libreoffice.org/examples/examples.html#Basic_examples</a></li>
+<li><a href="https://forum.openoffice.org/en/forum/viewtopic.php?f=25&amp;t=36441">https://forum.openoffice.org/en/forum/viewtopic.php?f=25&amp;t=36441</a></li>
+<li><a href="https://ask.libreoffice.org/en/question/39940/calc-open-and-save-csv-file-with-given-filter-options/">https://ask.libreoffice.org/en/question/39940/calc-open-and-save-csv-file-with-given-filter-options/</a></li>
+<li><a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/OpenOffice.org_Developers_Guide">https://wiki.openoffice.org/wiki/Documentation/DevGuide/OpenOffice.org_Developers_Guide</a></li>
+<li><a href="https://wiki.openoffice.org/wiki/Documentation/BASIC_Guide/Cells_and_Ranges">https://wiki.openoffice.org/wiki/Documentation/BASIC_Guide/Cells_and_Ranges</a></li>
+<li><a href="http://www.excel-spreadsheet.com/vba/inputoutput.htm">http://www.excel-spreadsheet.com/vba/inputoutput.htm</a></li>
+<li><a href="https://forum.openoffice.org/en/forum/viewtopic.php?f=45&amp;t=13783">https://forum.openoffice.org/en/forum/viewtopic.php?f=45&amp;t=13783</a></li>
+</ul>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+				</div>
+				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
+					<div style='margin-top: 50px;'>
+
+<!-- AMAZON AFFILIATE ADS -->
+<!--
+<a href="https://www.amazon.in/Automate-Boring-Stuff-Python-2nd/dp/1593279922/ref=as_li_ss_il?crid=JA705IOUH74O&keywords=automate+the+boring+stuff+with+python&qid=1583912586&sprefix=automate+the+,aps,460&sr=8-1&linkCode=li2&tag=prahladyeri-21&linkId=5f899269cc1aea74977c02963a9a6caf&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1593279922&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=1593279922" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+<a href="https://www.amazon.in/PYTHON-PROGRAMMING-BEGINNERS-GUIDE-LEARN-ebook/dp/B01GSODGZC/ref=as_li_ss_il?crid=33LIIMVDMW1U3&keywords=python+programming&qid=1583912662&sprefix=python,aps,527&sr=8-4&linkCode=li2&tag=prahladyeri-21&linkId=6b3a8b38eda1d6c51546a1a0c321cfea&language=en_IN" target="_blank"><img border="0" src="//ws-in.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01GSODGZC&Format=_SL160_&ID=AsinImage&MarketPlace=IN&ServiceVersion=20070822&WS=1&tag=prahladyeri-21&language=en_IN" ></a><img src="https://ir-in.amazon-adsystem.com/e/ir?t=prahladyeri-21&language=en_IN&l=li2&o=31&a=B01GSODGZC" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+<div class='container-fluid'>
+<div class='row'>
+		<footer id ="footer" class="col-md-12 text-center bg-dark text-white pt-1 pb-1 pl-1 pr-1">
+		Copyright (&copy;) 2014-2022 Prahlad Yeri. This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+		</footer>
+</div>
+</div>		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- <script src="/theme/js/popper.min.js"></script> -->
+<!-- <script src="/theme/js/bootstrap.min.js"></script> -->
+</body>
+</html>
