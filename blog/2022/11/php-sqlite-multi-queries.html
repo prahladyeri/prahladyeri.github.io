@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<title>Prahlad Yeri's Blog - Categories</title>
+  	<meta charset="utf-8" />
+	<title>[PHP/Codeigniter] Getting multi-queries right with SQLITE</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="canonical" content="https://prahladyeri.github.io/blog/categories.html" />
+	<meta name="description" property="og:description" content="My earlier article dealt with multi-query issues of MySQL, this one is dedicated to SQLITE. Multi-queries are often discouraged to begin with but there are times when you find yourself using them. One typical use case is populating the database initially when it's empty. You do this by running an …">
+	<link rel="canonical" content="https://prahladyeri.github.io/blog/2022/11/php-sqlite-multi-queries.html" />
 	<meta name="author" content="Prahlad Yeri">
 	<!-- Google Fonts -->
 	<!--link rel="preconnect" href="https://fonts.gstatic.com">
@@ -17,6 +18,15 @@
 	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
 	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
 	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+
+
+
+
+    <meta name="tags" content="PHP" />
+    <meta name="tags" content="SQLITE" />
+    <meta name="tags" content="SQL" />
+
 	
 	
 	
@@ -24,11 +34,11 @@
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@prahladyeri" />
 	<meta name="twitter:creator" content="@prahladyeri" />
-		<meta name="twitter:url" content="https://prahladyeri.github.io" />
-		<meta name="twitter:title" content="Prahlad Yeri's Blog" />
-		<meta name="twitter:description" content="Educate and solve problems is my mantra. I'm skilled in web development and a quick learner, I also like blogging and contributing to open source." />
-		<meta name="twitter:image" content="https://secure.gravatar.com/avatar/3f253507b82dd33f352c08f649caaa54" />
-		<meta name="image" property="og:image" content="https://secure.gravatar.com/avatar/3f253507b82dd33f352c08f649caaa54">
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2022/11/php-sqlite-multi-queries.html" />
+		<meta name="twitter:title" content="[PHP/Codeigniter] Getting multi-queries right with SQLITE" />
+		<meta name="twitter:description" content="My earlier article dealt with multi-query issues of MySQL, this one is dedicated to SQLITE. Multi-queries are often discouraged to begin with but there are times when you find yourself using them. One typical use case is populating the database initially when it's empty. You do this by running an …" />
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/code-php.jpeg" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/code-php.jpeg">
 
 	<!-- open graph meta data (TODO) -->
 	
@@ -96,25 +106,68 @@
 		<div id="main" class='mt-2 container content '>
 			<div class='row'>
 				<div class='offset-md-2 col-md-8'>
-    <h1 >Categories</h1>
-    <ul>
-        <li style="display: inline-block;"><a href="https://prahladyeri.github.io/blog/category/android">Android</a> (3)</li>
-        <li style="display: inline-block;"><a href="https://prahladyeri.github.io/blog/category/blogging">Blogging</a> (10)</li>
-        <li style="display: inline-block;"><a href="https://prahladyeri.github.io/blog/category/business">Business</a> (1)</li>
-        <li style="display: inline-block;"><a href="https://prahladyeri.github.io/blog/category/education">Education</a> (1)</li>
-        <li style="display: inline-block;"><a href="https://prahladyeri.github.io/blog/category/go">Go</a> (1)</li>
-        <li style="display: inline-block;"><a href="https://prahladyeri.github.io/blog/category/java">Java</a> (9)</li>
-        <li style="display: inline-block;"><a href="https://prahladyeri.github.io/blog/category/javascript">JavaScript</a> (7)</li>
-        <li style="display: inline-block;"><a href="https://prahladyeri.github.io/blog/category/linux">Linux</a> (21)</li>
-        <li style="display: inline-block;"><a href="https://prahladyeri.github.io/blog/category/mysql">MySQL</a> (1)</li>
-        <li style="display: inline-block;"><a href="https://prahladyeri.github.io/blog/category/open-source">Open Source</a> (7)</li>
-        <li style="display: inline-block;"><a href="https://prahladyeri.github.io/blog/category/php">PHP</a> (14)</li>
-        <li style="display: inline-block;"><a href="https://prahladyeri.github.io/blog/category/python">Python</a> (18)</li>
-        <li style="display: inline-block;"><a href="https://prahladyeri.github.io/blog/category/software-engineering">Software Engineering</a> (2)</li>
-        <li style="display: inline-block;"><a href="https://prahladyeri.github.io/blog/category/technology">Technology</a> (12)</li>
-        <li style="display: inline-block;"><a href="https://prahladyeri.github.io/blog/category/web-development">Web Development</a> (5)</li>
-        <li style="display: inline-block;"><a href="https://prahladyeri.github.io/blog/category/windows">Windows</a> (2)</li>
-    </ul>
+<section id="content" class="body">
+  <header>
+    <h1 class="entry-title">
+      <span class="text-secondary" href="https://prahladyeri.github.io/blog/2022/11/php-sqlite-multi-queries.html" rel="bookmark" 
+      title="Permalink to [PHP/Codeigniter] Getting multi-queries right with SQLITE">[PHP/Codeigniter] Getting multi-queries right with SQLITE</span></h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-sm-none float-md-left'>
+    <time class="text-muted published" datetime="2022-11-14T16:00:00+05:30">Mon 14 November 2022</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-sm-none float-md-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/php">PHP</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/php">PHP</a>
+            <a href="https://prahladyeri.github.io/blog/tag/sqlite">SQLITE</a>
+            <a href="https://prahladyeri.github.io/blog/tag/sql">SQL</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  <br>
+  <div class="entry-content">
+    <p>My <a href="/blog/2022/10/php-mysql-multi-queries.html">earlier article</a> dealt with multi-query issues of MySQL, this one is dedicated to SQLITE. Multi-queries are often discouraged to begin with but there are times when you find yourself using them. One typical use case is populating the database initially when it's empty. You do this by running an SQL script which may include multiple queries for creating tables, views, stored procedures, etc. and a few insert queries to populate default records (such as an admin user).</p>
+<div class="highlight"><pre><span></span><span class="x">$sql = file_get_contents(APPPATH . &#39;core\\install.sql&#39;);</span>
+<span class="x">$this-&gt;db-&gt;query($sql);</span>
+</pre></div>
+
+
+<p>The above is what you typically do when it comes to Codeigniter framework but when I tried this (using <code>sqlite3</code> database driver), I was shocked to know that the multi-query didn't work at at all! Only the first SQL statement (among a soup of them separated by semi-colon) was working.</p>
+<p>So I googled it and came to know that it was <a href="https://bugs.php.net/bug.php?id=28264">an old bug</a>. Apparently, they have now fixed it in later versions of PHP but only if you use <code>sqlite_exec()</code> instead of <code>sqlite_query()</code> function to run the query. Now, obviously our Codeigniter's database abstraction layer was running the latter because I was still facing this same bug as of PHP 7.</p>
+<p>So I tried to scavenge and find out what exact function Codeigniter was running for sqlite3 driver by studying the file <code>system\database\drivers\sqlite3\sqlite3_driver.php</code>. And here I found out that the driver was using running the <code>sqlite_exec()</code> or <code>sqlite_query()</code> based on the very weirdest logic! Apparently, this driver tries to find out the first <strong>word</strong> in your whole soup of SQL and only if they start with one of these (DDL) statements, it ran the <code>sqlite_exec()</code>, otherwise it ran the <code>sqlite_query()</code>:</p>
+<div class="highlight"><pre><span></span><span class="x">public function is_write_type($sql)</span>
+<span class="x">{</span>
+<span class="x">    return (bool) preg_match(&#39;/^\s*&quot;?(SET|INSERT|UPDATE|DELETE|REPLACE|CREATE|DROP|TRUNCATE|LOAD|COPY|ALTER|RENAME|GRANT|REVOKE|LOCK|UNLOCK|REINDEX|MERGE)\s/i&#39;, $sql);</span>
+<span class="x">}</span>
+</pre></div>
+
+
+<p>Now, my <code>install.sql</code> actually started with a bunch of comments explaining what it was about, I had to remove this whole and ensured that it started with a <code>CREATE</code> statement, only then the multi-query worked with Codeigniter!</p>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	$(document).ready(function(){
+		$(".entry-content table").addClass("table table-bordered table-sm");
+		$(".entry-content img").parent().css({'text-align': 'center'});
+	});
+	</script>
+
+	<!--start: adsense-->
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
 				</div>
 				<div class='col-md-2 amz-block-right '> <!--align-self-center-->
 					<div style='margin-top: 50px;'>

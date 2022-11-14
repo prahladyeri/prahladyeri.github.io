@@ -5,35 +5,35 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://prahladyeri.github.io/blog/</loc>
-<lastmod>2022-10-30T15:10:12-00:00</lastmod>
+<lastmod>2022-11-14T16:52:50-00:00</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://prahladyeri.github.io/blog/tags</loc>
-<lastmod>2022-10-30T15:10:12-00:00</lastmod>
+<lastmod>2022-11-14T16:52:50-00:00</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://prahladyeri.github.io/blog/categories</loc>
-<lastmod>2022-10-30T15:10:12-00:00</lastmod>
+<lastmod>2022-11-14T16:52:50-00:00</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://prahladyeri.github.io/authors.html</loc>
-<lastmod>2022-10-30T15:10:12-00:00</lastmod>
+<lastmod>2022-11-14T16:52:50-00:00</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://prahladyeri.github.io/archives.html</loc>
-<lastmod>2022-10-30T15:10:12-00:00</lastmod>
+<lastmod>2022-11-14T16:52:50-00:00</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -64,6 +64,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2020-04-02T21:17:00+05:30</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://prahladyeri.github.io/blog/2022/11/php-sqlite-multi-queries.html</loc>
+<lastmod>2022-11-14T16:00:00+05:30</lastmod>
+<changefreq>always</changefreq>
+<priority>1</priority>
 </url>
 
 <url>
@@ -929,7 +936,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://prahladyeri.github.io/blog/category/php</loc>
-<lastmod>2022-10-12T14:00:00+05:53</lastmod>
+<lastmod>2022-11-14T16:00:00+05:53</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -970,6 +977,27 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://prahladyeri.github.io/blog/tag/php</loc>
+<lastmod>2022-11-14T16:00:00+05:53</lastmod>
+<changefreq>hourly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://prahladyeri.github.io/blog/tag/sqlite</loc>
+<lastmod>2022-11-14T16:00:00+05:53</lastmod>
+<changefreq>hourly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://prahladyeri.github.io/blog/tag/sql</loc>
+<lastmod>2022-11-14T16:00:00+05:53</lastmod>
+<changefreq>hourly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://prahladyeri.github.io/blog/tag/javascript</loc>
 <lastmod>2022-10-14T08:00:00+05:53</lastmod>
 <changefreq>hourly</changefreq>
@@ -993,20 +1021,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://prahladyeri.github.io/blog/tag/mysql</loc>
 <lastmod>2022-10-13T09:00:00+05:53</lastmod>
-<changefreq>hourly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://prahladyeri.github.io/blog/tag/php</loc>
-<lastmod>2022-10-13T09:00:00+05:53</lastmod>
-<changefreq>hourly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://prahladyeri.github.io/blog/tag/sql</loc>
-<lastmod>2022-10-12T14:00:00+05:53</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
