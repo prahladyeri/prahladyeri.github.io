@@ -140,9 +140,9 @@
 </pre></div>
 
 
-<p>The above is what you typically do when it comes to Codeigniter framework but when I tried this (using <code>sqlite3</code> database driver), I was shocked to know that the multi-query didn't work at at all! Only the first SQL statement (among a soup of them separated by semi-colon) was working.</p>
+<p>The above is what you typically do when it comes to Codeigniter framework but when I tried this (using <code>sqlite3</code> database driver), I was shocked to know that the multi-query didn't work at at all. Only the first SQL statement (among a soup of them separated by semi-colon) was working.</p>
 <p>So I googled it and came to know that it was <a href="https://bugs.php.net/bug.php?id=28264">an old bug</a>. Apparently, they have now fixed it in later versions of PHP but only if you use <code>sqlite_exec()</code> instead of <code>sqlite_query()</code> function to run the query. Now, obviously our Codeigniter's database abstraction layer was running the latter because I was still facing this same bug as of PHP 7.</p>
-<p>So I tried to scavenge and find out what exact function Codeigniter was running for sqlite3 driver by studying the file <code>system\database\drivers\sqlite3\sqlite3_driver.php</code>. And here I found out that the driver was using running the <code>sqlite_exec()</code> or <code>sqlite_query()</code> based on the very weirdest logic! Apparently, this driver tries to find out the first <strong>word</strong> in your whole soup of SQL and only if they start with one of these (DDL) statements, it ran the <code>sqlite_exec()</code>, otherwise it ran the <code>sqlite_query()</code>:</p>
+<p>So I tried to scavenge and find out what exact function Codeigniter was running for sqlite3 driver by studying the file <code>system\database\drivers\sqlite3\sqlite3_driver.php</code>. And here I found out that the driver was running the <code>sqlite_exec()</code> or <code>sqlite_query()</code> based on the very weirdest logic! Apparently, this driver tries to find out the first <strong>word</strong> in your whole soup of SQL and only if it starts with one of these (DDL) statements, it ran the <code>sqlite_exec()</code>, otherwise it ran the <code>sqlite_query()</code>:</p>
 <div class="highlight"><pre><span></span><span class="x">public function is_write_type($sql)</span>
 <span class="x">{</span>
 <span class="x">    return (bool) preg_match(&#39;/^\s*&quot;?(SET|INSERT|UPDATE|DELETE|REPLACE|CREATE|DROP|TRUNCATE|LOAD|COPY|ALTER|RENAME|GRANT|REVOKE|LOCK|UNLOCK|REINDEX|MERGE)\s/i&#39;, $sql);</span>
@@ -150,7 +150,7 @@
 </pre></div>
 
 
-<p>Now, my <code>install.sql</code> actually started with a bunch of comments explaining what it was about, I had to remove this whole and ensured that it started with a <code>CREATE</code> statement, only then the multi-query worked with Codeigniter!</p>
+<p>Now, my <code>install.sql</code> actually started with a bunch of comments explaining what the whole thing was about, I had to remove this comment block and ensure that it started with a <code>CREATE</code> statement, only then the multi-query worked with Codeigniter.</p>
   </div><!-- /.entry-content -->
 
 	<!-- Start: Prahlad -->
