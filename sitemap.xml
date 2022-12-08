@@ -5,35 +5,35 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://prahladyeri.github.io/blog/</loc>
-<lastmod>2022-12-07T12:45:45-00:00</lastmod>
+<lastmod>2022-12-08T09:50:47-00:00</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://prahladyeri.github.io/blog/tags</loc>
-<lastmod>2022-12-07T12:45:45-00:00</lastmod>
+<lastmod>2022-12-08T09:50:47-00:00</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://prahladyeri.github.io/blog/categories</loc>
-<lastmod>2022-12-07T12:45:45-00:00</lastmod>
+<lastmod>2022-12-08T09:50:47-00:00</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://prahladyeri.github.io/authors.html</loc>
-<lastmod>2022-12-07T12:45:45-00:00</lastmod>
+<lastmod>2022-12-08T09:50:47-00:00</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://prahladyeri.github.io/archives.html</loc>
-<lastmod>2022-12-07T12:45:45-00:00</lastmod>
+<lastmod>2022-12-08T09:50:47-00:00</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -64,6 +64,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2020-04-02T21:17:00+05:30</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://prahladyeri.github.io/blog/2022/12/common-sense-keyword-research.html</loc>
+<lastmod>2022-12-08T09:30:00+05:30</lastmod>
+<changefreq>always</changefreq>
+<priority>1</priority>
 </url>
 
 <url>
@@ -873,7 +880,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://prahladyeri.github.io/blog/category/blogging</loc>
-<lastmod>2022-02-11T10:00:00+05:53</lastmod>
+<lastmod>2022-12-08T09:30:00+05:53</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -977,6 +984,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://prahladyeri.github.io/blog/tag/seo</loc>
+<lastmod>2022-12-08T09:30:00+05:53</lastmod>
+<changefreq>hourly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://prahladyeri.github.io/blog/tag/keyword-research</loc>
+<lastmod>2022-12-08T09:30:00+05:53</lastmod>
+<changefreq>hourly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://prahladyeri.github.io/blog/tag/php</loc>
 <lastmod>2022-11-14T16:00:00+05:53</lastmod>
 <changefreq>hourly</changefreq>
@@ -1056,20 +1077,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://prahladyeri.github.io/blog/tag/writing</loc>
 <lastmod>2022-02-11T10:00:00+05:53</lastmod>
-<changefreq>hourly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://prahladyeri.github.io/blog/tag/keyword-research</loc>
-<lastmod>2022-02-07T10:10:00+05:53</lastmod>
-<changefreq>hourly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://prahladyeri.github.io/blog/tag/seo</loc>
-<lastmod>2022-02-07T10:10:00+05:53</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
