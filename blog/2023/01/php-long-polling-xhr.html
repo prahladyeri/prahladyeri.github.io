@@ -26,6 +26,7 @@
     <meta name="tags" content="XHR" />
     <meta name="tags" content="Long Polling" />
     <meta name="tags" content="Apache" />
+    <meta name="tags" content="Codeigniter" />
 
 	
 	
@@ -117,6 +118,7 @@
             <a href="https://prahladyeri.github.io/blog/tag/xhr">XHR</a>
             <a href="https://prahladyeri.github.io/blog/tag/long-polling">Long Polling</a>
             <a href="https://prahladyeri.github.io/blog/tag/apache">Apache</a>
+            <a href="https://prahladyeri.github.io/blog/tag/codeigniter">Codeigniter</a>
     </div>
 	</div>
   </footer><!-- /.post-info -->
@@ -132,7 +134,7 @@
 
 <p>Once you ensure this, this is how you can handle it on php side:</p>
 <div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
-<span class="k">private</span> <span class="k">function</span> <span class="nf">fetch_long</span><span class="p">()</span> <span class="p">{</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">fetch_long</span><span class="p">()</span> <span class="p">{</span>
     <span class="nb">session_write_close</span><span class="p">();</span>
     <span class="nb">error_log</span><span class="p">(</span><span class="s1">&#39;LONG POLLING&#39;</span><span class="p">);</span>
     <span class="nv">$start</span> <span class="o">=</span> <span class="nb">time</span><span class="p">();</span>
