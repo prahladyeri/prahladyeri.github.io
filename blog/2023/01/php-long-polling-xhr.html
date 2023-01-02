@@ -159,18 +159,20 @@
 
 <p>Please note that once you call <code>session_write_close()</code>, you won't be able to write to any session variables. However, you'll still be able to read them. What I then do is create a blocking loop with a maximum limit of 300 seconds (you can increase it to as much as you want subject to what value you configured in <code>max_execution_time</code> earlier). If a notification is fetched before that time, I simply return it and exit the function. If not, the loop just times out in the end and I return a blank array.</p>
 <p>Finally, this is how my AJAX call on front-end looks:</p>
-<div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-    <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;/home/fetch_long&quot;</span><span class="p">,</span>
-    <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
-    <span class="nx">cache</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="nx">error</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">fetchNotifications</span><span class="p">,</span> <span class="mi">3000</span><span class="p">);</span>
-    <span class="p">},</span>
-    <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">handleNotif</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-        <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">fetchNotifications</span><span class="p">,</span> <span class="mi">3000</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">});</span>
+<div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">fetchNotifications</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+        <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;/home/fetch_long&quot;</span><span class="p">,</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+        <span class="nx">cache</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">error</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">fetchNotifications</span><span class="p">,</span> <span class="mi">3000</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">handleNotif</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+            <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">fetchNotifications</span><span class="p">,</span> <span class="mi">3000</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">}</span>
 </pre></div>
 
 
