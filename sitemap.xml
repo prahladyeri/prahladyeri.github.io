@@ -5,35 +5,35 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://prahladyeri.github.io/blog/</loc>
-<lastmod>2022-12-08T11:17:59-00:00</lastmod>
+<lastmod>2023-01-02T18:55:49-00:00</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://prahladyeri.github.io/blog/tags</loc>
-<lastmod>2022-12-08T11:17:59-00:00</lastmod>
+<lastmod>2023-01-02T18:55:49-00:00</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://prahladyeri.github.io/blog/categories</loc>
-<lastmod>2022-12-08T11:17:59-00:00</lastmod>
+<lastmod>2023-01-02T18:55:49-00:00</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://prahladyeri.github.io/authors.html</loc>
-<lastmod>2022-12-08T11:17:59-00:00</lastmod>
+<lastmod>2023-01-02T18:55:49-00:00</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://prahladyeri.github.io/archives.html</loc>
-<lastmod>2022-12-08T11:17:59-00:00</lastmod>
+<lastmod>2023-01-02T18:55:49-00:00</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -64,6 +64,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2020-04-02T21:17:00+05:30</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://prahladyeri.github.io/blog/2023/01/php-long-polling-xhr.html</loc>
+<lastmod>2023-01-02T17:50:00+05:30</lastmod>
+<changefreq>always</changefreq>
+<priority>1</priority>
 </url>
 
 <url>
@@ -943,7 +950,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://prahladyeri.github.io/blog/category/php</loc>
-<lastmod>2022-11-14T16:00:00+05:53</lastmod>
+<lastmod>2023-01-02T17:50:00+05:53</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -979,6 +986,27 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://prahladyeri.github.io/blog/category/windows</loc>
 <lastmod>2020-07-08T04:45:00+05:53</lastmod>
+<changefreq>hourly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://prahladyeri.github.io/blog/tag/xhr</loc>
+<lastmod>2023-01-02T17:50:00+05:53</lastmod>
+<changefreq>hourly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://prahladyeri.github.io/blog/tag/long-polling</loc>
+<lastmod>2023-01-02T17:50:00+05:53</lastmod>
+<changefreq>hourly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://prahladyeri.github.io/blog/tag/apache</loc>
+<lastmod>2023-01-02T17:50:00+05:53</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
