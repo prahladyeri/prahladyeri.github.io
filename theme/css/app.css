@@ -127,11 +127,11 @@ h1.tag-heading {
 }
 
 #header {
-	height: 125px;
+	height: 160px;
 }
 
 #main {
-	min-height: calc(100vh - 175px);
+	min-height: calc(100vh - 210px);
 }
 
 #footer {
