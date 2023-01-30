@@ -56,10 +56,9 @@ a.nav-link {
 .col.w25 {width: 25%;}
 
 @media screen and (max-width: 600px) {
-  .col {
-    width: 100%;
-  }
+  .col {width: 100% !important;}
 }
+
 
 /* .row:after { */
   /* content: ""; */
