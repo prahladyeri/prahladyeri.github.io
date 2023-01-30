@@ -9,7 +9,7 @@
 	<meta name="author" content="Prahlad Yeri">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 		
-	<link rel="stylesheet" href="/theme/css/app.css?v=1.1">
+	<link rel="stylesheet" href="/theme/css/app.css?v=1.2">
 	<link rel="stylesheet" href="/theme/css/pygment.css">		
 	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
 	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
@@ -81,13 +81,22 @@
 </div>
 
 <script>
-function getPortfolio() {
-    $.getJSON("/uploads/portfolio.json?" + (+new Date()) , function(data){
-        //console.log("DATA RECEIVED: ", data);
+
+document.addEventListener('DOMContentLoaded', function(){
+    console.log('calling event handler:');
+    var url = "/uploads/portfolio.json?" + (+new Date());
+    //const response = await fetch(url);
+    //const data=  await response.json();
+
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        console.log('fetch worked:', data);
         for(var i=0;i<data.length;i++) {
-            //console.log("NEXT ITEM: ", data[i]);
-            var item = $('.portfolio-item.d-none').clone();
-            item.removeClass('d-none');
+            var item = document.querySelector('.portfolio-item.d-none').cloneNode(true);
+
+            //item.removeClass('d-none');
+            item.className = item.className.replace(/\bd-none\b/, "");
             var titleText = "";
             if (data[i].url !== "") {
                 titleText = "<a target='_blank' href='" + data[i].url + "'>" + data[i].title + "</a>";
@@ -95,21 +104,19 @@ function getPortfolio() {
             else {
                 titleText = data[i].title;
             }
-            item.find(".title").html(titleText);
-            item.find("img").attr("src", data[i].image_url);
-            item.find('.description').html(data[i].text);
+            item.querySelector(".title").innerHTML= titleText;
+            item.querySelector("img").attributes.src.value = data[i].image_url;
+            item.querySelector('.description').innerHTML = (data[i].text);
 
-            $("#portfolio").append(item);
+            document.querySelector("#portfolio").appendChild(item);
         }
-        //$(".fa-spin").removeClass("fa-spin");
-        $(".fa-spin").remove();
-    });
-}
+        document.querySelector(".fa-spin").remove();        
 
-$(document).ready(function(){
-    //setTimeout(getPortfolio, 7000);
-    getPortfolio();
+    })
+
+
 });
+
 </script>
 	
 	
