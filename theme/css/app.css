@@ -93,7 +93,7 @@ a.nav-link:hover {
 div.highlight pre,
 div.highlight pre code {
 	white-space: pre-wrap;
-	word-break: keep-all;
+	word-break: break-all;
 }
 
 div.highlight code {
