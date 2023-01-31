@@ -7,7 +7,6 @@
 	<meta name="description" property="og:description" content="Based on my experiments while setting up this blog, below are the 7 "bread and butter" plugins for your wordpress blog. These plugins came very handy for me and allowed me to seamlessly integrate much needed functionality in my blog without writing a single line of php code. Contact Form …">
 	<link rel="canonical" content="https://prahladyeri.github.io/blog/2013/11/the-7-bread-and-butter-plugins-for-your-wordpress-blog.html" />
 	<meta name="author" content="Prahlad Yeri">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="/theme/css/app.css?v=1.3">
 	<link rel="stylesheet" href="/theme/css/pygment.css">		
 	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
@@ -114,9 +113,15 @@
 
 	<!-- Start: Prahlad -->
 	<script>
-	$(document).ready(function(){
-		$(".entry-content table").addClass("table table-bordered table-sm");
-		$(".entry-content img").parent().css({'text-align': 'center'});
+	document.addEventListener('DOMContentLoaded', function(){
+		console.log('DOMContentLoaded');
+		var elems = document.querySelectorAll(".entry-content table");
+		for(var i= 0;i<elems.length;i++) {
+			if (!hasClass(elems[i], 'table')) addClass(elems[i], 'table');
+			if (!hasClass(elems[i], 'table-bordered')) addClass(elems[i], 'table-bordered');
+			if (!hasClass(elems[i], 'table-sm')) addClass(elems[i], 'table-sm');
+		}
+		document.querySelector(".entry-content img").parentElement.style.textAlign = "center";
 	});
 	</script>
 
@@ -146,6 +151,23 @@
 <footer id ="footer" class="text-center">
 Copyright (&copy;) 2014-2022 Prahlad Yeri.<br>This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 </footer>
+
+<script>
+function hasClass(ele,cls) {
+  return !!ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
+}
+
+function addClass(ele,cls) {
+  if (!hasClass(ele,cls)) ele.className += " "+cls;
+}
+
+function removeClass(ele,cls) {
+  if (hasClass(ele,cls)) {
+    var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
+    ele.className=ele.className.replace(reg,' ');
+  }
+}
+</script>
 
 </body>
 </html>

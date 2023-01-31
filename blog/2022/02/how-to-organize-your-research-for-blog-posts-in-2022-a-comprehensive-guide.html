@@ -7,7 +7,6 @@
 	<meta name="description" property="og:description" content="One of the most challenging aspects of blogging is how to perform research and more importantly, organizing your research. As a technology blogger, I face this problem too, so some days ago, I did some research on... guess what? Yep, on how to organize research for writing articles or blog …">
 	<link rel="canonical" content="https://prahladyeri.github.io/blog/2022/02/how-to-organize-your-research-for-blog-posts-in-2022-a-comprehensive-guide.html" />
 	<meta name="author" content="Prahlad Yeri">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="/theme/css/app.css?v=1.3">
 	<link rel="stylesheet" href="/theme/css/pygment.css">		
 	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
@@ -174,9 +173,15 @@ Data Analysis
 
 	<!-- Start: Prahlad -->
 	<script>
-	$(document).ready(function(){
-		$(".entry-content table").addClass("table table-bordered table-sm");
-		$(".entry-content img").parent().css({'text-align': 'center'});
+	document.addEventListener('DOMContentLoaded', function(){
+		console.log('DOMContentLoaded');
+		var elems = document.querySelectorAll(".entry-content table");
+		for(var i= 0;i<elems.length;i++) {
+			if (!hasClass(elems[i], 'table')) addClass(elems[i], 'table');
+			if (!hasClass(elems[i], 'table-bordered')) addClass(elems[i], 'table-bordered');
+			if (!hasClass(elems[i], 'table-sm')) addClass(elems[i], 'table-sm');
+		}
+		document.querySelector(".entry-content img").parentElement.style.textAlign = "center";
 	});
 	</script>
 
@@ -206,6 +211,23 @@ Data Analysis
 <footer id ="footer" class="text-center">
 Copyright (&copy;) 2014-2022 Prahlad Yeri.<br>This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 </footer>
+
+<script>
+function hasClass(ele,cls) {
+  return !!ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
+}
+
+function addClass(ele,cls) {
+  if (!hasClass(ele,cls)) ele.className += " "+cls;
+}
+
+function removeClass(ele,cls) {
+  if (hasClass(ele,cls)) {
+    var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
+    ele.className=ele.className.replace(reg,' ');
+  }
+}
+</script>
 
 </body>
 </html>
