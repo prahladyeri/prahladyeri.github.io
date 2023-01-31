@@ -76,32 +76,37 @@
 <span class="repoDescription"></span>
 <br>Last Commit:&nbsp;<span class="repoLastCommit"></span>
 </p>
-	   <script>
-	   $(document).ready(function(){
-			console.log('document.ready: begin');
-			$.get("/uploads/projects.json", function(data){
-				console.log('ajax returned');
-				if ($("#githubProjects p.repoTemplate").length > 0) {
-					console.log("elements already exist, so returning");
-					return;
-				}
-				
-				console.log('running for loop');
-				for(var i=0;i<data.length;i++){
-					console.log('processing: ', data[i]['full_name']);
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+	var url="/uploads/projects.json";
+	console.log('document.ready: begin');
+	fetch(url)
+	.then(response => response.json())
+	.then(data => {
+		if (document.querySelectorAll("#githubProjects p.repoTemplate").length > 0) {
+			console.log("elements already exist, so returning");
+			return;
+		}
+		console.log('running for loop');
+		for(var i=0;i<data.length;i++){
+			console.log('processing: ', data[i]['full_name']);
 
-					$part = $(".repoTemplate.invisible").clone();
-					$part.removeClass("invisible");
-					$part.find("a.repoLink").attr("href", data[i]['html_url']);
-					$part.find("a.repoLink").text(data[i]['full_name']);
-					$part.find("span.repoDescription").text(data[i]['description']);
-					$part.find("span.repoLastCommit").text(data[i]['since_last_commit'] + " days ago");
-					$("#githubProjects").append($part);
-					$("#githubProjects").append("<hr>");
-				}
-			});
-	   });
-	   </script>
+			var part = document.querySelector(".repoTemplate.invisible").cloneNode(true);
+			//part.removeClass("invisible");
+			part.className = part.className.replace(/\bd-none\b/, "");
+			part.querySelector("a.repoLink").attributes.href.value= data[i]['html_url'];
+			part.querySelector("a.repoLink").textContent = data[i]['full_name'];
+			part.querySelector("span.repoDescription").textContent = data[i]['description'];
+			part.querySelector("span.repoLastCommit").textContent = data[i]['since_last_commit'] + " days ago";
+			document.querySelector("#githubProjects").appendChild(part);
+			var elem = document.createElement("hr");
+			document.querySelector("#githubProjects").appendChild(elem);
+		}
+	})
+	
+});
+
+</script>
 	   
 	   
 	
