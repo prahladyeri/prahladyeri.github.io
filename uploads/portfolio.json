@@ -4,6 +4,7 @@
 		"category": "Freelance",
 		"tags": "PHP, CodeIgniter, MySQL, bootstrap, jquery, adminlte",
 		"text": "Invoicing Auditor is a web-based invoicing/accounting app which I developed for a client recently. It's fully based on open source technologies like PHP/MySQL, Bootstrap, Google Fonts, etc. The dashboard is built using <a href='https://adminlte.io/docs/3.2'>AdminLTE</a>, an HTML template based on Bootstrap 4.6.",
+		"url": "",
 		"image_url": "/uploads/portfolio/invoicing_auditor/invoice-view.png"
 	},
     {
