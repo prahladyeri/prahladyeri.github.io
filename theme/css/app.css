@@ -5,15 +5,21 @@ h1, h2, h3, h4, h5, h6 {
 /* end: resets */
 
 body {
-	font-family: "courier new";
+	font-family: "trebuchet ms";
 	margin: 0px;
 }
 
 .d-none {display: none;}
 
 p, span, label, li, a, div {
-	font-family: "courier new";
-	font-size: 18px;
+	font-family: "trebuchet ms";
+	font-size: 17px;
+}
+
+footer.post-info div ,
+footer.post-info a 
+{
+	font-size: 15px;
 }
 
 a {
@@ -21,7 +27,7 @@ a {
 }
 
 a:visited {
-	color: hotpink;
+	color: darkmagenta;
 }
 
 .font-weight-bold {font-weight: bold;}
@@ -32,12 +38,12 @@ a:visited {
 .text-muted { color: slategray;}
 
 a.nav-link {
-	font-family: courier new;
+	font-family: "trebuchet ms";
 	font-weight: bold;
 }
 
 #navBlock {
-	font-family: courier new;
+	font-family: "trebuchet ms";
 }
 
 .float-left{float: left;}
@@ -129,6 +135,15 @@ h1.tag-heading {
 #header {
 	height: 200px;
 }
+
+#header .blog-title {
+	color: cadetblue;
+}
+
+#header .blog-tagline {
+	color: lightsteelblue;
+}
+
 
 #main {
 	min-height: calc(100vh - 250px);
