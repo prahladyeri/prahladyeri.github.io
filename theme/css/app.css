@@ -17,7 +17,9 @@ p, span, label, li, a, div {
 }
 
 footer.post-info div ,
-footer.post-info a 
+footer.post-info a,
+footer.post-info span,
+footer.post-info time
 {
 	font-size: 15px;
 }
