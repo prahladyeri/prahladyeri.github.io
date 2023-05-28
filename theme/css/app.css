@@ -5,15 +5,15 @@ h1, h2, h3, h4, h5, h6 {
 /* end: resets */
 
 body {
-	font-family: "trebuchet ms";
+	font-family: "georgia";
 	margin: 0px;
 }
 
 .d-none {display: none;}
 
 p, span, label, li, a, div {
-	font-family: "trebuchet ms";
-	font-size: 17px;
+	font-family: "georgia";
+	font-size: 18px;
 }
 
 footer.post-info div ,
@@ -40,12 +40,12 @@ a:visited {
 .text-muted { color: slategray;}
 
 a.nav-link {
-	font-family: "trebuchet ms";
+	font-family: "georgia";
 	font-weight: bold;
 }
 
 #navBlock {
-	font-family: "trebuchet ms";
+	font-family: "georgia";
 }
 
 .float-left{float: left;}
@@ -143,7 +143,7 @@ h1.tag-heading {
 }
 
 #header .blog-tagline {
-	color: lightsteelblue;
+	color: maroon;
 }
 
 
