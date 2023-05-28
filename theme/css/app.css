@@ -104,6 +104,12 @@ div.highlight pre code {
 	word-break: break-all;
 }
 
+div.highlight pre span,
+div.highlight pre code span {
+	font-family: monospace;
+}
+
+
 div.highlight code {
 	display: inline-block;
 	width: 100%;
