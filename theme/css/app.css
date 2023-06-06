@@ -1,15 +1,16 @@
-* {
-  margin: 0;
-}
+/* * { */
+  /* margin: 0; */
+/* } */
 
 html, body {
 	height: 100%;
 }
-/* start: resets */
-/* h1, h2, h3, h4, h5, h6 { */
-	/* margin: 4px 4px; */
-/* } */
-/* end: resets */
+
+start: resets
+h1, h2, h3, h4, h5, h6 {
+	margin: 4px 4px;
+}
+end: resets
 
 body {
 	font-family: "arial";
@@ -205,8 +206,12 @@ footer#footer a {
 #main footer.post-info {
 	font-size: 14px;
 	font-weight: bold;
-	padding-top: 3px;
-	padding-bottom: 3px;
+	padding-bottom: 12px;
+}
+
+#main #post-list footer.post-info {
+	padding-top: 4px;
+	padding-bottom: 4px;
 }
 
 section#content.body div.entry-content, 
