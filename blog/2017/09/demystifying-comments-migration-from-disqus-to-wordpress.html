@@ -7,7 +7,7 @@
 	<meta name="description" property="og:description" content="**Update** Also check out this recent post which has further fixes and refactoring done to the console.php script Some time ago, I had switched from a self-hosted wordpress blog to a statically generated (Jekyll) blog hosted on Github Pages. For a commenting system, Disqus was quite an easy choice …">
 	<link rel="canonical" content="https://prahladyeri.github.io/blog/2017/09/demystifying-comments-migration-from-disqus-to-wordpress.html" />
 	<meta name="author" content="Prahlad Yeri">
-	<link rel="stylesheet" href="/theme/css/app.css?v=1.8">
+	<link rel="stylesheet" href="/theme/css/app.css?v=1.9">
 	<link rel="stylesheet" href="/theme/css/pygment.css">		
 	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
 	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
@@ -75,7 +75,7 @@
 <div class='col w50 m-auto'>
 <section id="content" class="body">
   <header>
-	<h1 class='mt-4 mb-4'>How to import Disqus comments into Wordpress</h1>
+	<h1 class='mt-4 mb-4 post-title'>How to import Disqus comments into Wordpress</h1>
  
   </header>
   <footer class="post-info clearfix">
@@ -183,7 +183,7 @@
 
 
 <footer id ="footer" class="text-center">
-Copyright (&copy;) 2014-2023 Prahlad Yeri.<br>This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+Copyright (&copy;) 2014-2023 Prahlad Yeri. Build version 1.9.<br>This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 </footer>
 
 <script>
@@ -201,6 +201,12 @@ function removeClass(ele,cls) {
     ele.className=ele.className.replace(reg,' ');
   }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+	//var hh = document.querySelector("#header").clientHeight;
+	//var fh = document.querySelector("#footer").clientHeight;
+	//document.querySelector("#main").style.height = "calc(100vh - " + (hh + fh) + "px);"
+});
 </script>
 
 </body>

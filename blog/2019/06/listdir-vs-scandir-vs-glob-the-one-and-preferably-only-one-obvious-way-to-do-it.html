@@ -7,7 +7,7 @@
 	<meta name="description" property="og:description" content="You know, sometimes when I read those python aphorisms like "beautiful is better than ugly" I wonder whether the makers were being sarcastic or real, and I'm not kidding! Its not just about listdir and scandir, a whole lot of things are ambiguous and you'll find a lot of different …">
 	<link rel="canonical" content="https://prahladyeri.github.io/blog/2019/06/listdir-vs-scandir-vs-glob-the-one-and-preferably-only-one-obvious-way-to-do-it.html" />
 	<meta name="author" content="Prahlad Yeri">
-	<link rel="stylesheet" href="/theme/css/app.css?v=1.8">
+	<link rel="stylesheet" href="/theme/css/app.css?v=1.9">
 	<link rel="stylesheet" href="/theme/css/pygment.css">		
 	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
 	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
@@ -74,7 +74,7 @@
 <div class='col w50 m-auto'>
 <section id="content" class="body">
   <header>
-	<h1 class='mt-4 mb-4'>listdir vs scandir vs glob - The one and preferably only one obvious way to do it!</h1>
+	<h1 class='mt-4 mb-4 post-title'>listdir vs scandir vs glob - The one and preferably only one obvious way to do it!</h1>
  
   </header>
   <footer class="post-info clearfix">
@@ -185,7 +185,7 @@
 
 
 <footer id ="footer" class="text-center">
-Copyright (&copy;) 2014-2023 Prahlad Yeri.<br>This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+Copyright (&copy;) 2014-2023 Prahlad Yeri. Build version 1.9.<br>This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 </footer>
 
 <script>
@@ -203,6 +203,12 @@ function removeClass(ele,cls) {
     ele.className=ele.className.replace(reg,' ');
   }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+	//var hh = document.querySelector("#header").clientHeight;
+	//var fh = document.querySelector("#footer").clientHeight;
+	//document.querySelector("#main").style.height = "calc(100vh - " + (hh + fh) + "px);"
+});
 </script>
 
 </body>

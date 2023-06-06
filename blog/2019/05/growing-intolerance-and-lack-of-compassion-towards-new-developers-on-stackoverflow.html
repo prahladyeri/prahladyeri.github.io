@@ -7,7 +7,7 @@
 	<meta name="description" property="og:description" content="StackOverflow is the digital equivalent of the Holy See or the Holy Mecca when it comes to programming. It is that place where developers go visit when they don't have answers to their coding problems in a hope that the Gods of StackOverflow will help them solve it. But lately …">
 	<link rel="canonical" content="https://prahladyeri.github.io/blog/2019/05/growing-intolerance-and-lack-of-compassion-towards-new-developers-on-stackoverflow.html" />
 	<meta name="author" content="Prahlad Yeri">
-	<link rel="stylesheet" href="/theme/css/app.css?v=1.8">
+	<link rel="stylesheet" href="/theme/css/app.css?v=1.9">
 	<link rel="stylesheet" href="/theme/css/pygment.css">		
 	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
 	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
@@ -73,7 +73,7 @@
 <div class='col w50 m-auto'>
 <section id="content" class="body">
   <header>
-	<h1 class='mt-4 mb-4'>Growing intolerance and lack of compassion towards new developers on StackOverflow</h1>
+	<h1 class='mt-4 mb-4 post-title'>Growing intolerance and lack of compassion towards new developers on StackOverflow</h1>
  
   </header>
   <footer class="post-info clearfix">
@@ -143,7 +143,7 @@
 
 
 <footer id ="footer" class="text-center">
-Copyright (&copy;) 2014-2023 Prahlad Yeri.<br>This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+Copyright (&copy;) 2014-2023 Prahlad Yeri. Build version 1.9.<br>This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 </footer>
 
 <script>
@@ -161,6 +161,12 @@ function removeClass(ele,cls) {
     ele.className=ele.className.replace(reg,' ');
   }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+	//var hh = document.querySelector("#header").clientHeight;
+	//var fh = document.querySelector("#footer").clientHeight;
+	//document.querySelector("#main").style.height = "calc(100vh - " + (hh + fh) + "px);"
+});
 </script>
 
 </body>

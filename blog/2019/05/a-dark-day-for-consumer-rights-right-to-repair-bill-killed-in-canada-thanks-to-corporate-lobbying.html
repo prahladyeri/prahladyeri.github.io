@@ -7,7 +7,7 @@
 	<meta name="description" property="og:description" content="When Linus Torvalds wrote the Linux Kernel in 1991 or Ian Murdock first released the Debian OS in 1993, talking about the "openness" of a PC or the "right to repair it" would have been a laughable affair! 8086 was an open standard then (just as standards should be) and …">
 	<link rel="canonical" content="https://prahladyeri.github.io/blog/2019/05/a-dark-day-for-consumer-rights-right-to-repair-bill-killed-in-canada-thanks-to-corporate-lobbying.html" />
 	<meta name="author" content="Prahlad Yeri">
-	<link rel="stylesheet" href="/theme/css/app.css?v=1.8">
+	<link rel="stylesheet" href="/theme/css/app.css?v=1.9">
 	<link rel="stylesheet" href="/theme/css/pygment.css">		
 	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.png" />
 	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
@@ -74,7 +74,7 @@
 <div class='col w50 m-auto'>
 <section id="content" class="body">
   <header>
-	<h1 class='mt-4 mb-4'>A dark day for consumer rights - Right to repair bill killed in Canada thanks to corporate lobbying</h1>
+	<h1 class='mt-4 mb-4 post-title'>A dark day for consumer rights - Right to repair bill killed in Canada thanks to corporate lobbying</h1>
  
   </header>
   <footer class="post-info clearfix">
@@ -148,7 +148,7 @@
 
 
 <footer id ="footer" class="text-center">
-Copyright (&copy;) 2014-2023 Prahlad Yeri.<br>This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+Copyright (&copy;) 2014-2023 Prahlad Yeri. Build version 1.9.<br>This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 </footer>
 
 <script>
@@ -166,6 +166,12 @@ function removeClass(ele,cls) {
     ele.className=ele.className.replace(reg,' ');
   }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+	//var hh = document.querySelector("#header").clientHeight;
+	//var fh = document.querySelector("#footer").clientHeight;
+	//document.querySelector("#main").style.height = "calc(100vh - " + (hh + fh) + "px);"
+});
 </script>
 
 </body>
