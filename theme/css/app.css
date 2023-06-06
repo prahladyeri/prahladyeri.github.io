@@ -1,15 +1,21 @@
-/* start: resets */
-h1, h2, h3, h4, h5, h6 {
-	margin: 4px 4px;
+* {
+  margin: 0;
 }
+
+html, body {
+	height: 100%;
+}
+/* start: resets */
+/* h1, h2, h3, h4, h5, h6 { */
+	/* margin: 4px 4px; */
+/* } */
 /* end: resets */
 
 body {
 	font-family: "arial";
-	margin: 0px;
-	height: 100%;
-	min-height: 100%;
-	position: relative;
+	/* height: 100%; */
+	/* min-height: 100%; */
+	/* position: relative; */
 }
 
 .d-none {display: none;}
@@ -57,7 +63,7 @@ a:visited {
 
 a.nav-link {
 	font-family: "arial";
-	font-weight: bold;
+	/* font-weight: bold; */
 }
 
 #navBlock {
@@ -170,14 +176,20 @@ h1.tag-heading {
 
 
 #main {
-	/*min-height: calc(100vh - 250px);*/
-	padding-bottom: 50px;
+	min-height: calc(100vh - 150px - 50px - 6px);
+	/* height: 0 auto !important; */
+	/* margin-bottom: -4em; */
 }
 
+/* footer#footer, #push { */
+  /* height: 4em; */
+/* } */
+
 footer#footer {
-	/* height: 30px; */
+	height: 50px; 
+	/* height: 30px; 
 	position: absolute;
-	bottom: 0px;
+	bottom: 0px;*/
 	left: 0px;
 	right: 0px;
 	margin-left: 0px;
