@@ -1,16 +1,7 @@
-/* * { */
-  /* margin: 0; */
-/* } */
-
 html, body {
 	height: 100%;
 }
 
-start: resets
-h1, h2, h3, h4, h5, h6 {
-	margin: 4px 4px;
-}
-end: resets
 
 body {
 	font-family: "arial";
