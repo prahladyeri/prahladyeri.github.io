@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset="utf-8" />
+	<title>How I made my web pages load 10x faster</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" property="og:description" content="The most typical advice you get when it comes to improving site performance these days is purely technical things like using CDNs or other serving optimization, using X hosting mechanism instead of Y, going serverless, cache optimization, etc. I'm not talking about those things, I'm talking about the old school …">
+	<link rel="canonical" content="https://prahladyeri.github.io/blog/2023/06/how-i-made-my-web-pages-load-10x-faster.html" />
+	<meta name="author" content="Prahlad Yeri">
+	<link rel="stylesheet" href="/theme/css/app.css?v=1.14">
+	<link rel="stylesheet" href="/theme/css/pygment.css">
+	<link rel="shortcut icon" type="image/x-icon" href="/uploads/py.webp" />
+	<link href="https://prahladyeri.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Full Atom Feed" />
+	<link href="https://prahladyeri.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Prahlad Yeri's Blog Full RSS Feed" />
+	<link href="https://prahladyeri.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Prahlad Yeri's Blog Categories Atom Feed" />
+
+
+
+
+    <meta name="tags" content="Design" />
+    <meta name="tags" content="Efficiency" />
+    <meta name="tags" content="Ergonomics" />
+
+	
+	<!-- fosstodon verify -->
+	<a style='display:none'  rel="me" href="https://fosstodon.org/@prahladyeri">Fosstodon</a>
+	<!-- mastodon verify -->
+	<a style='display:none' rel="me" href="https://mastodon.social/@prahladyeri">Mastodon</a>
+	
+	<!-- pinterest verify -->
+	<meta name="p:domain_verify" content="a57360faef2ee56807b63d62092a849a"/>
+	
+	<!-- twitter card meta data -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@prahladyeri" />
+	<meta name="twitter:creator" content="@prahladyeri" />
+		<meta name="twitter:url" content="https://prahladyeri.github.io/blog/2023/06/how-i-made-my-web-pages-load-10x-faster.html" />
+		<meta name="twitter:title" content="How I made my web pages load 10x faster" />
+		<meta name="twitter:description" content="The most typical advice you get when it comes to improving site performance these days is purely technical things like using CDNs or other serving optimization, using X hosting mechanism instead of Y, going serverless, cache optimization, etc. I'm not talking about those things, I'm talking about the old school …" />
+			<meta name="twitter:image" content="https://prahladyeri.github.io/uploads/lan-switch.webp" />
+			<meta name="image" property="og:image" content="https://prahladyeri.github.io/uploads/lan-switch.webp">
+
+	
+	
+</head>
+
+<body>
+<div id='header'>
+<div class='text-center' >
+	<h1 class='blog-title'>Prahlad Yeri</h1>
+	<h4  class='blog-tagline'>Freelance Programmer and Writer</h4>
+</div>
+
+<div id='navBlock' class='text-center' >
+	<a class="nav-link" href="/">Home</a> | 
+	<a class="nav-link" href="/blog">Blog</a> | 
+	<a class="nav-link" href="/portfolio">Portfolio</a> | 
+	<a class="nav-link" href="https://github.com/prahladyeri/resume">Resume</a> | 
+	<a class="nav-link" href="/hire-me">Hire Me</a>
+	<br>
+	Social:
+	<a class="nav-link" href="https://github.com/prahladyeri">Github</a> | 
+	<a class="nav-link" href="https://www.linkedin.com/in/prahlad-yeri-243a5316">Linkedin</a> | 
+	<a class="nav-link" href="https://twitter.com/prahladyeri">Twitter</a> | 
+	<a class="nav-link" href="https://prahladyeri.medium.com/">Medium</a>
+	<br>📩 prahladyeri at yahoo dot com | 
+	<a class="nav-link" href="/feeds/all.rss.xml">RSS</a> | 
+	<a class="nav-link" href="/feeds/all.atom.xml">ATOM</a>
+</div>
+</div>
+<div id="main" class='row content '>
+<div class='col w50 m-auto'>
+<section id="content" class="body">
+  <header>
+	<h1 class='mt-4 mb-4 post-title'>How I made my web pages load 10x faster</h1>
+ 
+  </header>
+  <footer class="post-info clearfix">
+	<span class='float-left'>
+    <time class="text-muted published" datetime="2023-06-07T10:00:00+05:30">2023-06-07</time>
+    <div class="text-muted vcard author">
+      By           <a class="url fn" href="https://prahladyeri.github.io/">Prahlad Yeri</a>
+    </div>
+	</span>
+	<div class='float-right'>
+    <div class="text-muted category text-right">
+        Filed under <a href="https://prahladyeri.github.io/blog/category/web-development">Web Development</a>
+    </div>
+    <div class="text-muted tags">
+		Tags
+            <a href="https://prahladyeri.github.io/blog/tag/design">Design</a>
+            <a href="https://prahladyeri.github.io/blog/tag/efficiency">Efficiency</a>
+            <a href="https://prahladyeri.github.io/blog/tag/ergonomics">Ergonomics</a>
+    </div>
+	</div>
+  </footer><!-- /.post-info -->
+  
+  <div class="entry-content">
+    <p>The most typical advice you get when it comes to improving site performance these days is purely technical things like using CDNs or other serving optimization, using X hosting mechanism instead of Y, going serverless, cache optimization, etc.</p>
+<p>I'm not talking about those things, I'm talking about the old school millennial way of optimizing things which is by reducing clutter and subscribing to the ideals of minimalism and common sense!</p>
+<p>The way our websites look and perform reflects our mindset in some ways, all that clutter and clunkiness that could be easily avoided still makes it to the web design for God knows what reason and keeps clogging our network bandwidth.</p>
+<p><img alt="lan-switch" src="/uploads/lan-switch.webp"></p>
+<p>"It's too bland and simple Prahlad, it doesn't look professional enough", they keep saying. Unfortunately, most of us have been trained to appreciate complex and clunky solutions in life instead of simple ones! This <a href="https://web.archive.org/web/19990117033159/http://pages.ebay.com/aw/index.html">simple and bland looking eBay website from late 1990s</a>, for example, allowed you to do a bunch of useful things with way more efficiency than today's equivalents. From allowing a user to register and login to adding items to a shopping cart to processing the payment by directing the user to a gateway and then bringing them back to the "thank you" page - more utility, less clunkiness.</p>
+<p><img alt="web page from 1990s" src="/uploads/ebay_1999.webp"></p>
+<p>Today's apps also do the exact same thing but they require 10x more resources due to all the bloat and clunkiness across the development stack. We need a hundred different npm packages for transpilers, minifiers, compressors, etc. and still the end result is clunkiness in user experience. The websites of 1990s used to run on a server with 32 megabyte RAM chip and powered by an Intel 486 processor!</p>
+<p>An attitude of simplicity and minimalism is the urgent need of the hour in both our society and IT systems. Once you start questioning your confused and complicated stack with, "Do I really need this X layer or Y framework or Z library?", you'll find that the answer you'll get is "NO" in most of the cases.</p>
+<p>A few years back when this minimalism thing stuck me, I decided that I will de-clutter my website as much as possible. The first thing I did was to get rid of the free shared hosting and migrated my site from a <a href="https://prahladyeri.github.io/blog/2019/05/wordpress-to-pelican-in-24-hours.html">wordpress.org instance to a statically hosted github pages site</a>. Some time after that, somewhere around the pandemic period, I decided to get rid of my domain name too. Why waste INR 1,000 each year when github.io provides me a subdomain which is sufficient for almost every use case I can think of as a freelance programmer.</p>
+<p>This is the kind of minimalist attitude we must bring in our lives. Imagine if a corporate IT or MNC firm decides to use its resources with such efficiency, imagine the kind of savings it'd make. All those savings can be used to pay off their engineers who are getting laid off and retain them instead of spending on costly AWS services which sustain that clunkiness!</p>
+<p>If you think that even after switching from WP to a statically hosted site, was it even possible to bring even more minimalism to a website, then the answer is a resounding YES! Below are some measures which I took (and still taking as it's a work in progress) for this:</p>
+<p><strong>Get rid of front-end frameworks like bootstrap and material-ui, write your own CSS/JS.</strong></p>
+<p>Whether it's old school stacks like jquery/bootstrap or more modernish ones like react/material-ui, they all add some clutter and clunkiness to your site. People today have somehow got this toxic and pathological belief that each and every website or app must absolutely use these frameworks and libraries in order to look professional. I have nothing against these tools but it's quite apparent that they aren't needed for all use cases. A statically hosted blog such as this one is a perfect example.</p>
+<p>If you are building a large ecommerce site or something, it could be justified but even there, you should ask yourself why you need a tool before just implementing (consider the eBay site from 1990s example).</p>
+<p>Thus, bootstrap and jquery were the things I got rid of as I didn't need them.</p>
+<p><strong>Use UNICODE emojis instead of icon libraries like font-awesome.</strong></p>
+<p>A clunky icon or image library doesn't need to be downloaded each time if all you need is to display some symbols. The Unicode standard has evolved enough by now so that most <a href="https://emojipedia.org/objects/">symbols and emojis</a> are part of the standard and available on all devices. As you can see on my <a href="/">home page</a>, I've used emojis like books 📗, tools 🛠, pointing finger 👉 and even hour-glass ⌛ to convey my point across. You don't need any icon or image library for this.</p>
+<p><strong>Resize/Compress your images and resources.</strong></p>
+<p>Do you even need that hi-resolution and thousands of pixels wide image which occupies triple digit MBs on the hard disk? In most cases, you don't. In most cases, you specifically control the "width" or "height" attribute of <code>&lt;img&gt;</code> elements which usually need to be much smaller than their actual size. But the entire image is still downloaded to the client browser each time. Better idea is to just compress the image using a software like GIMP or Paintbrush by reducing its dimensions and that's it.</p>
+<p>I haven't gotten around minifying my CSS and JS yet because the site's average load is hardly ~500KB as it is. But guess I'd be able to shave off some more on that once I implement this in the tool chain.</p>
+<p><strong>Convert your PNGs and JPEGs to WEBPs.</strong></p>
+<p>This thing is still a work in progress but I've started converting my site's PNGs and JPEGs to WEBP format. On average, <a href="https://developers.google.com/speed/webp">WEBP lossless images are 26% smaller in size compared to PNG</a>. These savings mean gigantic potential efficiency in terms of less bandwidth utilization and resource consumption over the lifetime of a website! It's a wonder why we are still stuck using PNGs and JPEGs at all and the web hasn't already moved to WEBPs entirely yet!</p>
+<p><strong>It's all about minimalism attitude and mindset.</strong></p>
+<p>Think why is it that sites like <a href="https://news.ycombinator.com/news">Hacker News</a>, <a href="https://tildes.net/">Tildes</a>, <a href="https://lobste.rs/">Lobsters</a>, etc. are getting so popular among the nerds and intellectuals of this society. Think why is <a href="https://old.reddit.com/">Old Reddit</a> still up and running despite them trying everything under the sun to publicize the new and clunky version when it came! When Wikipedia tried the clunkiness way some time back, the Internet soon start filling up with <a href="https://www.howtogeek.com/866617/how-to-get-the-old-wikipedia-layout-back/">help posts like these</a> for switching back to the old Vector theme. The world needs to understand that minimalism is the future, there just aren't enough resources in this world to sustain the clunkiness anymore.</p>
+<p>Internet Bandwidth also isn't an abundant resource. It tended to be cheap ever since the data science revolution began about a decade ago but that may not be the case always. ISPs across the world are already tightening the screws on this, they are gradually increasing the data cost. Jio and Airtel recharges are much pricier today than they were a year ago. Once that starts happening, your cloud services will need to bring more efficiency and performance instead of more features in order to stay profitable, better start preparing for that day today itself instead of waiting for that day!</p>
+<p>And don't fall for the wrongful narratives and agendas of those who keep justifying the clunkiness as part of their business model. <a href="https://world.hey.com/dhh/they-re-rebuilding-the-death-star-of-complexity-4fb5d08d">Merchants of complexity will always keep building their Death Stars</a> because it's their job as a business or corporate to think about their interest. But at the same time, it's our job to not get distracted by it and stay minimal which is both in our and society's best interest.</p>
+<p>In conclusion, this famous quote by MK Gandhi perhaps applies more in today's world than it did in 1947:</p>
+<blockquote>
+<p><em>The world has enough for everyone's needs, but not everyone's greed.</em></p>
+</blockquote>
+  </div><!-- /.entry-content -->
+
+	<!-- Start: Prahlad -->
+	<script>
+	document.addEventListener('DOMContentLoaded', function(){
+		console.log('DOMContentLoaded');
+		var elems = document.querySelectorAll(".entry-content table");
+		for(var i= 0;i<elems.length;i++) {
+			if (!hasClass(elems[i], 'table')) addClass(elems[i], 'table');
+			if (!hasClass(elems[i], 'table-bordered')) addClass(elems[i], 'table-bordered');
+			if (!hasClass(elems[i], 'table-sm')) addClass(elems[i], 'table-sm');
+		}
+		document.querySelector(".entry-content img").parentElement.style.textAlign = "center";
+	});
+	</script>
+
+	<!--start: adsense-->
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0428291735937735"
+     crossorigin="anonymous"></script>
+	<!-- prahladyeri.github.io -->
+	<ins class="adsbygoogle"
+		 style="display:block"
+		 data-ad-client="ca-pub-0428291735937735"
+		 data-ad-slot="9729062115"
+		 data-ad-format="auto"
+		 data-full-width-responsive="true"></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+	<!--end: adsense-->
+	
+	
+	
+	<!-- End: Prahlad -->
+</section>
+</div>
+<!-- <div id='push'></div> -->
+</div>
+
+
+<footer id ="footer" class="text-center">
+<br>
+Copyright (&copy;) 2014-2023 Prahlad Yeri. Build 1.14.<br>This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+</footer>
+
+<script>
+function hasClass(ele,cls) {
+  return !!ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
+}
+
+function addClass(ele,cls) {
+  if (!hasClass(ele,cls)) ele.className += " "+cls;
+}
+
+function removeClass(ele,cls) {
+  if (hasClass(ele,cls)) {
+    var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
+    ele.className=ele.className.replace(reg,' ');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+	//var hh = document.querySelector("#header").clientHeight;
+	//var fh = document.querySelector("#footer").clientHeight;
+	//document.querySelector("#main").style.height = "calc(100vh - " + (hh + fh) + "px);"
+});
+</script>
+
+</body>
+</html>

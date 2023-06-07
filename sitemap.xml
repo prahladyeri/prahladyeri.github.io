@@ -5,35 +5,35 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://prahladyeri.github.io/blog/</loc>
-<lastmod>2023-06-07T11:47:24-00:00</lastmod>
+<lastmod>2023-06-07T14:34:27-00:00</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://prahladyeri.github.io/blog/tags</loc>
-<lastmod>2023-06-07T11:47:24-00:00</lastmod>
+<lastmod>2023-06-07T14:34:27-00:00</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://prahladyeri.github.io/blog/categories</loc>
-<lastmod>2023-06-07T11:47:24-00:00</lastmod>
+<lastmod>2023-06-07T14:34:27-00:00</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://prahladyeri.github.io/authors.html</loc>
-<lastmod>2023-06-07T11:47:24-00:00</lastmod>
+<lastmod>2023-06-07T14:34:27-00:00</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://prahladyeri.github.io/archives.html</loc>
-<lastmod>2023-06-07T11:47:24-00:00</lastmod>
+<lastmod>2023-06-07T14:34:27-00:00</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -67,7 +67,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://prahladyeri.github.io/blog/2023/02/opinion-ecommerce-and-corporate-websites-need-to-adopt-some-minimalism-and-de-clutter.html</loc>
+<loc>https://prahladyeri.github.io/blog/2023/06/how-i-made-my-web-pages-load-10x-faster.html</loc>
+<lastmod>2023-06-07T10:00:00+05:30</lastmod>
+<changefreq>always</changefreq>
+<priority>1</priority>
+</url>
+
+<url>
+<loc>https://prahladyeri.github.io/blog/2023/02/ecommerce-and-corporate-websites-need-to-adopt-some-minimalism-and-de-clutter.html</loc>
 <lastmod>2023-02-01T09:00:00+05:30</lastmod>
 <changefreq>always</changefreq>
 <priority>1</priority>
@@ -1013,7 +1020,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://prahladyeri.github.io/blog/category/web-development</loc>
-<lastmod>2023-02-01T09:00:00+05:53</lastmod>
+<lastmod>2023-06-07T10:00:00+05:53</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -1027,21 +1034,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://prahladyeri.github.io/blog/tag/design</loc>
-<lastmod>2023-02-01T09:00:00+05:53</lastmod>
+<lastmod>2023-06-07T10:00:00+05:53</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://prahladyeri.github.io/blog/tag/efficiency</loc>
-<lastmod>2023-02-01T09:00:00+05:53</lastmod>
+<lastmod>2023-06-07T10:00:00+05:53</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://prahladyeri.github.io/blog/tag/ergonomics</loc>
-<lastmod>2023-02-01T09:00:00+05:53</lastmod>
+<lastmod>2023-06-07T10:00:00+05:53</lastmod>
 <changefreq>hourly</changefreq>
 <priority>0.5</priority>
 </url>
