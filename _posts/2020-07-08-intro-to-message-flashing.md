@@ -70,6 +70,7 @@ return message + "<br>Welcome to home page"
 Of course, if you happen to use a `jinja2` template for displaying output then `get_flashed_messages()` is [directly callable in that too](https://flask.palletsprojects.com/en/0.12.x/patterns/flashing/):
 
 ```python
+{% raw %}
 {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
     <ul class=flashes>
@@ -79,6 +80,7 @@ Of course, if you happen to use a `jinja2` template for displaying output then `
     </ul>
   {% endif %}
 {% endwith %}
+{% endraw %}
 ```
 
 After playing with message flashing for some time, I came to know that it also uses the session object internally. For example, it won't work if you omitted the `app.secret_key` attribute before starting the app. As I said earlier, all of the above can be done using sessions too but message flashing is a more efficient way of doing it and requires less code. And the end, finding efficent ways of achieving things is what we programmers should be striving for, enjoy!
