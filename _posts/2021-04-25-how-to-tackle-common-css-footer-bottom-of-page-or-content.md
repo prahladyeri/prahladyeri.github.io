@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Tackling a common CSS design problem: Footer placement at page or content bottom, whichever is lower
+title: "Tackling a common CSS design problem: Footer placement at page or content bottom, whichever is lower"
 tags: html css footer web-development
 ---
 

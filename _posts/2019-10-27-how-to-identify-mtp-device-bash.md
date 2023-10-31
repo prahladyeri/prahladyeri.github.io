@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Linux DIY: How to identify your MTP file-transfer device (such as smart-phone) in Bash
+title: "Linux DIY: How to identify your MTP file-transfer device (such as smart-phone) in Bash"
 tags: linux bash mtp how-to
 ---
 
