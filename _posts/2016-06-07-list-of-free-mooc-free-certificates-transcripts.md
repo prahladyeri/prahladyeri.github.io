@@ -1,6 +1,6 @@
 ---
 layout: post
-title: List of free online programming courses (MOOC) offering FREE certificates of accomplishment
+title: 'List of free online programming courses (MOOC) offering FREE certificates of accomplishment'
 tags: education
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Rockstar Java Series: Use default methods and be a better coder"
+title: 'Rockstar Java Series: Use default methods and be a better coder'
 tags: java
 ---
 

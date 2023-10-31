@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Alternative "Reddit like" social networking sites for the minimalists
+title: 'Alternative "Reddit like" social networking sites for the minimalists'
 tags: reddit social-networking technology
 ---
 

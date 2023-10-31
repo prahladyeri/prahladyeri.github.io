@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Python recipe: Combine multiple images into one PDF"
+title: 'Python recipe: Combine multiple images into one PDF'
 tags: productivity how-to python
 ---
 

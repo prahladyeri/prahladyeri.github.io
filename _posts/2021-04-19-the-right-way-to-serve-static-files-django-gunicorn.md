@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The right way to serve static files when using django with gunicorn
+title: 'The right way to serve static files when using django with gunicorn'
 tags: django gunicorn python
 ---
 

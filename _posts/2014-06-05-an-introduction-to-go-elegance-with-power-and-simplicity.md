@@ -1,6 +1,6 @@
 ---
 layout: post
-title: An Introduction to Go - Elegance with Power and Simplicity
+title: 'An Introduction to Go - Elegance with Power and Simplicity'
 tags: go
 ---
 

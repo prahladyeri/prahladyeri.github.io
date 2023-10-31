@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Dealing with writer's block: The ultimate checklist"
+title: 'Dealing with writer''s block: The ultimate checklist'
 tags: blogging writing
 ---
 

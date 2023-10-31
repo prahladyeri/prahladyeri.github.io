@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Tux Drive - A Command Line Tool to Access Google Drive from Linux
+title: 'Tux Drive - A Command Line Tool to Access Google Drive from Linux'
 tags: google-drive linux python
 ---
 

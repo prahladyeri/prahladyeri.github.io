@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The REAL way to make Eclipse run faster on Ubuntu
+title: 'The REAL way to make Eclipse run faster on Ubuntu'
 tags: eclipse java
 ---
 

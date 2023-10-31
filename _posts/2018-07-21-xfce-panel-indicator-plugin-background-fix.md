@@ -1,6 +1,6 @@
 ---
 layout: post
-title: XFCE panel indicator plugin background fix
+title: 'XFCE panel indicator plugin background fix'
 tags: xfce xubuntu linux
 ---
 

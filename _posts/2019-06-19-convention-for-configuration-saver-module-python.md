@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Building a convention for configuration saver and reader module in Python
+title: 'Building a convention for configuration saver and reader module in Python'
 tags: open-source configuration python
 ---
 

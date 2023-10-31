@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Rockstar Java Series: Using Lambda expressions to up your game"
+title: 'Rockstar Java Series: Using Lambda expressions to up your game'
 tags: java
 ---
 

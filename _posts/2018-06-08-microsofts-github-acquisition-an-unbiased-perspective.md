@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Microsoft's Github acquisition - A perspective
+title: 'Microsoft''s Github acquisition - A perspective'
 tags: github gitlab linux microsoft open-source
 ---
 

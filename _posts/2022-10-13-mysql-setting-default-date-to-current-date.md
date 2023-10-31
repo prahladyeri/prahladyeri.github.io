@@ -1,6 +1,6 @@
 ---
 layout: post
-title: MySQL] Setting default date to current date
+title: 'MySQL] Setting default date to current date'
 tags: mysql php
 ---
 

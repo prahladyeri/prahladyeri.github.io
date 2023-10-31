@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Ecommerce and corporate websites need to adopt some minimalism and de-clutter
+title: 'Ecommerce and corporate websites need to adopt some minimalism and de-clutter'
 tags: design efficiency ergonomics web-development
 ---
 

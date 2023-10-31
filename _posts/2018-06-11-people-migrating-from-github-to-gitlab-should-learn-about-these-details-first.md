@@ -1,6 +1,6 @@
 ---
 layout: post
-title: People migrating from Github to Gitlab should learn about these details first
+title: 'People migrating from Github to Gitlab should learn about these details first'
 tags: git github gitlab microsoft open-source
 ---
 

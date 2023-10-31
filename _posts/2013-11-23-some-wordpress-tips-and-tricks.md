@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Some Wordpress tips and tricks
+title: 'Some Wordpress tips and tricks'
 tags: wordpress php
 ---
 

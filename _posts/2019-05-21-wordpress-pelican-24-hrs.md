@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Wordpress to Pelican in 24 hours
+title: 'Wordpress to Pelican in 24 hours'
 tags: wordpress php python
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Wordpress DIY: Adding Google Analytics Script to your Blog Without using an External Plugin"
+title: 'Wordpress DIY: Adding Google Analytics Script to your Blog Without using an External Plugin'
 tags: php wordpress
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to use Bash+rsync to automate your periodical backups on Linux
+title: 'How to use Bash+rsync to automate your periodical backups on Linux'
 tags: backup linux ubuntu how-to
 ---
 

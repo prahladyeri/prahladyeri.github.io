@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Why GPL isn't working - the Freedom vs Convenience Debate
+title: 'Why GPL isn''t working - the Freedom vs Convenience Debate'
 tags: open-source technology
 ---
 

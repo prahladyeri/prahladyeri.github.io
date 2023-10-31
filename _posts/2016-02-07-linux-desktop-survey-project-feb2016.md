@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Linux Desktop Survey Project - Feb/2016
+title: 'Linux Desktop Survey Project - Feb/2016'
 tags: survey desktop linux
 ---
 

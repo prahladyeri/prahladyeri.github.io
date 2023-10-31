@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Farewell Wordpress, Hello Jekyll!
+title: 'Farewell Wordpress, Hello Jekyll!'
 tags: php wordpress jekyll
 ---
 

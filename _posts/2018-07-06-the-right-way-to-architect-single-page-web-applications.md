@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The right way to architect single page web applications
+title: 'The right way to architect single page web applications'
 tags: javascript html web-development
 ---
 

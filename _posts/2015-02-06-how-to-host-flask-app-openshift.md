@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to host a Flask app on Openshift
+title: 'How to host a Flask app on Openshift'
 tags: python flask openshift how-to
 ---
 

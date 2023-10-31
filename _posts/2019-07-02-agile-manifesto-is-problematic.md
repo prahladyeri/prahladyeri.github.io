@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Agile manifesto is problematic
+title: 'Agile manifesto is problematic'
 tags: architecture productivity software-engineering
 ---
 

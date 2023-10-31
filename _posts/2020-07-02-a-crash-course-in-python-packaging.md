@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A crash course in python packaging
+title: 'A crash course in python packaging'
 tags: python setup pypi crash-course
 ---
 

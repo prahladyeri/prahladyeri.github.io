@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to know whether my blog post will attract traffic or not
+title: 'How to know whether my blog post will attract traffic or not'
 tags: blogging wordpress how-to
 ---
 

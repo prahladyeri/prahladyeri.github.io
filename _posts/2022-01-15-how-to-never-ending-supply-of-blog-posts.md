@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to generate a never ending supply of blog posts
+title: 'How to generate a never ending supply of blog posts'
 tags: seo blogging
 ---
 
