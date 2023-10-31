@@ -1,0 +1,26 @@
+# Dependencies
+markdown:         redcarpet
+highlighter:      pygments
+
+# Permalinks
+permalink:        /blog/:year/:month/:title.html
+#relative_permalinks: true
+
+# Setup
+title:            Prahlad Yeri
+tagline:          'Freelance Programmer and Writer'
+description:      'Freelance Programmer and Writer'
+url: https://prahladyeri.github.io
+baseurl: ""
+
+author:
+  name:           'Prahlad Yeri'
+  url:            https://prahladyeri.github.io
+
+paginate:         5
+
+# Custom vars
+version:          2.1.0
+
+github:
+  repo:           https://github.com/prahladyeri/prahladyeri.github.io

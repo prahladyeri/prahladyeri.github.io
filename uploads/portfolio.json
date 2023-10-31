@@ -1,0 +1,58 @@
+[
+	{
+		"title": "Invoicing Auditor",
+		"category": "Freelance",
+		"tags": "PHP, CodeIgniter, MySQL, bootstrap, jquery, adminlte",
+		"text": "Invoicing Auditor is a web-based invoicing/accounting app which I developed for a client recently. It's fully based on open source technologies like PHP/MySQL, Bootstrap, Google Fonts, etc. The dashboard is built using <a href='https://adminlte.io/docs/3.2'>AdminLTE</a>, an HTML template based on Bootstrap 4.6.",
+		"url": "",
+		"image_url": "/uploads/portfolio/invoicing_auditor/invoice-view.png"
+	},
+    {
+        "title": "Flora Ledgers",
+        "category": "Freelance",
+        "tags": "Python, Flask, bootstrap, jquery, Google Drive",
+        "text": "Flora Ledgers is a Python (Flask) based web app which makes extensive use of the Google Drive API. Developed for one of my Fiverr clients, this app has two parts: First, a scheduled daemon/service part that runs on back-end and checks for new invoice files in the user's pre-authenticated Drive folder and captures them to local database.<br><br>Second is the front-facing app that authenticates the user's Drive through OAuth (so that daemon can do its part), and also allows the user to check the requests status, view process logs, etc. For front-end, I've used bootstrap and jquery extensively. Demo available on request.",
+        "image_url": "/uploads/portfolio/flora-ledgers.png",
+        "url": "https://www.fiverr.com/prahladyeri/develop-a-web-app-for-you"
+    },
+    {
+        "title": "Data Viz App",
+        "category": "Freelance",
+        "tags": "PHP, bootstrap, jquery, mysql, tableau, dataviz",
+        "text": "Data-Viz is a custom coded PHP app I had developed for one of my clients who needed an analytics app functionally similar to Tableau but much simpler. I had used PHP/mysql on back-end and Bootstrap, jquery and jquery-ui on front-end. The app has various search/sort features with drag-drop functionality which are typical in an analytics or data-visualization app. Demo available on request.",
+        "image_url": "/uploads/portfolio/dataviz.png",
+        "url": ""
+    },
+    {
+        "title": "ecoMIS",
+        "category": "Freelance",
+        "tags": "Python, Flask, bootstrap, jquery",
+        "text": "ecoMIS is yet another Flask based web app I had developed for a Fiverr client. It involved python and flask framework along with bootstrap and jquery on front-end. Demo available on request.",
+        "image_url": "/uploads/portfolio/ecoMIS.png",
+        "url": "https://www.fiverr.com/prahladyeri/develop-a-web-app-for-you"
+    },
+    {
+        "title": "Twitter Tango",
+        "category": "Freelance",
+        "tags": "Python, TKinter",
+        "text": "Twitter-Tango is a simple desktop based GUI app built with Python TKinter library and uses the popular Tweepy library to pull tweets using the Twitter API and allow user to search through them.",
+        "image_url": "/uploads/portfolio/twitter_tango.png",
+        "url": "https://www.fiverr.com/prahladyeri/write-a-python-tkinter-based-desktop-app"
+    },
+    {
+        "title": "Will Generator",
+        "category": "Freelance",
+        "tags": "Python, Flask, bootstrap, jquery, Google Cloud",
+        "text": "Will-Generator is a Google Appengine based web app I had developed for an Australian client for generating wills. It is based on Google's webapp2 framework which is similar to Flask and also uses PyPDF library.",
+        "image_url": "/uploads/portfolio/WillGenerator.png",
+        "url": "https://www.fiverr.com/prahladyeri/develop-a-web-app-for-you"
+    },
+    {
+        "title": "Sentinel",
+        "category": "Freelance",
+        "tags": "Python, Flask, bootstrap, jquery, Google Cloud",
+        "text": "Sentinel is yet another Flask based app used for monitoring purpose in the legal profession, I had developed it for a Fiverr client. Apart from bootstrap and jquery, extensive use of DataTables.net was also made on the front-end for presentation of tablular data.",
+        "image_url": "/uploads/portfolio/sentinel.png",
+        "url": "https://www.fiverr.com/prahladyeri/develop-a-web-app-for-you"
+    }
+]
