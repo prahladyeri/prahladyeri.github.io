@@ -1,6 +1,6 @@
 ---
 layout: post
-title: WordPress DIY: Adding twitter cards meta to your blog without using an external plugin
+title: "WordPress DIY: Adding twitter cards meta to your blog without using an external plugin"
 tags: php wordpress
 ---
 

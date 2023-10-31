@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Intro to Message Flashing: A handy way to send messages across page requests in Flask
+title: "Intro to Message Flashing: A handy way to send messages across page requests in Flask"
 tags: python flask flash
 ---
 

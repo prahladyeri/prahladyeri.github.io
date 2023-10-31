@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 9 Optimizations to make your Linux Desktop fly like a Rocket!
+title: "9 Optimizations to make your Linux Desktop fly like a Rocket!"
 tags: ubuntu linux
 ---
 

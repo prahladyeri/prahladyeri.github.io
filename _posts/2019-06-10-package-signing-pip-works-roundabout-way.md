@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Package signing in PIP - It works, in a roundabout sort of way
+title: "Package signing in PIP - It works, in a roundabout sort of way"
 tags: pip security python
 ---
 

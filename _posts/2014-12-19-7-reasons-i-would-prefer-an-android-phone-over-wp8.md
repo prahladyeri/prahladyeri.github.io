@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 7 Reasons I would prefer an Android Phone over WP8
+title: "7 Reasons I would prefer an Android Phone over WP8"
 tags: android
 ---
 

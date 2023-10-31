@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to install Debian+LXDE on ANY Android Tablet
+title: "How to install Debian+LXDE on ANY Android Tablet"
 tags: android debian lxde linux
 ---
 

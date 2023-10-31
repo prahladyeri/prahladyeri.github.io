@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to create a custom email plugin for Wordpress
+title: "How to create a custom email plugin for Wordpress"
 tags: php
 ---
 

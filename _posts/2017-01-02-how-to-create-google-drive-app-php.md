@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to create a Google Drive App in PHP
+title: "How to create a Google Drive App in PHP"
 tags: google-drive php how-to
 ---
 

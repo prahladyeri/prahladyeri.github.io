@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to organize your research for blog posts in 2022: A comprehensive guide
+title: "How to organize your research for blog posts in 2022: A comprehensive guide"
 tags: keyword-research seo research blogging
 ---
 

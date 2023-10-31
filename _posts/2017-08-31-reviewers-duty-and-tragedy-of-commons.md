@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The Reviewer's Duty and the Tragedy of the commons
+title: "The Reviewer's Duty and the Tragedy of the commons"
 tags: business reviews technology
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to create a screencast in Xubuntu using ffmpeg
+title: "How to create a screencast in Xubuntu using ffmpeg"
 tags: linux xubuntu how-to
 ---
 

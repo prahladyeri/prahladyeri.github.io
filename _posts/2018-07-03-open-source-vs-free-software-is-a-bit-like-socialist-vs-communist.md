@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Open Source vs Free Software is a bit like Socialist vs Communist
+title: "Open Source vs Free Software is a bit like Socialist vs Communist"
 tags: libre-software open-source
 ---
 

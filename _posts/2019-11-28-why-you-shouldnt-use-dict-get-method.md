@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Why you should never use the dict.get() method in python
+title: "Why you should never use the dict.get() method in python"
 tags: python dictionary
 ---
 

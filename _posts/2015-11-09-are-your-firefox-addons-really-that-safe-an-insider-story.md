@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Are your Firefox addons really that safe? - An Insider Story
+title: "Are your Firefox addons really that safe? - An Insider Story"
 tags: linux
 ---
 

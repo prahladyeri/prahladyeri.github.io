@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Ten useful LibreOffice Macro Recipes
+title: "Ten useful LibreOffice Macro Recipes"
 tags: libreoffice linux
 ---
 

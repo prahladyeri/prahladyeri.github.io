@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Flask Recipe - RESTful CRUD using sqlalchemy
+title: "Flask Recipe - RESTful CRUD using sqlalchemy"
 tags: flask python sqlalchemy how-to
 ---
 

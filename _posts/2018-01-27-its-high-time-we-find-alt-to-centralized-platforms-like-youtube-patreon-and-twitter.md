@@ -1,6 +1,6 @@
 ---
 layout: post
-title: It's high time we find alternatives to centralized platforms like Youtube, Patreon and Twitter
+title: "It's high time we find alternatives to centralized platforms like Youtube, Patreon and Twitter"
 tags: twitter youtube open-source technology
 ---
 

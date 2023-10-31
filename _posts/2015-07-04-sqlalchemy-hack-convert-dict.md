@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Sqlalchemy Hack - How to convert a table to dict on the fly
+title: "Sqlalchemy Hack - How to convert a table to dict on the fly"
 tags: sqlalchemy python
 ---
 

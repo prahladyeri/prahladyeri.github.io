@@ -1,6 +1,6 @@
 ---
 layout: post
-title: dateutil.relativedelta: A must have tool in your python kitty
+title: "dateutil.relativedelta: A must have tool in your python kitty"
 tags: datetime python
 ---
 

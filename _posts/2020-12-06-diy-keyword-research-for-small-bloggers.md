@@ -1,6 +1,6 @@
 ---
 layout: post
-title: DIY Keyword research for small bloggers using absolutely free tools
+title: "DIY Keyword research for small bloggers using absolutely free tools"
 tags: keyword-research seo blogging
 ---
 

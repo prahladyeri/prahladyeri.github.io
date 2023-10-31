@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to make your Xubuntu 16.04 desktop look and behave like Ubuntu-MATE
+title: "How to make your Xubuntu 16.04 desktop look and behave like Ubuntu-MATE"
 tags: linux ubuntu ubuntu-mate xubuntu how-to
 ---
 

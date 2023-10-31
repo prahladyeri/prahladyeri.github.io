@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Wordpress installation quick-start guide
+title: "Wordpress installation quick-start guide"
 tags: php wordpress
 ---
 

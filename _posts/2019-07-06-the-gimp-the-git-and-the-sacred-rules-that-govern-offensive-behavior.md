@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The gimp, the git and the sacred rules that govern offensive behavior
+title: "The gimp, the git and the sacred rules that govern offensive behavior"
 tags: productivity internet technology
 ---
 

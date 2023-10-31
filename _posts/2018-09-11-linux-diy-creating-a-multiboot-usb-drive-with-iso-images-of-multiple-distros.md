@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Linux DIY: Creating a multiboot USB drive with ISO images of multiple distros
+title: "Linux DIY: Creating a multiboot USB drive with ISO images of multiple distros"
 tags: linux how-to
 ---
 

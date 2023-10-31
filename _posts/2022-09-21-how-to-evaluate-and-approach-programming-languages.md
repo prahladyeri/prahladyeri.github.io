@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to approach and evaluate programming languages for a project
+title: "How to approach and evaluate programming languages for a project"
 tags: programming php python oop software-engineering
 ---
 

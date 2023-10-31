@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How I made my web pages load 10x faster
+title: "How I made my web pages load 10x faster"
 tags: design efficiency ergonomics web-development
 ---
 

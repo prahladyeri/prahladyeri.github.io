@@ -1,6 +1,6 @@
 ---
 layout: post
-title: listdir vs scandir vs glob - The one and preferably only one obvious way to do it!
+title: "listdir vs scandir vs glob - The one and preferably only one obvious way to do it!"
 tags: pip open-source python
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to clear individual site cookies on android firefox
+title: "How to clear individual site cookies on android firefox"
 tags: android firefox
 ---
 

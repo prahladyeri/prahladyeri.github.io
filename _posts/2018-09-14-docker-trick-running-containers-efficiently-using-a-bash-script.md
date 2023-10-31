@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Docker trick: Running containers efficiently using a bash script
+title: "Docker trick: Running containers efficiently using a bash script"
 tags: docker linux technology
 ---
 

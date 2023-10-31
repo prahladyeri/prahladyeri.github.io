@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to set your blogspot blog for twitter card validation
+title: "How to set your blogspot blog for twitter card validation"
 tags: blogspot blogging
 ---
 

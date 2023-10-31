@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Foxy firefighters and the clash between individual and collective liberalism
+title: "Foxy firefighters and the clash between individual and collective liberalism"
 tags: internet news technology
 ---
 

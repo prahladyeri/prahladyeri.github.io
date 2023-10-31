@@ -1,6 +1,6 @@
 ---
 layout: post
-title: PHP/Codeigniter] Getting multi-queries right with SQLITE
+title: "PHP/Codeigniter] Getting multi-queries right with SQLITE"
 tags: php sqlite sql
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Why I think "Sponsor Only" repositories introduced by Github is a terrible idea
+title: "Why I think "Sponsor Only" repositories introduced by Github is a terrible idea"
 tags: github freedom open-source
 ---
 

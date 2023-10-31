@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Converting Userscript to Chrome Extension: The monkeys are no longer needed
+title: "Converting Userscript to Chrome Extension: The monkeys are no longer needed"
 tags: javascript userscripts extensions
 ---
 

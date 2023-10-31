@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to Unbrick and revive a totally lifeless Xiaomi Mi-Pad
+title: "How to Unbrick and revive a totally lifeless Xiaomi Mi-Pad"
 tags: android hardware xiaomi how-to
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Ubuntu 17.10 (Artful Aardvark) - An Objective Review
+title: "Ubuntu 17.10 (Artful Aardvark) - An Objective Review"
 tags: linux ubuntu
 ---
 

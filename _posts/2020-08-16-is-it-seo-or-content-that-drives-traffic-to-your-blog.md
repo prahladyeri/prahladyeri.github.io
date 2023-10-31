@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Is it good SEO or good content that drives traffic to your blog? - A causal analysis
+title: "Is it good SEO or good content that drives traffic to your blog? - A causal analysis"
 tags: seo blogging
 ---
 

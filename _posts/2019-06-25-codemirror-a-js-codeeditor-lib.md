@@ -1,6 +1,6 @@
 ---
 layout: post
-title: CodeMirror - A simple and efficient code editor component for your web applications
+title: "CodeMirror - A simple and efficient code editor component for your web applications"
 tags: internet open-source editor javascript
 ---
 

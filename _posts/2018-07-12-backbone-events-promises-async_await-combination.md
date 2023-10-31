@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Backbone.Events+Promises+async/await is a great combination for building javascript apps
+title: "Backbone.Events+Promises+async/await is a great combination for building javascript apps"
 tags: backbone javascript
 ---
 

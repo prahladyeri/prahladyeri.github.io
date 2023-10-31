@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Title case headlines are highly overrated
+title: "Title case headlines are highly overrated"
 tags: blogging writing
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Userscript recipe: Adding auto-refresh button to gmail classic
+title: "Userscript recipe: Adding auto-refresh button to gmail classic"
 tags: javascript
 ---
 

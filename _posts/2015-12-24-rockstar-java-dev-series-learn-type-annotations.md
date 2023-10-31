@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Rockstar Java Series: Learn type annotations and be a better coder
+title: "Rockstar Java Series: Learn type annotations and be a better coder"
 tags: java
 ---
 

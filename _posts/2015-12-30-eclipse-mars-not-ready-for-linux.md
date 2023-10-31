@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Eclipse Mars - Not ready for Linux Yet
+title: "Eclipse Mars - Not ready for Linux Yet"
 tags: eclipse java
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to perform Microsoft OneDrive OAuth sign-in and authorization in a python web app
+title: "How to perform Microsoft OneDrive OAuth sign-in and authorization in a python web app"
 tags: onedrive microsoft azure cloud python
 ---
 

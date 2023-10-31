@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to create a Python app in Google App Engine
+title: "How to create a Python app in Google App Engine"
 tags: google-app-engine how-to python
 ---
 
