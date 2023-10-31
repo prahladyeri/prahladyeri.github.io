@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to create android dialogs in a reusable manner"
+title: How to create android dialogs in a reusable manner
 tags: android how-to java
 ---
 

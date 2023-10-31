@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "What problem is React/JSX solving in your App?"
+title: What problem is React/JSX solving in your App?
 tags: backbone javascript react web-development
 ---
 

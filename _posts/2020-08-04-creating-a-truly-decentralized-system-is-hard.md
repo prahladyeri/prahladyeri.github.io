@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Nobody likes standards anymore, everyone wants to create their own walled gardens"
+title: Nobody likes standards anymore, everyone wants to create their own walled gardens
 tags: mozilla internet open-source
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Is Sourceforge.net safe anymore to download software"
+title: Is Sourceforge.net safe anymore to download software
 tags: sourceforge open-source
 ---
 

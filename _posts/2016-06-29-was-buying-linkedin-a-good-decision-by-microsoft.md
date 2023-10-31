@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Was buying LinkedIn a good decision by Microsoft?"
+title: Was buying LinkedIn a good decision by Microsoft?
 tags: linkedin microsoft business
 ---
 

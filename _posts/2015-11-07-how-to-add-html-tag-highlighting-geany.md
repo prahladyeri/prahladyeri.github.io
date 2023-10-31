@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to add HTML tag highlighting to Geany"
+title: How to add HTML tag highlighting to Geany
 tags: geany linux how-to
 ---
 

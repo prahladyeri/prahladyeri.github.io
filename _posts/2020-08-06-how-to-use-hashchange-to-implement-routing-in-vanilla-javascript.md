@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to use window.hashchange event to implement routing in vanilla javascript"
+title: How to use window.hashchange event to implement routing in vanilla javascript
 tags: javascript routing
 ---
 

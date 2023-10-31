@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to uniquely identify your Android device in code"
+title: How to uniquely identify your Android device in code
 tags: android how-to java
 ---
 

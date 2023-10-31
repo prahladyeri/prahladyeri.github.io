@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "3 Steps to integrate barcode scanning in your Android app"
+title: 3 Steps to integrate barcode scanning in your Android app
 tags: android java
 ---
 

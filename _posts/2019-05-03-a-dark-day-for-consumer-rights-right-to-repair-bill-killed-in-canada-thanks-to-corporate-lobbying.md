@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "A dark day for consumer rights - Right to repair bill killed in Canada thanks to corporate lobbying"
+title: A dark day for consumer rights - Right to repair bill killed in Canada thanks to corporate lobbying
 tags: internet open-source technology
 ---
 

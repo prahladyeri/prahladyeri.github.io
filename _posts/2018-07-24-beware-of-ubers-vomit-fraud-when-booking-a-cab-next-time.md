@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Beware of Uber's vomit fraud when booking a cab next time"
+title: Beware of Uber's vomit fraud when booking a cab next time
 tags: uber technology
 ---
 

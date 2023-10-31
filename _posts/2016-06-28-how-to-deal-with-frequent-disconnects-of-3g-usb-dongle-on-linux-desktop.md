@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to deal with frequent disconnects of 3G USB Dongle on Linux Desktop"
+title: How to deal with frequent disconnects of 3G USB Dongle on Linux Desktop
 tags: hardware linux how-to
 ---
 

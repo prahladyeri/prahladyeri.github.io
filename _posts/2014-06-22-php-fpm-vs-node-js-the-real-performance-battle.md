@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "PHP-FPM vs node.js - The REAL Performance Battle"
+title: PHP-FPM vs node.js - The REAL Performance Battle
 tags: php javascript node
 ---
 

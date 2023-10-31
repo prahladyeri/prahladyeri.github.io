@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Announcing gh_announce - A python bot that posts a tweet each time you make a release on github"
+title: Announcing gh_announce - A python bot that posts a tweet each time you make a release on github
 tags: github twitter tweepy open-source python
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to enforce conventional commit messages using git hooks"
+title: How to enforce conventional commit messages using git hooks
 tags: git open-source how-to linux
 ---
 

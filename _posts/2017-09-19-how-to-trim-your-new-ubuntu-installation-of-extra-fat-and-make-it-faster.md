@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How To Make Your Ubuntu Desktop Faster"
+title: How To Make Your Ubuntu Desktop Faster
 tags: ubuntu xubuntu productivity how-to linux
 ---
 

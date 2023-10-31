@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Two years later, the reasons for Microsoft's Github acquisition still remain a mystery"
+title: Two years later, the reasons for Microsoft's Github acquisition still remain a mystery
 tags: github gitlab linux microsoft open-source
 ---
 

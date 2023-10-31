@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Smyte is no more - The latest episode in the acquisition saga of Tech Giants"
+title: Smyte is no more - The latest episode in the acquisition saga of Tech Giants
 tags: open-source twitter technology
 ---
 

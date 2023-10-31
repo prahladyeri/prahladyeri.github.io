@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to assemble a fast and minimal Debian Desktop using Openbox"
+title: How to assemble a fast and minimal Debian Desktop using Openbox
 tags: debian linux
 ---
 

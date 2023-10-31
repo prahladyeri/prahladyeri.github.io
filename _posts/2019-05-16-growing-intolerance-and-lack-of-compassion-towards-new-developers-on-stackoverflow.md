@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Growing intolerance and lack of compassion towards new developers on StackOverflow"
+title: Growing intolerance and lack of compassion towards new developers on StackOverflow
 tags: social-networking technology
 ---
 

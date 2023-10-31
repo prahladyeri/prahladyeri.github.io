@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to host your own mail server using Google appengine"
+title: How to host your own mail server using Google appengine
 tags: python google-app-engine how-to
 ---
 

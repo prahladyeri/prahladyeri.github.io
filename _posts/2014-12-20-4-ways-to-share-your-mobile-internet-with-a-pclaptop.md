@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "4 Ways to share your mobile internet with a PC/laptop"
+title: 4 Ways to share your mobile internet with a PC/laptop
 tags: networking laptop android linux
 ---
 

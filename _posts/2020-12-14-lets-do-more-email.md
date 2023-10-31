@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Let's do more email"
+title: Let's do more email
 tags: internet email technology
 ---
 

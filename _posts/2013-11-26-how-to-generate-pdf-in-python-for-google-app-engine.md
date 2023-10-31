@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to Generate PDFs in Python for Google App Engine"
+title: How to Generate PDFs in Python for Google App Engine
 tags: google-app-engine python how-to
 ---
 

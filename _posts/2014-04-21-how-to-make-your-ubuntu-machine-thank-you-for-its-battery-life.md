@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to make your ubuntu machine thank you for its battery life!"
+title: How to make your ubuntu machine thank you for its battery life!
 tags: linux how-to
 ---
 

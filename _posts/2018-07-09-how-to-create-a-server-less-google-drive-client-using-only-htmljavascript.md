@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to create a Server-less Google Drive client using only HTML and JavaScript"
+title: How to create a Server-less Google Drive client using only HTML and JavaScript
 tags: html javascript how-to
 ---
 

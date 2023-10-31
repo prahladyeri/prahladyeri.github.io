@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to handle long-polling of XHR requests in PHP"
+title: How to handle long-polling of XHR requests in PHP
 tags: xhr apache codeigniter php
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "PHP/Codeigniter] Playing with multi-queries in MySQL"
+title: PHP/Codeigniter] Playing with multi-queries in MySQL
 tags: php mysql sql
 ---
 

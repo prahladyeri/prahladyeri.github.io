@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Performing a little usability tweak on the XFCE window recycler in greybird theme"
+title: Performing a little usability tweak on the XFCE window recycler in greybird theme
 tags: linux xfce
 ---
 

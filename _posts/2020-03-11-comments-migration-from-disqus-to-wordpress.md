@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Migrating Disqus comments into Wordpress"
+title: Migrating Disqus comments into Wordpress
 tags: blogging disqus wordpress
 ---
 
