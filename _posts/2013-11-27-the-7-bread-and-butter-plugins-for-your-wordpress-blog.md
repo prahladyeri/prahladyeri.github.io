@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The 7 "Bread and Butter" Plugins for your Wordpress blog"
+title: "The 7 \"Bread and Butter\" Plugins for your Wordpress blog"
 tags: wordpress php
 ---
 

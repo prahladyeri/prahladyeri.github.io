@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "API first" apps are the future"
+title: "API first\" apps are the future"
 tags: api programming
 ---
 
