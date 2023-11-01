@@ -38,7 +38,7 @@ Thus, bootstrap and jquery were the things I got rid of as I didn't need them.
 
 **Use UNICODE emojis instead of icon libraries like font-awesome.**
 
-A clunky icon or image library doesn't need to be downloaded each time if all you need is to display some symbols. The Unicode standard has evolved enough by now so that most [symbols and emojis](https://emojipedia.org/objects/) are part of the standard and available on all devices. As you can see on my [home page](/), I've used emojis like books 📗, tools 🛠, pointing finger 👉 and even hour-glass ⌛ to convey my point across. You don't need any icon or image library for this.
+A clunky icon or image library doesn't need to be downloaded each time if all you need is to display some symbols. The Unicode standard has evolved enough by now so that most [symbols and emojis](https://emojipedia.org/objects/) are part of the standard and available on all devices. As you can see on my [about page](/about), I've used emojis like books 📗, tools 🛠, pointing finger 👉 and even hour-glass ⌛ to convey my point across. You don't need any icon or image library for this.
 
 **Resize/Compress your images and resources.**
 
