@@ -20,8 +20,20 @@ What sets me apart from most other freelancers is my adherence to a set of core 
 <li>&#128073; <b>Consistency: </b>Last but not the least, without consistently &#9200; following the core principles and applying them to our processes, any success achieved will only be fleeting at best. Just as my skills, my freelancing process itself evolves with time &#8987; and I strive to apply the new learnings to the best of my abilities.</li>
 </ul>
 </p>
+<!--
 <a class="btn btn-success btn-lg" href="https://www.upwork.com/freelancers/~01e977ff45b62e031c">&#128073; Hire me on Upwork</a>
 <br>
 <a class="btn btn-info btn-lg" href="mailto:prahladyeri@yahoo.com">&#128073; Send me an Email</a>
 <br><br><br>
+-->
 </div>
+
+## Support my open source projects:
+
+- PayPal: <https://paypal.me/prahladyeri>
+- Patreon: <https://patreon.com/prahladyeri>
+
+## Hire me for your projects:
+
+- [Request quote through Email](mailto:prahladyeri@yahoo.com)
+- [Hire me on Upwork](https://www.upwork.com/freelancers/~01e977ff45b62e031c)
