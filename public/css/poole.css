@@ -58,6 +58,14 @@ html {
   }
 }
 
+/* start: custom overrides */
+.post-tags {
+    display: block;
+    margin-top: -.5rem;
+    margin-bottom: .5rem;
+}
+/* stop: custom overrides */
+
 body {
   color: #515151;
   background-color: #fff;
