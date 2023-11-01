@@ -26,8 +26,5 @@
 
   <!-- RSS -->
   <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
-  {% capture t_excerpt  %}
-	{{ post.content | markdownify | strip_html | truncatewords: 50 }}
-  {% endcapture %}
   
 </head>
