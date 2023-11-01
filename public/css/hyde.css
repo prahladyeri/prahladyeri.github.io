@@ -25,6 +25,10 @@
  */
 
 
+/*start: custom styling*/
+.d-none {display: none;}
+/*end: custom styling */
+
 /*
  * Global resets
  *
