@@ -45,7 +45,7 @@ html {
 }
 @media (min-width: 58em) {
   html {
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 
@@ -69,8 +69,8 @@ html {
     top: 0;
     left: 0;
     bottom: 0;
-    width: 18rem;
-    text-align: left;
+    width: 22rem;
+    text-align: right;
   }
 }
 
@@ -83,8 +83,8 @@ html {
 .sidebar-about h1 {
   color: #fff;
   margin-top: 0;
-  font-family: "Abril Fatface", serif;
-  font-size: 3.25rem;
+  /* font-family: "Abril Fatface", serif; */
+  font-size: 2.75rem;
 }
 
 /* Sidebar nav */
@@ -132,7 +132,7 @@ a.sidebar-nav-item:focus {
 
 @media (min-width: 48em) {
   .content {
-    max-width: 38rem;
+    max-width: 48rem;
     margin-left: 20rem;
     margin-right: 2rem;
   }

@@ -4,7 +4,7 @@ title: 'How I made my web pages load 10x faster'
 tags: design efficiency ergonomics web-development
 ---
 
-Update: As of 1st November, 2023, I have switched to the default Jekyll site generator from Pelican as I found the deployment and Github workflow easier. However, the point of this article still stands.
+Update: As of 1st November, 2023, I have switched to the default Jekyll site generator from Pelican as I found the deployment and Github Pages workflow easier. However, the point of this article still stands.
 
 ---
 The most typical advice you get when it comes to improving site performance these days is purely technical things like using CDNs or other serving optimization, using X hosting mechanism instead of Y, going serverless, cache optimization, etc.
