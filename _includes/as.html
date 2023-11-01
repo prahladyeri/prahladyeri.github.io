@@ -1,0 +1,16 @@
+<!--start: adsense-->
+{% if (site.adsense and site.adsense_slot) %}
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.adsense }}"
+ crossorigin="anonymous"></script>
+<!-- prahladyeri.github.io -->
+<ins class="adsbygoogle"
+	 style="display:block"
+	 data-ad-client="{{ site.adsense }}"
+	 data-ad-slot="{{ site.adsense_slot}}"
+	 data-ad-format="auto"
+	 data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+{% endif %}
+<!--end: adsense-->

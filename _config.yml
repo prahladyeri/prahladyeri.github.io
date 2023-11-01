@@ -17,10 +17,14 @@ author:
   name:           'Prahlad Yeri'
   url:            https://prahladyeri.github.io
 
-paginate:         10
+paginate:         7
 
 # Custom vars
 version:          2.1.1
 
-github:
-  repo:           https://github.com/prahladyeri/prahladyeri.github.io
+adsense: "ca-pub-0428291735937735"
+adsense_slot: "9729062115"
+#disqus: 'prahladyeri-blog'
+
+include:
+    - _pages
