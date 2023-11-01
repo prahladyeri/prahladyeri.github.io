@@ -52,7 +52,7 @@
         "category": "Freelance",
         "tags": "Python, Flask, bootstrap, jquery, Google Cloud",
         "text": "Sentinel is yet another Flask based app used for monitoring purpose in the legal profession, I had developed it for a Fiverr client. Apart from bootstrap and jquery, extensive use of DataTables.net was also made on the front-end for presentation of tablular data.",
-        "image_url": "/uploads/portfolio/sentinel.png",
+        "image_url": "/uploads/portfolio/sentinel_blur.png",
         "url": "https://www.fiverr.com/prahladyeri/develop-a-web-app-for-you"
     }
 ]
