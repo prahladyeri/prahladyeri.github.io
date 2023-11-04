@@ -1,4 +1,5 @@
 # custom
+*.7z
 *.py
 
 # Ignore docs files
