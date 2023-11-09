@@ -2,6 +2,7 @@
 layout: post
 title: 'How to allow Ping (ICMP) requests through the Windows Firewall'
 tags: windows tricks ping icmp
+published: false
 ---
 
 In the inbound rules, make sure the "File and Printer Sharing (Echo Request - ICMPv4-In)" rule is enabled for the currently active profile.
