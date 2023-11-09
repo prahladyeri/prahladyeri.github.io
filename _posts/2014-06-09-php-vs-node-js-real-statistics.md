@@ -8,7 +8,7 @@ When it comes to web programming, I've always coded in ASP.NET or the LAMP techn
 
 The [theory](http://notes.ericjiang.com/posts/751) suggests that synchronous or blocking model of I/O works something like this:
 
-[![Blocking I/O](/uploads/old/nodejs-comp.png){.alignnone .size-full .wp-image-3070 width="506" height="354"}](/uploads/2014/06/nodejs-comp.png)
+![Blocking I/O](/uploads/old/nodejs-comp.png)
 
 I/O is typically the costliest part of a web transaction. When a request arrives to the apache web server, it passes it to PHP interpreter for scripting any dynamic contents. Now comes the tricky part - If the PHP script wants to read something from the disk/database or write to it, that is the slowest link in the chain. When you call PHP function file\_get\_contents(), the entire thread is blocked until the contents are retrieved! The server can't do anything until your script gets the file contents. Consider what happens when multiples of simultaneous requests are issued by different users to your server? They get queued, because no thread is available to do the job since they are all blocked in I/O!
 
