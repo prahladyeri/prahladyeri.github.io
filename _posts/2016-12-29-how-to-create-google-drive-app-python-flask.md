@@ -112,4 +112,4 @@ I’ve also included the functions to download and upload files to the drive as 
 
 I’ll leave the more comprehensive use of these functions as an exercise to the reader who wants to develop a more fully featured app out of this. Click the below link to download the `flask_drive_example.py`{.highlighter-rouge} script for this example implementation from the Github gist:
 
-[ flask\_drive\_example.py](https://gist.githubusercontent.com/prahladyeri/0b92b9ca837a0f5474c732876220db78){.btn .btn-md .btn-success}
+- [ flask\_drive\_example.py](https://gist.githubusercontent.com/prahladyeri/0b92b9ca837a0f5474c732876220db78)
