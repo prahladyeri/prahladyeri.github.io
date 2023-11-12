@@ -29,7 +29,7 @@ tags: jekyll tricks
 published: false
 ---
 
-Saved as _posts/2023-11-12-a-finished-post.md
+Saved as _posts/2023-11-12-jekyll-maintaining-drafts-while-writing-blog-posts.md
 ```
 
 This way, all you have to do is set the `published` attribute to true and push the changes to your github repository! Of course, the downside here is that you might forget to change the date at the time of doing that and your published post will end up being back-dated by a couple of days. Personally, I'm quite tolerant of that and the difference won't be much as I don't like to keep a post in "draft" status for a long time anyway.
