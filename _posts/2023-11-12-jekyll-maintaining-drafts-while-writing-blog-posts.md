@@ -26,7 +26,7 @@ The other way of declaring drafts in Jekyll is to save it in the _posts itself a
 layout: post
 title: '[Jekyll] Maintaining drafts while writing blog posts'
 tags: jekyll tricks
-**published: false**
+published: false
 ---
 
 Saved as _posts/2023-11-12-a-finished-post.md
