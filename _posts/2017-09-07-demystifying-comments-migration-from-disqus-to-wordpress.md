@@ -15,27 +15,29 @@ But as time went on, I started realizing that implementing a static blog was not
 Now, importing the posts was quite straightforward using the Jekyll generated RSS feed link that was pretty straightforward to use. In case you don't have it in your Jekyll blog, its very easy to write one using liquid template. Just create a file named **rss.xml** in your root folder with below contents:
 
 ```xml
-    <?xml version="1.0" encoding="UTF-8"?>
-    <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-     <channel>
-     <title>{{ site.name | xml_escape }} - Articles</title>
-     <description>{% if site.description %}{{ site.description | xml_escape }}{% endif %}</description>
-     <link>
-     {{ site.url }}</link>
-     {% for post in site.posts %}
-     {% unless post.link %}
-     <item>
-     <title>{{ post.title | xml_escape }}</title>
-     <description>{{ post.content | xml_escape }}</description>
-     <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
-     <link>
-     {{ site.url }}{{ post.url }}</link>
-     <guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
-     </item>
-     {% endunless %}
-     {% endfor %}
-     </channel>
-    </rss>
+{%raw%}
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+ <channel>
+ <title>{{ site.name | xml_escape }} - Articles</title>
+ <description>{% if site.description %}{{ site.description | xml_escape }}{% endif %}</description>
+ <link>
+ {{ site.url }}</link>
+ {% for post in site.posts %}
+ {% unless post.link %}
+ <item>
+ <title>{{ post.title | xml_escape }}</title>
+ <description>{{ post.content | xml_escape }}</description>
+ <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
+ <link>
+ {{ site.url }}{{ post.url }}</link>
+ <guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
+ </item>
+ {% endunless %}
+ {% endfor %}
+ </channel>
+</rss>
+{%endraw%}
 ```
 
 Once you generate the blog, you can import all posts into your wordpress by referring to the /rss.xml url on your existing Jekyll blog.
