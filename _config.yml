@@ -1,6 +1,6 @@
 # Dependencies
-markdown:         redcarpet
-highlighter:      pygments
+#markdown:         redcarpet
+#highlighter:      pygments
 
 # Permalinks
 permalink:        /blog/:year/:month/:title.html

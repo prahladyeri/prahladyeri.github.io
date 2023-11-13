@@ -6,7 +6,7 @@ tags: blogging disqus wordpress
 
 **Update** [Also check out this recent post which has further fixes and refactoring done to the console.php script](/blog/2020/03/comments-migration-from-disqus-to-wordpress.html)
 
-Some time ago, I had switched from a self-hosted wordpress blog to a statically generated (Jekyll) blog hosted on Github Pages. For a commenting system, Disqus was quite an easy choice at that time since it was zero hassle for us site owners, and Disqus did all the heavy lifting from filtering the comments to storing and displaying them.<!--more-->
+Some time ago, I had switched from a self-hosted wordpress blog to a statically generated (Jekyll) blog hosted on Github Pages. For a commenting system, Disqus was quite an easy choice at that time since it was zero hassle for us site owners, and Disqus did all the heavy lifting from filtering the comments to storing and displaying them.
 
 ![Blog](/uploads/2017/09/pexels-photo-262508.jpeg)
 
