@@ -21,11 +21,11 @@ These were the options I had set:
 -   Better User Experience
 -   A Mix of both
 
-The prevailing assumption of a lot many people is that linux users are usually those “super nerdy” tech geeks who are only interested in arcane things like computing performance and speed. But on the contrary, we learn that linux users are just like `Windows`{.highlighter-rouge} or `OSX`{.highlighter-rouge} users for that matter, and they prefer a better user experience over performance!
+The prevailing assumption of a lot many people is that linux users are usually those “super nerdy” tech geeks who are only interested in arcane things like computing performance and speed. But on the contrary, we learn that linux users are just like `Windows` or `OSX` users for that matter, and they prefer a better user experience over performance!
 
-As you can see, most of the folks preferred a balance of both performance and user experience. In fact, `Better Performance and speed`{.highlighter-rouge} was the least favored factor for most people who chose their distros, which implies that how wrong our assumptions sometimes could be! As one redditor said, I should have included `Software Freedom`{.highlighter-rouge} as an option since that is also quite a motivating factor for a lot many linux users.
+As you can see, most of the folks preferred a balance of both performance and user experience. In fact, `Better Performance and speed` was the least favored factor for most people who chose their distros, which implies that how wrong our assumptions sometimes could be! As one redditor said, I should have included `Software Freedom` as an option since that is also quite a motivating factor for a lot many linux users.
 
-Here are two comments from participants who chose the middle-path, `A Mix of both`{.highlighter-rouge}:
+Here are two comments from participants who chose the middle-path, `A Mix of both`:
 
 > I don’t feel I have to compromise on one or the other. A good user experience also encompasses acceptable performance.
 
@@ -39,7 +39,7 @@ Here is what the undecided folks (Other) have to say:
 
 > Stability and security are the most important factors for me.
 
-Another option I should have added here was `Stability and security`{.highlighter-rouge} since these are the very foundations upon which linux sits.
+Another option I should have added here was `Stability and security` since these are the very foundations upon which linux sits.
 
 ------------------------------------------------------------------------
 
@@ -88,7 +88,7 @@ Which Distro gives the Best User Experience
 
 ![Which Distro gives the Best User Experience](http://lws-rmsreturns.rhcloud.com/limesurvey/tmp/43ddb58e40e9ececf0e0ed58c106e182.png)
 
-Ubuntu is most people’s favorite in this area, but Ubuntu’s community clone `Linux Mint`{.highlighter-rouge} bagging away the top position is also a fitting thing. Like Ubuntu, Mint is a distro which happens to “just work” according to most users. Though I personally don’t like all the extra amount of non-free codecs and plugins it comes pre-bundled with (such as Flash and Adobe), it is a good distro for existing Windows users to hop on. Here is what participants have to say about choosing the distro which provides the best user experience:
+Ubuntu is most people’s favorite in this area, but Ubuntu’s community clone `Linux Mint` bagging away the top position is also a fitting thing. Like Ubuntu, Mint is a distro which happens to “just work” according to most users. Though I personally don’t like all the extra amount of non-free codecs and plugins it comes pre-bundled with (such as Flash and Adobe), it is a good distro for existing Windows users to hop on. Here is what participants have to say about choosing the distro which provides the best user experience:
 
 > Mint is great out of the box and requires minimal configuration to “just work”.
 

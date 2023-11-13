@@ -12,13 +12,13 @@ However, a good documentation to implement this in a backend app, especially a p
 
 ### I: Register a google app by visiting the [Google API console](https://console.developers.google.com/):
 
-The way the latest version (V3) of drive API works is only through OAuth. It means you cannot put a password or API key inside your code and access the drive files. You need to register your backend app and generate OAuth credentials for the app, so that it can access the drive on the user’s behalf once the user grants permission to the app. So the first step is going to the [Google API console](https://console.developers.google.com/), registering the app itself and generating OAuth credentials. The registration process is pretty straightforward, you just select “Create Project” from the dropdown and give a nice name for your project such as `Flask Drive Example App`{.highlighter-rouge} in our case.
+The way the latest version (V3) of drive API works is only through OAuth. It means you cannot put a password or API key inside your code and access the drive files. You need to register your backend app and generate OAuth credentials for the app, so that it can access the drive on the user’s behalf once the user grants permission to the app. So the first step is going to the [Google API console](https://console.developers.google.com/), registering the app itself and generating OAuth credentials. The registration process is pretty straightforward, you just select “Create Project” from the dropdown and give a nice name for your project such as `Flask Drive Example App` in our case.
 
 ![Register Google App](/uploads/old/google-apis/drive_api_steps.png)
 
 ### II: Configure the credentials and download the client\_id.json file: {#ii-configure-the-credentials-and-download-the-client_idjson-file}
 
-This is the credential file that validates to Google who you are (as a developer) and also your app that acts on your behalf. Download and save it as `client_id.json`{.highlighter-rouge} in the same directory as the flask app.
+This is the credential file that validates to Google who you are (as a developer) and also your app that acts on your behalf. Download and save it as `client_id.json` in the same directory as the flask app.
 
 ![Configure Credentials](/uploads/old/google-apis/configuration_steps.png)
 
@@ -50,9 +50,9 @@ The first thing to do is create a flask object and handle the home page url. It 
                 s += "%s, %s<br>" % (file['name'],file['id'])
             return s
 
-We first check whether we have the drive access credentials for the user locally stored in a file. This is done by the `get_credentials()`{.highlighter-rouge} function that checks the local access token file credentials.json (not to be confused with client\_id.json we downloaded earlier which is for developer credentials). Again, we are assuming a single user scenario here. If your drive app needs to authenticate with multiple users, you’ll have to store separate credentials.json for each logged-in user in the database, and access that through a session or something.
+We first check whether we have the drive access credentials for the user locally stored in a file. This is done by the `get_credentials()` function that checks the local access token file credentials.json (not to be confused with client\_id.json we downloaded earlier which is for developer credentials). Again, we are assuming a single user scenario here. If your drive app needs to authenticate with multiple users, you’ll have to store separate credentials.json for each logged-in user in the database, and access that through a session or something.
 
-Further, if credentials aren’t found locally or have expired, we direct them to `/oauth2callback`{.highlighter-rouge}, so google will authenticate them and send us the token for accessing the drive, post which, we will put that token into the local file, credentials.json and redirect the user back to this index site. Finally, if the credentials are valid, we call the `fetch()`{.highlighter-rouge} function that displays the list of all root folders in that user’s drive along with their IDs. Here is the code for `oauth2callback`{.highlighter-rouge}:
+Further, if credentials aren’t found locally or have expired, we direct them to `/oauth2callback`, so google will authenticate them and send us the token for accessing the drive, post which, we will put that token into the local file, credentials.json and redirect the user back to this index site. Finally, if the credentials are valid, we call the `fetch()` function that displays the list of all root folders in that user’s drive along with their IDs. Here is the code for `oauth2callback`:
 
     @app.route('/oauth2callback')
     def oauth2callback():
@@ -69,7 +69,7 @@ Further, if credentials aren’t found locally or have expired, we direct them t
             open('credentials.json','w').write(credentials.to_json()) # write access token to credentials.json locally
             return flask.redirect(flask.url_for('index'))
 
-Once you have the credentials locally (in the form of `credentials.json`{.highlighter-rouge}), you can just use it to access the drive API. Thus, the result of this whole exercise is that only on first page load is the user redirected to google site to authenticate themselves. Once the app has the access token (credentials.json), its no longer required, the result is displayed directly on the page from then on. If all goes well, you should be able to see a screen such as this when you test this example app for the first time:
+Once you have the credentials locally (in the form of `credentials.json`), you can just use it to access the drive API. Thus, the result of this whole exercise is that only on first page load is the user redirected to google site to authenticate themselves. Once the app has the access token (credentials.json), its no longer required, the result is displayed directly on the page from then on. If all goes well, you should be able to see a screen such as this when you test this example app for the first time:
 
 ![Google OAuth Screen](/uploads/old/google-apis/oauth_screen.png)
 
@@ -110,6 +110,6 @@ I’ve also included the functions to download and upload files to the drive as 
 
 ------------------------------------------------------------------------
 
-I’ll leave the more comprehensive use of these functions as an exercise to the reader who wants to develop a more fully featured app out of this. Click the below link to download the `flask_drive_example.py`{.highlighter-rouge} script for this example implementation from the Github gist:
+I’ll leave the more comprehensive use of these functions as an exercise to the reader who wants to develop a more fully featured app out of this. Click the below link to download the `flask_drive_example.py` script for this example implementation from the Github gist:
 
 - [ flask\_drive\_example.py](https://gist.githubusercontent.com/prahladyeri/0b92b9ca837a0f5474c732876220db78)

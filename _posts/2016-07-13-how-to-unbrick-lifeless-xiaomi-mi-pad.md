@@ -47,7 +47,7 @@ You can use any metallic object to create the short circuit, even a tiny wire co
 
 All I did was place that pin inside the MicroSD slot, so it created a bridge on top of those two pads, and supported the pin using any available object (in this case a screwdriver).
 
-You’ll also need a 2.0mm screwdriver to open the back-panel above the motherboard. Please remember that opening those screws are going to void your warranty (which is going to happen in any case since you either tried to root or used the `dd`{.highlighter-rouge} command to rewrite partitions in order to reach this stage!).
+You’ll also need a 2.0mm screwdriver to open the back-panel above the motherboard. Please remember that opening those screws are going to void your warranty (which is going to happen in any case since you either tried to root or used the `dd` command to rewrite partitions in order to reach this stage!).
 
 On your Windows PC, you need the following installed:
 

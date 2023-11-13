@@ -6,18 +6,18 @@ tags: flask python sqlalchemy how-to
 
 RESTful apps are a thing these days. When your application’s userbase gets quite large and the client could vary from a laptop to an android device to an iOS device, it pays to keep the backend code separate and use the server only for making RESTful calls using HTTP methods that pertain to basic OLTP transactions: SELECT, INSERT, UPDATE and DELETE.<!--more-->
 
-Popular third-party apps like [Firebase](https://en.wikipedia.org/wiki/Firebase#Realtime_Database) essentially provide you this same thing - A REST based front to a database that could be accessed online using simple HTTP methods. But in this tutorial, we will learn how to create such a backend ourselves using Python’s `flask`{.highlighter-rouge} framework and `sqlalchemy`{.highlighter-rouge}, a light-weight but powerful ORM library that can access ANY database using its flexible *sql expression language*.
+Popular third-party apps like [Firebase](https://en.wikipedia.org/wiki/Firebase#Realtime_Database) essentially provide you this same thing - A REST based front to a database that could be accessed online using simple HTTP methods. But in this tutorial, we will learn how to create such a backend ourselves using Python’s `flask` framework and `sqlalchemy`, a light-weight but powerful ORM library that can access ANY database using its flexible *sql expression language*.
 
 ![RESTful CRUD App](/uploads/old/restful-crud.png)
 
 Rather than using firebase, if you develop your own implementation of your back-end, not only will it help you learn and become a better programmer, but also give you a flexible solution that you can scale and change as per your needs. Its also much cheaper to host your own solution on Amazon EC2 (or Lambda) compared to other costlier alternatives.
 
-Contrary to popular thinking, its not very difficult to create a database agnostic backend such as the one represented in the above diagram. With a minimal and powerful web framework such as `flask`{.highlighter-rouge}, combined with the power of `sqlalchemy`{.highlighter-rouge}, you can get up and running within minutes. In fact, I’ve developed a prototype version called [Tiddly](https://github.com/prahladyeri/tiddly) that essentially does the same thing as above using just 172 lines of Python code. You can refer to that github repository for reference as we proceed through this tutorial, or directly start using it. But make sure you install the following dependencies before running it:
+Contrary to popular thinking, its not very difficult to create a database agnostic backend such as the one represented in the above diagram. With a minimal and powerful web framework such as `flask`, combined with the power of `sqlalchemy`, you can get up and running within minutes. In fact, I’ve developed a prototype version called [Tiddly](https://github.com/prahladyeri/tiddly) that essentially does the same thing as above using just 172 lines of Python code. You can refer to that github repository for reference as we proceed through this tutorial, or directly start using it. But make sure you install the following dependencies before running it:
 
 	pip install flask
 	pip install sqlalchemy
 
-The first step towards creating the app is creating your database models. Once you’ve done the brainstorming and decided what tables and fields you are going to need, you can create a `models.py`{.highlighter-rouge} source file with something like this:
+The first step towards creating the app is creating your database models. Once you’ve done the brainstorming and decided what tables and fields you are going to need, you can create a `models.py` source file with something like this:
 
 	import sqlalchemy
 	from sqlalchemy import create_engine
@@ -48,9 +48,9 @@ The first step towards creating the app is creating your database models. Once y
 		def repr(self):
 			return "<Dual(id=%s, text=%s, )>" % (id, text)
 
-I’m using sqlite database for example here, but you can use any one of your choice. A `user`{.highlighter-rouge} table is a pretty basic one in almost every app as it is used for authentication. Apart from that, I’ve also created a `dual`{.highlighter-rouge} table just to play around with.
+I’m using sqlite database for example here, but you can use any one of your choice. A `user` table is a pretty basic one in almost every app as it is used for authentication. Apart from that, I’ve also created a `dual` table just to play around with.
 
-After that, create the second file `app.py`{.highlighter-rouge} that contains our application code. Define the following import statements along with your models as they will come very handy:
+After that, create the second file `app.py` that contains our application code. Define the following import statements along with your models as they will come very handy:
 
 	import flask
 	from flask import request, jsonify, session
@@ -60,7 +60,7 @@ After that, create the second file `app.py`{.highlighter-rouge} that contains ou
 	import models
 	from models import engine, dbsession
 
-Now, the only thing that remains to be done is the plumbing the `HTTP`{.highlighter-rouge} methods to their respective database operations. You can either create a separate view function for each one or use a single one for all of them. In this example, I’m using a single function for simplicity.
+Now, the only thing that remains to be done is the plumbing the `HTTP` methods to their respective database operations. You can either create a separate view function for each one or use a single one for all of them. In this example, I’m using a single function for simplicity.
 
 	@app.route("/<table_name>", methods=["POST", "PUT", "DELETE", "FETCH"])
 	def fetch(table_name):
@@ -150,9 +150,9 @@ Now, the only thing that remains to be done is the plumbing the `HTTP`{.highligh
 				"status": "error", "error": "Unrecognized verb.",
 				})
 
-I’ve used a non-standard HTTP method, `FETCH`{.highlighter-rouge} for the `SELECT`{.highlighter-rouge} action. That’s because if you use the `GET`{.highlighter-rouge} method, you aren’t allowed to actually post data (as in actual posting, don’t confuse with `POST`{.highlighter-rouge} method) as per the HTTP specification. The other methods, viz `POST`{.highlighter-rouge}, `PUT`{.highlighter-rouge} and `DELETE`{.highlighter-rouge} are self-apparent and they stand for `INSERT`{.highlighter-rouge}, `UPDATE`{.highlighter-rouge} and `DELETE`{.highlighter-rouge} actions respectively.
+I’ve used a non-standard HTTP method, `FETCH` for the `SELECT` action. That’s because if you use the `GET` method, you aren’t allowed to actually post data (as in actual posting, don’t confuse with `POST` method) as per the HTTP specification. The other methods, viz `POST`, `PUT` and `DELETE` are self-apparent and they stand for `INSERT`, `UPDATE` and `DELETE` actions respectively.
 
-As you can see, the app makes good use of the sql expression language of sqlalchemy to dynamically query any kind of data, not only using the usual `where`{.highlighter-rouge} clause, but also using ordering and pagination (limit/offset) parameters:
+As you can see, the app makes good use of the sql expression language of sqlalchemy to dynamically query any kind of data, not only using the usual `where` clause, but also using ordering and pagination (limit/offset) parameters:
 
 	if 'orderby' in data:
 		for cname in data['orderby'].split(','):
@@ -170,14 +170,14 @@ As you can see, the app makes good use of the sql expression language of sqlalch
 		query = query.limit(data['limit'])
 		query = query.offset(data['offset'])
 
-The front-end sends whatever it needs to the back-end using JSON format and the result is also in JSON. For example, the following JSON when posted to `/user`{.highlighter-rouge} endpoint using `FETCH`{.highlighter-rouge} method, returns the record from user table where `name`{.highlighter-rouge} field matches `admin`{.highlighter-rouge} and orders the results by email in descending order.
+The front-end sends whatever it needs to the back-end using JSON format and the result is also in JSON. For example, the following JSON when posted to `/user` endpoint using `FETCH` method, returns the record from user table where `name` field matches `admin` and orders the results by email in descending order.
 
 	{"where": {"name":"admin"}, "orderby": "email desc"}
 
-Adding the `limit`{.highlighter-rouge} and `offset`{.highlighter-rouge} clauses to the same can help the front-end with pagination.
+Adding the `limit` and `offset` clauses to the same can help the front-end with pagination.
 
 	{"where": {"name":"admin"}, "orderby": "email desc", "limit":2, "offset": 2}
 
 Its also pretty trivial to implement user authentication with this design. I haven’t done it in this example for simplicity, but you can find it in the [github code](https://github.com/prahladyeri/tiddly).
 
-All code in this tutorial and on github is `MIT`{.highlighter-rouge} licensed and free to use. So, enjoy coding, build your own RESTful CRUD app!
+All code in this tutorial and on github is `MIT` licensed and free to use. So, enjoy coding, build your own RESTful CRUD app!

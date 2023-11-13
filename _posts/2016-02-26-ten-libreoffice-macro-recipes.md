@@ -10,7 +10,7 @@ Macros are a great way to automate tasks in Spreadsheet applications, be it the 
 
 *© The LibreOffice Project*
 
-As it’s very name suggests, Basic is a lenient programming language actually designed with ease of use in mind. For instance, upper/lower case doesn’t matter for variable names or keywords (`if/IF`{.highlighter-rouge}, `sub/Sub`{.highlighter-rouge}, `function/Function`{.highlighter-rouge} are equivalents), function braces are optional like Ruby and type-conversion happens automatically. This makes Basic equally useful for both power users and programmers. A LibreOffice Basic macro is just a function or sub procedure which does a specific useful task. In this tutorial, we will see ten such useful macros that can help you with various automation tasks.
+As it’s very name suggests, Basic is a lenient programming language actually designed with ease of use in mind. For instance, upper/lower case doesn’t matter for variable names or keywords (`if/IF`, `sub/Sub`, `function/Function` are equivalents), function braces are optional like Ruby and type-conversion happens automatically. This makes Basic equally useful for both power users and programmers. A LibreOffice Basic macro is just a function or sub procedure which does a specific useful task. In this tutorial, we will see ten such useful macros that can help you with various automation tasks.
 
 1.  [Recipe 0: How to create a LibreOffice macro](#howto)
 2.  [Recipe 1: Read cell contents](#readcell)
@@ -29,7 +29,7 @@ As it’s very name suggests, Basic is a lenient programming language actually d
 Recipe 0: How to create a LibreOffice macro {#howto}
 ------------------------------------------------------
 
-Whilst macros can be created in Writer and Draw too, in this specific tutorial, we will restrict ourselves to spreadsheets (Calc). To create a macro, just open the spreadsheet in LibreOffice and go to `Tools->Macros->Organize Macros->LibreOffice Basic`{.highlighter-rouge} menu. After that, if you want to create a macro specific to your spreadsheet (as usually is the case), expand your spreadsheet file on left and select `Standard`{.highlighter-rouge} and click `New`{.highlighter-rouge}. This will open the LibreOffice Macro Editor as a separate window.
+Whilst macros can be created in Writer and Draw too, in this specific tutorial, we will restrict ourselves to spreadsheets (Calc). To create a macro, just open the spreadsheet in LibreOffice and go to `Tools->Macros->Organize Macros->LibreOffice Basic` menu. After that, if you want to create a macro specific to your spreadsheet (as usually is the case), expand your spreadsheet file on left and select `Standard` and click `New`. This will open the LibreOffice Macro Editor as a separate window.
 
 ![Macros Menu](/uploads/old/macros_menu.png)
 
@@ -45,9 +45,9 @@ One of the most basic things needed for automation is reading a cell’s content
 		MsgBox(sheet.getCellByPosition(0, 0).String)
 	End Sub
 
-`dim`{.highlighter-rouge} is a keyword used to declare a variable but declaration is totally optional unless `Option Explicit`{.highlighter-rouge} is specified at the beginning of the module. `ThisComponent`{.highlighter-rouge} is the LibreOffice object that references the current spreadsheet (or a written document in case of Writer). The important thing here is the expression, `sheet.getCellByPosition(0, 0).String`{.highlighter-rouge} which gets the contents of first cell in the first row. Cells can be referenced using the co-ordinate system where (0,0) refers to cell at row-0 and column-0. Thus, any value across the entire spreadsheet can be fetched using this simple method.
+`dim` is a keyword used to declare a variable but declaration is totally optional unless `Option Explicit` is specified at the beginning of the module. `ThisComponent` is the LibreOffice object that references the current spreadsheet (or a written document in case of Writer). The important thing here is the expression, `sheet.getCellByPosition(0, 0).String` which gets the contents of first cell in the first row. Cells can be referenced using the co-ordinate system where (0,0) refers to cell at row-0 and column-0. Thus, any value across the entire spreadsheet can be fetched using this simple method.
 
-To run a macro from the editor, just place the cursor inside the `sub`{.highlighter-rouge} or `function`{.highlighter-rouge} body of any macro and press `F5`{.highlighter-rouge} (or alternatively, click the `Run BASIC`{.highlighter-rouge} icon on the toolbar).
+To run a macro from the editor, just place the cursor inside the `sub` or `function` body of any macro and press `F5` (or alternatively, click the `Run BASIC` icon on the toolbar).
 
 Recipe 2: Change cell contents {#changecell}
 ----------------------------------------------
@@ -92,12 +92,12 @@ Searching and replacing specific strings could be an important part of your auto
 		MsgBox("Done")
 	End Sub
 
-`names()`{.highlighter-rouge} and `surnames()`{.highlighter-rouge} are actually arrays. Unlike C and Java, arrays in Basic are declared and accessed using round braces and not square ones. Also, what gets declared in an array declaration is the upper-bound, not the total size. Thus, `foo(2)`{.highlighter-rouge} is actually a size-3 array ranging from indices 0 to 2.
+`names()` and `surnames()` are actually arrays. Unlike C and Java, arrays in Basic are declared and accessed using round braces and not square ones. Also, what gets declared in an array declaration is the upper-bound, not the total size. Thus, `foo(2)` is actually a size-3 array ranging from indices 0 to 2.
 
 Recipe 4: Regular Expressions {#regex}
 ----------------------------------------
 
-Regular expressions are very useful in searching and replacing text based on specific patterns. The following macro searches for all the email addresses in your spreadsheet and replaces each one with `foo@bar.com`{.highlighter-rouge}:
+Regular expressions are very useful in searching and replacing text based on specific patterns. The following macro searches for all the email addresses in your spreadsheet and replaces each one with `foo@bar.com`:
 
 	Sub replace_with_regex
 	  Dim names() As String
@@ -124,7 +124,7 @@ Regular expressions are very useful in searching and replacing text based on spe
 Recipe 5: Show File-open dialog {#showopendialog}
 ---------------------------------------------------
 
-Showing the File-open dialog is a very common requirement, especially when you want to open an external file for processing. The below code uses the `FilePicker`{.highlighter-rouge} object to show the file-open dialog and return the selected file-name:
+Showing the File-open dialog is a very common requirement, especially when you want to open an external file for processing. The below code uses the `FilePicker` object to show the file-open dialog and return the selected file-name:
 
 	function show_open_dialog
 		dim aurl as object
@@ -144,12 +144,12 @@ Showing the File-open dialog is a very common requirement, especially when you w
 		show_open_dialog = s
 	end function
 
-`createUnoService`{.highlighter-rouge} is a LibreOffice specific method for creating helper objects like `FilePicker`{.highlighter-rouge} in this example. The `appendFilter`{.highlighter-rouge} method is used to filter out only `CSV`{.highlighter-rouge} files in the dialog.
+`createUnoService` is a LibreOffice specific method for creating helper objects like `FilePicker` in this example. The `appendFilter` method is used to filter out only `CSV` files in the dialog.
 
 Recipe 6: Show File-save dialog {#showsavedialog}
 ---------------------------------------------------
 
-For showing a File-save dialog, the same `FilePicker`{.highlighter-rouge} object is used, initializing it with the `FILESAVE_AUTOEXTENSION`{.highlighter-rouge} argument:
+For showing a File-save dialog, the same `FilePicker` object is used, initializing it with the `FILESAVE_AUTOEXTENSION` argument:
 
 	function show_save_dialog
 		dim aurl as object
@@ -179,7 +179,7 @@ For showing a File-save dialog, the same `FilePicker`{.highlighter-rouge} object
 Recipe 7: File I/O: Read from files {#readfromfiles}
 ------------------------------------------------------
 
-Raw file I/O is a feature provided by almost every language and Basic macros make it almost too easy. Below code is used to read a CSV file with three columns. Name of the file is set in the `filename`{.highlighter-rouge} variable. The variable `num`{.highlighter-rouge} is a numerical tag used to reference the file-handler and `FreeFile()`{.highlighter-rouge} returns a free available number that can be used for tagging. The `open`{.highlighter-rouge} statement is self-explanatory. In Basic, files can be opened in Input, Output and Binary modes. Finally, the `input`{.highlighter-rouge} statement is used to actually read the file into the variables line after line.
+Raw file I/O is a feature provided by almost every language and Basic macros make it almost too easy. Below code is used to read a CSV file with three columns. Name of the file is set in the `filename` variable. The variable `num` is a numerical tag used to reference the file-handler and `FreeFile()` returns a free available number that can be used for tagging. The `open` statement is self-explanatory. In Basic, files can be opened in Input, Output and Binary modes. Finally, the `input` statement is used to actually read the file into the variables line after line.
 
 	sub file_io_read
 		dim v1, v2, v3
@@ -197,7 +197,7 @@ Raw file I/O is a feature provided by almost every language and Basic macros mak
 Recipe 8: File I/O: Write to files {#writetofiles}
 ----------------------------------------------------
 
-For writing to files, a handler is opened in `output`{.highlighter-rouge} mode instead of `input`{.highlighter-rouge}, and the `write`{.highlighter-rouge} statement is used to actually write the variables to a file.
+For writing to files, a handler is opened in `output` mode instead of `input`, and the `write` statement is used to actually write the variables to a file.
 
 	sub file_io_write
 		filename = "/home/prahlad/data/dummy.csv"
@@ -213,7 +213,7 @@ For writing to files, a handler is opened in `output`{.highlighter-rouge} mode i
 Recipe 9: Load data from a CSV file {#loadfromcsv}
 ----------------------------------------------------
 
-Apart from working in raw I/O mode, it is sometimes required to load a complete CSV as a sheet in the current document. Using the `show_open_dialog`{.highlighter-rouge} function that we studied earlier, the following macro first prompts a user with a File-open dialog and then loads the specified CSV file as a new sheet:
+Apart from working in raw I/O mode, it is sometimes required to load a complete CSV as a sheet in the current document. Using the `show_open_dialog` function that we studied earlier, the following macro first prompts a user with a File-open dialog and then loads the specified CSV file as a new sheet:
 
 	sub load_from_csv
 		fname = show_open_dialog
@@ -228,7 +228,7 @@ Apart from working in raw I/O mode, it is sometimes required to load a complete 
 		msgbox "Done"
 	end sub
 
-`fileProps(0)`{.highlighter-rouge} is a property variable used for specifying the CSV file format, while `fileProps(1)`{.highlighter-rouge} specifies the default formatting options for the CSV (such as a delimiter, charset, etc.)
+`fileProps(0)` is a property variable used for specifying the CSV file format, while `fileProps(1)` specifies the default formatting options for the CSV (such as a delimiter, charset, etc.)
 
 Recipe 10: Copy text to clipboard {#copytoclipboard}
 ------------------------------------------------------
@@ -259,7 +259,7 @@ Your custom processing might involve putting a specific text to the clipboard fr
 		TR_isDataFlavorSupported = (aFlavor.MimeType = "text/plain;charset=utf-16")
 	End Function
 
-Second function is a callback and is used for storing the string to clipboard. The last two are helper functions used by the `SystemClipboard`{.highlighter-rouge} and `XTransferable`{.highlighter-rouge} helper objects and are required.
+Second function is a callback and is used for storing the string to clipboard. The last two are helper functions used by the `SystemClipboard` and `XTransferable` helper objects and are required.
 
 Demo 
 --------------

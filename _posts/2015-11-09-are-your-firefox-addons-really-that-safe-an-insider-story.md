@@ -6,7 +6,7 @@ tags: linux
 
 Firefox is one of the most competitive FOSS browsers out there, there is no denying it. Mozilla also has strict guidelines regarding what goes into their repos. And in the spirit of all things open source, you may naturally tend to believe that developers who have written your coolest new *million ratings plus* addon are also held to Mozilla’s high standards and subject to all quality audits.<!--more-->
 
-Well, read this short story before subjecting yourself to that blind faith and just clicking on every `Add to Firefox`{.highlighter-rouge} button in your browser.
+Well, read this short story before subjecting yourself to that blind faith and just clicking on every `Add to Firefox` button in your browser.
 
 ![Mozilla plugins](/uploads/old/Mozilla_plugins.png)
 

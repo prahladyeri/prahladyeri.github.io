@@ -6,7 +6,7 @@ tags: java
 
 **Java 8** comes with a lot more improvements and features than most people seem to realize. One such feature that can help you become a better Java coder is **Default methods**.<!--more-->
 
-To learn just how useful this feature is, lets take a very plain simple example: A `Product Interface`{.highlighter-rouge}. Suppose that you are a Java Engineer who is just appointed as the Backend Developer in Acme Trading Corporation to develop their new eCommerce system. Suppose Acme has a range of electronic products ranging from computers to cell phones and hard drives to printers. Being a design-oriented programmer, you develop a `Product`{.highlighter-rouge} Interface and a generic `BaseProduct`{.highlighter-rouge} class for all products:
+To learn just how useful this feature is, lets take a very plain simple example: A `Product Interface`. Suppose that you are a Java Engineer who is just appointed as the Backend Developer in Acme Trading Corporation to develop their new eCommerce system. Suppose Acme has a range of electronic products ranging from computers to cell phones and hard drives to printers. Being a design-oriented programmer, you develop a `Product` Interface and a generic `BaseProduct` class for all products:
 
 	//Product.java
 	interface Product
@@ -62,7 +62,7 @@ To learn just how useful this feature is, lets take a very plain simple example:
 		}
 	}
 
-You realize that all products have at least these three things in common: `Name`{.highlighter-rouge}, `Description`{.highlighter-rouge} and `Rate`{.highlighter-rouge}. Then, you start implementing the `Laptop`{.highlighter-rouge} class based on the `BaseProduct`{.highlighter-rouge} class:
+You realize that all products have at least these three things in common: `Name`, `Description` and `Rate`. Then, you start implementing the `Laptop` class based on the `BaseProduct` class:
 
     //Laptop.java
     class Laptop extends BaseProduct
@@ -95,11 +95,11 @@ You realize that all products have at least these three things in common: `Name`
         }
     }
 
-Now imagine that you have created lots of classes for all Acme products in this manner including `Television`{.highlighter-rouge}, `Refregerator`{.highlighter-rouge}, `Keyboard`{.highlighter-rouge}, etc.
+Now imagine that you have created lots of classes for all Acme products in this manner including `Television`, `Refregerator`, `Keyboard`, etc.
 
-Now, you are just 10 days from releasing the final version of your mind-blowing Product Management System when suddenly your boss tells you that you also need a `Rating`{.highlighter-rouge}, but only for some products. Naturally, you being a techie who just sips coffee in front of the computer screen the whole day just didn’t realize how the end customers might interact with your system. So, how will you add `Rating`{.highlighter-rouge} to the system now?
+Now, you are just 10 days from releasing the final version of your mind-blowing Product Management System when suddenly your boss tells you that you also need a `Rating`, but only for some products. Naturally, you being a techie who just sips coffee in front of the computer screen the whole day just didn’t realize how the end customers might interact with your system. So, how will you add `Rating` to the system now?
 
-The classic approach in Java is to just add a `Rating`{.highlighter-rouge} property to each and every individual product class of yours that needs a `Rating`{.highlighter-rouge}:
+The classic approach in Java is to just add a `Rating` property to each and every individual product class of yours that needs a `Rating`:
 
 	//Laptop.java
 	class Laptop
@@ -111,9 +111,9 @@ The classic approach in Java is to just add a `Rating`{.highlighter-rouge} prope
 		//.....
 	}
 
-This is a pretty naive approach to this problem. For one, you already have about 100 classes for various products and you will have to go to each one and implement this method. Secondly, you will also break binary compatability with existing versions of your system, so you cannot release this one backend class without replacing your entire system. Another approach is to convert the `Product`{.highlighter-rouge} interface to an abstract class, but again, why unnecessarily involve private state when it isn’t needed in the first place. Secondly, a `BaseProduct`{.highlighter-rouge} can derive from only one abstract-class but multiple interfaces, so what will you do when you will have to implement more interfaces in future?
+This is a pretty naive approach to this problem. For one, you already have about 100 classes for various products and you will have to go to each one and implement this method. Secondly, you will also break binary compatability with existing versions of your system, so you cannot release this one backend class without replacing your entire system. Another approach is to convert the `Product` interface to an abstract class, but again, why unnecessarily involve private state when it isn’t needed in the first place. Secondly, a `BaseProduct` can derive from only one abstract-class but multiple interfaces, so what will you do when you will have to implement more interfaces in future?
 
-The most apt solution to this problem is that provided by `Java 8`{.highlighter-rouge}: *default method*. Just add default methods for `Rating`{.highlighter-rouge} to your interface as follows and problem solved!
+The most apt solution to this problem is that provided by `Java 8`: *default method*. Just add default methods for `Rating` to your interface as follows and problem solved!
 
 	//Product.java
 	interface Product
@@ -138,9 +138,9 @@ The most apt solution to this problem is that provided by `Java 8`{.highlighter-
 		void setRate(double value);
 	}
 
-The single most important advantage of `default method`{.highlighter-rouge} is `interface evolution`{.highlighter-rouge} - meaning that your existing code won’t loose ABI (`Application Binary Interface`{.highlighter-rouge}) with the new class. If your interface is a part of a libary jar that you distribute to your users, you can release the newer version without affecting the already running code that might be referring to older jars.
+The single most important advantage of `default method` is `interface evolution` - meaning that your existing code won’t loose ABI (`Application Binary Interface`) with the new class. If your interface is a part of a libary jar that you distribute to your users, you can release the newer version without affecting the already running code that might be referring to older jars.
 
-The inspiration for this came when Oracle themselves had to extend the `Collection`{.highlighter-rouge} interface and add a new `stream`{.highlighter-rouge} method in `Java 8`{.highlighter-rouge}. The `Collection`{.highlighter-rouge} interface is very generic and a large number of classes implement that. If Oracle had to implement a `stream`{.highlighter-rouge} method in each and every class derived from `Collection`{.highlighter-rouge} interface, it would have taken them ages to release Java 8! Rather, they invented this helpful new feature, `default method`{.highlighter-rouge} to extend their `Collection`{.highlighter-rouge} interface. And now, they don’t have to worry about ABI. Old code referring to JDK 8 libraries will not fail because they are now binary compatible thanks to default methods!
+The inspiration for this came when Oracle themselves had to extend the `Collection` interface and add a new `stream` method in `Java 8`. The `Collection` interface is very generic and a large number of classes implement that. If Oracle had to implement a `stream` method in each and every class derived from `Collection` interface, it would have taken them ages to release Java 8! Rather, they invented this helpful new feature, `default method` to extend their `Collection` interface. And now, they don’t have to worry about ABI. Old code referring to JDK 8 libraries will not fail because they are now binary compatible thanks to default methods!
 
 *References:*
 
