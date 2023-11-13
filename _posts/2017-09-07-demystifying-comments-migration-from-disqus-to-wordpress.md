@@ -4,16 +4,17 @@ title: 'How to import Disqus comments into Wordpress'
 tags: blogging disqus wordpress
 ---
 
-**\*\*Update\*\*** [Also check out this recent post which has further fixes and refactoring done to the console.php script](/blog/2020/03/comments-migration-from-disqus-to-wordpress.html)
+**Update** [Also check out this recent post which has further fixes and refactoring done to the console.php script](/blog/2020/03/comments-migration-from-disqus-to-wordpress.html)
 
 Some time ago, I had switched from a self-hosted wordpress blog to a statically generated (Jekyll) blog hosted on Github Pages. For a commenting system, Disqus was quite an easy choice at that time since it was zero hassle for us site owners, and Disqus did all the heavy lifting from filtering the comments to storing and displaying them.<!--more-->
 
-[![Blog](/uploads/2017/09/pexels-photo-262508.jpg){.size-full .wp-image-372 width="297" height="197"}](/uploads/2017/09/pexels-photo-262508.jpg)
+![Blog](/uploads/2017/09/pexels-photo-262508.jpeg)
 
 But as time went on, I started realizing that implementing a static blog was not quite the right thing. Firstly, there were [privacy issues](https://en.wikipedia.org/wiki/Disqus#Criticism_and_privacy_concerns) around Disqus because of which many readers of my blog were discouraged from commenting. Secondly, the concept of a "static site" itself felt quite constraining to me as I couldn't implement things like contact form or a questionnaire to interact with my viewers. As a result, I decided to switch back to a plain old self-hosted wordpress blog.
 
 Now, importing the posts was quite straightforward using the Jekyll generated RSS feed link that was pretty straightforward to use. In case you don't have it in your Jekyll blog, its very easy to write one using liquid template. Just create a file named **rss.xml** in your root folder with below contents:
 
+```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
      <channel>
@@ -35,8 +36,9 @@ Now, importing the posts was quite straightforward using the Jekyll generated RS
      {% endfor %}
      </channel>
     </rss>
+```
 
-Once you generate the blog, you can import all posts into your wordpress by referring to the **/rss.xml** url on your existing Jekyll blog.
+Once you generate the blog, you can import all posts into your wordpress by referring to the /rss.xml url on your existing Jekyll blog.
 
 However, the bigger issue here was importing the Disqus comments, becuase while Disqus does allow you to [export a dump of your site comments](https://help.disqus.com/customer/portal/articles/472149-comments-export), their XML format is pretty weird and isn't the standard one used by wordpress and other blogging systems, as a result of which there aren't too many ready tools for importing comments from this format to any other system.
 
@@ -50,12 +52,14 @@ Below is the source code for both these files. First one, **console.php** is th
 
 <https://gist.github.com/prahladyeri/e22e4e232416ff841be670601b396c62>
 
-**disqus\_parse.php**
+**disqus_parse.php**
 
 <https://gist.github.com/prahladyeri/d1e19d8a6d0c7ff23fe3e15f9050b6d3>
 
 Finally, just keep one thing in mind before running the console.php. Your wordpress system might throw an exception in case it detects too many comments being inserted in a loop. To suppress that exception, you need to add the following line of code to the end of your theme's **functions.php** to disable the comment flood filter:
 
-    add_filter('comment_flood_filter', '__return_false');
+```
+add_filter('comment_flood_filter', '__return_false');
+```
 
 Of course, remember to comment that line once you are done importing the comments.
