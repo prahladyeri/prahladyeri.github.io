@@ -21,6 +21,16 @@ paginate:         7
 
 # Custom vars
 version:          2.1.1
+theme_base: '0f'
+# 08 == maroon
+# 09 == light-brown
+# 0a == cream
+# 0b == green
+# 0c == desktop-green
+# 0e == magenta
+# 0d == blue
+# 0f == brown
+# <any-other-value> == black (default)
 
 adsense: "ca-pub-0428291735937735"
 adsense_slot: "9729062115"
