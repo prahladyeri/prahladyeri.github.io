@@ -35,8 +35,9 @@
  * Update the foundational and global aspects of the page.
  */
 
-html {
-  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+html, .pagination 
+{
+  font-family: "segoe ui";
 }
 @media (min-width: 48em) {
   html {
