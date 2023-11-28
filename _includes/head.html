@@ -29,12 +29,12 @@
 		<meta name="twitter:url" content="{{ site.url }}{{ page.url }}" />
 		<meta name="twitter:title" content="{{ post.title }}" />
 		<meta name="twitter:description" content="{{ post.excerpt }}" />
-		{% if post.image %}
-			<meta name="twitter:image" content="{{ site.url }}{{ post.image }}" />
-			<meta name="image" property="og:image" content="{{ site.url }}/{{ post.image }}">
+		{% if page.image %}
+			<meta name="twitter:image" content="{{ site.url }}{{ page.image }}" />
+			<meta name="image" property="og:image" content="{{ site.url }}/{{ page.image }}">
 		{% else %}
-			<meta name="twitter:image" content="{{ site.url }}uploads/cover.jpg" />
-			<meta name="image" property="og:image" content="{{ site.url }}uploads/cover.jpg">
+			<meta name="twitter:image" content="{{ site.url }}/uploads/cover.jpg" />
+			<meta name="image" property="og:image" content="{{ site.url }}/uploads/cover.jpg">
 		{% endif %}
 	{% else %}
 		<meta name="twitter:url" content="{{site.url}}{{page.url}}" />
