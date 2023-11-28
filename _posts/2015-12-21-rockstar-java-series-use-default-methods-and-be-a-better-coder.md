@@ -2,6 +2,7 @@
 layout: post
 title: 'Rockstar Java Series: Use default methods and be a better coder'
 tags: java
+published: false
 ---
 
 **Java 8** comes with a lot more improvements and features than most people seem to realize. One such feature that can help you become a better Java coder is **Default methods**.<!--more-->

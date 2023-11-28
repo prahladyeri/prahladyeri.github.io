@@ -2,6 +2,7 @@
 layout: post
 title: 'Rockstar Java Series: Learn type annotations and be a better coder'
 tags: java
+published: false
 ---
 
 *Java SE 8* comes with a bundle of new features, and not many of them catch the attention of coders until they learn what they are and realize their usefulness. One such feature that can help you become a better Java coder is the ability to declare *type annotations* to any type use.<!--more-->
