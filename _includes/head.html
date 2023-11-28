@@ -27,9 +27,9 @@
 	<meta name="twitter:creator" content="@prahladyeri" />
 	{% if page.id %}
 		<meta name="twitter:url" content="{{ site.url }}{{ page.url }}" />
-		<meta name="twitter:title" content="{{ post.title }}" />
-		<meta name="twitter:text:title" content="{{ post.title }}" />
-		<meta name="twitter:description" content="{{ post.excerpt }}" />
+		<meta name="twitter:title" content="{{ page.title }}" />
+		<meta name="twitter:text:title" content="{{ page.title }}" />
+		<meta name="twitter:description" content="{{ page.excerpt }}" />
 		{% if page.image %}
 			<meta name="twitter:image" content="{{ site.url }}{{ page.image }}" />
 			<meta name="image" property="og:image" content="{{ site.url }}/{{ page.image }}">
