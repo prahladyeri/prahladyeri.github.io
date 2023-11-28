@@ -29,7 +29,7 @@
 		<meta name="twitter:url" content="{{ site.url }}{{ page.url }}" />
 		<meta name="twitter:title" content="{{ page.title }}" />
 		<meta name="twitter:text:title" content="{{ page.title }}" />
-		<meta name="twitter:description" content="{{ page.excerpt }}" />
+		<meta name="twitter:description" content="{{ page.content | markdownify | strip_html | truncatewords: 50 }}" />
 		{% if page.image %}
 			<meta name="twitter:image" content="{{ site.url }}{{ page.image }}" />
 			<meta name="image" property="og:image" content="{{ site.url }}/{{ page.image }}">
