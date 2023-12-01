@@ -28,9 +28,9 @@ layout: default
     <a href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
   {% endfor %}
 ]</span>
-{% if post.discuss %}
+{% if page.discuss %}
 	<h4>Discussions:</h4>
-	{% for link in post.discuss %}
+	{% for link in page.discuss %}
 		{% if link contains 'reddit.com' %}
 			<p><a href='{{link}}'>Reddit</a></p>
 		{% elsif link contains 'tildes.net' %}
