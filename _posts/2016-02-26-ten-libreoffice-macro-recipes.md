@@ -2,7 +2,7 @@
 layout: post
 title: 'Ten useful LibreOffice Macro Recipes'
 tags: libreoffice linux
-links:
+discuss:
     - https://www.reddit.com/r/linux/comments/4kb6el/ten_useful_libreoffice_macro_recipes/
 ---
 
