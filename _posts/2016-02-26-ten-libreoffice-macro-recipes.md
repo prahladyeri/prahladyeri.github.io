@@ -2,29 +2,27 @@
 layout: post
 title: 'Ten useful LibreOffice Macro Recipes'
 tags: libreoffice linux
+links:
+    - https://www.reddit.com/r/linux/comments/4kb6el/ten_useful_libreoffice_macro_recipes/
 ---
 
-Macros are a great way to automate tasks in Spreadsheet applications, be it the good old Microsoft Excel or the equally efficient FOSS alternative, LibreOffice Calc. The best thing about macros is that they are written in a very easy language called [Basic](https://en.wikipedia.org/wiki/BASIC).<!--more-->
+Macros are a great way to automate tasks in Spreadsheet applications, be it the good old Microsoft Excel or the equally efficient FOSS alternative, LibreOffice Calc. The best thing about macros is that they are often written in a very easy to grasp language called [Basic](https://en.wikipedia.org/wiki/BASIC) (though Calc also supports Python these days).
 
-![LibreOffice Logo](/uploads/old/libreofficeCalcLogo.jpg)
+As its very name suggests, Basic is a lenient programming language actually designed with ease of use in mind. For instance, upper/lower case doesn't matter for variable names or keywords (`if/IF`, `sub/Sub`, `function/Function` are equivalents), function braces are optional like Ruby and type-conversion happens automatically. This makes Basic highly useful for both power users and programmers. A LibreOffice Basic macro is just a function or sub procedure which does a specific useful task. In this tutorial, we will see ten such useful macros which can help you with various automation tasks.
 
-*© The LibreOffice Project*
-
-As it’s very name suggests, Basic is a lenient programming language actually designed with ease of use in mind. For instance, upper/lower case doesn’t matter for variable names or keywords (`if/IF`, `sub/Sub`, `function/Function` are equivalents), function braces are optional like Ruby and type-conversion happens automatically. This makes Basic equally useful for both power users and programmers. A LibreOffice Basic macro is just a function or sub procedure which does a specific useful task. In this tutorial, we will see ten such useful macros that can help you with various automation tasks.
-
-1.  [Recipe 0: How to create a LibreOffice macro](#howto)
-2.  [Recipe 1: Read cell contents](#readcell)
-3.  [Recipe 2: Change cell contents](#changecell)
-4.  [Recipe 3: Search and Replace text](#searchandrepl)
-5.  [Recipe 4: Regular Expressions](#regex)
-6.  [Recipe 5: Show File-open dialog](#showopendialog)
-7.  [Recipe 6: Show File-save dialog](#showsavedialog)
-8.  [Recipe 7: File I/O: Read from files](#readfromfiles)
-9.  [Recipe 8: File I/O: Write to files](#writetofiles)
+1. [Recipe 0: How to create a LibreOffice macro](#howto)
+2. [Recipe 1: Read cell contents](#readcell)
+3. [Recipe 2: Change cell contents](#changecell)
+4. [Recipe 3: Search and Replace text](#searchandrepl)
+5. [Recipe 4: Regular Expressions](#regex)
+6. [Recipe 5: Show File-open dialog](#showopendialog)
+7. [Recipe 6: Show File-save dialog](#showsavedialog)
+8. [Recipe 7: File I/O: Read from files](#readfromfiles)
+9. [Recipe 8: File I/O: Write to files](#writetofiles)
 10. [Recipe 9: Load data from a CSV file](#loadfromcsv)
 11. [Recipe 10: Copy text to clipboard](#copytoclipboard)
 12. [Demo](#demo)
-13. [References](#references)
+13. [Further Reading](#references)
 
 Recipe 0: How to create a LibreOffice macro {#howto}
 ------------------------------------------------------
@@ -262,11 +260,11 @@ Your custom processing might involve putting a specific text to the clipboard fr
 Second function is a callback and is used for storing the string to clipboard. The last two are helper functions used by the `SystemClipboard` and `XTransferable` helper objects and are required.
 
 Demo 
---------------
+----
 
 Finally, the working LibreOffice Calc spreadsheet implementing all these examples can be found [here](/uploads/old/macro_recipes.ods).
 
-*Reference:*
+**Further Reading:**
 
 - <http://api.libreoffice.org/examples/examples.html#Basic_examples>
 - <https://forum.openoffice.org/en/forum/viewtopic.php?f=25&t=36441>
