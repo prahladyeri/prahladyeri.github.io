@@ -28,5 +28,21 @@ layout: default
     <a href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
   {% endfor %}
 ]</span>
+{% if post.discuss %}
+	<h4>Discussions:</h4>
+	{% for link in post.discuss %}
+		{% if link contains 'reddit.com' %}
+			<p><a href='{{link}}'>Reddit</a></p>
+		{% elsif link contains 'tildes.net' %}
+			<p><a href='{{link}}'>Tildes</a></p>
+		{% elsif link contains 'news.ycombinator.com' %}
+			<p><a href='{{link}}'>Hacker News</a></p>
+		{% elsif link contains 'lobste.rs' %}
+			<p><a href='{{link}}'>Lobsters</a></p>
+		{% else %}
+			<p><a href='{{link}}'>{{link | truncate: 30}}</a></p>
+		{% endif %}
+	{%endfor%}
+{% endif %}
 {% include as.html %}
 {% include disqus.html %}
