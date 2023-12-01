@@ -5,8 +5,8 @@ tags: ai opinion
 published: true
 image: /uploads/laptop-coffee-mobile.jpeg
 discuss:
-	- https://tildes.net/~tech/1cig/we_are_not_creating_the_right_kind_of_ai
-	- https://news.ycombinator.com/item?id=38472059
+    - https://tildes.net/~tech/1cig/we_are_not_creating_the_right_kind_of_ai
+    - https://news.ycombinator.com/item?id=38472059
 ---
 
 Arts, crafts, literature, even things like computer programming have been the domain of humans since time immemorial. Machines were historically meant to do menial tasks where the human couldn't afford the time or resources. The classic example here is the type-writer, a remarkable machine that helped humans draft letters in a standardized and mechanized form which could then be used for documenting information in an objective form.
