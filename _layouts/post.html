@@ -30,19 +30,21 @@ layout: default
 ]</span>
 {% if page.discuss %}
 	<h4>Discussions:</h4>
+	<ul>
 	{% for link in page.discuss %}
 		{% if link contains 'reddit.com' %}
-			<p><a href='{{link}}'>Reddit</a></p>
+			<li><a href='{{link}}'>Reddit</a></li>
 		{% elsif link contains 'tildes.net' %}
-			<p><a href='{{link}}'>Tildes</a></p>
+			<li><a href='{{link}}'>Tildes</a></li>
 		{% elsif link contains 'news.ycombinator.com' %}
-			<p><a href='{{link}}'>Hacker News</a></p>
+			<li><a href='{{link}}'>Hacker News</a></li>
 		{% elsif link contains 'lobste.rs' %}
-			<p><a href='{{link}}'>Lobsters</a></p>
+			<li><a href='{{link}}'>Lobsters</a></li>
 		{% else %}
-			<p><a href='{{link}}'>{{link | truncate: 30}}</a></p>
+			<li><a href='{{link}}'>{{link | truncate: 30}}</a></li>
 		{% endif %}
 	{%endfor%}
+	</ul>
 {% endif %}
 {% include as.html %}
 {% include disqus.html %}
