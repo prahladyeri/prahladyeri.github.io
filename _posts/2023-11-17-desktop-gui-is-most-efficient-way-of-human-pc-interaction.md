@@ -4,6 +4,10 @@ title: 'Unpopular Opinion: Desktop GUI is the most efficient and fulfilling way 
 tags: desktop windows opinion
 published: true
 image: /uploads/portfolio/dotnet-ordering-app.png
+discuss:
+    - https://www.reddit.com/r/programming/comments/17x9fo5/unpopular_opinion_desktop_gui_is_the_most
+    - https://tildes.net/~tech/1c71/unpopular_opinion_desktop_gui_is_the_most_efficient_and_fulfilling_way_of_human_computer_interaction
+    - https://news.ycombinator.com/item?id=38456816
 ---
 
 In many ways, the classical paradigm of the "WEB" as a mere portal or information resource was the most likable and valuable one in the utilitarian sense. These were the earliest days of the Internet when most of the actual Human-Computer interaction took place in the form of a Windows Desktop GUI and people went online to just "look up" some information they wanted.
