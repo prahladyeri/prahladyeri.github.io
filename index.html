@@ -21,7 +21,7 @@ title: Home
 
 <span class="post-date">{{ post.date | date_to_string }}</span>
 	<div>
-    {{ t_post_summary }} 
+    {% include short/t_post_summary.html %}
 	<a href="{{ post.url }}" class="read-more">Read More</a>
 	</div>
   </div>
