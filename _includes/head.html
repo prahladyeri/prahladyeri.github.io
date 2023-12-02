@@ -1,5 +1,5 @@
 {% capture t_post_summary %}
-post.content | markdownify | strip_html | truncatewords: 50
+{{ post.content | markdownify | strip_html | truncatewords: 50 }}
 {% endcapture %}
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
