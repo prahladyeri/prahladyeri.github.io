@@ -1,4 +1,6 @@
-{% assign t_post_summary=post.content | markdownify | strip_html | truncatewords: 50%}
+---
+t_post_summary: post.content | markdownify | strip_html | truncatewords: 50
+---
 <!DOCTYPE html>
 <html lang="en-us">
 
