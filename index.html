@@ -21,7 +21,7 @@ title: Home
 
 <span class="post-date">{{ post.date | date_to_string }}</span>
 	<div>
-	{{ post.content | markdownify | strip_html | truncatewords: 50 }}
+	{{ t_post_summary }}
 	<a href="{{ post.url }}" class="read-more">Read More</a>
 	</div>
   </div>
