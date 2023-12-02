@@ -21,7 +21,7 @@ paginate:         7
 
 # Custom vars
 version:          2.1.1
-theme_base: '0f'
+theme_base: '0c'
 # 08 == maroon
 # 09 == light-brown
 # 0a == cream
