@@ -16,7 +16,7 @@ The printing press was an extension of that, helped humans create more durable a
 
 But AI is no such thing, there is nothing utilitarian at least in the current forms of AI which are highly discussed and talked about today. The only utility or purpose they seem to have is to get rid of workers and staff through automation, and this itself is often celebrated in social media as if an end in itself. But show me where is the utility in this, for the society, for the tribe?
 
-In that sense, the machine (AI) is an ideal servant but not such a good master. For starters, it's a clumsy concept to being with considering you're coercing a binary logic machine to do tasks which often have very little to do with logic - crafts like singing, writing, teaching, etc. aren't pure logic things, there is also a lot of nuance, chaos and heart involved.
+In that sense, the machine (AI) is an ideal servant but not such a good master. For starters, it's a clumsy concept to begin with considering you're coercing a binary logic machine to do tasks which often have very little to do with logic - crafts like singing, writing, teaching, etc. aren't pure logic things, there is also a lot of nuance, chaos and heart involved.
 
 ![laptop-coffee-mobile](/uploads/laptop-coffee-mobile.jpeg)
 
