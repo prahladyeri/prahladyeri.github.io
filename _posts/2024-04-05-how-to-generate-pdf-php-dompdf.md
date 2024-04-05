@@ -36,7 +36,7 @@ file_put_contents("output.pdf", $output);
 echo "Done";
 ```
 
-Needless to say, an important caveat or limitation here is that like most other libraries, dompdf will not support any and every latest feature in the CSS specification. It is mostly a CSS 2.1 compliant library but supports a few CSS 3 properties. In practice, I've seen most simple HTML tables and paragraphs set with attributes like bg/fg colors, fonts, margins, etc. work flawlessly. Styling with Bootstrap 3.x works too but 4 and above still has some issues.
+Needless to say, an important caveat or limitation here is that like most other libraries, dompdf will not support any and every latest feature in the CSS specification. It is mostly a CSS 2.1 compliant library and supports a few CSS 3 properties. In practice, I've seen most simple HTML tables and paragraphs set with attributes like bg/fg colors, fonts, margins, etc. work flawlessly. Styling with Bootstrap 3.x works too but 4 and above still has some issues.
 
 In the above example, I've taken [an article from Richard Stallman's website](https://stallman.org/articles/necessary-changes.html) which has very basic CSS. [Here is the generated PDF output](/uploads/dompdf-output.pdf).
 
