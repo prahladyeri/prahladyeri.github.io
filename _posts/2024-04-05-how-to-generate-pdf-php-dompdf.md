@@ -48,7 +48,7 @@ After that, you create a `Dompdf\Dompdf` object and load the HTML.
 $dompdf->loadHtml(file_get_contents($url));
 ```
 
-After that, you set any other options you need (such as paper size) and call the `render()` method followed by `$dompdf->output()` method. Lo and behold, your PDF document is now generated!
+After that, you set any other options you need (such as paper size) and call the `$dompdf->render()` method followed by `$dompdf->output()` method. Lo and behold, your PDF document is now generated!
 
 You can also optionally call the `$dompdf->stream()` in which case the PDF will be output to the browser window.
 
