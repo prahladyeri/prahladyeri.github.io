@@ -4,6 +4,9 @@ title: 'Intro to DOMPDF - lightest and simplest PHP library to generate PDF docu
 tags: php dompdf
 published: true
 image: /uploads/code.jpg
+discuss:
+    - https://reddit.com/r/webdev/comments/1bw9p2a/intro_to_dompdf_lightest_and_simplest_php_library/
+    - https://tildes.net/~comp/1fep/intro_to_dompdf_lightest_and_simplest_php_library_to_generate_pdf_documents
 ---
 
 Generating PDF documents out of your app's HTML output is a very common requirement and there are several open source libraries to accomplish this. I came across this need for my project recently and I evaluated many popular ones such as [TCPDF](https://github.com/tecnickcom/TCPDF), [mpdf](https://github.com/mpdf/mpdf), [FPDF](https://github.com/Setasign/FPDF), etc. But the one that truly stood up to my evaluation in terms of efficiency (minimal footprint) and ease of implementation was [DOMPDF](https://github.com/dompdf/dompdf).
