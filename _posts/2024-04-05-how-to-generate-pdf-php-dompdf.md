@@ -50,6 +50,6 @@ $dompdf->loadHtml(file_get_contents($url));
 
 After that, you set any other options you need (such as paper size) and call the `$dompdf->render()` method followed by `$dompdf->output()` method. Lo and behold, your PDF document is now generated!
 
-You can also optionally call the `$dompdf->stream()` in which case the PDF will be output to the browser window.
+You can either save the generated result using `file_put_contents()` as I've done in this example or you can also optionally call the `$dompdf->stream()` in which case the PDF will be output to the browser window directly.
 
 That's it, so simple! Enjoy your pdf generation process using dompdf and if you face any issues, let me know using the discussion links. Happy Coding.
