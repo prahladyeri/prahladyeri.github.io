@@ -29,8 +29,13 @@
 .d-none {display: none;}
 
 .content .post p,
+.content .post code,
+.content .post a,
 .content .post span,
+
 .content .page p,
+.content .page code,
+.content .page a,
 .content .page span
 {
 	font-size: 18px;
