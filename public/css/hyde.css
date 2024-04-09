@@ -35,6 +35,10 @@
 {
 	font-size: 18px;
 }
+
+h1.post-title a {
+	font-size: 22px;
+}
 /*end: custom styling */
 
 /*
