@@ -27,6 +27,14 @@
 
 /*start: custom styling*/
 .d-none {display: none;}
+
+.content .post p,
+.content .post span,
+.content .page p,
+.content .page span
+{
+	font-size: 18px;
+}
 /*end: custom styling */
 
 /*
