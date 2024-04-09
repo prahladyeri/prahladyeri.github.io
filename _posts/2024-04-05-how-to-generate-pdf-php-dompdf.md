@@ -11,8 +11,6 @@ discuss:
 
 Generating PDF documents from your HTML output is a very common requirement and there are several open source libraries to accomplish this in PHP. I came across this need for my project recently and I evaluated many popular ones such as [TCPDF](https://github.com/tecnickcom/TCPDF), [mpdf](https://github.com/mpdf/mpdf), [FPDF](https://github.com/Setasign/FPDF), etc. But the one that truly stood up to my evaluation in terms of efficiency (minimal footprint) and ease of implementation was [DOMPDF](https://github.com/dompdf/dompdf).
 
-![code](/uploads/code.jpg)
-
 DOMPDF is a pure PHP component which can be seamlessly installed using composer:
 
 `composer require dompdf`
