@@ -4,6 +4,9 @@ title: "How to fix the dreaded 'package appears to be invalid' error when instal
 tags: android
 published: true
 image: /uploads/code-unix.jpeg
+discuss:
+	- https://reddit.com/r/androiddev/comments/1c0hnyc/how_to_fix_the_dreaded_package_appears_to_be/
+	- https://tildes.net/~comp/1fiv/how_to_fix_the_dreaded_package_appears_to_be_invalid_error_when_installing_apks
 ---
 
 When you try to manually install an Android APK on your phone either developed by yourself or received from someone through WhatsApp, you are typically stuck with an error similar to this:
