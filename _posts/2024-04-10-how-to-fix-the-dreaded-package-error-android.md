@@ -9,7 +9,7 @@ discuss:
     - https://tildes.net/~comp/1fiv/how_to_fix_the_dreaded_package_appears_to_be_invalid_error_when_installing_apks
 ---
 
-When you try to manually install an Android APK on your phone either developed by yourself or received from someone through WhatsApp, you are typically stuck with an error similar to this:
+When you try to manually install an Android APK on your phone, you are typically stuck with an error similar to this:
 
 ![android package error](/uploads/android-package-error.jpg)
 
