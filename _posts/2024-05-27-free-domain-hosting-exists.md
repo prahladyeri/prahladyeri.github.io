@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Free domains exist but with little strings attached"
-tags: web, hosting, php
+tags: web domain hosting
 published: true
 image: /uploads/code-unix.jpeg
 ---
