@@ -5,6 +5,7 @@ tags: web domain hosting
 published: true
 image: /uploads/code-unix.jpeg
 ---
+
 After the recent demise of [freenom.com](https://freenom.com/), most webdev related subs and other forums on the Interwebs are very keen on this topic to somehow try and fill that void, find some alternatives. Being a PHP Freelancer, I often find the need for temporary domain names to experiment with and while USD 20 per year might sound like pittance for many folks in the West, it means a considerable amount in emerging economies of Asia.
 
 If you're on the lookout for a free domain, you need to know your requirements thoroughly so that you'll understand whether you can live with certain limitations of the free service or not. For starters, nobody is giving out any top level CC TLDs like .com anymore, Freenom used to give them for .tk, .ga, etc. but now that service is halted.

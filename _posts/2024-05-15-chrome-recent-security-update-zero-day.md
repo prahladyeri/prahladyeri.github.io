@@ -5,6 +5,7 @@ tags: chrome, browser
 published: false
 image: /uploads/code-unix.jpeg
 ---
+
 So few days ago, Google Chrome released this much talked about "urgent security update" for this dastardly zero day vulnerability much talked about even on mainstream blogs like [Mint](https://www.livemint.com/technology/tech-news/urgent-security-alert-new-zero-day-vulnerability-discovered-in-google-chrome-cert-in-issues-high-severity-warning-11715662998232.html) and [News18](https://www.news18.com/tech/indian-govt-warns-about-major-google-chrome-security-alert-what-you-need-to-know-8887378.html).
 
 But I'm ready to bet not one amongst you must be having the slightest idea of what this bug actually is and how likely are you of getting affected by it. After all, the greatest fear or concern one has upon hearing phrases like "urgent security alert" and "zero day" is that their device shouldn't get hacked by some rouge application or website, right?
