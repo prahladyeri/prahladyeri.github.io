@@ -2,7 +2,13 @@ h1 {
 	font-weight: unset;
 }
 
+span.post-date {
+	font-family: cursive;
+	font-size: 14px;
+}
+
 .content {
 	padding-top: 2rem;
 	padding-bottom: 2rem;
 }
+
