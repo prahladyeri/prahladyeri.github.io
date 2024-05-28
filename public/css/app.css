@@ -1,3 +1,7 @@
+h1 {
+	font-weight: unset;
+}
+
 .content {
 	padding-top: 2rem;
 	padding-bottom: 2rem;

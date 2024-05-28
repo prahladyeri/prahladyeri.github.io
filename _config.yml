@@ -20,7 +20,7 @@ author:
 paginate:         10
 
 # Custom vars
-version:          2.1.2
+version: 2.1.2
 theme_base: '00'
 # 00 == dark
 # 08 == maroon
