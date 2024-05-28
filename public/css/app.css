@@ -13,6 +13,14 @@ span.post-date {
 	padding-bottom: 2rem;
 }
 
-.content p, .content code, .content a, .content span {
+div.post, .content p, .content code, .content a, .content span {
     font-size: 20px;
+}
+
+.content span.post-tags {
+    font-size: 18px;
+}
+
+.content span.post-date {
+    font-size: 16px;
 }
