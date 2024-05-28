@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: domain"
-tag: domain
+title: "Tag: listicle"
+tag: listicle
 robots: noindex
 ---

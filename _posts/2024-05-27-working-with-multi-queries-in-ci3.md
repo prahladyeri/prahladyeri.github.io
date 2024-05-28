@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Working with multi-queries in CodeIgniter"
-tags: php, codeigniter
+tags: php codeigniter
 published: true
 image: /uploads/code-php.jpeg
 ---
