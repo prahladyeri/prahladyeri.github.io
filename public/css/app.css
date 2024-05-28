@@ -12,3 +12,6 @@ span.post-date {
 	padding-bottom: 2rem;
 }
 
+.content p, .content code, .content a, .content span {
+    font-size: 20px;
+}
