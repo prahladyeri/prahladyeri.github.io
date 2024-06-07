@@ -22,7 +22,7 @@ Most importantly, you can click on the "Client Snippet" button which will guide 
 
 Once you do that, your static blog should look something like this:
 
-![cm-client](/uploads/cm-client.png)
+![cm-client](/uploads/cm/cm-client.png)
 
 At the place where you added the `script` tag, you should be able to see a ready comment block showing all existing comments along with a submit form to post one.
 
