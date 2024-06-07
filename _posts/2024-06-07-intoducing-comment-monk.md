@@ -3,7 +3,7 @@ layout: post
 title: "Introducing Comment-Monk: Simple comment hosting system for static blogs and websites"
 tags: php webdev wordpress
 published: true
-image: /uploads/comment-monk.jpeg
+image: /uploads/cm/cm-dashboard.png
 ---
 
 I wanted to implement a comment hosting system for my static blog <https://prahladyeri.github.io>, just basic Wordpress.org style commenting feature with user's name, website, etc., no complicated logins or sign-ups or third-party platforms. The user reads your blog, posts a comment, and you approve from the backend (or alternatively, it gets auto-approved and you get an email notification). I had decided on something like Disqus initially but found the inspiration from [wptavern.com](https://wptavern.com/reflections-on-my-2-weeks-writing-for-the-tavern), it's quite a popular blog on the Wordpress streets and if they can run a simple commenting system then why can't we?
@@ -12,11 +12,11 @@ Since github pages doesn't provide any backend PHP scripting facility, I had to 
 
 Once you start the app, it takes you to the Install page where you can register with your details and credentials using which you can login to the app and administer it as a super user. It also asks the website or domain of your blog where you'll host the commenting system.
 
-![cm-login](/uploads/cm-login.png)
+![cm-login](/uploads/cm/cm-login.png)
 
 Once you login and go to home page, you can see this screen where you can view and manage your comments. Right now, you can just view and delete your comments but more features are en-route in the upcoming versions. You can also set your user preferences from the "Actions" menu on the top right.
 
-![cm-dashboard](/uploads/cm-dashboard.png)
+![cm-dashboard](/uploads/cm/cm-dashboard.png)
 
 Most importantly, you can click on the "Client Snippet" button which will guide you to implement your frontend HTML code to embed the comments.
 
