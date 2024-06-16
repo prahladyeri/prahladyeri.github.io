@@ -2,7 +2,7 @@
 layout: post
 title: "Five most aesthetically pleasing fonts for your Web Apps"
 tags: webdev php bootstrap
-published: false
+published: true
 image: /uploads/grocery-cart.jpg
 ---
 
