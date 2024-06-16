@@ -38,6 +38,12 @@ As for fonts, I happen to use the open source Google Fonts of which there are a 
 
 <p class='LibreBaskerville'><b>Libre Baskerville</b> is yet another elegant web font. Based on the American Type Founder's Baskerville from 1941, Libre Baskerville is optimized for body text (approximately 16px) and looks beautiful on typical web apps as well.</p>
 
+To include a font from Google Fonts in your app, just link to their stylesheet with the "family" querystring parameter set to whatever you want as I've done on this very page. If there are multiple, you can separate them using the filter character (|).
+
+```html
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik|Inter|Mulish|Roboto|Libre+Baskerville|Open+Sans|Lato">
+```
+
 ```bash
 @todo: Create a placeholder app on github.io using bootstrap components to test these fonts.
 ```
