@@ -22,7 +22,7 @@ Without Google Fonts, our typography would be in limbo! Now, I'm neither a web d
 
 As for fonts, I happen to use the open source Google Fonts of which there are a zillion varieties. But what I've found over the years is that five of them 
 
-<p class='Rubik'><b>Rubik</b> is my favorite font when it comes to web app development. The combination of Rubik font and a comprehensive CSS framework like Bootstrap powerful is quite powerful and formidable. You'll see many professional open source apps using this font in the wild. The popular software ERPNext used it extensively until very recently, only now they've switched to Inter.</p>
+<p class='Rubik'><b>Rubik</b> is one of my favorite fonts when it comes to web app development. The combination of Rubik font and a comprehensive CSS framework like Bootstrap is quite powerful and formidable. You'll see many professional open source apps using this font in the wild. The popular software ERPNext used it extensively until very recently, only now they've switched to Inter.</p>
 
 <p class='Inter'><b>Inter</b> is yet another aesthetically pleasing font, especially for web applications. Its <a href='https://fonts.google.com/specimen/Inter'>fonts page</a> says, <i>"Inter is a variable font family carefully crafted & designed for computer screens."</i> I've largely found this font quite readable on app screens.</p>
 
