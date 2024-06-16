@@ -6,7 +6,7 @@ tags: keyword-research seo research blogging
 
 One of the most challenging aspects of blogging is how to perform research and more importantly, organizing your research. As a technology blogger, I face this problem too, so some days ago, I did some research on... guess what? Yep, on how to organize research for writing articles or blog posts!
 
-![grocery cart](/uploads/grocery-cart-with-item-1005638.jpg)
+![grocery cart](/uploads/grocery-cart.jpg)
 
 A natural question that arises here is why should bloggers organize their research in the first place? There are many benefits to it, the most obvious is that because your writing reflects your thinking or thought process itself, getting into a regular habit of organizing your research work will then force your mind to organize your thought patterns too. This will, in the longer term, make you a better thinking and more intellectual person, and also help your creativity as your creative mind will now have a much larger and more organized arsenal of knowledge to come up with more ideas more quickly.
 
