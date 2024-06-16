@@ -26,7 +26,7 @@ As for fonts, I happen to use the open source Google Fonts of which there are a 
 
 <p class='Inter'><b>Inter</b> is yet another aesthetically pleasing font, especially for web applications. Its <a href='https://fonts.google.com/specimen/Inter'>fonts page</a> says, <i>"Inter is a variable font family carefully crafted & designed for computer screens."</i> I've largely found this font quite readable on app screens.</p>
 
-<p class='Mulish'><b>Mulish</b> is the Google's open source equivalent of Adobe's original Muli font. It looks quite elegant and aesthetic on web apps. I've used the Mulish font in my open source side project called Comment Monk, a self-hosted comments CMS for static blogs.</p>
+<p class='Mulish'><b>Mulish</b> is the Google's open source equivalent of Adobe's original Muli font. It looks quite elegant and aesthetic on web apps. I've used the Mulish font in my open source side project called [Comment Monk](https://github.com/prahladyeri/comment-monk), a self-hosted comments CMS for static blogs.</p>
 
 ![cm-dashboard](/uploads/cm/cm-dashboard.png)
 
