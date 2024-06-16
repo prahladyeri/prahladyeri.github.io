@@ -6,7 +6,7 @@ published: true
 image: /uploads/grocery-cart.jpg
 ---
 
-Without Google Fonts, our typography would be in limbo! Now, I'm neither a web designer nor have an eye for the pixel perfect and aesthetic design which a pro designer definitely would. Instead, my usual workflow is to cobble together web components like bootstrap, jquery, codeigniter, etc. and try to build something useful out of it.
+Without Google Fonts, our typography would be in limbo! Now, I'm neither a web designer nor have an eye for the pixel perfect and aesthetic design which a pro designer usually does. Instead, my usual workflow is to cobble together web components like bootstrap, jquery, codeigniter, etc. and try to build something useful out of it.
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik|Inter|Mulish|Roboto|Libre+Baskerville|Open+Sans|Lato">
 
@@ -20,9 +20,9 @@ Without Google Fonts, our typography would be in limbo! Now, I'm neither a web d
 .LibreBaskerville { font-family: "Libre Baskerville"; }
 </style>
 
-As for fonts, I happen to use the open source Google Fonts of which there are a zillion varieties. But what I've found over the years is that five of them 
+As for fonts, I happen to use the open source Google Fonts of which there are a zillion varieties. But what I've found over the years is that a few of them outshine the rest when it comes to actual web and mobile applications (as opposed to other kind of websites such as static sites and blogs).
 
-<p class='Rubik'><b>Rubik</b> is one of my favorite fonts when it comes to web app development. The combination of Rubik font and a comprehensive CSS framework like Bootstrap is quite powerful and formidable. You'll see many professional open source apps using this font in the wild. The popular software ERPNext used it extensively until very recently, only now they've switched to Inter.</p>
+<p class='Rubik'><b>Rubik</b> is one of my favorite fonts when it comes to app development. The combination of Rubik font and a comprehensive CSS framework like Bootstrap is quite powerful and formidable. You'll see many professional open source apps using this font in the wild. The popular software ERPNext used it extensively until very recently, only now they've switched to Inter.</p>
 
 <p class='Inter'><b>Inter</b> is yet another aesthetically pleasing font, especially for web applications. Its <a href='https://fonts.google.com/specimen/Inter'>fonts page</a> says, <i>"Inter is a variable font family carefully crafted & designed for computer screens."</i> I've largely found this font quite readable on app screens.</p>
 
