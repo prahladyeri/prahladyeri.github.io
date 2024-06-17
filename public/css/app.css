@@ -2,6 +2,9 @@ h1 {
 	font-weight: unset;
 }
 
+/*start: custom styling*/
+.d-none {display: none;}
+
 
 span.post-date {
 	font-family: cursive;

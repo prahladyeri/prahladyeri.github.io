@@ -23,6 +23,6 @@ Now, it might happen in some cases that enabling this firewall rule for ICMP sti
 
 ![ping wf-detail](/uploads/ping-icmp/wf-detail.png)
 
-Microsoft, in their great wisdom, thought that if your connection profile is Private or Public, you shouldn't have any need to ping an Internet resource like google.com! In this case, either you'll have to change your network connection through the adaptor settings in control panel, or simply add a new outbound firewall rule that allows all outbound ICMP requests. If you choose to do the latter, you can then disable the built-in rules that you enabled earlier.
+Microsoft, in their great wisdom, thought that if your connection profile is Private or Public, you shouldn't have any need to ping an Internet resource like google.com! In this case, you'll have to either change your network connection profile to Domain through the control panel, or simply add a new outbound firewall rule that allows all outbound ICMP requests. If you choose to do the latter, you can then disable the built-in rules that you enabled earlier.
 
 Hopefully, your outbound ping requests should start working by now!
