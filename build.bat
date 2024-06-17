@@ -1,3 +1,4 @@
+@echo off
 echo "generating tags"
 python tag_gen.py
 echo "fetching projects"
