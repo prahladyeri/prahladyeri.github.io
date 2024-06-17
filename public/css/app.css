@@ -2,6 +2,10 @@ h1 {
 	font-weight: unset;
 }
 
+div.sidebar-about h1 {
+	font-size: 35px;
+}
+
 html, .pagination, a, p {
 	font-family: "Libre Baskerville","segoe ui";
 }
