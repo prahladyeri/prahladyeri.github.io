@@ -5,7 +5,7 @@ layout: page
 
 <div id="projects" >
 <div class='block-btn'>
-    <a class='btn' href='https://paypal.me/prahladyeri'><i class='fab fa-paypal'></i>&nbsp;PayPal</a>
+    <a class='btn fab fa-paypal' href='https://paypal.me/prahladyeri'>&nbsp;PayPal</a>
     <a class='btn fab fa-patreon' href='https://www.patreon.com/prahladyeri'>&nbsp;Patreon</a>
 </div>
 

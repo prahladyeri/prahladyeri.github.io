@@ -2,7 +2,10 @@ h1 {
 	font-weight: unset;
 }
 
-/*start: custom styling*/
+html, .pagination, a, p {
+	font-family: "segoe ui";
+}
+
 .d-none {display: none;}
 
 .btn {
