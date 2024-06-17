@@ -44,7 +44,8 @@ span.post-date {
 	padding-bottom: 2rem;
 }
 
-div.post, .content p, .content code, .content a, .content span {
+div.post, .content p, .content code, .content a, 
+.content span, .content li {
     font-size: 20px;
 }
 
