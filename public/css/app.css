@@ -10,8 +10,8 @@ h1 {
     border-radius: 4px;
     padding: 4px;
     background-color: ivory;
-    max-width: 400px;
-    display: inline-block;
+    /* max-width: 350px; */
+    /* display: inline-block; */
 }
 
 span.post-date {
