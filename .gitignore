@@ -1,6 +1,7 @@
 # custom
 *.7z
 *.py
+*.bat
 
 # Ignore docs files
 _gh_pages

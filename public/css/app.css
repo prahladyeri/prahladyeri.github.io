@@ -10,10 +10,15 @@ h1 {
     border-radius: 4px;
     padding: 4px;
     background-color: ivory;
-	margin: 4px 0 4px 0;
-    /* max-width: 350px; */
-    /* display: inline-block; */
+	margin: 4px 4px 4px 4px;
+    width: 350px;
+	height: 170px;
+	font: consolas;
+	vertical-align: top;
+    display: inline-block;
 }
+
+.project-item.d-none {display: none;}
 
 span.post-date {
 	font-family: cursive;
