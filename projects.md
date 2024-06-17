@@ -14,7 +14,7 @@ layout: page
 <div class='project-item d-none text-muted'>
 	Project: <a href="javascript:" class='name'></a><br>
 	Description: <label class='description'></label><br>
-	Stars: <label class='stars'></label><br>
+	Stars: <label class='stars fas fa-star'></label><br>
 	Last commit: <label class='pushed_at'></label><br>
 </div>
 
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function(){
 			item.querySelector(".name").attributes.href.value= data[i].html_url;
 			item.querySelector(".pushed_at").innerHTML = data[i].pushed_at;
 			item.querySelector(".description").innerHTML = data[i].description;
-			item.querySelector('.stars').innerHTML = data[i].stars;
+			item.querySelector('.stars').innerHTML = " " + data[i].stars;
 
 			document.querySelector("#projects").appendChild(item);
 		}
