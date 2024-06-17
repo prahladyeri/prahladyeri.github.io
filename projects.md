@@ -11,7 +11,6 @@ layout: page
 	Description: <label class='description'></label><br>
 	Stars: <label class='stars'></label><br>
 	Last commit: <label class='pushed_at'></label><br>
-	<hr>
 </div>
 
 <script type='module'>

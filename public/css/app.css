@@ -5,6 +5,14 @@ h1 {
 /*start: custom styling*/
 .d-none {display: none;}
 
+.project-item {
+    border: 1px solid grey;
+    border-radius: 4px;
+    padding: 4px;
+    background-color: ivory;
+    max-width: 400px;
+    display: inline-block;
+}
 
 span.post-date {
 	font-family: cursive;
