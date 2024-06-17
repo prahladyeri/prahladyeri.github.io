@@ -39,7 +39,7 @@ html, .pagination, a, p {
 .project-item.d-none {display: none;}
 
 span.post-date {
-	font-family: cursive;
+	/* font-family: cursive; */
 	font-size: 14px;
 }
 
