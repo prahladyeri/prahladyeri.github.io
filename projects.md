@@ -7,7 +7,7 @@ layout: page
 <span class="fa-spin">Loading...</span>
 </div>
 <div class='project-item d-none text-muted'>
-	Project: <a class='name'></a><br>
+	Project: <a href="javascript:" class='name'></a><br>
 	Description: <label class='description'></label><br>
 	Stars: <label class='stars'></label><br>
 	Last commit: <label class='pushed_at'></label><br>
