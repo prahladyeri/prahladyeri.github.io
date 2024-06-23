@@ -72,3 +72,10 @@ div.post, .content p, .content code, .content a,
 .content .share-buttons {
 	float: right;
 }
+
+.content .share-buttons a.far,
+.content .share-buttons a.fas,
+.content .share-buttons a.fab
+ {
+	color:  rgb(154,154,154);
+}
