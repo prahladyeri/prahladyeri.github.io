@@ -19,7 +19,7 @@ title: Home
   {% endfor %}
 ]</span>
 
-<span class="post-date">{{ post.date | date_to_string }}</span>
+<span class="post-date"><i class='far fa-calendar-alt'></i>&nbsp;{{ post.date | date_to_string }}</span>
 	<div>
     {% include short/t_post_summary.html %}
 	<a href="{{ post.url }}" class="read-more">Read More</a>
