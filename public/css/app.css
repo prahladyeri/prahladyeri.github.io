@@ -54,6 +54,12 @@ span.post-date {
 	font-size: 14px;
 }
 
+.content span.post-date {
+    font-size: 16px;
+	display: inline-block;
+}
+
+
 .content {
 	padding-top: 2rem;
 	padding-bottom: 2rem;
@@ -68,10 +74,6 @@ div.post, .content p, .content code, .content a,
     font-size: 18px;
 }
 
-.content span.post-date {
-    font-size: 16px;
-	display: inline-block;
-}
 
 .content .share-buttons {
 	float: right;
