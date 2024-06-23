@@ -2,8 +2,8 @@
 #markdown: kramdown
 #highlighter:      pygments
 exclude:
-  "hyde-theme-copyright.md"
-  "LICENSE.md"
+  - hyde-theme-copyright.md
+  - LICENSE.md
 
 # Permalinks
 permalink:        /blog/:year/:month/:title.html
