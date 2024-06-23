@@ -4,7 +4,12 @@ layout: default
 
 <div class="post">
   <h1 class="post-title">{{ page.title }}</h1>
-  <span class="post-date">{{ page.date | date_to_string }}</span>
+  <span class="post-date"><i class='far fa-clock'></i>&nbsp;6 mins</span>
+  <span class="post-date"><i class='far fa-calendar-alt'></i>&nbsp;{{ page.date | date_to_string }}</span>
+  <span class="share-buttons">
+	<a class='fab fa-twitter' href="https://x.com/"></a>
+	<a class='fab fa-reddit-alien' href="https://reddit.com/"></a>
+  </span>
   {{ content }}
 </div>
 <!-- <div class="related"> -->
