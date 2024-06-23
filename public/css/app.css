@@ -69,6 +69,9 @@ div.post, .content p, .content code, .content a,
 .content span, .content li {
     font-size: 20px;
 }
+.content .post p {
+	text-align: justify;
+}
 
 .content span.post-tags {
     font-size: 18px;
