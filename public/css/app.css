@@ -74,6 +74,11 @@ div.post, .content p, .content code, .content a,
     font-size: 18px;
 }
 
+.content span.post-tags code {
+    font-family: consolas;
+}
+
+
 
 .content .share-buttons {
 	float: right;
