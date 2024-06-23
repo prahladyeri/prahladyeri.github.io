@@ -8,8 +8,10 @@ layout: default
   &nbsp;&nbsp;&nbsp;&nbsp;
   <span class="post-date"><i class='far fa-calendar-alt'></i>&nbsp;{{ page.date | date_to_string }}</span>
   <span class="share-buttons">
-	<a class='fab fa-twitter' href="https://x.com/"></a>
-	<a class='fab fa-reddit-alien' href="https://reddit.com/"></a>
+	<a class='fab fa-twitter' href="https://x.com/intent/tweet?text={{page.title}}&url={{page.url}}&via=%40prahladyeri"></a>
+	<a class='fab fa-reddit-alien' href="https://reddit.com/submit?url={{page.url}}"></a>
+	<a class='fab fa-y-combinator' href="https://news.ycombinator.com/submitlink?u={{page.url}}"></a>
+	<a class='fab fa-linkedin' href="https://www.linkedin.com/shareArticle?mini=true&url={{page.url}}&title={{page.title}}&source=prahladyeri.github.io"></a>
   </span>
   {{ content }}
 </div>
