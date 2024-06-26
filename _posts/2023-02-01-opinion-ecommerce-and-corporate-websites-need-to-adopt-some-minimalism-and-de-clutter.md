@@ -2,7 +2,7 @@
 layout: post
 title: 'Ecommerce and corporate websites should adopt minimalism and de-clutter'
 published: true
-tags: design efficiency ergonomics web-development
+tags: design efficiency ergonomics web-development digital-minimalism
 ---
 
 Most senior managers and sales people in the 80s and 90s used to wear suits or blazers like this while going to work. And while t-shirts and jeans have become the norm today (some IT firms even allow bermuda shorts!), it's important to understand the old thought processes and prejudices because the same thing applies to a large extent to many of today's websites and cluttered ways of life.

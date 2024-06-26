@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How I made my web pages load 10x faster'
-tags: design efficiency ergonomics web-development
+tags: design efficiency ergonomics web-development digital-minimalism
 ---
 
 Update: As of 1st November, 2023, I have switched to the default Jekyll site generator from Pelican as I found the deployment and Github Pages workflow easier. However, the point of this article still stands.
