@@ -45,13 +45,13 @@ layout: default
 	<ul>
 	{% for link in page.discuss %}
 		{% if link contains 'reddit.com' %}
-			<li><a href='{{link}}'>Reddit</a></li>
+			<li><a href='{{link}}'>reddit.com</a></li>
 		{% elsif link contains 'tildes.net' %}
-			<li><a href='{{link}}'>Tildes</a></li>
+			<li><strike><a href='{{link}}'>tildes.net</a></strike></li>
 		{% elsif link contains 'news.ycombinator.com' %}
-			<li><a href='{{link}}'>Hacker News</a></li>
+			<li><a href='{{link}}'>news.ycombinator.com</a></li>
 		{% elsif link contains 'lobste.rs' %}
-			<li><a href='{{link}}'>Lobsters</a></li>
+			<li><a href='{{link}}'>lobste.rs</a></li>
 		{% else %}
 			<li><a href='{{link}}'>{{link | truncate: 30}}</a></li>
 		{% endif %}
