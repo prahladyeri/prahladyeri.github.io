@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Who exactly I am as a soul? - A crash course in Advait Vedanta'
+title: 'Who exactly I am as a soul? - A crash course in Advaita Vedanta'
 published: true
 tags: spirituality
 ---
@@ -9,9 +9,9 @@ tags: spirituality
 
 Do you even think that you have a soul or consciousness as separate entity than the physical body? If not, you're an *absolute materialist*. On the other hand, do you think you live in a transient world of Matrix or it's a long-term dream and the reality will be faced only when you go out of it and meet the creator? In this case, you're an *absolute spiritualist*. In Indian philosophy or *Darshan Shastras*, these are the two polar opposites (material and spiritual), the former represented by *Charvaka* and latter by *Advait Vedanta* school of thoughts. Even Buddhism and Jainism generally lean towards spiritual than material.
 
-The ideal approach to life is to balance out these philosophies and not put all the money in any one stock! However, the spiritual and material tendencies of humans also depend a lot on circumstances. An ambitious and materialistically wealthy person in the youth phase of their life will put more stock in materialism as that is what paying off right now. On the other hand, someone who has aged beyond 40-50s and/or someone who is in a declining phase and facing difficulties might incline more towards spirituality.
+The ideal approach to life is to balance out these philosophies and not put all the money in any one stock! However, the spiritual and material tendencies of humans also depend a lot on circumstances. An ambitious and materialistically wealthy person in the youth phase of their life will put more stock in materialism as that is paying off right now. On the other hand, someone who has aged beyond 40-50s and/or someone who is in a declining phase and facing difficulties might incline more towards spirituality.
 
-Even if you can't answer that question or ever thought about it, everyone does have a working theory of sorts about who they are. And that working theory determines literally everything in their life - their choice of food, clothes, lifestyle, expected salary and even political inclination!
+Even if you can't answer that question or ever thought about it, everyone does have a "working theory" of sorts about who they are in their minds. And that working theory determines literally everything in their life - their choice of food, clothes, lifestyle, attitude towards wealth, expected salary and even political inclination!
 
 As per Advaita theory, deep within the subconscious mind, there is an inner urge in every soul to know itself, it's literally crying out "Who am I?". The first cry of an infant when it lands on the Earth is reflective of that. Having failed to get an answer, the soul then attaches to whichever identity it finds around, the identities relating to relationships, career, caste, creed, religion, ideology, etc. Latching to these identities then becomes a substitute for seeking that timeless answer, in fact it becomes an objective in itself, driven by desires and emotions through life.
 
