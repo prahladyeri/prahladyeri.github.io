@@ -27,6 +27,8 @@ Indeed, declaring oneself as God seems foolhardy or even lunatic in a fully mate
 
 Even Buddhism is pretty much based on the idea that the material world is transient and not substantial, the Mahayana branch goes even further and talks of a [Pure Land](https://en.wikipedia.org/wiki/Pure_Land_Buddhism), the better version of this Matrix where folks wanting to achieve liberation can go after this life ends.
 
+![mesh](/uploads/mesh.jpg)
+
 Other factors that support a "fluxed" Matrix like reality:
 
 - **The Economic theory of diminishing marginal utility**. Nothing in this world brings *yatharth* or lasting happiness. Even the best of SUVs, the best brand of alcohol, the best gated community will give you dopamine only till a certain point. Post that, the dopamine resistance sets in and so does the *Adhyatmic* tapa or Spiritual depression.
