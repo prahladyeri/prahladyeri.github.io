@@ -19,7 +19,7 @@ The moment you answer that question, and actually realize what that answer is, *
 
 The Gita describes three kinds of *tapas* or depressions - *Adi bhautik* (material/wealth related depressions), *Adi daivik* (depressions arising out of fate or acts of God like pandemic, disease, accidents, etc.) and finally *Adhyatmic* (spiritual depression). If a soul has achieved everything they could in terms of material wealth and they're still unhappy or depressed, it only means they're now ready to deal with that final or ultimate question in spirituality.
 
-Sri Adi Shankaracharya, the author of Advaita Vedanta, has composed a beautiful Sanskrit poem called [*Nirvana Shatakam*](https://www.youtube.com/watch?v=LXtNqL2vxoA) which beautifully reflects on each one of these material sheaths or layers one by one. It declares and distances itself from each one of these sheaths like mind, intellect, ego, relationships, etc.
+Sri Adi Shankaracharya, the author of Advaita Vedanta, has composed a beautiful Sanskrit poem called [*Nirvana Shatakam*](https://www.youtube.com/watch?v=LXtNqL2vxoA) which beautifully reflects on each one of these material sheaths or layers one by one. The soul declares and distances itself from each one of these sheaths like mind, intellect, ego, relationships, etc.
 
 In an attempt to answer the ultimate question, Adi Shankaracharya declares every now and then *"Shivoham Shivoham"* (*I am Shiva or God*) in that poem. This has been one of the most controversial aspects of advaita vedanta, along with his other famous phrase *"Aham brahmasmi"* which also means "I am God", and gets criticized a lot. Being born in a dvaita tradition family, I've often heard this criticism by many - "How can one declare themselves as God?".
 
