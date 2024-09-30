@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Who exactly am I as a soul? - A crash course in Advait Vedanta'
+title: 'Who exactly I am as a soul? - A crash course in Advait Vedanta'
 published: true
 tags: spirituality
 ---
