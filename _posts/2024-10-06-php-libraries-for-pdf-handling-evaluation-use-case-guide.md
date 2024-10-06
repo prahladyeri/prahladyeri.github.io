@@ -10,7 +10,7 @@ PDF generation and processing is a common requirement in many web applications, 
 ---
 
 ### 1. **FPDF**
-#### Overview
+
 **FPDF** is one of the most basic and lightweight libraries for creating PDF files with PHP. It requires no external dependencies and allows developers to generate PDFs from scratch using a simple API.
 
 #### Pros:
@@ -30,7 +30,7 @@ PDF generation and processing is a common requirement in many web applications, 
 ---
 
 ### 2. **TCPDF**
-#### Overview
+
 **TCPDF** is a robust, feature-rich library that builds on the simplicity of FPDF but provides more advanced capabilities like support for HTML, Unicode, and complex layouts.
 
 #### Pros:
@@ -52,7 +52,7 @@ PDF generation and processing is a common requirement in many web applications, 
 ---
 
 ### 3. **mPDF**
-#### Overview
+
 **mPDF** is based on FPDF and HTML2PDF and is designed for converting HTML content into PDFs. It provides a good balance between simplicity and features, offering an easy way to convert web pages into PDFs.
 
 #### Pros:
@@ -74,7 +74,7 @@ PDF generation and processing is a common requirement in many web applications, 
 ---
 
 ### 4. **Snappy (wkhtmltopdf)**
-#### Overview
+
 **Snappy** is a wrapper for the **wkhtmltopdf** command-line tool that uses WebKit to render HTML as PDF. It’s known for producing high-quality, accurate PDFs from complex HTML/CSS structures.
 
 #### Pros:
@@ -96,7 +96,7 @@ PDF generation and processing is a common requirement in many web applications, 
 ---
 
 ### 5. **PDFParser**
-#### Overview
+
 **PDFParser** is a powerful library for parsing and extracting content from existing PDF files. It focuses on analyzing and extracting text, images, and metadata rather than creating new PDFs.
 
 #### Pros:
@@ -115,7 +115,7 @@ PDF generation and processing is a common requirement in many web applications, 
 ---
 
 ### 6. **SetaPDF**
-#### Overview
+
 **SetaPDF** is a commercial-grade PHP library for professional-level PDF processing. It offers features like form filling, signing, and advanced manipulation of PDF files.
 
 #### Pros:
@@ -135,7 +135,7 @@ PDF generation and processing is a common requirement in many web applications, 
 ---
 
 ### 7. **FPDI**
-#### Overview
+
 **FPDI** is an extension to FPDF and TCPDF that allows you to import pages from existing PDFs and use them in newly generated PDFs. It's perfect for modifying and merging PDFs.
 
 #### Pros:
@@ -154,7 +154,7 @@ PDF generation and processing is a common requirement in many web applications, 
 ---
 
 ### 8. **PDFMerger**
-#### Overview
+
 **PDFMerger** is a small, easy-to-use library for merging PDF files. It simplifies the process of combining multiple PDF files into one document.
 
 #### Pros:
@@ -174,7 +174,6 @@ PDF generation and processing is a common requirement in many web applications, 
 
 ### 9. **Dompdf**
 
-#### Overview
 **Dompdf** is one of the most popular PHP libraries for converting HTML and CSS to PDF. It’s a powerful library that uses a layout engine based on HTML5 and CSS3, allowing developers to generate PDFs from existing web pages or dynamically built HTML documents.
 
 #### Pros:
@@ -214,11 +213,10 @@ In summary, **Dompdf** is a great option for converting existing HTML content in
 - **TCPDF**: Ideal for generating complex, feature-rich PDFs with support for HTML, Unicode, and custom fonts.
 - **mPDF**: Best for converting web pages (HTML + CSS) into PDFs. Great for forms, invoices, and reports designed for the web.
 - **Snappy (wkhtmltopdf)**: Go-to for pixel-perfect conversion of complex HTML/CSS to PDFs, especially for reports or invoices.
-- **PDFParser**:
-
- Suitable for extracting text and metadata from existing PDF files.
+- **PDFParser**: Suitable for extracting text and metadata from existing PDF files.
 - **SetaPDF**: The choice for enterprise-level projects requiring secure PDF handling, digital signatures, and form processing.
 - **FPDI**: Use when you need to import or manipulate existing PDFs within new PDF files.
 - **PDFMerger**: Perfect for merging multiple PDFs into one document, ideal for report bundling.
+- **Dompdf**: For converting HTML/CSS to PDF in small to medium-sized projects with simple to moderate layouts. It's ideal for web applications needing dynamic PDFs with custom fonts and designs.
 
 Each library has its strengths and weaknesses, and the choice depends heavily on the specific requirements of your project. For HTML-to-PDF conversion, **mPDF** or **Snappy** are excellent choices. If you're dealing with secure enterprise documents, **SetaPDF** is your best bet. For basic tasks, **FPDF** offers a straightforward and lightweight solution.
