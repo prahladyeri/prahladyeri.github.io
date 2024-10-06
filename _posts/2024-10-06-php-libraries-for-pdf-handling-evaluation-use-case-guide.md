@@ -5,8 +5,6 @@ tags: php pdf fpdf
 published: true
 ---
 
-# PHP Libraries for PDF Handling: Evaluation and Use Case Guide
-
 PDF generation and processing is a common requirement in many web applications, especially for generating invoices, reports, or documents dynamically. PHP provides various libraries to handle PDF creation, manipulation, and extraction. In this article, we will evaluate the most popular PHP libraries for PDF handling, breaking down their **pros** and **cons**, and advising when each library is best suited for specific use cases.
 
 ---
