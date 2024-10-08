@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Intro to DOMPDF - light and simple PHP library to generate PDF documents'
-tags: php dompdf
+tags: php pdf
 published: true
 image: /uploads/code.jpg
 discuss:

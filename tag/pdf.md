@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: dompdf"
-tag: dompdf
+title: "Tag: pdf"
+tag: pdf
 robots: noindex
 ---

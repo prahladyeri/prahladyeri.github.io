@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Unlocking Speed: The Power of Indexing in Database Performance'
-tags: database sql performance
+tags: database sql
 published: true
 ---
 In today's data-driven world, the performance of databases is crucial for applications, businesses, and users alike. As databases grow in size and complexity, the need for efficient data retrieval becomes paramount. One of the most effective strategies for enhancing database performance is indexing. This article explores the role of indexing in database performance optimization and how it significantly improves query performance.
