@@ -1,7 +1,7 @@
 ---
 layout: post
-title: '"Unlocking Speed: The Power of Indexing in Database Performance'
-tags: database mysql
+title: 'Unlocking Speed: The Power of Indexing in Database Performance'
+tags: database sql performance
 published: true
 ---
 
