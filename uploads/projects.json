@@ -21,18 +21,18 @@
         "stars": 281
     },
     {
+        "name": "tuxdrive",
+        "html_url": "https://github.com/prahladyeri/tuxdrive",
+        "description": "Console based DIY Google Drive Client",
+        "pushed_at": "2021-08-09T21:02:20Z",
+        "stars": 58
+    },
+    {
         "name": "http-live-simulator",
         "html_url": "https://github.com/prahladyeri/http-live-simulator",
         "description": "A simple HTTP Server that serves with random delay for live simulation",
         "pushed_at": "2020-10-01T02:27:31Z",
         "stars": 58
-    },
-    {
-        "name": "tuxdrive",
-        "html_url": "https://github.com/prahladyeri/tuxdrive",
-        "description": "Console based DIY Google Drive Client",
-        "pushed_at": "2021-08-09T21:02:20Z",
-        "stars": 57
     },
     {
         "name": "tiddly",
