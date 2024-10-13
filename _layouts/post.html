@@ -6,7 +6,11 @@ layout: default
   <h1 class="post-title">{{ page.title }}</h1>
   <span class="post-date"><i class='far fa-calendar-alt'></i>&nbsp;{{ page.date | date_to_string }}</span>
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <span class="post-date"><i class='far fa-clock'></i>&nbsp;6 mins</span>
+  <!-- <span class="post-date"><i class='far fa-clock'></i>&nbsp;6 mins</span> -->
+{% assign word_count = page.content | number_of_words %}
+{% assign reading_time = word_count | divided_by: 250 | ceil %}
+<span class="post-date"><i class='far fa-clock'></i>&nbsp;{{ reading_time }} mins</span>
+  
   
   <span class="share-buttons">
 	<a class='fab fa-twitter' title="Share on Twitter" href="https://x.com/intent/tweet?text={{page.title | uri_escape}}&url={{site.url}}{{page.url}}&via=prahladyeri"></a>
