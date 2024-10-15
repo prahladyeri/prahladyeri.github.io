@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Python Tutorial for Beginners: Learn the Basics"
-tags: python tutorial beginners
+tags: python tutorial
 published: true
 image: /uploads/code-python.jpg
 ---
