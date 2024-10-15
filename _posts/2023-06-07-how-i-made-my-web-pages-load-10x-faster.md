@@ -3,14 +3,10 @@ layout: post
 title: 'How I made my web pages load 10x faster'
 tags: design efficiency ergonomics web-development digital-minimalism
 ---
-
-Update: As of 1st November, 2023, I have switched to the default Jekyll site generator from Pelican as I found the deployment and Github Pages workflow easier. However, the point of this article still stands.
-
----
 Update: As of 17th June, 2024, I have also started using font-awesome and google-fonts which goes directly against my principle of "no-cruft"! And while the point of this article still stands in theory, I came to learn that there are pragmatic limits to how far you can stretch minimalism. At some point, utilitarianism starts overriding minimalism.
-
 ---
-
+Update: As of 1st November, 2023, I have switched to the default Jekyll site generator from Pelican as I found the deployment and Github Pages workflow easier. However, the point of this article still stands.
+---
 The most typical advice you get when it comes to improving site performance these days is purely technical things like using CDNs or other serving optimization, using X hosting mechanism instead of Y, going serverless, cache optimization, etc.
 
 I'm not talking about those things, I'm talking about the old school millennial way of optimizing things which is by reducing clutter and subscribing to the ideals of minimalism and common sense!
