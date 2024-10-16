@@ -26,6 +26,8 @@ Open-source software can also significantly enhance the teaching experience. By 
   * **Access High-Quality Educational Resources:** A vast array of open-source educational resources, including textbooks, lesson plans, and multimedia content, are available online. This can help teachers save time and resources while ensuring that students have access to high-quality materials.
   * **Foster a Culture of Innovation:** Open-source software encourages experimentation and innovation. Teachers can use open-source tools to develop new teaching methods, create engaging activities, and explore innovative approaches to learning.
   * **Reduce Costs:** Open-source software is often free or low-cost, making it a more affordable option for schools and educators. This can help to reduce the financial burden on schools and ensure that all students have access to necessary technology.
+  
+![books](/uploads/books.jpg)
 
 ### Case Studies: Successful Open-Source Initiatives in Education
 
