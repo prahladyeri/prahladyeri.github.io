@@ -1,5 +1,7 @@
 # Group 1
 User-agent: *
+Disallow: /uploads/
+Disallow: /public/
 Disallow: /drafts/
 Disallow: /theme/
 Disallow: /tag/
