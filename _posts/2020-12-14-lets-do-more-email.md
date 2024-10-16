@@ -6,7 +6,7 @@ tags: internet email technology
 
 Despite the rise of privacy advocates discouraging use of email, it remains a valuable communication tool with numerous benefits. Here's why you should continue to embrace email in your digital communication strategy:
 
-![envelope](/uploads/mesh.jpg)
+![email](/uploads/email.jpg)
 
 ## The Nostalgic Value Of Written Communication
 
