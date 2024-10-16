@@ -1,39 +1,63 @@
 ---
 layout: post
-title: 'Agile manifesto is problematic'
+title: 'The Agile Manifesto's Shortcomings: Addressing Modern Development Needs'
 tags: architecture productivity software-engineering
 ---
 
-After reading the [agile manifesto](https://agilemanifesto.org), I felt like it is too one-sided and imbalanced, it gives too much importance to some aspects of software development and belittles the other.
+The **Agile Manifesto** has been a cornerstone of software development since its creation in 2001, promoting flexibility, collaboration, and the prioritization of working software over comprehensive documentation. However, as development environments and business needs have evolved, many professionals are beginning to recognize certain limitations in the Agile approach, particularly in how it addresses modern complexities and the scale of today’s projects.
 
-The stuff they give prominence to isn't any extraordinary new age rocket science (though the practitioners of agile try very hard to pretend like that!). Its just some basic common sense stuff such as:
+While Agile undoubtedly transformed the way teams approach software development, it may not be sufficient to address the multifaceted challenges of contemporary projects. In this article, we'll explore some of the **shortcomings of the Agile Manifesto** and discuss how to balance its principles with the demands of modern development.
 
-> Working software over comprehensive documentation
+---
 
-Should it really take a genius to tell you that? The working software funda has been going on since Windows-95 (and even earlier), long before these agile pundits had started going to their schools. I never had to read a single line of documentation when I started using Windows-95 for the first time.
+### 1. **Overemphasis on "Working Software" Over Documentation**
 
-Even before Windows-95, they invented the concept of `man pages` in Unix which allowed for component specific documentation (manuals) to be embedded as an addon to Unix itself. And this happened in Bell Labs way back in 1960s, long before these modern agile pundits were even born!
+One of the most widely recognized principles of Agile is prioritizing **working software over comprehensive documentation**. While this can be effective in smaller teams or early-stage startups, it becomes problematic for **larger, more complex projects**. In enterprise environments, thorough documentation is often critical for long-term success, ensuring maintainability, scalability, and onboarding new team members.
 
-Coming to the second point, the stuff that agile tries to discard and throw away are some hard learned lessons which helped the humankind to reach the industrial age.
+- **Why It Matters Today**: In highly regulated industries like **finance** or **healthcare**, documentation is essential for compliance and risk management. Agile’s encouragement to downplay documentation can lead to significant challenges when teams need to revisit the project for updates or audits.
 
-> Individuals and interactions over processes and tools
+- **The Balance**: The modern development landscape needs to strike a balance. While working software is important, **structured documentation** should not be neglected. A hybrid approach, like **Agile with documentation-driven practices**, ensures that the software remains maintainable without sacrificing the flexibility that Agile promotes.
 
-Again, nobody is denying the importance of human interaction, its a basic common sense thing that humans have been doing since the stone age and will continue doing till eternity. But belittling processes and tools? That's preposterous! If anything is preventing the modern economic and banking system from falling apart, its processes and tools. If the growth of top MNC companies and the industrial revolution is still continuing to hold, its again thanks to processes and tools. Without processes and tools, humanity is back into the stone age (or perhaps the bronze age, but doesn't really matter).
+### 2. **Undervaluing Processes and Tools**
 
-The point is that both human interaction and processes have their importance in economic growth and development, and more importantly, this is a very basic or common knowledge at this point, we don't need agile pundits to teach us these basic things.
+Agile promotes **individuals and interactions over processes and tools**. While this focuses on human collaboration, it can overlook the fact that processes and tools play an essential role in enabling large teams to work together effectively, especially in distributed or remote environments.
 
-Yet another gem from agile enthusiasts:
+- **The Issue**: In today's global development landscape, where remote work is becoming the norm, tools like **CI/CD pipelines, project management software, and version control systems** are critical for collaboration. Agile's inclination to undervalue these essential systems can hinder efficiency in larger, distributed teams.
 
-> Customer collaboration over contract negotiation
+- **The Modern Need**: Effective processes and tools are crucial for maintaining **consistency, quality control, and scalability** in large-scale software projects. Modern development demands a combination of **flexible human interaction** and **robust technical infrastructure** to support agile methodologies without sacrificing structure.
 
-Can you even imagine this to be an X versus Y thing! Collaboration with the client and negotiation of an IT contract are totally different aspects of the business and both are important.
+### 3. **Client Collaboration vs. Contract Negotiation**
 
-The former is mostly technical and happens between the programmers/designers on outsourcing company's side, and the users on the client side. Whereas the latter happens between sales and procurement heads of the outsourcing and client companies respectively (in some rare cases, the CFO/CEO may be involved).
+The Agile Manifesto values **customer collaboration over contract negotiation**, emphasizing ongoing interaction with clients. However, this principle can sometimes overlook the practical importance of well-defined contracts in commercial relationships.
 
-Again, a very basic thing which should be in the first year MBA syllabus! Now, let's expose the final aphorism of the agile pundits.
+- **Reality in Business**: While collaboration is crucial for understanding client needs, clear contracts set expectations, define deliverables, and manage legal and financial risks. Especially in enterprise or B2B contexts, contracts are essential for managing large projects, budgets, and timelines.
 
-> Responding to change over following a plan
+- **A Balanced Approach**: Agile works best when there's a strong framework in place. Instead of dismissing contracts, modern teams should look at contracts as **living documents** that can adapt to changing client needs, incorporating collaboration while maintaining the security of structured agreements.
 
-As I've recently written about this in a [DEV.to article](https://dev.to/prahladyeri/forget-agile-and-kanban-understand-what-your-user-wants-first-2pjn), the agile enthusiasts always live in the delusion that software was never made in a dynamic or changing environment before they started treading this planet. The iterative model, a variation of water-fall model of development, was practiced since decades before the agile wisdom was being sprouted by these people.
+### 4. **The Danger of Over-Flexibility: Responding to Change Without a Plan**
 
-All in all, the agile manifesto brings nothing new to the table and desperately tries to present the already proven conventional wisdom and common sense things as if they were a new concept or methodology they've invented from scratch. This is just absurd and ridiculous, and people shouldn't fall in their trap.
+Agile favors **responding to change over following a plan**, encouraging adaptability in the face of shifting requirements. While this flexibility is valuable, especially in fast-paced environments, it can sometimes come at the cost of **strategic foresight**.
+
+- **Why Planning is Still Crucial**: Many large-scale projects require a long-term vision and detailed roadmaps. Over-prioritizing changes without a solid plan can lead to **scope creep**, misaligned goals, and wasted resources. Agile teams can risk losing focus if they don’t have a structured approach to managing and prioritizing changes.
+
+- **Finding the Middle Ground**: Agile teams can maintain flexibility while also following a **high-level roadmap**. This ensures that teams remain adaptable but aligned with overarching business objectives. A more **strategic Agile** approach can blend responsiveness with structured planning.
+
+### 5. **The Limits of Agile in Large-Scale and Regulated Industries**
+
+Agile works exceptionally well in **small to medium-sized teams** or fast-paced startup environments where rapid iterations are key. However, in **enterprise-level projects** or industries with heavy regulations (e.g., **automotive, aerospace, or government projects**), Agile may fall short.
+
+- **Why It’s Challenging**: Large organizations often require **structured project management methodologies** like **Waterfall** or **Scaled Agile Framework (SAFe)** to manage dependencies, risks, and compliance requirements. Pure Agile may lack the **rigor** needed to satisfy these demands, leading to poor alignment across teams or inconsistent results.
+
+- **Modern Solutions**: For large organizations, adopting a **hybrid approach**, combining Agile principles with more **traditional methodologies** like Waterfall or Lean, can better address the complexities of enterprise-level projects while maintaining agility where needed.
+
+---
+
+### Conclusion: Adapting Agile to Meet Modern Needs
+
+While the Agile Manifesto has had a profound impact on software development, its principles need to be adapted to meet the demands of **modern development environments**. Instead of viewing Agile as an all-or-nothing solution, teams should focus on finding a balance between **collaboration and process, flexibility and planning**, and working software and documentation.
+
+The **future of software development** lies in adapting frameworks like Agile to align with both **technical advancements** and the **strategic needs** of modern organizations. By integrating **Agile principles with scalable processes**, teams can ensure they meet the demands of today’s dynamic development landscape while still delivering high-quality, maintainable, and secure software.
+
+---
+
+This revised version balances the need for SEO-friendly content while providing a critical analysis of Agile's limitations in modern contexts. It addresses **key concerns** while keeping the language focused, eliminating unnecessary opinionation, and integrating actionable insights.

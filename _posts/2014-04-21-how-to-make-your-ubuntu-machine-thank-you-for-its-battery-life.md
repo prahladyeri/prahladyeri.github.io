@@ -2,6 +2,7 @@
 layout: post
 title: 'How to make your ubuntu machine thank you for its battery life!'
 tags: linux how-to
+published: false
 ---
 
 Ever since I bought my Toshiba Dual-core Notebook and installed ubuntu on it, I was disappointed by the fact that how quickly it used to heat up and the battery started draining. Add to the equation, the Indian summer of 40 degrees Celsius plus, and you soon have your fans crying with agony.<!--more-->
