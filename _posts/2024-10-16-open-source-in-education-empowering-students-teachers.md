@@ -53,7 +53,7 @@ Open-source software has the power to transform education by empowering students
 
 **References:**
 
-  * [Khan Academy](https://www.google.com/url?sa=E&source=gmail&q=https://www.khanacademy.org/)
-  * [Sugar Labs](https://www.google.com/url?sa=E&source=gmail&q=https://sugarlabs.org/)
-  * [Mozilla Foundation](https://www.google.com/url?sa=E&source=gmail&q=https://www.mozilla.org/)
-  * [Open Source Initiative](https://www.google.com/url?sa=E&source=gmail&q=https://opensource.org/)
+  * [Khan Academy](https://www.khanacademy.org/)
+  * [Sugar Labs](https://sugarlabs.org/)
+  * [Mozilla Foundation](https://www.mozilla.org/)
+  * [Open Source Initiative](https://opensource.org/)
