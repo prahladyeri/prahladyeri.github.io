@@ -126,3 +126,12 @@ So, whether you’re troubleshooting an issue, seeking advice, or sharing your i
 5. GitHub Discussions: [https://github.com](https://github.com)
 6. Dev.to: [https://dev.to](https://dev.to)
 7. SourceForge: [https://sourceforge.net](https://sourceforge.net)
+8. Lobsters: <https://lobste.rs>
+9. FreeCodeCamp Forum: <https://forum.freecodecamp.org>
+10. Gitter: <https://gitter.im>
+11. FOSSMint Forums: <https://www.fossmint.com>
+12. Discourse Meta: <https://meta.discourse.org>
+13. Hacker News: <https://news.ycombinator.com>
+14. OpenSUSE Forums: <https://forums.opensuse.org>
+15. Mozilla Discourse: <https://discourse.mozilla.org>
+16. Apache Software Foundation Mailing Lists: <https://lists.apache.org>
