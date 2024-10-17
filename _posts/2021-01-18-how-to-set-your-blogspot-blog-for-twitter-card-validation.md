@@ -1,30 +1,42 @@
 ---
 layout: post
-title: 'How to set your blogspot blog for twitter card validation'
-tags: blogspot blogging
+title: 'How to Enable Twitter Card Validation for Your Blogspot Blog'
+tags: blogspot blogging twitter SEO
 ---
 
-One of the first things you want to do after publishing your blog is to share it with rest of the world and twitter is how most of you folks do it, right? But when you share your link in a tweet, you want it to expand into a proper card like this. But with Google's Blogspot blogs, it doesn't happen by default (at least as of today) even though it should be.
+When you publish a post on your blog, one of the first things you want to do is share it with the world, and **Twitter/X** is one of the most popular platforms for that. However, if you're using **Google's Blogspot** (also known as Blogger), your blog posts won't automatically display as Twitter Cards when shared. Fortunately, you can easily configure your blog to show those eye-catching **Twitter Cards** by following a few simple steps.
 
 ![twitter-card-blogger](/uploads/twitter-card-blogger.png)
 
-This is what you must do in order for your blog's links to expand on twitter in the card format. Please note that if you change your theme later, you must redo this exercise each time as the new theme entirely rewrites the HTML template.
+In this guide, we'll walk you through the process of enabling Twitter Cards for your Blogspot blog so your posts display correctly when shared.
 
-1. Go to Theme => Customize => Edit HTML and open the HTML editor window for the blog template.
-2. Press "Control+F" and search for this phrase:
+## Why Twitter Cards Matter
+
+Twitter Cards allow you to enhance tweets that link to your content by including images, summaries, and other metadata. This makes your tweets stand out and improves engagement with your audience. By default, Blogspot doesn't provide the necessary meta tags for Twitter Cards, but with a small tweak, you can enable them.
+
+Follow these steps to ensure that your blog links expand into a Twitter Card when shared.
+
+## Steps to Enable Twitter Cards for Blogspot
+
+### 1. Access Your Blog's HTML Template
+- In your blogger settings, visit **Theme** > **Down Arrow near Customize Button** > **Edit HTML** in your Blogspot dashboard. This will open the HTML editor for your blog template.
+
+### 2. Find the Post Section
+- Press **Ctrl+F** to bring up the search bar, and search for the following tag:
 
 ```html
 <b:includable id='post' var='post'>
 ```
 
-3. Search it multiple times to make sure. In some templates, there are more than one of these sections and in those cases, we are interested in the last one.
+- You may need to search more than once, as some templates contain multiple instances. We're interested in the **last** occurrence of this tag.
 
-4. Just hit `<enter>` to create some blank space just below this tag start line and enter the following code:
+### 3. Add Twitter Card Meta Tags
+- Right below this tag, create a new line and paste the following code:
 
 ```html
 	<!-- Twitter Card Tags -->
-	<meta content='@prahladyeri' name='twitter:site'/>
-	<meta content='@prahladyeri' name='twitter:creator'/>
+	<meta content='@yourTwitterHandle' name='twitter:site'/>
+	<meta content='@yourTwitterHandle' name='twitter:creator'/>
 	<b:if cond='data:post.firstImageUrl'>
 	   <meta content='summary_large_image' name='twitter:card'/> <!-- summary_large_image or any other your card types -->
 	   <meta expr:content='data:post.firstImageUrl' name='twitter:image'/> 
@@ -36,12 +48,24 @@ This is what you must do in order for your blog's links to expand on twitter in 
 	   <meta expr:content='data:blog.postImageThumbnailUrl' name='twitter:image'/> 
 	<b:else/>
 	   <meta content='summary' name='twitter:card'/>
-	  <meta content='https://1.bp.blogspot.com/-vCbJYZxPF80/XErJHU_gi7I/AAAAAAAACGU/WGznlnB-K8AnpZunzlHYuaxg6c1TA5UfwCPcBGAYYCw/s320/pexels-photo-261577.jpeg' name='twitter:image'/> 
+	  <meta content='https://example.com/default-image.jpg' name='twitter:image'/>
 	</b:if>
 ```
 	
-5. Please remember to change the `twitter:site`, `twitter:creator` and the last `twitter:image` meta tags (which is for the default image in case none is found in your post) as per what suits you.
+### 4. Customize the Meta Tags
+- Be sure to replace the following with your own details:
+  - `@yourTwitterHandle` in the `twitter:site` and `twitter:creator` meta tags.
+  - The `twitter:image` URL in the `<meta content='https://example.com/default-image.jpg' name='twitter:image'/>` line, which is the default image for posts without images.
 
-6. Once you do this and save the template, visit the [Twitter Card Validation Page](https://cards-dev.twitter.com/validator) to verify that your blog link expands into a proper card.
+### 5. Save and Test Your Template
+- Currently, the Twitter Card Validator may not be operational. Instead, you can test your blog's Twitter Cards by sharing a link to your blog in a tweet and observing how it appears in the Twitter feed. Ensure that the link expands into the desired card format with the correct metadata and images.
 
-7. After that, you are ready to publish your blogspot link through a tweet and share it with the rest of the world!
+### 6. Reapply When Changing Themes
+- Keep in mind that if you change your blog theme in the future, you'll need to repeat this process because new themes overwrite the HTML template entirely.
+
+### 7. Share Your Blog Posts on Twitter
+Once your blog is set up for Twitter Cards, you can confidently share your Blogspot links on Twitter, knowing they will appear in a more engaging format.
+
+## Conclusion
+
+By enabling Twitter Cards, you'll make your Blogspot blog more appealing and clickable when shared on social media. Follow the steps outlined above to set up Twitter Cards, and remember to test using the Twitter Card Validator to ensure everything is working as expected. With these enhancements, your blog posts will have a more professional appearance and higher engagement potential when shared on Twitter.
