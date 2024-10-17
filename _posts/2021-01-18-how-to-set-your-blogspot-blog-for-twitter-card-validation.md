@@ -22,7 +22,7 @@ Follow these steps to ensure that your blog links expand into a Twitter Card whe
 - In your blogger settings, visit **Theme** > **Down Arrow near Customize Button** > **Edit HTML** in your Blogspot dashboard. This will open the HTML editor for your blog template.
 
 ### 2. Find the Post Section
-- Press **Ctrl+F** to bring up the search bar, and search for the following tag:
+- Click on the HTML editor. Then press **Ctrl+F** to bring up the search bar, and search for the following tag:
 
 ```html
 <b:includable id='post' var='post'>
@@ -41,13 +41,13 @@ Follow these steps to ensure that your blog links expand into a Twitter Card whe
 	   <meta content='summary_large_image' name='twitter:card'/> <!-- summary_large_image or any other your card types -->
 	   <meta expr:content='data:post.firstImageUrl' name='twitter:image'/> 
 	<b:elseif cond='data:blog.postImageUrl'/>
-	   <meta content='summary' name='twitter:card'/>
+	   <meta content='summary_large_image' name='twitter:card'/>
 	   <meta expr:content='data:blog.postImageUrl' name='twitter:image'/> 
 	<b:elseif cond='data:blog.postImageThumbnailUrl'/>
 	   <meta content='summary' name='twitter:card'/>
 	   <meta expr:content='data:blog.postImageThumbnailUrl' name='twitter:image'/> 
 	<b:else/>
-	   <meta content='summary' name='twitter:card'/>
+	   <meta content='summary_large_image' name='twitter:card'/>
 	  <meta content='https://example.com/default-image.jpg' name='twitter:image'/>
 	</b:if>
 ```
