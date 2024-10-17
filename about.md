@@ -3,37 +3,28 @@ title: About
 layout: page
 ---
 
-<div>
-<p>
-<br>
-Hello, I am Prahlad Yeri, Freelance Programmer and Writer.<br><br>
-<img class='about-image right-aligned' alt='Prahlad Yeri' style='max-width:125px; border-radius:100px;' src='/uploads/prahlad_yeri_170p.webp'>
-Educate and solve problems is my mantra and I'm here to provide you IT solutions &#128187;. I work on Web Development and Desktop Development projects.<br><br>
+![Prahlad yeri](/uploads/prahlad_yeri_170p.webp)
 
-What sets me apart from most other freelancers is my adherence to a set of core principles that form the very basis of my freelancing process &#128215;. These principles are:
-</p>
-<p class='text-left'>
-<ul class='text-left'>
-<li>&#128073; <b>Work Ethics: </b>Work ethics goes into the very core of all my freelancing activity. Whether it's about managing source code or handling important documents or communicating &#128233; with the user, I understand that gaining long term success in the freelance world isn't possible without following basic work ethics.</li>
-<li>&#128073; <b>Discipline: </b>Delivering the best results over time requires utmost discipline, be it in terms of processes &#128215;, skills &#128736; or client interaction &#128233;. I understand this well and discipline forms a core part of my value system.</li>
-<li>&#128073; <b>Patience: </b>Software Engineering is an evolving field, debugging and fixing bugs isn't always easy, and the same could be said about understanding project requirements in the first place. This is where we need some patience to make the project a super success and it's a virtue I follow to the core.</li>
-<li>&#128073; <b>Consistency: </b>Last but not the least, without consistently &#9200; following the core principles and applying them to our processes, any success achieved will only be fleeting at best. Just as my skills, my freelancing process itself evolves with time &#8987; and I strive to apply the new learnings to the best of my abilities.</li>
-</ul>
-</p>
-<!--
-<a class="btn btn-success btn-lg" href="https://www.upwork.com/freelancers/~01e977ff45b62e031c">&#128073; Hire me on Upwork</a>
-<br>
-<a class="btn btn-info btn-lg" href="mailto:prahladyeri@yahoo.com">&#128073; Send me an Email</a>
-<br><br><br>
--->
-</div>
+**Experienced Software Developer with a Focus on Problem-Solving and Quality**
 
-## Support my open source projects:
+Hello, I am Prahlad Yeri. Educate and solve problems is my mantra. With over 10 years of experience in IT across industries such as Telecom, Mechanical, and Electrical, I specialize in both **Desktop Development** (.NET/WinForms) and **Web Development** (PHP, Flask). My approach to every project starts by deeply understanding the problem at hand and architecting the most efficient solution to meet user requirements.
 
-- PayPal: <https://paypal.me/prahladyeri>
-- Patreon: <https://patreon.com/prahladyeri>
+Beyond just writing code, I emphasize **best practices**—from **Agile methodologies** to **Test-Driven Development (TDD)** and design patterns. My goal is to deliver robust, high-performing solutions that stand the test of time.
 
-## Hire me for your projects:
+What truly sets me apart is my commitment to core principles:
+- **Work Ethics**: Ensuring transparency and professionalism in communication and deliverables.
+- **Discipline**: Adhering to timelines, processes, and quality standards consistently.
+- **Patience**: Solving complex problems with attention to detail.
+- **Consistency**: Continuously learning and refining my process to provide you with the best possible results.
 
-- [Request quote through Email](mailto:prahladyeri@yahoo.com)
-- [Hire me on Upwork](https://www.upwork.com/freelancers/~01e977ff45b62e031c)
+If you're looking for a reliable, solutions-driven developer to bring your project to life, I'm confident that I'm the right fit for your needs. Let's work together to create software that delivers real value.
+
+## Support My Open Source Work
+Your contributions help keep my open-source projects alive! If you've benefited from my work and would like to support, you can:
+- **Donate via PayPal**: [paypal.me/prahladyeri](https://paypal.me/prahladyeri)
+- **Become a Patron on Patreon**: [patreon.com/prahladyeri](https://patreon.com/prahladyeri)
+
+## Hire Me for Your Projects
+Need a software solution? Let's build something great together!
+- **Request a Quote**: [prahladyeri@yahoo.com](mailto:prahladyeri@yahoo.com)
+- **Hire Me on Upwork**: [Upwork Profile](https://www.upwork.com/freelancers/~01e977ff45b62e031c)
