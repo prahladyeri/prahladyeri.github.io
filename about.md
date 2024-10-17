@@ -3,7 +3,7 @@ title: About
 layout: page
 ---
 
-![Prahlad yeri](/uploads/prahlad_yeri_170p.webp)
+<img class='about-image right-aligned' alt='Prahlad Yeri' style='max-width:125px; border-radius:100px;' src='/uploads/prahlad_yeri_170p.webp'>
 
 **Experienced Software Developer with a Focus on Problem-Solving and Quality**
 
