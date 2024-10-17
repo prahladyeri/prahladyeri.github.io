@@ -67,8 +67,8 @@ As you embark on your journey into the open source world, consider joining these
    - **Overview**: Gitter is an open-source chat platform designed for communities to discuss software development. It's commonly used for real-time collaboration within GitHub projects.
    - **Why Join?**: Gitter offers focused discussions around specific open-source projects, helping users to engage directly with maintainers and contributors in a chat-like setting.
 
-### 11. **[FOSSMint Forums](https://www.fossmint.com)**  
-   - **Overview**: FOSSMint is a platform focused on free and open-source software (FOSS) news and tutorials, and it offers community forums for in-depth discussions.
+### 11. **[Geeksmint Forums](https://www.geeksmint.com)**  
+   - **Overview**: Geeksmint is a platform focused on free and open-source software (FOSS) news and tutorials, and it offers community forums for in-depth discussions.
    - **Why Join?**: It's an excellent resource for discovering lesser-known open-source tools and getting advice from a diverse and global FOSS community.
 
 ### 12. **[Discourse Meta](https://meta.discourse.org)**  
@@ -129,7 +129,7 @@ So, whether you’re troubleshooting an issue, seeking advice, or sharing your i
 8. Lobsters: <https://lobste.rs>
 9. FreeCodeCamp Forum: <https://forum.freecodecamp.org>
 10. Gitter: <https://gitter.im>
-11. FOSSMint Forums: <https://www.fossmint.com>
+11. Geeksmint Forums: <https://www.geeksmint.com/>
 12. Discourse Meta: <https://meta.discourse.org>
 13. Hacker News: <https://news.ycombinator.com>
 14. OpenSUSE Forums: <https://forums.opensuse.org>
