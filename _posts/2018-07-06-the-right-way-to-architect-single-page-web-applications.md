@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'The right way to architect single page web applications'
+title: 'Building Robust Single-Page Applications: Key Architectural Insights'
 tags: javascript html web-development
 ---
 
@@ -8,7 +8,7 @@ Lets face it, Web Apps are a complex and complicated beast, both on the front en
 
 Once your app starts to scale in complexity, even the best of ideas and best practices in this field cannot prevent your app code from becoming a spaghetti of JavaScript and jQuery callbacks and DOM manipulation functions. Turning into a mess is essentially the nature of JavaScript when left to its own mechanism (event callback model and high asynchrony do ensure that). If you only use jQuery to architect your app, this is what it'll soon end up becoming:
 
-![The Spaghetti Way](/uploads/2018/07/spaghetti-way.png){.size-full .wp-image-816 width="956" height="254"}
+![The Spaghetti Way](/uploads/2018/07/spaghetti-way.png)
 
 **The Spaghetti Way**
 
@@ -16,7 +16,7 @@ Once your app.js ends up with millions of these jQuery functions, it will soon b
 
 One way of handling this complexity is the easy way - just delegate this whole thing to another complex beast of an opinionated framework such as angular or vue, and work with simple abstractions like angular views and controllers. This strategy does work to an extent (and you do get some mental sense of achievement too) but only as long as your app is limited in functionality and doesn't scale in size and complexity. The problem with opinionated frameworks is that they are opinionated - they work only as long as your app is pigeonholed and fits in their own way of typically doing things, but the moment you step outside and want to do something that doesn't confirm to that way (like rendering a complex DOM element or work with a difficult third-party UI library), then you are hit with a wall - unless you are prepared to venture too deeply into that framework and learn advanced stuff (like creating complex directives or providers in angular). But if you had to resort to that at the end, then why use an opinionated framework at all!
 
-![The Opinionated Framework Way](/uploads/2018/07/opinionated-way.png){.size-full .wp-image-818 width="1089" height="400"}
+![The Opinionated Framework Way](/uploads/2018/07/opinionated-way.png)
 
 **The Opinionated Framework Way**
 
@@ -33,7 +33,7 @@ Personally, I think that if you follow only these two principles sincerely and s
 
 Here is a basic example architecture that you can probably use for an app of low to medium complexity:
 
-![The Backbone Way](/uploads/2018/07/backbone-way1.png){.size-full .wp-image-831 width="884" height="536"} 
+![The Backbone Way](/uploads/2018/07/backbone-way1.png)
 
 **The Backbone Way**
 
