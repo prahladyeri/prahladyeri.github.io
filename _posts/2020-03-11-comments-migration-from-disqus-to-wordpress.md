@@ -1,45 +1,101 @@
 ---
 layout: post
-title: 'Migrating Disqus comments into Wordpress'
+title: 'Seamlessly Migrate Disqus Comments to WordPress in 2024: A Step-by-Step Guide'
 tags: blogging disqus wordpress
 ---
+If you’re switching from a platform using Disqus to WordPress, migrating your comments can seem daunting. Disqus was once a popular choice for blog comments, but with WordPress's built-in commenting system and more robust plugins, many are making the switch. In this guide, I’ll walk you through how to easily migrate your Disqus comments to WordPress using updated scripts and tips to ensure a smooth transition. 
 
-Further to my earlier blog post about [How to Import Disqus comments into Wordpress](/blog/2017/09/demystifying-comments-migration-from-disqus-to-wordpress.html), I've found that script solution to be a bit trickier for first time users who want to migrate disqus comments from their earlier blog to the new wordpress blog.
+This is an updated follow-up to my previous guide on [Importing Disqus Comments into WordPress](/blog/2017/09/demystifying-comments-migration-from-disqus-to-wordpress.html). The process remains largely the same, but I’ve made tweaks and improvements to make it easier for first-time users. Let’s dive in!
 
-![PHP Code](/uploads/code-php.jpeg)
+---
 
-The `disqus_parse.php` is exactly the same as it is because the parsing logic hasn't changed. However, a lot has changed in actual running of the console script (`console.php`), so I've updated the same as follows:
+### Why Migrate from Disqus to WordPress?
 
-1. Modified the URL check which ensures that disqus post's URL path is the same as Wordpress post's URL path. I've found that its much more effective to match only the "path" portions of the respective URLs instead of including the entire domain, so I used `parse_url` PHP function accordingly:
+Disqus was once a go-to for comment management, but its reliance on third-party services and recent issues like increased ads and slow performance have prompted many bloggers to look for alternatives. Migrating to WordPress's native system means faster load times, more control over your data, and fewer dependencies on external services.
 
-	$cpath = parse_url($comment['url'], PHP_URL_PATH);
-	$tpath = parse_url($t_url, PHP_URL_PATH);
-	if ($cpath === $tpath) {
-	...
+If you’re ready to switch, follow this guide to migrate your comments efficiently.
 
+---
 
-2. Added a `$sleep_interval` parameter at the top of the script (default value is 2), this is needed sometimes because some Wordpress installations throw the error *"You are posting comments too quickly"* when you try to append comments through a script. If this happens, you'll have to increase this parameter's value to 6 or sometimes 11 depending on the commenting user's status. If you want to avoid this check altogether and insert comments quickly, you can temporarily add the below line to the bottom of your `functions.php` (but remember to revert back later once your comments are migrated!).
+### Step-by-Step: Migrating Disqus Comments to WordPress
 
-		add_filter('comment_flood_filter', '__return_false');
-		
-3. The `$post->author->name` XML value may be in the array form sometimes, so I've added that check:
+I've updated the migration scripts to reflect changes in both WordPress and Disqus. Below is a breakdown of the process, as well as the script updates that make it easier.
 
-	if (is_array($comment['name'])) {
-		$comment_author = (string)$comment['name'][0];
-	}
-	else {
-		$comment_author = (string)$comment['name'];
-	}
+---
 
-4. Passed the `$avoid_die` parameter as `true` to the [wp_new_comment](https://developer.wordpress.org/reference/functions/wp_new_comment/) function as its more useful and practical.
+#### 1. Adjusting the URL Matching Logic
 
+The previous migration process required exact URL matches between your Disqus and WordPress posts, which could cause issues. I've now optimized the script to compare only the URL paths (ignoring domains) using the `parse_url` function:
 
-Below are the links to the latest scripts which you must run from inside a plugin directory such as `/wp-content/plugins/test/`:
+```php
+$cpath = parse_url($comment['url'], PHP_URL_PATH);
+$tpath = parse_url($t_url, PHP_URL_PATH);
+if ($cpath === $tpath) {
+    ...
+}
+```
 
-**console.php:**
+This change makes it easier to match URLs across different domains, streamlining the migration process.
 
-[https://gist.github.com/prahladyeri/e22e4e232416ff841be670601b396c62](https://gist.github.com/prahladyeri/e22e4e232416ff841be670601b396c62)
+![php code](/uploads/code-php.jpeg)
 
-**disqus_parse.php:**
+---
 
-[https://gist.github.com/prahladyeri/d1e19d8a6d0c7ff23fe3e15f9050b6d3](https://gist.github.com/prahladyeri/d1e19d8a6d0c7ff23fe3e15f9050b6d3)
+#### 2. Handling Comment Flooding Errors
+
+WordPress sometimes throws a *"You are posting comments too quickly"* error when bulk importing comments. To mitigate this, I've added a `$sleep_interval` parameter (default value is 2 seconds) to slow down the import:
+
+```php
+$sleep_interval = 2;
+```
+
+If you encounter this error, you can increase the `$sleep_interval` or temporarily disable the comment flood protection by adding the following line to your `functions.php` file (remember to revert it after the migration):
+
+```php
+add_filter('comment_flood_filter', '__return_false');
+```
+
+---
+
+#### 3. Parsing Comment Author Names
+
+Sometimes the Disqus comment author's name is stored in an array. The updated script accounts for this with a simple check:
+
+```php
+if (is_array($comment['name'])) {
+    $comment_author = (string)$comment['name'][0];
+} else {
+    $comment_author = (string)$comment['name'];
+}
+```
+
+This prevents issues when migrating comments from authors with complex names.
+
+---
+
+#### 4. Passing the Avoid Die Parameter to `wp_new_comment`
+
+In some cases, the `wp_new_comment()` function would stop execution if there were issues with a comment. By passing the `$avoid_die` parameter as `true`, we ensure the script continues to run smoothly:
+
+```php
+wp_new_comment($comment_data, true);
+```
+
+This change helps prevent the script from stopping prematurely.
+
+---
+
+### Updated Migration Scripts
+
+The latest versions of the scripts can be found below. These updates ensure smoother migrations with fewer errors and better compatibility with different WordPress setups. 
+
+- **[console.php](https://gist.github.com/prahladyeri/e22e4e232416ff841be670601b396c62)**
+- **[disqus_parse.php](https://gist.github.com/prahladyeri/d1e19d8a6d0c7ff23fe3e15f9050b6d3)**
+
+Place these files inside a plugin directory such as `/wp-content/plugins/your-plugin/` and run them from there to begin the migration process.
+
+---
+
+### Final Thoughts
+
+Migrating comments from Disqus to WordPress might seem complex, but with these updated scripts and adjustments, you’ll have your comments fully migrated in no time. WordPress offers better flexibility, performance, and security when compared to third-party comment systems, and this switch is a great step toward streamlining your blog management.
