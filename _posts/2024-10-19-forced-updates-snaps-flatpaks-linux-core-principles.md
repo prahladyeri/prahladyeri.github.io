@@ -51,3 +51,26 @@ Other packaging solutions, such as AppImages, provide an appealing alternative b
 ## Conclusion
 
 The debate surrounding forced updates in Snaps and Flatpaks resonates deeply with the Linux community. While these modern packaging systems aim to enhance convenience, they risk undermining the core principles of user control, stability, and decentralization that have defined Linux for decades. As discussions about the future of Linux packaging continue, striking a balance between attracting new users and preserving the values that long-time enthusiasts cherish will be crucial. In a landscape where user autonomy is increasingly challenged, it's essential to advocate for solutions that empower users rather than constrain them.
+
+---
+
+### Sources
+
+1. [Linux Packaging: A History](https://www.linuxjournal.com/content/linux-packaging-history)
+2. [Understanding Flatpak](https://flatpak.org)
+3. [What Are Snaps?](https://snapcraft.io)
+4. [Dependency Management in Linux](https://linuxize.com/post/dependency-management-in-linux/)
+5. [User Control in Linux Packaging](https://www.howtogeek.com/723664/the-pros-and-cons-of-linux-package-managers/)
+6. [The Importance of Software Updates](https://www.csoonline.com/article/3285635/the-importance-of-software-updates.html)
+7. [The Risks of Automatic Updates](https://www.techrepublic.com/article/the-risks-of-automatic-updates/)
+8. [Balancing Security and Usability](https://www.securitymagazine.com/articles/93160-the-balance-of-security-and-usability)
+9. [Why Flatpak and Snap Are Great (And Also Terrible)](https://www.tomshardware.com/news/flatpak-snap-application-format)
+10. [Application Bloat in Linux](https://linuxhint.com/reduce-bloat-linux/)
+11. [The Minimalist Linux Distribution](https://www.makeuseof.com/tag/minimalist-linux-distributions/)
+12. [The Canonical Controversy](https://www.theregister.com/2021/02/09/canonical_snap/)
+13. [Red Hat and the Future of Flatpak](https://www.redhat.com/en/blog/flatpak-and-red-hat)
+14. [The App Store Mentality](https://www.theverge.com/2021/4/20/22393439/app-stores-convenience-issues)
+15. [Freedom vs. Convenience in Software](https://lwn.net/Articles/857971/)
+16. [Long-Term Support and Stability](https://ubuntu.com/about/about-ubuntu)
+17. [AppImage: The Ultimate Portable Linux Apps](https://appimage.org)
+18. [Comparing Package Managers in Linux](https://itsfoss.com/package-managers-linux/)
