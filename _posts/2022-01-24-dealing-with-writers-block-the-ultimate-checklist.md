@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Unlocking Creativity: Your Ultimate Guide to Overcoming Writer's Block'
+title: "Unlocking Creativity: Your Ultimate Guide to Overcoming Writer's Block"
 tags: writing, blogging, creativity, productivity
 ---
 
