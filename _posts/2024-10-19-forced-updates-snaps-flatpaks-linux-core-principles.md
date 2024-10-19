@@ -74,3 +74,6 @@ The debate surrounding forced updates in Snaps and Flatpaks resonates deeply wit
 16. [Long-Term Support and Stability](https://ubuntu.com/about/about-ubuntu)
 17. [AppImage: The Ultimate Portable Linux Apps](https://appimage.org)
 18. [Comparing Package Managers in Linux](https://itsfoss.com/package-managers-linux/)
+19. [The Future of Linux Packaging](https://www.phoronix.com/scan.php?page=news_item&px=Snap-vs-Flatpak-Future)
+20. [AppImage vs Snap vs Flatpak](https://www.omgubuntu.co.uk/2021/06/appimage-vs-flatpak-vs-snap)
+21. [Understanding the Linux Package Management Ecosystem](https://www.redhat.com/en/topics/linux/understanding-linux-package-management)
