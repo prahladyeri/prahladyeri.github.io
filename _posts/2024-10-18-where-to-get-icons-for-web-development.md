@@ -3,6 +3,7 @@ layout: post
 title: "Where to Get Your Icons for Web Development: A Comprehensive Guide"
 tags: web-development
 published: true
+image: /uploads/where-to-get-icons-for-web-development.jpg
 ---
 Icons are an essential part of modern web development, providing visual cues that enhance user experience and making interfaces more intuitive and appealing. However, choosing the right set of icons involves considering both aesthetic appeal and licensing terms. In this article, we’ll explore three primary sources for web development icons: truly open-source icons, "with attribution" options, and proprietary ones. Let's dive into these categories to help you make an informed decision.
 
@@ -22,7 +23,7 @@ The **Adwaita** icon theme, used in the GNOME desktop environment, is an excelle
 
 **Where to Download**: You can download GNOME’s Adwaita icons from their [GitLab repository](https://gitlab.gnome.org/GNOME/adwaita-icon-theme).
 
-![icons](/uploads/email.jpg)
+![icons](/uploads/where-to-get-icons-for-web-development.jpg)
 
 ### **Material Design Icons**
 
