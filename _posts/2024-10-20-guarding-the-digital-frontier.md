@@ -110,7 +110,7 @@ Open source security projects are transforming how organizations defend against 
 16. [WireGuard: Modern VPN solutions](https://www.cybersecurity-insiders.com/zcaler-threatlabz-2024-vpn-risk-report/)
 17. [OpenVAS Project Page](https://www.openvas.org/)
 18. [GeeksforGeeks: OpenVAS and vulnerability assessments](https://www.geeksforgeeks.org/security-assessment-openvas/)
-19. [TheHive Project Page](https://thehive-project.org/)
+19. [TheHive Project Page](https://strangebee.com/thehive/)
 20. [OSSEC Project Page](https://www.ossec.net/)
 21. [Kali Linux Project Page](https://www.kali.org/)
 22. [Lynis Project Page](https://cisofy.com/lynis/)
