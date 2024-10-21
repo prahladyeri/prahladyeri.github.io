@@ -17,7 +17,7 @@ Open source project management tools offer a range of advantages over proprietar
 
 4. **Transparency**: Open source tools allow you to see exactly what you're using, eliminating concerns about hidden features or data privacy.
 
-![ditch-asana-top-open-source-proj-mgmt-tools](ditch-asana-top-open-source-proj-mgmt-tools.jpg)
+![ditch-asana-top-open-source-proj-mgmt-tools](/uploads/ditch-asana-top-open-source-proj-mgmt-tools.jpg)
 
 ## Top Open Source Project Management Tools for 2024
 
