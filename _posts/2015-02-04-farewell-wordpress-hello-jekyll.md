@@ -2,6 +2,7 @@
 layout: post
 title: 'Migrating from WordPress to Jekyll: Save Money with a Static Site'
 tags: php wordpress jekyll
+image: /uploads/migrate-wp-jekyll.jpg
 ---
 
 Here I am, signing off from a self-hosted, over-bloated [WordPress](http://www.wordpress.org) site and finding a welcome change in [Jekyll](http://jekyllrb.com/), a blog-aware static site generator. There is nothing new about this, several well-known bloggers have already migrated to Jekyll in the last few years. Ever since Tom Preston Werner created this software in 2008 and published his infamous article about [Blogging Like a Hacker](http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html), it has become the go-to thing for at least the small and indie bloggers.

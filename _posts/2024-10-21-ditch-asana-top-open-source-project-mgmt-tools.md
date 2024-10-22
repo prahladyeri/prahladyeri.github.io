@@ -2,6 +2,7 @@
 layout: post
 title: "Ditch Asana: Top Open Source Project Management Tools You Should Be Using"
 tags: open-source
+image: /uploads/ditch-asana-top-open-source-proj-mgmt-tools.jpg
 ---
 In today’s fast-paced development environment, efficient project management is crucial for the success of any team. While tools like Asana have gained popularity for their ease of use and robust features, they come with limitations such as subscription costs and lack of flexibility. Thankfully, the open source community has stepped up to provide a plethora of project management tools that are not only free but also highly customizable. This article explores some of the top open source project management tools you should consider in 2024.
 
