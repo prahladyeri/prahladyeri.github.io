@@ -44,7 +44,7 @@ Despite these challenges, Jekyll’s advantages—especially in terms of speed, 
 
 ### The implementation
 
-The *References* section at the bottom contains a couple of links to detailed migration guides if you intend to go this route. As any seasoned PHP programmer would tell you, programming in a language like PHP isn’t everyone’s cup of tea. While you don’t have to do any programming for hosting a static site, you should still know about a few things in order to implement a static site:
+As any seasoned PHP programmer would tell you, programming in a language like PHP isn’t everyone’s cup of tea. While you don’t have to do any programming for hosting a static site, you should still know about a few things in order to implement a static site:
 
 -   [Jekyll](http://jekyllrb.com/): Jekyll is a static site generation tool written in Ruby language to generate blog-aware static sites (like the one you are presently reading). Visit the link to find documentation that explain what Jekyll is, how to install Ruby and Jekyll on your system and publish your posts with it.
 -   [Markdown](http://daringfireball.net/projects/markdown/syntax): Markdown is a utilitarian formatting language crafted specially with online publishers in mind. Jekyll posts written in Markdown syntax are saved with the extension of `*.md`. While you can write posts in HTML syntax too, knowing markdown comes very handy and saves time.
