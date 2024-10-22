@@ -1,9 +1,6 @@
 # Dependencies
 #markdown: kramdown
 #highlighter:      pygments
-exclude:
-  - hyde-theme-copyright.md
-  - LICENSE.md
 
 # Permalinks
 permalink:        /blog/:year/:month/:title.html
@@ -24,21 +21,6 @@ paginate:         10
 
 # Custom vars
 version: 2.1.11
-theme_base: '00'
-# 00 == dark
-# 08 == maroon
-# 09 == light-brown
-# 0a == cream
-# 0b == green
-# 0c == desktop-green
-# 0e == magenta
-# 0d == blue
-# 0f == brown
-# <any-other-value> == black (default)
-
 adsense: "ca-pub-0428291735937735"
 adsense_slot: "9729062115"
 #disqus: 'prahladyeri-blog'
-
-include:
-    - _pages

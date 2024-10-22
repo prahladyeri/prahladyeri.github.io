@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="author" content="Prahlad Yeri">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    {% if page.robots == 'noindex' %}
+        <meta name="robots" content="noindex">
+    {% endif %}	
+	{% if page.title == "Home" %}
+	<title>{{ site.title }} - {{ site.tagline }}</title>
+	{% else %}
+	<title>{{ page.title }}</title>
+	{% endif %}  
+	<link rel="canonical" href="{{site.url}}{{site.baseurl}}{{page.url}}" />
+	<link rel="stylesheet" href="{{site.baseurl}}/static/css/bootstrap.css">
+	<link rel="stylesheet" href="{{site.baseurl}}/static/css/app.css?v={{site.version}}">
+	<!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700"> -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+  
+	<!-- twitter card meta data -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@prahladyeri" />
+	<meta name="twitter:creator" content="@prahladyeri" />
+	{% if page.id %}
+		<meta name="twitter:url" content="{{ site.url }}{{ page.url }}" />
+		<meta name="twitter:title" content="{{ page.title }}" />
+		<meta name="twitter:text:title" content="{{ page.title }}" />
+		<meta name="twitter:description" content="{{ page.content | markdownify | strip_html | truncatewords: 50 }}" />
+		<meta name="description" property="og:description" content="{{ page.content | markdownify | strip_html | truncatewords: 50 }}" />
+		{% if page.image %}
+			<meta name="twitter:image" content="{{ site.url }}{{ page.image }}" />
+			<meta name="image" property="og:image" content="{{ site.url }}/{{ page.image }}">
+		{% else %}
+			<meta name="twitter:image" content="{{ site.url }}/uploads/cover.jpg" />
+			<meta name="image" property="og:image" content="{{ site.url }}/uploads/cover.jpg">
+		{% endif %}
+	{% else %}
+		<meta name="twitter:url" content="{{site.url}}{{page.url}}" />
+		<meta name="twitter:title" content="{{ site.title }}" />
+		<meta name="twitter:description" content="{% if site.tagline %}{{ site.tagline }}{% endif %}" />
+		<meta name="twitter:image" content="https://secure.gravatar.com/avatar/3f253507b82dd33f352c08f649caaa54" />
+		<meta name="image" property="og:image" content="https://secure.gravatar.com/avatar/3f253507b82dd33f352c08f649caaa54">
+	{% endif %}
+  <link rel="icon" type="image/x-icon" href="{{site.baseurl}}/uploads/favicon.png" />
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="atom.xml">
+  <meta name="ahrefs-site-verification" content="5b1d09aa007747a6ba77e44a0e7511fea0886c4e462f7394457507926746be15">
+</head>
+ <body class=""> 
+	<!-- Responsive navbar-->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container">
+			<a class="navbar-brand" href="{{site.baseurl}}">Prahlad Yeri</a>
+			<span class="navbar-text ms-2 text-muted">Freelance Programmer and Writer</span> <!-- Tagline added here -->
+
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" href="{{site.baseurl}}/">Blog</a></li>
+					<li class="nav-item"><a class="nav-link" href="{{site.baseurl}}/projects">Projects</a></li>
+					<li class="nav-item"><a class="nav-link" href="{{site.baseurl}}/about">About</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+    <!-- include sidebar.html -->
+	<div class="container mt-2">
+	<div class='row'>
+		<div class="col-lg-8">
+		{{ content }}
+		</div>
+		<!-- Side widgets-->
+		<div class="col-lg-4">
+			<!-- Search widget-->
+			<div class="card mb-4">
+				<div class="card-header">Search</div>
+				<div class="card-body">
+					<div class="input-group">
+						<input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+						<button class="btn btn-primary" id="button-search" type="button">Go!</button>
+					</div>
+				</div>
+			</div>
+			<!-- Tags widget-->
+			<div class="card mb-4">
+				<div class="card-header">Tags</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<ul class="list-unstyled mb-0">
+						{% capture tags %}
+						{% for tag in site.tags %}
+						{{ tag[1].size | plus: 1000 }}#{{ tag[0] }}#{{ tag[1].size }}
+						{% endfor %}
+						{% endcapture %}
+						{% assign sortedtags = tags | split:' ' | sort %}
+							{% for tag in sortedtags reversed  %}
+							{% assign tagitems = tag | split: '#' %}
+								<li><a href="{{ site.baseurl }}/tag/{{ tagitems[1] }}">
+									{{ tagitems[1] }} ({{ tagitems[2] }})
+								</a></li>
+							{% endfor %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Side widget-->
+			<div class="card mb-4">
+				<div class="card-header">Side Widget</div>
+				<div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!-- Footer-->
+<footer class="py-2 bg-dark">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Left Column: Copyright Information -->
+      <div class="col text-start text-muted">
+        <p class="m-0">Copyright &copy; 2024. Prahlad Yeri. <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="text-muted">CC BY-SA 4.0</a></p>
+      </div>
+      
+      <!-- Middle Column: Social Media Icons -->
+      <div class="col text-center">
+        <a href="https://github.com/prahladyeri" class="text-light me-3"><i class="fab fa-github fa-lg"></i></a>
+        <a href="mailto:prahladyeri@yahoo.com" class="text-light me-3"><i class="fas fa-envelope fa-lg"></i></a>
+        <a href="https://x.com/prahladyeri" class="text-light me-3"><i class="fab fa-twitter fa-lg"></i></a>
+        <a href="https://www.linkedin.com/in/prahlad-yeri-243a5316" class="text-light me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+        <a href="https://stackoverflow.com/users/849365/prahlad-yeri" class="text-light me-3"><i class="fab fa-stack-overflow fa-lg"></i></a>
+        <a href="{{site.baseurl}}/atom.xml" class="text-light"><i class="fas fa-rss fa-lg"></i></a>
+      </div>
+      
+      <!-- Right Column: Powered by Information -->
+      <div class="col text-end text-light">
+        <p class="m-0">Powered by Jekyll and GitHub Pages.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+	
+	<!-- Bootstrap core JS-->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Core theme JS-->
+	<script src="{{site.baseurl}}/js/scripts.js"></script>
+</body>
+</html>

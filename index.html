@@ -1,46 +1,48 @@
 ---
-layout: default
+layout: base
 title: Home
 ---
-
-<div class="posts">
-  {% for post in paginator.posts %}
-  <div class="post">
-    <h1 class="post-title">
-      <a href="{{ post.url }}">
-        {{ post.title }}
-      </a>
-    </h1>
-
-<span class='post-tags'>[
-  {% for tag in post.tags %}
-    {% capture tag_name %}{{ tag }}{% endcapture %}
-    <a href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
-  {% endfor %}
-]</span>
-
-<span class="post-date"><i class='far fa-calendar-alt'></i>&nbsp;{{ post.date | date_to_string }}</span>
-	<div>
-    {% include short/t_post_summary.html %}
-	<a href="{{ post.url }}" class="read-more">Read More</a>
+<!-- Nested row for non-featured blog posts-->
+<div class="row">
+	{% for post in paginator.posts %}
+	<!-- Blog post-->
+	<div class="col-lg-6">
+	<div class="card mb-4">
+	{% if post.image %}
+		<a href="{{site.baseurl}}{{post.url }}"><img class="card-img-top" src="{{site.baseurl}}{{post.image}}" alt="..." /></a>
+	{% else %}
+		<a href="{{site.baseurl}}{{post.url }}"><img class="card-img-top" src="{{site.baseurl}}/uploads/cover.jpg" alt="..." /></a>
+	{% endif %}
+		<div class="card-body">
+			<div class="small text-muted">{{ post.date | date_to_string }}</div>
+			<h2 class="card-title h4">{{post.title}}</h2>
+			<p class="card-text">{% include short/t_post_summary.html %}</p>
+			<a class="btn btn-primary" href="{{site.baseurl}}{{ post.url }}">Read more →</a>
+		</div>
+		<!--span class='post-tags'>[
+		  {% for tag in post.tags %}
+			{% capture tag_name %}{{ tag }}{% endcapture %}
+			<a href="{{site.baseurl}}/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
+		  {% endfor %}
+		]</span-->
 	</div>
-  </div>
-  {% endfor %}
+	</div>
+	{% endfor %}
 </div>
 
-<div class="pagination">
-  {% if paginator.next_page %}
-    <a class="pagination-item older" href="/page{{paginator.next_page}}">Older</a>
-  {% else %}
-    <span class="pagination-item older">Older</span>
-  {% endif %}
-  {% if paginator.previous_page %}
-    {% if paginator.page == 2 %}
-      <a class="pagination-item newer" href="/">Newer</a>
-    {% else %}
-      <a class="pagination-item newer" href="/page{{paginator.previous_page}}">Newer</a>
-    {% endif %}
-  {% else %}
-    <span class="pagination-item newer">Newer</span>
-  {% endif %}
-</div>
+<nav aria-label="Pagination">
+<hr class="my-0">
+<ul class="pagination justify-content-center my-4">
+{% if paginator.previous_page %}
+	<li class="page-item"><a class="page-link" href="{{ base.url }}/page{{ paginator.previous_page }}">Newer</a></li>
+{% else %}
+	<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
+{% endif %}
+
+{% if paginator.next_page %}
+	<li class="page-item"><a class="page-link" href="{{ base.url }}/page{{ paginator.next_page }}">Older</a></li>
+{% else %}
+	<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Older</a></li>
+{% endif %}
+</ul>
+</nav>

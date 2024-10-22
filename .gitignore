@@ -1,4 +1,5 @@
 # custom
+*.bak
 *.7z
 *.py
 *.bat

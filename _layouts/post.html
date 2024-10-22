@@ -1,66 +1,37 @@
 ---
-layout: default
+layout: base
 ---
+<div class='row'>
+<div class="col-lg-12">
+<article class='the-article'>
+	<!-- Post header-->
+	<header class="mb-4">
+		<!-- Post title-->
+		<h1 class="fw-bolder mb-1">{{page.title}}</h1>
+		<!-- Post meta content-->
+		<div class="text-muted fst-italic mb-2">Posted on {{ page.date | date_to_string }}</div>
+		<!-- Post tags-->
+		  {% for tag in page.tags %}
+			{% capture tag_name %}{{ tag }}{% endcapture %}
+			<a class='badge bg-secondary text-decoration-none link-light' href="{{site.baseurl}}/tag/{{ tag_name }}">{{ tag_name }}</a>
+		  {% endfor %}
+	</header>
+	<!-- Preview image figure-->
+	<!-- <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure> -->
+	<!-- Post content-->
+	<section class="mb-5">
+		{{ content }}
+	</section>
+</article>
 
-<div class="post">
-  <h1 class="post-title">{{ page.title }}</h1>
-  <span class="post-date"><i class='far fa-calendar-alt'></i>&nbsp;{{ page.date | date_to_string }}</span>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <!-- <span class="post-date"><i class='far fa-clock'></i>&nbsp;6 mins</span> -->
-{% assign word_count = page.content | number_of_words %}
-{% assign reading_time = word_count | divided_by: 250 | ceil %}
-<span class="post-date"><i class='far fa-clock'></i>&nbsp;{{ reading_time }} mins</span>
-  
-  
-  <span class="share-buttons">
-	<a class='fab fa-twitter' title="Share on Twitter" href="https://x.com/intent/tweet?text={{page.title | uri_escape}}&url={{site.url}}{{page.url}}&via=prahladyeri"></a>
-	&nbsp;
-	<a class='fab fa-reddit-alien' title="Share on Reddit" href="https://reddit.com/submit?url={{site.url}}{{page.url}}&title={{page.title | uri_escape}}"></a>
-	&nbsp;
-	<a class='fab fa-y-combinator' title="Share on Hacker News" href="https://news.ycombinator.com/submitlink?u={{site.url}}{{page.url}}"></a>
-	&nbsp;
-	<a class='fab fa-linkedin' title="Share on Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={{site.url}}{{page.url}}&title={{page.title}}&source=prahladyeri.github.io"></a>
-  </span>
-  {{ content }}
-</div>
-<!-- <div class="related"> -->
-  <!-- <h2>Related Posts</h2> -->
-  <!-- <ul class="related-posts"> -->
-    <!-- {% for post in site.related_posts limit:3 %} -->
-      <!-- <li> -->
-        <!-- <h3> -->
-          <!-- <a href="{{ page.url }}"> -->
-            <!-- {{ post.title }} -->
-            <!-- <small>{{ post.date | date_to_string }}</small> -->
-          <!-- </a> -->
-        <!-- </h3> -->
-      <!-- </li> -->
-    <!-- {% endfor %} -->
-  <!-- </ul> -->
-<!-- </div> -->
-<span class='post-tags'>[
-  {% for tag in page.tags %}
-    {% capture tag_name %}{{ tag }}{% endcapture %}
-    <a href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
-  {% endfor %}
-]</span>
-{% if page.discuss %}
-	<h4>Discussions:</h4>
-	<ul>
-	{% for link in page.discuss %}
-		{% if link contains 'reddit.com' %}
-			<li><a href='{{link}}'>reddit.com</a></li>
-		{% elsif link contains 'tildes.net' %}
-			<li><strike><a href='{{link}}'>tildes.net</a></strike></li>
-		{% elsif link contains 'news.ycombinator.com' %}
-			<li><a href='{{link}}'>news.ycombinator.com</a></li>
-		{% elsif link contains 'lobste.rs' %}
-			<li><a href='{{link}}'>lobste.rs</a></li>
-		{% else %}
-			<li><a href='{{link}}'>{{link | truncate: 30}}</a></li>
-		{% endif %}
-	{%endfor%}
-	</ul>
-{% endif %}
+<div class="adsense-block mb-5">
 {% include as.html %}
-{% include disqus.html %}
+</div>
+ <div id="disqus_thread" class="disqus-block">
+ {% include disqus.html %}
+ </div>
+ 
+</div>
+</div>
+
+

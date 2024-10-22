@@ -1,0 +1,26 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+	font-family: "segoe ui";
+}
+
+.container {
+    flex: 1;
+}
+
+footer {
+    margin-top: auto;
+}
+
+.the-article img {
+	max-width: 100%;
+}
+
+.the-article {
+	font-size: 16px;
+}
