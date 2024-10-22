@@ -79,7 +79,7 @@ becomes:
 
 ### Tools of the trade
 
--   [Disqus](https://disqus.com/): Perhaps the only feature for which most bloggers need a dynamic site is that of posting comments. Thanks to services like Disqus, bloggers can now leave the hassle of maintaining their own database for storing their readers’ comments. Disqus does this for them. Read on the link to find out how to implement it on your Jekyll blog.
+-   [Disqus](https://disqus.com/): Perhaps the only feature for which most indie bloggers need a dynamic site is that of posting comments. Thanks to services like Disqus, bloggers can now leave the hassle of maintaining their own database for storing their readers’ comments. Disqus does this for them.
 -   [Github pages](https://github.com/jekyll/jekyll/wiki/Sites): GitHub Pages is an excellent option for bloggers looking for a reliable, free static web hosting service. It offers generous bandwidth and content hosting, making it a great choice for many users, especially those who want to keep costs low while maintaining flexibility.
 -   [Google Analytics](https://www.google.com/analytics): Google Analytics integrates seamlessly with Jekyll, providing valuable insights into your audience demographics and behaviors without needing additional WordPress plugins.
 
