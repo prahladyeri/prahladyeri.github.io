@@ -8,7 +8,7 @@ Here I am, signing off from a *self-hosted, over-bloated [WordPress](http://www.
 
 While WordPress is a powerful platform, it can feel over-engineered for simple blogging needs. For indie bloggers who don't need the complexities of an RDBMS like MySQL, a static site may be a more efficient solution. The hassles of administering and maintaining various themes and plugins could feel overwhelming at times. However, since there weren’t too many alternatives in those days and `PHP` hosting was way too easy, most ignored this factor.
 
-### How Jekyll Can Save You Hosting Costs
+### How Jekyll can save you hosting costs
 
 Jekyll generates static sites made of pure HTML/CSS. Static sites, unlike dynamic ones, don’t require server-side processing or database queries, which reduces hosting resource usage and speeds up load times. This makes static sites both more cost-efficient and faster.
 
@@ -16,7 +16,7 @@ What this means is that you not only bid adieu to the hassle of hosting your own
 
 ![migrate-wp-jekyll](/uploads/migrate-wp-jekyll.jpg)
 
-### Jekyll vs WordPress: A Closer Look
+### Jekyll vs WordPress: A closer look
 
 While both Jekyll and WordPress serve the purpose of creating websites, they differ in several key areas, making Jekyll a better choice for specific use cases like simple blogs or static sites.
 
@@ -30,7 +30,7 @@ While both Jekyll and WordPress serve the purpose of creating websites, they dif
 
 In essence, if you're running a content-heavy blog that doesn’t need dynamic features or heavy customization, Jekyll can save you time and resources. For more feature-rich or complex sites, WordPress remains a powerful choice but comes with its own set of maintenance responsibilities.
 
-### SEO and Other Challenges with Jekyll
+### SEO and other challenges with Jekyll
 
 While Jekyll offers numerous benefits in terms of speed, cost, and simplicity, there are a few considerations that you should keep in mind before making the switch.
 
@@ -44,7 +44,7 @@ While Jekyll offers numerous benefits in terms of speed, cost, and simplicity, t
 
 Despite these challenges, Jekyll’s advantages—especially in terms of speed, security, and cost—far outweigh the downsides for users looking for a simple, fast, and secure platform for static content.
 
-### How do I implement this?
+### The implementation
 
 The *References* section at the bottom contains a couple of links to detailed migration guides if you intend to go this route. As any seasoned `php` programmer would tell you, programming in a language like `php` isn’t everyone’s cup of tea. While you don’t have to do any programming for hosting a static site, you should still know about a few things in order to implement a static site:
 
@@ -77,11 +77,13 @@ becomes:
 1.  This is list-item1
 2.  This is list-item2
 
+### Tools of the trade
+
 -   [Disqus](https://disqus.com/): Perhaps the only feature for which most bloggers need a dynamic site is that of posting comments. Thanks to services like Disqus, bloggers can now leave the hassle of maintaining their own database for storing their readers’ comments. Disqus does this for them. Read on the link to find out how to implement it on your Jekyll blog.
 -   [Github pages](https://github.com/jekyll/jekyll/wiki/Sites): GitHub Pages is an excellent option for bloggers looking for a reliable, free static web hosting service. It offers generous bandwidth and content hosting, making it a great choice for many users, especially those who want to keep costs low while maintaining flexibility.
 -   [Google Analytics](https://www.google.com/analytics): Google Analytics integrates seamlessly with Jekyll, providing valuable insights into your audience demographics and behaviors without needing additional WordPress plugins.
 
-### Outcome: Why Jekyll is Worth the Switch
+### Outcome: Why Jekyll is worth the switch
 
 After making the switch from WordPress to Jekyll, I can confidently say that the benefits of a static site far outweigh the initial setup effort. From improved site performance and lower hosting costs to greater security and minimal maintenance, Jekyll has proven to be a highly efficient platform for my blogging needs.
 
@@ -89,7 +91,7 @@ If you're running a simple blog, personal portfolio, or documentation site, and 
 
 **Take the leap today** and explore Jekyll as your next blogging platform. With plenty of resources and guides available, including some I’ve listed in the references below, you’ll find the transition smoother than expected.
 
-### Migration Checklist
+### Migration checklist
 
 | Step | Description | Tools/Resources |
 |------|-------------|-----------------|
