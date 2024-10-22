@@ -1,7 +1,7 @@
 ---
 layout: post
-title: '[PHP/Codeigniter] Getting multi-queries right with SQLITE'
-tags: php sqlite sql
+title: "How to Handle Multiple Queries in SQLite Using CodeIgniter"
+tags: php codeigniter sqlite sql
 ---
 
 My [earlier article](/blog/2022/10/php-mysql-multi-queries.html) dealt with multi-query issues of MySQL, this one is dedicated to SQLITE. Multi-queries are often discouraged to begin with but there are times when you find yourself using them. One typical use case is populating the database initially when it's empty. You do this by running an SQL script which may include multiple queries for creating tables, views, stored procedures, etc. and a few insert queries to populate default records (such as an admin user).

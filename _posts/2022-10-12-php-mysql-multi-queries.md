@@ -1,7 +1,7 @@
 ---
 layout: post
-title: '[PHP/Codeigniter] Playing with multi-queries in MySQL'
-tags: php mysql sql
+title: 'How to Execute Multiple Queries in MySQL Using CodeIgniter'
+tags: php codeigniter mysql sql
 ---
 
 Multi-queries are often discouraged with `mysqli` functions but there are times when you must use them. One obvious use case is initializing the database. One of the first things your app must do is determine if the database tables exist or not, and then run an initializing SQL script if they don't. This script may include multiple queries for creating tables, views, stored procedures, etc. and a few insert queries to populate default records (such as an admin user).
