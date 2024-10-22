@@ -21,43 +21,43 @@ Open source project management tools offer a range of advantages over proprietar
 
 ## Top Open Source Project Management Tools for 2024
 
-### 1. **Trello (via Open Source Alternatives)**
+### 1. **[Trello](https://trello.com)**
    - **Overview**: Trello is well-known for its board-based task management system. While Trello itself isn’t open source, several alternatives replicate its functionality using open source principles.
    - **Why Use It**: Tools like **Wekan** and **Taiga** offer similar kanban board features that Trello users love while providing the freedom of customization and self-hosting options.
 
-### 2. **Redmine**
+### 2. **[Redmine](https://www.redmine.org)**
    - **Overview**: Redmine is a versatile project management web application that supports multiple projects and offers features such as issue tracking, Gantt charts, and time tracking.
    - **Why Use It**: Its modular architecture allows you to install plugins for additional features. Redmine’s powerful ticketing system is perfect for teams that need detailed issue tracking.
 
-### 3. **Taiga**
+### 3. **[Taiga](https://taiga.io)**
    - **Overview**: Taiga is an agile project management tool that focuses on the needs of development teams. It offers features like backlog management, sprint planning, and issue tracking.
    - **Why Use It**: With a sleek interface and easy-to-use features, Taiga is perfect for teams that follow agile methodologies. The platform supports integrations with GitHub, GitLab, and Slack.
 
-### 4. **OpenProject**
+### 4. **[OpenProject](https://www.openproject.org)**
    - **Overview**: OpenProject is a powerful project management software specifically designed for team collaboration. It offers a comprehensive set of features for project planning, scheduling, and tracking.
    - **Why Use It**: Its robust Gantt charts, timelines, and cost tracking make it ideal for larger teams managing complex projects. OpenProject also emphasizes collaboration with features for team messaging and document sharing.
 
-### 5. **Phabricator**
+### 5. **[Phabricator](https://www.phacility.com/phabricator)**
    - **Overview**: Originally developed at Facebook, Phabricator is a suite of open source tools for peer code review, task management, and project planning.
    - **Why Use It**: Phabricator is excellent for software development teams. It integrates code review with project management, making it easier to track issues alongside code changes.
 
-### 6. **Focalboard**
+### 6. **[Focalboard](https://www.focalboard.com)**
    - **Overview**: Focalboard is an open source project management tool that provides kanban boards, task management, and more. It is developed by Mattermost, known for its open source messaging platform.
    - **Why Use It**: With a simple user interface and seamless integrations with other Mattermost tools, Focalboard is perfect for teams looking for straightforward task management.
 
-### 7. **Kanboard**
+### 7. **[Kanboard](https://kanboard.org)**
    - **Overview**: Kanboard is a minimalist Kanban project management software that focuses on simplicity and efficiency.
    - **Why Use It**: Kanboard’s user-friendly interface allows teams to manage tasks visually without getting bogged down by unnecessary features. It’s perfect for teams that prefer straightforward task management.
 
-### 8. **ProjectLibre**
+### 8. **[ProjectLibre](https://www.projectlibre.com)**
    - **Overview**: ProjectLibre is an open source alternative to Microsoft Project, providing project management capabilities like Gantt charts and resource allocation.
    - **Why Use It**: If you’re familiar with Microsoft Project but want a free alternative, ProjectLibre is a great choice. It supports importing and exporting Microsoft Project files, making it easy to transition.
 
-### 9. **Gitea**
+### 9. **[Gitea](https://gitea.io)**
    - **Overview**: Gitea is a lightweight, self-hosted Git service that includes project management tools like issue tracking and pull requests.
    - **Why Use It**: If your team uses Git for version control, Gitea integrates project management directly into your workflow. It’s especially useful for teams looking to keep everything in one place.
 
-### 10. **Wekan**
+### 10. **[Wekan](https://wekan.github.io)**
    - **Overview**: Wekan is an open source kanban board that allows teams to manage tasks visually. It’s a direct competitor to Trello but is completely open source.
    - **Why Use It**: Wekan provides all the essential features of a kanban board, with the added benefit of being customizable to fit your workflow.
 
