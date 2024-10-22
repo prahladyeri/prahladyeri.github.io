@@ -74,7 +74,7 @@
 		<!-- Side widgets-->
 		<div class="col-lg-4">
 			<!-- Search widget-->
-			<div class="card mb-4">
+			<div class="d-none card mb-4">
 				<div class="card-header">Search</div>
 				<div class="card-body">
 					<div class="input-group">
@@ -98,9 +98,12 @@
 						{% assign sortedtags = tags | split:' ' | sort %}
 							{% for tag in sortedtags reversed  %}
 							{% assign tagitems = tag | split: '#' %}
+							{% assign post_count = tagitems[2] | plus: 0 %}
+								{% if post_count >= 7 %} 
 								<li><a href="{{ site.baseurl }}/tag/{{ tagitems[1] }}">
 									{{ tagitems[1] }} ({{ tagitems[2] }})
 								</a></li>
+								{% endif %}
 							{% endfor %}
 							</ul>
 						</div>
@@ -108,7 +111,7 @@
 				</div>
 			</div>
 			<!-- Side widget-->
-			<div class="card mb-4">
+			<div class="d-none card mb-4">
 				<div class="card-header">Side Widget</div>
 				<div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
 			</div>
