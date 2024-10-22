@@ -4,15 +4,13 @@ title: 'Migrating from WordPress to Jekyll: Save Money with a Static Site'
 tags: php wordpress jekyll
 ---
 
-Here I am, signing off from a *self-hosted, over-bloated [WordPress](http://www.wordpress.org)* site and finding a welcome change in [Jekyll](http://jekyllrb.com/), a blog-aware static site generator. There is nothing new about this, several well-known bloggers have already migrated to Jekyll in the last few years. Ever since Tom Preston Werner created this software in 2008 and published his infamous article about [Blogging Like a Hacker](http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html), it has become the go-to thing for at least the small and indie bloggers.
+Here I am, signing off from a self-hosted, over-bloated [WordPress](http://www.wordpress.org) site and finding a welcome change in [Jekyll](http://jekyllrb.com/), a blog-aware static site generator. There is nothing new about this, several well-known bloggers have already migrated to Jekyll in the last few years. Ever since Tom Preston Werner created this software in 2008 and published his infamous article about [Blogging Like a Hacker](http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html), it has become the go-to thing for at least the small and indie bloggers.
 
-While WordPress is a powerful platform, it can feel over-engineered for simple blogging needs. For indie bloggers who don't need the complexities of an RDBMS like MySQL, a static site may be a more efficient solution. The hassles of administering and maintaining various themes and plugins could feel overwhelming at times. However, since there weren’t too many alternatives in those days and PHP hosting was way too easy, most ignored this factor.
+While WordPress is a powerful platform, it can feel over-engineered for simple blogging needs. For indie bloggers who don't need the complexities of a RDBMS like MySQL, a static site could be a more efficient solution. The hassles of administering and maintaining various themes and plugins could feel overwhelming at times. However, since there weren’t too many alternatives in those days and PHP hosting was an easy path, many ignored this factor.
 
 ### How Jekyll can save you hosting costs
 
-Jekyll generates static sites made of pure HTML/CSS. Static sites, unlike dynamic ones, don’t require server-side processing or database queries, which reduces hosting resource usage and speeds up load times. This makes static sites both more cost-efficient and faster.
-
-What this means is that you not only bid adieu to the hassle of hosting your own web server and database, but also avoid costly monthly fees going to your cloud hosting providers. That’s because unlike a PHP hosted dynamic site, a static site is much much faster and cheaper. In fact, [Github pages](https://github.com/jekyll/jekyll/wiki/Sites) provides you fully free static web hosting for Zero USD per month!
+Jekyll generates static sites made of pure HTML/CSS. Static sites, unlike dynamic ones, don’t require server-side processing or database queries, which reduces hosting resource usage and speeds up load times. This makes static sites both cost-efficient and faster. In fact, [Github pages](https://github.com/jekyll/jekyll/wiki/Sites) provides you fully free static hosting for Zero USD per month!
 
 ![migrate-wp-jekyll](/uploads/migrate-wp-jekyll.jpg)
 
@@ -20,7 +18,7 @@ What this means is that you not only bid adieu to the hassle of hosting your own
 
 While both Jekyll and WordPress serve the purpose of creating websites, they differ in several key areas, making Jekyll a better choice for specific use cases like simple blogs or static sites.
 
-1. **Speed and Performance**: WordPress relies heavily on server-side scripts (PHP) and database queries to dynamically generate pages, which can slow down site performance, especially if not optimized. On the other hand, Jekyll pre-generates static HTML pages, significantly reducing load times as there's no need to process requests or queries. Static sites also tend to perform better under heavy traffic since they're served directly from the server without any backend processing.
+1. **Speed and Performance**: WordPress relies heavily on server-side PHP scripts and database queries to dynamically generate pages, which can slow down site performance, especially if not optimized. On the other hand, Jekyll pre-generates static HTML pages, significantly reducing load times as there's no need to process requests or queries. Static sites also tend to perform better under heavy traffic since they're served directly from the server without any backend processing.
 
 2. **Security**: WordPress’s widespread usage makes it a common target for hackers, particularly due to vulnerabilities in plugins, themes, or unpatched core software. Jekyll, by contrast, is far less prone to security breaches because static sites don’t require a database or server-side processing, reducing potential attack vectors. With Jekyll, you don’t have to worry about plugin updates or securing a backend.
 
@@ -48,8 +46,8 @@ Despite these challenges, Jekyll’s advantages—especially in terms of speed, 
 
 The *References* section at the bottom contains a couple of links to detailed migration guides if you intend to go this route. As any seasoned PHP programmer would tell you, programming in a language like PHP isn’t everyone’s cup of tea. While you don’t have to do any programming for hosting a static site, you should still know about a few things in order to implement a static site:
 
--   [Jekyll](http://jekyllrb.com/): Jekyll is a static site generation tool written in `Ruby` language to generate blog-aware static sites (like the one you are presently reading). Visit the link to find documentation that explain what Jekyll is, how to install Ruby and Jekyll on your system and publish your posts with it.
--   [Markdown](http://daringfireball.net/projects/markdown/syntax): `Markdown` is a beautiful language crafted specially with online publishers in mind. Jekyll posts written in Markdown syntax are saved with the extension of `*.md`. While you can write posts in HTML syntax too, knowing markdown comes very handy and saves time.
+-   [Jekyll](http://jekyllrb.com/): Jekyll is a static site generation tool written in Ruby language to generate blog-aware static sites (like the one you are presently reading). Visit the link to find documentation that explain what Jekyll is, how to install Ruby and Jekyll on your system and publish your posts with it.
+-   [Markdown](http://daringfireball.net/projects/markdown/syntax): Markdown is a utilitarian formatting language crafted specially with online publishers in mind. Jekyll posts written in Markdown syntax are saved with the extension of `*.md`. While you can write posts in HTML syntax too, knowing markdown comes very handy and saves time.
 
 For instance, when I write:
 
@@ -77,6 +75,8 @@ becomes:
 1.  This is list-item1
 2.  This is list-item2
 
+---
+
 ### Tools of the trade
 
 -   [Disqus](https://disqus.com/): Perhaps the only feature for which most bloggers need a dynamic site is that of posting comments. Thanks to services like Disqus, bloggers can now leave the hassle of maintaining their own database for storing their readers’ comments. Disqus does this for them. Read on the link to find out how to implement it on your Jekyll blog.
@@ -89,7 +89,7 @@ After making the switch from WordPress to Jekyll, I can confidently say that the
 
 If you're running a simple blog, personal portfolio, or documentation site, and you're tired of managing a database and paying for expensive hosting, Jekyll might just be the solution you've been looking for. By leveraging GitHub Pages and static site generation, you can enjoy the peace of mind that comes with a fast, secure, and cost-effective website.
 
-**Take the leap today** and explore Jekyll as your next blogging platform. With plenty of resources and guides available, including some I’ve listed in the references below, you’ll find the transition smoother than expected.
+**Take the leap today** and explore Jekyll as your next blogging platform. With plenty of resources and guides available, including some I’ve listed in the references and migration checklist below, you’ll find the transition smoother than expected.
 
 ### Migration checklist
 
