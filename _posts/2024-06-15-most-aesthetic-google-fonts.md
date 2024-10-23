@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Seven most aesthetically pleasing fonts for your Web Apps"
+title: "Seven most aesthetically pleasing fonts for your web apps"
 tags: web-development bootstrap
 published: true
 image: /uploads/grocery-cart.jpg

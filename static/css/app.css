@@ -6,7 +6,7 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-	font-family: "segoe ui";
+	font-family: "Inter", "Ubuntu", "Segoe UI", "Helvetica";
 }
 
 .container {
@@ -22,7 +22,7 @@ footer {
 }
 
 .the-article {
-	font-size: 16px;
+	font-size: 20px;
 }
 
 /* Apply word wrapping to highlighted code blocks */
