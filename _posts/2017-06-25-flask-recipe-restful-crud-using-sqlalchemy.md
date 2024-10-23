@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Flask Recipe - RESTful CRUD using sqlalchemy'
-tags: flask python sqlalchemy how-to
+tags: flask python sqlalchemy tutorial
 ---
 
 RESTful apps are a thing these days. When your application’s userbase gets quite large and the client could vary from a laptop to an android device to an iOS device, it pays to keep the backend code separate and use the server only for making RESTful calls using HTTP methods that pertain to basic OLTP transactions: SELECT, INSERT, UPDATE and DELETE.<!--more-->

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How to install composer packages locally or offline"
-tags: php webdev
+tags: php web-development tutorial
 published: true
 image: /uploads/code-php.jpeg
 ---

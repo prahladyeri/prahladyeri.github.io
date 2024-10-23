@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How to fix the dreaded 'package appears to be invalid' error while installing Android APKs"
-tags: android
+tags: android apk mobile-development tutorial troubleshooting
 published: true
 image: /uploads/code-unix.jpeg
 discuss:

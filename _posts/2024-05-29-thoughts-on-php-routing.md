@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Thoughts on PHP routing strategies"
-tags: php webdev
+tags: php web-development
 published: true
 image: /uploads/code-php.jpeg
 ---

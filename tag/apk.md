@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: setup"
-tag: setup
+title: "Tag: apk"
+tag: apk
 robots: noindex
 ---

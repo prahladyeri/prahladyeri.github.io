@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How to fix "silent error handling" of PDO errors after upgrading to PHP 8'
-tags: php codeigniter pdo php-8
+tags: php codeigniter pdo tutorial
 published: true
 image: /uploads/code-php.jpeg
 ---

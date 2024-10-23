@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The Agile Manifesto's Shortcomings: Addressing Modern Development Needs"
-tags: architecture productivity software-engineering
+tags: agile software-engineering
 ---
 
 The **Agile Manifesto** has been a cornerstone of software development since its creation in 2001, promoting flexibility, collaboration, and the prioritization of working software over comprehensive documentation. However, as development environments and business needs have evolved, many professionals are beginning to recognize certain limitations in the Agile approach, particularly in how it addresses modern complexities and the scale of today’s projects.

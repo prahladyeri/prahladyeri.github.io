@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How to create a Google Drive App in PHP'
-tags: google-drive php how-to
+tags: google-drive php tutorial
 ---
 
 This is the second article in the drive series for web programmers that aims to explain how to use the Google Drive API in your web applications to access files/folders on behalf of your logged-in users.<!--more-->
