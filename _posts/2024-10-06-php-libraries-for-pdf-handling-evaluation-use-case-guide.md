@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'PHP Libraries for PDF Handling: Evaluation and Use Case Guide'
+title: 'PHP libraries for PDF handling: Evaluation and use case guide'
 tags: php pdf
 published: true
 ---

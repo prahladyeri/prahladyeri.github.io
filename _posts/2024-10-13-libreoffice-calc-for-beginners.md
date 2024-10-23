@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "LibreOffice Calc for Beginners: A Complete Guide to Spreadsheets"
+title: "LibreOffice Calc for beginners: A complete guide to spreadsheets"
 tags: libreoffice spreadsheets
 published: true
 image: /uploads/work-desk.jpg
