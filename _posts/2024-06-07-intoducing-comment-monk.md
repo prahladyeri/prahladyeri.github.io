@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Introducing Comment Monk: Simple comment hosting system for static blogs and websites"
+title: "Introducing Comment Monk: simple comment hosting system for static blogs and websites"
 tags: php web-development wordpress
 published: true
 image: /uploads/cm/cm-dashboard.png
