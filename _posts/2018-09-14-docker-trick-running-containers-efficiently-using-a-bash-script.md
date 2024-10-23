@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 'Docker trick: Running containers efficiently using a bash script'
-tags: docker linux technology
+title: 'Docker trick: running containers efficiently using a bash script'
+tags: docker linux
 ---
 
 One of the basic problems with running a docker image is that its too easy to spew up multiple instances or containers of the same image. Consider running the following container for instance:

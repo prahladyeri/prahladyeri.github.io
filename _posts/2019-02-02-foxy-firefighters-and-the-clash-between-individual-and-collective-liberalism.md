@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Foxy firefighters and the clash between individual and collective liberalism'
-tags: internet news technology
+tags: internet
 ---
 
 The biggest speculation in the tech industry these days concern net neutrality and the last week was no different. Whilst I'm happy that TRAI is clear on upholding the net neutrality in my own country, India, the clouds of doom could be clearly seen in USA as the FCC is trying hard to banish net neutrality and bring control of the Internet in the hands of a few large companies.
