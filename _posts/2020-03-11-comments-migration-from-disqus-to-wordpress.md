@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Seamlessly Migrate Disqus Comments to WordPress in 2024: A Step-by-Step Guide'
+title: 'Seamlessly migrate disqus comments to WordPress: A step-by-step guide'
 tags: blogging disqus wordpress
 ---
 If you’re switching from a platform using Disqus to WordPress, migrating your comments can seem daunting. Disqus was once a popular choice for blog comments, but with WordPress's built-in commenting system and more robust plugins, many are making the switch. In this guide, I’ll walk you through how to easily migrate your Disqus comments to WordPress using updated scripts and tips to ensure a smooth transition. 

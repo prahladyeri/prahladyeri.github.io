@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'How to implement URL routing in vanilla javascript'
+title: 'How to implement URL routing in vanilla JavaScript'
 tags: url productivity javascript
 ---
 

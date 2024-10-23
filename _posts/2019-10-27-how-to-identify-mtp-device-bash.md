@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'A Complete Guide to Identifying Your MTP Device on Linux Using Bash'
+title: 'A complete guide to identifying your MTP device on Linux using bash'
 tags: linux bash mtp
 ---
 

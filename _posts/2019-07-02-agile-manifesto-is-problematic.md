@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Agile Manifesto's Shortcomings: Addressing Modern Development Needs"
+title: "The Agile Manifesto's shortcomings: Addressing modern development needs"
 tags: agile software-engineering
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'SEO vs. Content: What Really Drives Traffic to Your Blog?'
+title: 'SEO vs Content: What really drives traffic to your blog?'
 tags: seo blogging
 ---
 

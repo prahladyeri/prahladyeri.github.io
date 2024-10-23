@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Introducing gh_announce: Automate GitHub Release Announcements on Twitter with This Python Bot'
+title: 'Introducing gh_announce: Automate github release announcements on twitter with this python bot'
 tags: github twitter tweepy open-source python
 ---
 

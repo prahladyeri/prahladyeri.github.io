@@ -1,12 +1,12 @@
 ---
 layout: post
-title: 'A dark day for consumer rights - Right to repair bill killed in Canada thanks to corporate lobbying'
+title: 'A dark day for consumer rights: Right to repair bill killed in Canada thanks to corporate lobbying'
 tags: internet open-source
 ---
 
 When Linus Torvalds wrote the [Linux Kernel](https://en.wikipedia.org/wiki/Linux) in 1991 or Ian Murdock first released the [Debian OS](https://en.wikipedia.org/wiki/Debian) in 1993, talking about the "openness" of a PC or the "right to repair it" would have been a laughable affair! 8086 was an open standard then (just as standards should be) and anybody was free to write an operating system for it (such as Linux), or user land utilities (such as GNU) or even define a desktop standard (such as Xorg).<!--more-->
 
-![random image](/uploads/2018/07/pexels-photo-261577-300x225.jpeg){.alignnone .size-medium .wp-image-904 width="300" height="225"}
+![random image](/uploads/2018/07/pexels-photo-261577-300x225.jpeg)
 
 But in 2019, that's no longer the case with standards. Looks like humanity is going backward in terms of progress as standards are becoming more and more closed and proprietary instead of becoming open and transparent. Companies like Apple are successful in not only creating entire dependencies of such closed standards but are fighting tooth and nail so that their closed standards get a stamp from the legislature too.
 
