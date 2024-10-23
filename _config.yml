@@ -6,6 +6,9 @@ highlighter: rouge
 # Permalinks
 permalink:        /blog/:year/:month/:title.html
 #relative_permalinks: true
+#permalink: /blog/:path/:year/:month/:title.html
+# eg. /blog/es/:year/:month/:title.html
+
 
 # Setup
 title:            Prahlad Yeri
@@ -19,6 +22,9 @@ author:
   url:            https://prahladyeri.github.io
 
 paginate:         10
+
+# Language specific
+default_lang: en
 
 # Custom vars
 version: 2.1.12
