@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How To Make Your Ubuntu Desktop Faster'
-tags: ubuntu xubuntu productivity how-to linux
+tags: ubuntu xubuntu linux efficiency
 ---
 
 The usual advice you get when seeking a more resource conserving distro is to use a lighter spin-off such as Xubuntu, Lubuntu, etc. However, not many people know that even a "heavy" distro such as Ubuntu LTS with the default Unity Desktop could be made much lighter by uninstalling some packages and removing others from the startup. Let us see how it can be achieved:

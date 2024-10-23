@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How to make your Xubuntu 16.04 desktop look and behave like Ubuntu-MATE'
-tags: linux ubuntu ubuntu-mate xubuntu how-to
+tags: linux ubuntu ubuntu-mate xubuntu
 ---
 
 Xubuntu is one of the most popular among the "lighter" distros as it hardly consumes 200MB when idle and even older machines are able to run with acceptable performance. Ubuntu-MATE which is based on MATE Desktop (a GNOME-2 fork) is also a similar competing distro though its debatable whether its as light as Xubuntu in terms of resource consumption.<!--more-->

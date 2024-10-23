@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Alternative "Reddit like" social networking sites for the minimalists'
-tags: reddit social-networking technology
+tags: reddit internet
 ---
 
 Minimalists are those netizens who prefer websites that mostly contain rich and relevant textual content (with maybe bits of images sprinkled here and here), but certainly not auto-playing videos, flashy animations, animated gifs and motion ads.

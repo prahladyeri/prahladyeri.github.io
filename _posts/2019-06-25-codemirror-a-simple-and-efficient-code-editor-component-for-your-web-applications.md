@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'CodeMirror - A simple and efficient code editor component for your web applications'
-tags: internet open-source editor javascript
+tags: web-development javascript open-source
 ---
 
 I'm a huge fan of simple things in life, things that achieve a lot with minimal efforts or configuration from the user's end. And whenever I come across such simple things, I like to share it with everyone and that's what I'm doing now.
