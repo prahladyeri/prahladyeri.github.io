@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 'A crash course in python packaging'
-tags: python setup pypi crash-course
+title: 'A Crash Course in Python Packaging'
+tags: python pypi crash-course
 ---
 
 This guide isn't for the newbie who is just learning python programming (they are better off doing a "proper" reading of the [official docs](https://packaging.python.org/) instead). This is for the seasoned coder who dabbles in multiple technologies and needs a quick refresher on how to go about building a neat zip or tar.gz package from their existing python code, and optionally upload it to python package index (pypi).
