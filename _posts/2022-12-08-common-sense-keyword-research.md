@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Common sense keyword research: The quickest way to find niche ideas for free'
+title: 'Common sense keyword research: the quickest way to find niche ideas for free'
 tags: seo keyword-research blogging
 ---
 
