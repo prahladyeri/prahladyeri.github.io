@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Growing intolerance and lack of compassion towards new developers on StackOverflow'
-tags: social-networking technology
+tags: stackoverflow
 ---
 
 StackOverflow is the digital equivalent of the Holy See or the Holy Mecca when it comes to programming. It is that place where developers go visit when they don't have answers to their coding problems in a hope that the Gods of StackOverflow will help them solve it.<!--more-->

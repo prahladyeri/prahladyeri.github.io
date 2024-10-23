@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'A dark day for consumer rights - Right to repair bill killed in Canada thanks to corporate lobbying'
-tags: internet open-source technology
+tags: internet open-source
 ---
 
 When Linus Torvalds wrote the [Linux Kernel](https://en.wikipedia.org/wiki/Linux) in 1991 or Ian Murdock first released the [Debian OS](https://en.wikipedia.org/wiki/Debian) in 1993, talking about the "openness" of a PC or the "right to repair it" would have been a laughable affair! 8086 was an open standard then (just as standards should be) and anybody was free to write an operating system for it (such as Linux), or user land utilities (such as GNU) or even define a desktop standard (such as Xorg).<!--more-->

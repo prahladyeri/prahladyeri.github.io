@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How to organize your research for blog posts in 2022: A comprehensive guide'
-tags: keyword-research seo research blogging
+tags: keyword-research seo blogging
 ---
 
 One of the most challenging aspects of blogging is how to perform research and more importantly, organizing your research. As a technology blogger, I face this problem too, so some days ago, I did some research on... guess what? Yep, on how to organize research for writing articles or blog posts!

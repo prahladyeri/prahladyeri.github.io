@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'The Enduring Value of Email: Why It Still Matters in 2024'
-tags: internet email technology
+tags: internet email
 ---
 
 Despite the rise of privacy advocates discouraging use of email, it remains a valuable communication tool with numerous benefits. Here's why you should continue to embrace email in your digital communication strategy.
