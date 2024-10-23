@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'The Power of Minimalism: Why Ecommerce and Corporate Websites Need to De-Clutter'
+title: 'The power of minimalism: Why ecommerce and corporate websites need to de-clutter'
 published: true
 tags: minimalism efficiency ergonomics
 ---

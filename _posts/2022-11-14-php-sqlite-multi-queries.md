@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to Handle Multiple Queries in SQLite Using CodeIgniter"
+title: "How to handle multiple queries in SQLite using CodeIgniter"
 tags: php codeigniter sqlite sql
 ---
 

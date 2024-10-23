@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'From Userscript to Chrome Extension: Say Goodbye to Greasemonkey and Tampermonkey'
+title: 'From userscript to Chrome extension: Say goodbye to Greasemonkey and Tampermonkey'
 tags: javascript web-development chrome-extension tampermonkey tutorial
 ---
 

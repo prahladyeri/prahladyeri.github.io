@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Managing Drafts in Jekyll While Writing Blog Posts'
+title: 'Managing drafts in Jekyll while writing blog posts'
 tags: jekyll blogging
 published: true
 ---
