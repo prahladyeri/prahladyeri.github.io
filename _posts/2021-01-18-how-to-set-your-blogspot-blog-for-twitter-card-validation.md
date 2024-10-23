@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'How to Enable Twitter Card Validation for Your Blogspot Blog'
+title: 'How to enable twitter card validation for your blogspot blog'
 tags: blogspot blogging twitter seo
 ---
 

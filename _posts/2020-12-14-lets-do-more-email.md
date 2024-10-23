@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'The Enduring Value of Email: Why It Still Matters in 2024'
+title: 'The enduring value of Email: Why it still matters in 2024'
 tags: internet email
 ---
 
