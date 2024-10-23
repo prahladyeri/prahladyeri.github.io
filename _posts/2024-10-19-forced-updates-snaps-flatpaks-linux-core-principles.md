@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Why Forced Updates in Snaps and Flatpaks Are Breaking Linux’s Core Principles"
+title: "Why forced updates in Snaps and Flatpaks are breaking Linux’s core principles"
 tags: linux
 published: true
 image: /uploads/forced-updates-snaps-flatpaks.jpg
