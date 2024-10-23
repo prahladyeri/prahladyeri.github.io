@@ -21,7 +21,9 @@ footer {
 	max-width: 100%;
 }
 
-.the-article {
+.the-content,
+.the-article
+ {
 	font-size: 20px;
 }
 
