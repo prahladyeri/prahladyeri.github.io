@@ -9,7 +9,7 @@ Icons are an essential part of modern web development, providing visual cues tha
 
 ---
 
-## 1. **Truly Open-Source Icons**
+## 1. **Truly open-source icons**
 
 If you're looking for full flexibility—where you can modify, distribute, and use icons without worrying about commercial restrictions—open-source icons are your best bet. These icon sets often come with permissive licenses, allowing for broad usage in both personal and commercial projects.
 
@@ -39,7 +39,7 @@ The **Adwaita** icon theme, used in the GNOME desktop environment, is an excelle
 
 ---
 
-## 2. **"With Attribution" Icon Resources**
+## 2. **"With Attribution" icon resources**
 
 If you're open to giving credit to the original creators, "with attribution" icon sets offer a middle ground between fully open-source and proprietary. These platforms typically provide free icons but require proper attribution to be used legally. Here's a look at some popular options in this category.
 
@@ -72,7 +72,7 @@ If you're open to giving credit to the original creators, "with attribution" ico
 
 ---
 
-## 3. **Proprietary Icon Resources**
+## 3. **Proprietary icon resources**
 
 For developers who need high-quality, professional icons and are willing to invest in premium licenses, proprietary options offer the most polished and diverse collections. These icons come with specific licensing terms that restrict redistribution but offer more freedom in commercial use without needing attribution.
 
