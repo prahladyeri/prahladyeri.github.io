@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[MySQL] Setting default date to current date'
+title: 'How to set default date to current date in MySQL'
 tags: mysql php
 ---
 

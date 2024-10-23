@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'How to Execute Multiple Queries in MySQL Using CodeIgniter'
+title: 'How to execute multiple queries in MySQL using CodeIgniter'
 tags: php codeigniter mysql sql
 ---
 

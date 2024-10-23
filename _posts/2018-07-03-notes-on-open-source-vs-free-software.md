@@ -1,16 +1,16 @@
 ---
 layout: post
-title: 'Open Source vs Free Software is a bit like Socialist vs Communist'
+title: 'Notes on open source vs free software'
 tags: open-source
 ---
 
-Socialism and Communism have a lot in common, both ideologies aim to bring an equilibrium and welfare in the society by removing the income inequality between the rich and the poor. However, how they both go about doing their business is what makes the difference between sky and earth. Whilst Communism does advocate the use of **force** to achieve its aim, Socialism does not and that's the major difference of spirit between them. If you remove this force element, you'll in fact find that they are both pretty much the same thing with only technical differences here and there.<!--more-->
+Socialism and Communism have a lot in common, both ideologies aim to bring an equilibrium and welfare in the society by removing the income inequality between the rich and the poor. However, how they both go about doing that job is what makes the difference between sky and earth. Whilst Communism does advocate the use of force to achieve its aim, Socialism does not and that's the major difference of spirit between them. If you remove this force element, you'll find that they are both pretty much the same thing with only technical differences here and there.
 
-![pexels-photo-273691](/uploads/2018/07/pexels-photo-273691-300x199.jpeg){.alignnone .wp-image-903 .size-medium width="300" height="199"}
+![pexels-photo-273691](/uploads/2018/07/pexels-photo-273691-300x199.jpeg)
 
-Coming to the world of software, its a similar case when it comes to GPL (free software or copyleft) and non-GPL (open source or liberal) variety of FOSS licenses. The [GNU GPL](https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt) forces their ideology upon the user of the software by expressly restricting him/her to the kind of use cases permitted on the said software:
+Coming to the world of software, it's a similar case when it comes to GPL (free software or copyleft) and non-GPL (open source or liberal) variety of FOSS licenses. The [GNU GPL](https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt) forces their ideology upon the user of the software by expressly restricting him/her to the kind of use cases permitted on the said software:
 
-    >> To protect your rights, we need to make restrictions that forbid
+    > To protect your rights, we need to make restrictions that forbid
     anyone to deny you these rights or to ask you to surrender the rights.
     These restrictions translate to certain responsibilities for you if you
     distribute copies of the software, or if you modify it.
