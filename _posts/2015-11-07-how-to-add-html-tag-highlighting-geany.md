@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How to add HTML tag highlighting to Geany'
-tags: geany linux how-to
+tags: geany linux tutorial
 ---
 
 Ever since I bid farewell to `Windows` after they introduced that horrible `Metro` interface in `Windows 8`, I had been on the lookout for FOSS Linux alternatives that can run easily on my `ubuntu 14.04` machine. One such lookout was a replacement for `Notepad++` as I always need a handy editor for scripting and other miscellaneous tasks (such as writing this draft in markdown syntax). For large projects, there are always “heavy” things like `eclipse` and `netbeans` but I generally tend to avoid them if I can.<!--more-->

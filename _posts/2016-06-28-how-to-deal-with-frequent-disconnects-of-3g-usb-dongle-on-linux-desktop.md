@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How to deal with frequent disconnects of 3G USB Dongle on Linux Desktop'
-tags: hardware linux how-to
+tags: hardware linux tutorial
 ---
 
 One of the major issues on linux desktop these days has to do with 3G USB dongles/modems. In many countries like India, a USB dongle still remains a major way to access the Internet. The latest versions of `network-manager` has solved most of the issues relating to the basic recognition of these modems, but one major irritant still remains on Ubuntu 16.04 and a few other distros.<!--more-->

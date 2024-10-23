@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How to create a screencast in Xubuntu using ffmpeg'
-tags: linux xubuntu how-to
+tags: linux xubuntu tutorial
 ---
 
 In this article, I’m going to describe how to create a desktop screencast recording with or without audio in Xubuntu 16.04. With little changes, however, it should work on other distros too.<!--more-->

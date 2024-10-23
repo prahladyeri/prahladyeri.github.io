@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How to create a Google Drive App in Flask'
-tags: flask google-drive python how-to
+tags: flask python tutorial
 ---
 
 This is the first in a series of articles for web programmers that explain in detail about using the Google Drive API in your web applications to access files/folders on behalf of the users of your application. In my last project, I had to develop a python flask app for my users that required to access the files stored in their google drive account.<!--more-->
