@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Effortlessly Import Disqus Comments into WordPress: A Step-by-Step Guide'
+title: 'Effortlessly import Disqus comments into WordPress: a step-by-step guide'
 tags: blogging disqus wordpress
 ---
 
