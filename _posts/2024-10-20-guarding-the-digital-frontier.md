@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Guarding the digital frontier: Top open source security projects of 2024"
+title: "Guarding the digital frontier: top open source security projects of 2024"
 tags: open-source cyber-security
 image: /uploads/guarding-the-digital-frontier.jpg
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Ditch Asana: Top open source project management tools you should be using"
+title: "Ditch Asana: top open source project management tools you should be using"
 tags: open-source
 image: /uploads/ditch-asana-top-open-source-proj-mgmt-tools.jpg
 ---

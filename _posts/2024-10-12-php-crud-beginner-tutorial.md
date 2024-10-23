@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Core PHP CRUD operations: A beginner's tutorial"
+title: "Core PHP CRUD operations: a beginner's tutorial"
 tags: php mysql
 published: true
 image: /uploads/code-php-2.jpg

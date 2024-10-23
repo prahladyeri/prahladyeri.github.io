@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Unlocking speed: The power of indexing in database performance'
+title: 'Unlocking speed: the power of indexing in database performance'
 tags: database sql
 published: true
 ---

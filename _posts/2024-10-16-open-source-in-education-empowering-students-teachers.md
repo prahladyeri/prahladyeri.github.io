@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Open source in education: Empowering students and teachers"
+title: "Open source in education: empowering students and teachers"
 tags: open-source education
 published: true
 image: /uploads/books.jpg

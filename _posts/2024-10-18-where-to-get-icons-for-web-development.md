@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Where to get your icons for web development: A comprehensive guide"
+title: "Where to get your icons for web development: a comprehensive guide"
 tags: web-development
 published: true
 image: /uploads/where-to-get-icons-for-web-development.jpg

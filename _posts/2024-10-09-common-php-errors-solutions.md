@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Common PHP errors: Solutions to frequently encountered issues'
+title: 'Common PHP errors: solutions to frequently encountered issues'
 tags: php mysql
 published: true
 image: /uploads/code-php.jpeg
