@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 'Migrating from WordPress to Jekyll: Save Money with a Static Site'
+title: 'Migrating from WordPress to Jekyll: save money with a static site'
 tags: php wordpress jekyll
 image: /uploads/migrate-wp-jekyll.jpg
 ---
 
-Here I am, signing off from a self-hosted, over-bloated [WordPress](http://www.wordpress.org) site and finding a welcome change in [Jekyll](http://jekyllrb.com/), a blog-aware static site generator. There is nothing new about this, several well-known bloggers have already migrated to Jekyll in the last few years. Ever since Tom Preston Werner created this software in 2008 and published his infamous article about [Blogging Like a Hacker](http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html), it has become the go-to thing for at least the small and indie bloggers.
+Here I am, signing off from a self-hosted [WordPress](http://www.wordpress.org) site and finding a welcome change in [Jekyll](http://jekyllrb.com/), a blog-aware static site generator. There is nothing new about this, several well-known bloggers have already migrated to Jekyll in the last few years. Ever since Tom Preston Werner created this software in 2008 and published his infamous article about [Blogging Like a Hacker](http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html), it has become the go-to thing for at least the small and indie bloggers.
 
 While WordPress is a powerful platform, it can feel over-engineered for simple blogging needs. For indie bloggers who don't need the complexities of a RDBMS like MySQL, a static site could be a more efficient solution. The hassles of administering and maintaining various themes and plugins could feel overwhelming at times. However, since there weren’t too many alternatives in those days and PHP hosting was an easy path, many ignored this factor.
 
