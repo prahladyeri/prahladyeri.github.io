@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: opinion"
-tag: opinion
+title: "Tag: minimalism"
+tag: minimalism
 robots: noindex
 ---

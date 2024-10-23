@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'We are not creating the "right" kind of AI'
-tags: ai opinion
+tags: ai
 published: true
 image: /uploads/laptop-coffee-mobile.jpeg
 discuss:

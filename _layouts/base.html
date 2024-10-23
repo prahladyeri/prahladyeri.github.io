@@ -100,7 +100,7 @@
 							{% for tag in sortedtags reversed  %}
 							{% assign tagitems = tag | split: '#' %}
 							{% assign post_count = tagitems[2] | plus: 0 %}
-								{% if post_count >= 0 %} 
+								{% if post_count >= 7 %}
 								<li><a href="{{ site.baseurl }}/tag/{{ tagitems[1] }}">
 									{{ tagitems[1] }} ({{ tagitems[2] }})
 								</a></li>
