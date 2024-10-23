@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How to uniquely identify your Android device in code'
-tags: android how-to java
+tags: android java
 ---
 
 My last android project involved tracking each device where the app is installed and storing the information to a database. It is quite a common need to uniquely identify your android device in code.<!--more-->

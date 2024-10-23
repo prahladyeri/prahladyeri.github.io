@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How to host a Flask app on Openshift'
-tags: python flask openshift how-to
+tags: python flask openshift
 ---
 
 *Note: This article may no longer be relevant as Red Hat has recently changed the openshift stack with docker and kubernetes.*

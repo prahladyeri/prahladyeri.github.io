@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: research"
-tag: research
+title: "Tag: creativity"
+tag: creativity
 robots: noindex
 ---

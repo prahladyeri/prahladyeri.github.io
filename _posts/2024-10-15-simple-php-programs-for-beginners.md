@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Creating Magic with Code: Simple PHP Programs for Beginners"
-tags: php tutorial
+tags: php
 published: true
 image: /uploads/code-php-3.jpg
 ---

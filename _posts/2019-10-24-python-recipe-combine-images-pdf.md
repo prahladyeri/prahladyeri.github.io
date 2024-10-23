@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Python recipe: Combine multiple images into one PDF'
-tags: productivity how-to python
+tags: productivity python
 ---
 
 Many a times, you come across the need to combine multiple image files (.jpg, .png, etc.) into one single portable document format (.pdf). Maybe, you have a bunch of handwritten notes which you want to organize into one file. Doing that is very trivial if you know python. To being with, you must have the `fpdf` library installed:

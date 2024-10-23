@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'A Complete Guide to Identifying Your MTP Device on Linux Using Bash'
-tags: linux bash mtp how-to
+tags: linux bash mtp
 ---
 
 In the good old days, USB file-transfer between your laptop and smart-phone used to happen through the much easier "mass storage" mode which works just as if you had inserted an external pen-drive. But these days, most smart-phones and tablets have shifted to the MTP (Media Transfer Protocol).

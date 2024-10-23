@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Unlocking Creativity: Your Ultimate Guide to Overcoming Writer's Block"
-tags: writing, blogging, creativity, productivity
+tags: writing blogging creativity productivity
 ---
 
 Writer's block is a common challenge that even the most seasoned writers face from time to time. Finding effective strategies to overcome it can feel overwhelming, but understanding the root causes is the first step. Drawing from various techniques, including the **[10 content-types method](/blog/2022/01/how-to-generate-a-never-ending-supply-of-blog-posts.html)**, I’ve compiled a comprehensive checklist to help diagnose and conquer your writer's block.

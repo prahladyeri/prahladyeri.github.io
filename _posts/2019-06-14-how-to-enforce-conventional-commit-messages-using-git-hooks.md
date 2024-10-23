@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How to enforce conventional commit messages using git hooks'
-tags: git open-source how-to linux
+tags: git open-source linux
 ---
 
 [Conventional git commit messages](https://www.conventionalcommits.org/en/v1.0.0-beta.4/) are not just nice to have but great to have. In fact, once you get to know them, you'll start feeling that they are essential in any serious programming project. Consider the difference between following two commit messages for instance:

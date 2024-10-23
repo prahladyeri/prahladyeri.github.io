@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How to create a Python app in Google App Engine'
-tags: google-app-engine how-to python
+tags: google-app-engine python
 ---
 
 Whilst the [official pythonic reference](https://developers.google.com/appengine/docs/python) for Google app engine is the way I learnt how to build my first GAE app, I found it a bit frustrating to go through [each](https://developers.google.com/appengine/docs/python/#Python_Selecting_the_Python_runtime) and [every](https://developers.google.com/appengine/docs/python/#Python_The_environment) link and understand large topics like caching and data stores in detail just to build a small hello world pythonic app in Google App Engine. What I wanted was a quick and dirty tutorial that let me build a small app first, and then let me improvise upon the areas that I needed to dig deeper.<!--more-->

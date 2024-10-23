@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How to create android dialogs in a reusable manner'
-tags: android how-to java
+tags: android java
 ---
 
 Creating dialogs is a very common need in your app to show a dialog box to the user in order to fetch a value, be it a mobile, desktop or even a web application. Furthermore, the values can range from anything like simple *OK-Cancel* dialog results to a list of "check-able" values or even a date-range.<!--more-->
