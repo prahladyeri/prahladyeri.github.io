@@ -1,7 +1,7 @@
 ---
 layout: post
 title: '"API first" apps are the future'
-tags: api programming
+tags: api
 ---
 
 Apps tend to become very complex beasts, especially when they start to scale. Part of the complexity is due to the fact that the users could be a diverse set of people with multitude of tastes and preferences which could all be conflicting.

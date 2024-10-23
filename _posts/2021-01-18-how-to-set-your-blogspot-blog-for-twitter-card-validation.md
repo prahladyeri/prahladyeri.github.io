@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How to Enable Twitter Card Validation for Your Blogspot Blog'
-tags: blogspot blogging twitter SEO
+tags: blogspot blogging twitter seo
 ---
 
 When you publish a post on your blog, one of the first things you want to do is share it with the world, and **Twitter/X** is one of the most popular platforms for that. However, if you're using **Google's Blogspot** (also known as Blogger), your blog posts won't automatically display as Twitter Cards when shared. Fortunately, you can easily configure your blog to show those eye-catching **Twitter Cards** by following a few simple steps.

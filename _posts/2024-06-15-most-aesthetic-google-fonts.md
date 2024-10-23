@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Seven most aesthetically pleasing fonts for your Web Apps"
-tags: webdev php bootstrap
+tags: web-development bootstrap
 published: true
 image: /uploads/grocery-cart.jpg
 ---

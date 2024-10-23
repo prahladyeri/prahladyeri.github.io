@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How I made my web pages load 10x faster'
-tags: design efficiency ergonomics web-development digital-minimalism
+tags: web-development efficiency ergonomics
 ---
 
 Update: As of 17th June, 2024, I have also started using font-awesome and google-fonts which goes directly against my principle of "no-cruft"! And while the point of this article still stands in theory, I came to learn that there are pragmatic limits to how far you can stretch minimalism. At some point, utilitarianism starts overriding minimalism.
