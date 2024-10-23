@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How to create a Server-less Google Drive client using only HTML and JavaScript'
-tags: html javascript how-to
+tags: html javascript
 ---
 
 A few days ago, I had to work on a project of this kind and the information and documentation available on this topic was quite bewildering. As a result, I decided to write this article in order to make everything available at one place.<!--more-->

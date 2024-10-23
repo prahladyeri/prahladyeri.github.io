@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How to use Bash+rsync to automate your periodical backups on Linux'
-tags: backup linux ubuntu how-to
+tags: linux ubuntu
 ---
 
 **Linux** is all about simplicity. Simple and time-tested tools like `iptables`, `netstat` and `rsync` can be called for help for basic tasks instead of untrusted third-party tools as happens in case of Windows. If you are a desktop user, then taking frequent backups of your data to a pen-drive or external disk is a typical problem to solve.<!--more-->

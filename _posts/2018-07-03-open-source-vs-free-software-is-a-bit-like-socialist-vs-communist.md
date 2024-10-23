@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Open Source vs Free Software is a bit like Socialist vs Communist'
-tags: libre-software open-source
+tags: open-source
 ---
 
 Socialism and Communism have a lot in common, both ideologies aim to bring an equilibrium and welfare in the society by removing the income inequality between the rich and the poor. However, how they both go about doing their business is what makes the difference between sky and earth. Whilst Communism does advocate the use of **force** to achieve its aim, Socialism does not and that's the major difference of spirit between them. If you remove this force element, you'll in fact find that they are both pretty much the same thing with only technical differences here and there.<!--more-->

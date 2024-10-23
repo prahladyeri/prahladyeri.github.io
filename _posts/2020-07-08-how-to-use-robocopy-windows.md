@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How to use robocopy for taking regular backups on windows'
-tags: windows backup robocopy
+tags: windows robocopy
 ---
 
 Having switched from linux to windows recently, I was looking for an `rsync` alternative. `rsync` is a popular tool in the linux world used for taking routine backups and also general file transfer. But since I use it mostly for backups and I'm mostly a command line dude, I was trying to find a windows equivalent which can do the same. That's when I came across the `robocopy` command.

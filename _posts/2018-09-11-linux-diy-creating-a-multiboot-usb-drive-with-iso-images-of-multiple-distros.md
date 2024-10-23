@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Linux DIY: Creating a multiboot USB drive with ISO images of multiple distros'
-tags: linux how-to
+tags: linux open-source
 ---
 
 Though I'm not a distro-hopper exactly, I keep trying live versions of popular linux distros like **debian** and **ubuntu** every now and then, and while I generally use the "dd" command which works right out of the box, today I thought that instead of burning a new ISO image each time, why not create a single 16GB USB stick which can boot multiple distro images!<!--more-->
