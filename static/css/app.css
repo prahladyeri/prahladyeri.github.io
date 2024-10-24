@@ -9,17 +9,6 @@ body {
 	font-family: "Inter", "Ubuntu", "Segoe UI", "Helvetica";
 }
 
-a {
-  color: #004085; /* Navy Blue */
-}
-a:visited {
-  color: #495057; /* Muted Gray-Blue */
-}
-a:hover {
-  color: #002752; /* Darker Navy on Hover */
-}
-
-
 .container {
     flex: 1;
 }
@@ -35,6 +24,17 @@ footer {
 .the-content *:not(h1, h2, h3, h4, h5, h6) {
 	font-size: 20px;
 }
+
+.the-content a {
+  color: #004085; /* Navy Blue */
+}
+.the-content a:visited {
+  color: #495057; /* Muted Gray-Blue */
+}
+.the-content a:hover {
+  color: #002752; /* Darker Navy on Hover */
+}
+
 
 /* Apply word wrapping to highlighted code blocks */
 div.highlight, 
