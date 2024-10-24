@@ -30,7 +30,7 @@ layout: page
 document.addEventListener('DOMContentLoaded', function() {
     const username = 'prahladyeri'; // Replace with your GitHub username
     //const apiUrl = `https://api.github.com/users/${username}/repos`;
-	const apiUrl = url = `https://api.github.com/search/repositories?q=user:${username}&sort=stars&order=desc&per_page=7`;
+	const apiUrl = `https://api.github.com/search/repositories?q=user:${username}&sort=stars&order=desc&per_page=7`;
 
     fetch(apiUrl)
     .then(response => {
