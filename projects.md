@@ -10,40 +10,65 @@ layout: page
 </div>
 
 <span class="fa-spin">Loading...</span>
+
+<table class="table table-striped mt-3">
+	<thead>
+		<tr>
+			<th scope="col">Project Name</th>
+			<th scope="col">Description</th>
+			<th scope="col">Stars</th>
+			<th scope="col">Last Commit</th>
+			<th scope="col">Link</th>
+		</tr>
+	</thead>
+	<tbody id="projects-body">
+		<!-- Dynamic content will be injected here -->
+	</tbody>
+</table>
 </div>
-<div class='project-item d-none text-muted'>
-	Project: <a href="javascript:" class='name'></a><br>
-	Description: <label class='description'></label><br>
-	Stars: <label class='stars fas fa-star'></label><br>
-	Last commit: <label class='pushed_at'></label><br>
-</div>
+<!-- <div class='project-item d-none text-muted'> -->
+	<!-- Project: <a href="javascript:" class='name'></a><br> -->
+	<!-- Description: <label class='description'></label><br> -->
+	<!-- Stars: <label class='stars fas fa-star'></label><br> -->
+	<!-- Last commit: <label class='pushed_at'></label><br> -->
+<!-- </div> -->
 
 <script type='module'>
-document.addEventListener('DOMContentLoaded', function(){
-	console.log('calling event handler:');
-	var url = "/uploads/projects.json?" + (+new Date());
-	//const response = await fetch(url);
-	//const data=  await response.json();
+document.addEventListener('DOMContentLoaded', function() {
+    const username = 'prahladyeri'; // Replace with your GitHub username
+    const apiUrl = `https://api.github.com/users/${username}/repos`;
 
-	fetch(url)
-	.then(response => response.json())
-	.then(data => {
-		console.log('fetch worked:', data);
-		for(var i=0;i<data.length;i++) {
-			var item = document.querySelector('.project-item.d-none').cloneNode(true);
-			
-			//item.removeClass('d-none');
-			item.className = item.className.replace(/\bd-none\b/, "");
-			item.querySelector(".name").innerHTML= data[i].name;
-			item.querySelector(".name").attributes.href.value= data[i].html_url;
-			item.querySelector(".pushed_at").innerHTML = data[i].pushed_at;
-			item.querySelector(".description").innerHTML = data[i].description;
-			item.querySelector('.stars').innerHTML = " " + data[i].stars;
-
-			document.querySelector("#projects").appendChild(item);
-		}
-		document.querySelector(".fa-spin").remove();		
-	})
+    fetch(apiUrl)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('fetch worked:', data);
+        let projects = '';
+        for (var i = 0; i < data.length; i++) {
+            // Only include public repos that are not forks
+            if (!data[i].fork && data[i].private === false) {
+                projects += `
+                    <tr>
+                        <td><a href="${data[i].html_url}" target="_blank">${data[i].name}</a></td>
+                        <td>${data[i].description || 'No description available'}</td>
+                        <td>${data[i].stargazers_count}</td>
+                        <td>${new Date(data[i].pushed_at).toLocaleDateString()}</td>
+                        <td><a href="${data[i].html_url}" class="btn btn-primary" target="_blank">View Project</a></td>
+                    </tr>
+                `;
+            }
+        }
+        document.getElementById("projects-body").innerHTML = projects;
+        document.querySelector(".fa-spin").remove();        
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+        document.getElementById("projects-body").innerHTML = '<tr><td colspan="5" class="text-center text-danger">Error fetching data from GitHub</td></tr>';
+        document.querySelector(".fa-spin").remove();
+    });
 });
-	
 </script>
