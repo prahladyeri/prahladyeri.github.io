@@ -29,7 +29,8 @@ layout: page
 <script type='module'>
 document.addEventListener('DOMContentLoaded', function() {
     const username = 'prahladyeri'; // Replace with your GitHub username
-    const apiUrl = `https://api.github.com/users/${username}/repos`;
+    //const apiUrl = `https://api.github.com/users/${username}/repos`;
+	const apiUrl = url = `https://api.github.com/search/repositories?q=user:${username}&sort=stars&order=desc&per_page=7`;
 
     fetch(apiUrl)
     .then(response => {
@@ -40,14 +41,14 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .then(data => {
         // Filter out public repos that are not forks and sort by star count
-        const sortedProjects = data
-            .filter(repo => !repo.fork && !repo.private)
-            .sort((a, b) => b.stargazers_count - a.stargazers_count)
-            .slice(0, 7); // Get the top 7 repositories		
+        //const sortedProjects = data;
+            //.filter(repo => !repo.fork && !repo.private);
+            //.sort((a, b) => b.stargazers_count - a.stargazers_count);
+            //.slice(0, 7); // Get the top 7 repositories
         //console.log('sorted data:', sortedProjects);
         let projects = '';
 		
-        sortedProjects.forEach(repo => {
+        data.forEach(repo => {
 			//console.log("processing:", sortedProjects[i]);
 			projects += `
 				<tr>
