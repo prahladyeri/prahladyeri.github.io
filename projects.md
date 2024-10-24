@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <td>${data[i].description || 'No description available'}</td>
                         <td>${data[i].stargazers_count}</td>
                         <td>${new Date(data[i].pushed_at).toLocaleDateString()}</td>
-                        <td><a href="${data[i].html_url}" class="btn btn-primary" target="_blank">View Project</a></td>
+                        <td><a href="${data[i].html_url}" class="btn btn-dark text-light" target="_blank">View Project</a></td>
                     </tr>
                 `;
             }
