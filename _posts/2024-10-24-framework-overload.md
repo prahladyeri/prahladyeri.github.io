@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Framework overload: when convenience dulls innovation in software development
+title: "Framework overload: when convenience dulls innovation in software development"
 tags: software-engineering programming
 image: /uploads/framework-overload.webp
 ---
