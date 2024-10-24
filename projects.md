@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					<td><a href="${repo[i].html_url}" class="btn btn-dark text-light" target="_blank">View Project</a></td>
 				</tr>
 			`;
-        }
+        });
         document.getElementById("projects-body").innerHTML = projects;
         document.querySelector(".fa-spin").remove();        
     })
