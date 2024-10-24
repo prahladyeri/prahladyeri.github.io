@@ -40,20 +40,23 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .then(data => {
         console.log('fetch worked:', data);
+        // Filter out public repos that are not forks and sort by star count
+        const sortedProjects = data
+            .filter(repo => !repo.fork && !repo.private)
+            .sort((a, b) => b.stargazers_count - a.stargazers_count)
+            .slice(0, 7); // Get the top 7 repositories		
         let projects = '';
-        for (var i = 0; i < data.length; i++) {
-            // Only include public repos that are not forks
-            if (!data[i].fork && data[i].private === false) {
-                projects += `
-                    <tr>
-                        <td><a href="${data[i].html_url}" target="_blank">${data[i].name}</a></td>
-                        <td>${data[i].description || 'No description available'}</td>
-                        <td>${data[i].stargazers_count}</td>
-                        <td>${new Date(data[i].pushed_at).toLocaleDateString()}</td>
-                        <td><a href="${data[i].html_url}" class="btn btn-dark text-light" target="_blank">View Project</a></td>
-                    </tr>
-                `;
-            }
+		
+        for (var i = 0; i < sortedProjects.length; i++) {
+			projects += `
+				<tr>
+					<td><a href="${data[i].html_url}" target="_blank">${data[i].name}</a></td>
+					<td>${data[i].description || 'No description available'}</td>
+					<td>${data[i].stargazers_count}</td>
+					<td>${new Date(data[i].pushed_at).toLocaleDateString()}</td>
+					<td><a href="${data[i].html_url}" class="btn btn-dark text-light" target="_blank">View Project</a></td>
+				</tr>
+			`;
         }
         document.getElementById("projects-body").innerHTML = projects;
         document.querySelector(".fa-spin").remove();        
