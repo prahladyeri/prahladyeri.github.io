@@ -14,7 +14,7 @@ For example, when we work with Laravel for PHP, it abstracts much of the nitty-g
 
 A popular anecdote among experienced programmers is encountering job candidates who excel at following documentation to the letter but falter when presented with unique or unconventional problems. In such cases, over-reliance on frameworks has effectively dulled their problem-solving abilities.
 
-![framework-overload](image: /uploads/framework-overload.webp)
+![framework-overload](/uploads/framework-overload.webp)
 
 ### The trap of tool-centric learning
 
