@@ -4,7 +4,6 @@ Disallow: /uploads/
 Disallow: /public/
 Disallow: /drafts/
 Disallow: /theme/
-Disallow: /tag/
 Disallow: /page*
 
 Sitemap: https://prahladyeri.github.io/sitemap.xml
