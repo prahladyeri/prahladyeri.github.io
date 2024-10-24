@@ -51,11 +51,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			//console.log("processing:", sortedProjects[i]);
 			projects += `
 				<tr>
-					<td><a href="${repo[i].html_url}" target="_blank">${repo[i].name}</a></td>
-					<td>${repo[i].description || 'No description available'}</td>
-					<td>${repo[i].stargazers_count}</td>
-					<td>${new Date(repo[i].pushed_at).toLocaleDateString()}</td>
-					<td><a href="${repo[i].html_url}" class="btn btn-dark text-light" target="_blank">View Project</a></td>
+					<td><a href="${repo.html_url}" target="_blank">${repo.name}</a></td>
+					<td>${repo.description || 'No description available'}</td>
+					<td>${repo.stargazers_count}</td>
+					<td>${new Date(repo.pushed_at).toLocaleDateString()}</td>
+					<td><a href="${repo.html_url}" class="btn btn-dark text-light" target="_blank">View Project</a></td>
 				</tr>
 			`;
         });
