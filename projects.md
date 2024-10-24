@@ -26,13 +26,6 @@ layout: page
 	</tbody>
 </table>
 </div>
-<!-- <div class='project-item d-none text-muted'> -->
-	<!-- Project: <a href="javascript:" class='name'></a><br> -->
-	<!-- Description: <label class='description'></label><br> -->
-	<!-- Stars: <label class='stars fas fa-star'></label><br> -->
-	<!-- Last commit: <label class='pushed_at'></label><br> -->
-<!-- </div> -->
-
 <script type='module'>
 document.addEventListener('DOMContentLoaded', function() {
     const username = 'prahladyeri'; // Replace with your GitHub username
