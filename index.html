@@ -15,7 +15,7 @@ title: Home
 	{% endif %}
 		<div class="card-body">
 			<div class="small text-muted">{{ post.date | date_to_string }}</div>
-			<h2 class="card-title h4">{{post.title}}</h2>
+			<h2 class="card-title h4 fw-bold">{{post.title}}</h2>
 			<p class="card-text">{% include short/t_post_summary.html %}</p>
 			<a class="btn btn-primary" href="{{site.baseurl}}{{ post.url }}">Read more →</a>
 		</div>
