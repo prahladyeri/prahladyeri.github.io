@@ -39,22 +39,23 @@ document.addEventListener('DOMContentLoaded', function() {
         return response.json();
     })
     .then(data => {
-        console.log('fetch worked:', data);
         // Filter out public repos that are not forks and sort by star count
         const sortedProjects = data
             .filter(repo => !repo.fork && !repo.private)
             .sort((a, b) => b.stargazers_count - a.stargazers_count)
             .slice(0, 7); // Get the top 7 repositories		
+        //console.log('sorted data:', sortedProjects);
         let projects = '';
 		
-        for (var i = 0; i < sortedProjects.length; i++) {
+        sortedProjects.forEach(repo => {
+			//console.log("processing:", sortedProjects[i]);
 			projects += `
 				<tr>
-					<td><a href="${data[i].html_url}" target="_blank">${data[i].name}</a></td>
-					<td>${data[i].description || 'No description available'}</td>
-					<td>${data[i].stargazers_count}</td>
-					<td>${new Date(data[i].pushed_at).toLocaleDateString()}</td>
-					<td><a href="${data[i].html_url}" class="btn btn-dark text-light" target="_blank">View Project</a></td>
+					<td><a href="${repo[i].html_url}" target="_blank">${repo[i].name}</a></td>
+					<td>${repo[i].description || 'No description available'}</td>
+					<td>${repo[i].stargazers_count}</td>
+					<td>${new Date(repo[i].pushed_at).toLocaleDateString()}</td>
+					<td><a href="${repo[i].html_url}" class="btn btn-dark text-light" target="_blank">View Project</a></td>
 				</tr>
 			`;
         }
