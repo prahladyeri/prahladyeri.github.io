@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
         //console.log('sorted data:', sortedProjects);
         let projects = '';
 		
-        data.forEach(repo => {
+        data.items.forEach(repo => {
 			//console.log("processing:", sortedProjects[i]);
 			projects += `
 				<tr>
