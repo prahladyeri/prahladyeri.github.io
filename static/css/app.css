@@ -9,6 +9,17 @@ body {
 	font-family: "Inter", "Ubuntu", "Segoe UI", "Helvetica";
 }
 
+a {
+  color: #004085; /* Navy Blue */
+}
+a:visited {
+  color: #495057; /* Muted Gray-Blue */
+}
+a:hover {
+  color: #002752; /* Darker Navy on Hover */
+}
+
+
 .container {
     flex: 1;
 }

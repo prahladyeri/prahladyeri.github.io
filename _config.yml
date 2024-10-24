@@ -27,7 +27,7 @@ paginate:         10
 default_lang: en
 
 # Custom vars
-version: 2.1.14
+version: 2.1.15
 adsense: "ca-pub-0428291735937735"
 adsense_slot: "9729062115"
 #disqus: 'prahladyeri-blog'
