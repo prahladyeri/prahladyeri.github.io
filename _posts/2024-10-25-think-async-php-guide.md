@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Think async: unleashing PHP's hidden performance power
+title: "Think async: unleashing PHP's hidden performance power"
 tags: php
 image: /uploads/code-php-2.jpg
 ---
