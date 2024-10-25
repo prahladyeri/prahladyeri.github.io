@@ -35,6 +35,12 @@ footer {
   color: #002752; /* Darker Navy on Hover */
 }
 
+/* Exclude Bootstrap classes like .btn-primary, .btn-secondary, etc. */
+.the-content a.btn, 
+.the-content a[class*="btn-"] {
+  color: inherit;
+}
+
 
 /* Apply word wrapping to highlighted code blocks */
 div.highlight, 
