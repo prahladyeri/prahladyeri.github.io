@@ -2,6 +2,7 @@
 layout: post
 title: Think async: unleashing PHP's hidden performance power
 tags: php
+image: /uploads/code-php-2.jpg
 ---
 Asynchronous programming is an often misunderstood yet crucial concept in modern software development. While traditionally associated with JavaScript or Python, asynchronous programming is just as powerful and relevant in PHP. In this guide, we'll explore the foundations of asynchronous programming, why it matters, and how PHP developers can use it to build faster and more efficient applications.
 
