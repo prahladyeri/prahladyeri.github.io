@@ -19,12 +19,6 @@ title: Home
 			<p class="card-text">{% include short/t_post_summary.html %}</p>
 			<a class="btn btn-primary" href="{{site.baseurl}}{{ post.url }}">Read more →</a>
 		</div>
-		<!--span class='post-tags'>[
-		  {% for tag in post.tags %}
-			{% capture tag_name %}{{ tag }}{% endcapture %}
-			<a href="{{site.baseurl}}/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
-		  {% endfor %}
-		]</span-->
 	</div>
 	</div>
 	{% endfor %}
