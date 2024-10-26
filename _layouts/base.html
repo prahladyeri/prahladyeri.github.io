@@ -54,9 +54,9 @@
 	{
 	"@context": "https://schema.org",
 	"@type": "BlogPosting",
-	"headline": "{{page.title}}",
-	"description": "{{page.content | markdownify | strip_html | truncatewords: 50}}...",
-	"datePublished": "{{ page.date | date_to_string }}",
+	"headline": "{{page.title | escape}}",
+	"description": "{{page.content | markdownify | strip_html | truncatewords: 50}}",
+	"datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
 	"author": {
 	  "@type": "Person",
 	  "name": "Prahlad Yeri"
