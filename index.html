@@ -9,9 +9,9 @@ title: Home
 	<div class="col-lg-6">
 	<div class="card mb-4">
 	{% if post.image %}
-		<a href="{{site.baseurl}}{{post.url }}"><img style='min-height: 354px' class="card-img-top" src="{{site.baseurl}}{{post.image}}" alt="..." /></a>
+		<a href="{{site.baseurl}}{{post.url }}"><img loading="lazy" style='min-height: 354px' class="card-img-top" src="{{site.baseurl}}{{post.image}}" alt="..." /></a>
 	{% else %}
-		<a href="{{site.baseurl}}{{post.url }}"><img style='min-height: 354px' class="card-img-top" src="{{site.baseurl}}/uploads/cover.jpg" alt="..." /></a>
+		<a href="{{site.baseurl}}{{post.url }}"><img loading="lazy" style='min-height: 354px' class="card-img-top" src="{{site.baseurl}}/uploads/cover.jpg" alt="..." /></a>
 	{% endif %}
 		<div class="card-body">
 			<div class="small text-muted">{{ post.date | date_to_string }}</div>
