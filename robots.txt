@@ -1,6 +1,10 @@
 # Group 1
 User-agent: *
 Disallow: /uploads/
+Allow: /uploads/favicon-16x16.png
+Allow: /uploads/favicon-32x32.png
+Allow: /uploads/favicon-64x64.png
+Allow: /uploads/favicon-192x192.png
 Disallow: /public/
 Disallow: /drafts/
 Disallow: /theme/
