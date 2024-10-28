@@ -7,6 +7,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     {% if page.robots == 'noindex' %}
         <meta name="robots" content="noindex">
+    {% endif %}
+	{% if page.pagination and page.pagination.page_number >= 2 %}
+        <meta name="robots" content="noindex">
     {% endif %}	
 	{% if page.title == "Home" %}
 	<title>{{ site.title }} - {{ site.tagline }}</title>
