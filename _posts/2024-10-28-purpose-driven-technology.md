@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Purpose-driven technology: Infusing utilitarianism back into innovation"
+title: "Purpose-driven technology: infusing utilitarianism back into innovation"
 tags: technology programming software-engineering
 image: /uploads/purpose-driven-technology.webp
 ---
