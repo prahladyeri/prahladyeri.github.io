@@ -1,8 +1,7 @@
 # Group 1
 User-agent: *
-Disallow: /public/
+Disallow: /static/
 Disallow: /drafts/
 Disallow: /theme/
-Disallow: /page*
 
 Sitemap: https://prahladyeri.github.io/sitemap.xml
