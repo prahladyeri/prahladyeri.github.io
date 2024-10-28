@@ -8,7 +8,7 @@
     {% if page.robots == 'noindex' %}
         <meta name="robots" content="noindex">
     {% endif %}
-	{% if page.paginator and page.paginator.page >= 2 %}
+	{% if paginator and paginator.page >= 2 %}
         <meta name="robots" content="noindex">
     {% endif %}	
 	{% if page.title == "Home" %}
