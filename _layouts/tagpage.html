@@ -6,7 +6,10 @@ paginate_path: "/tag/{{ page.tag }}/page/:num/"
 <div class="post">
 <h1>Tag: {{ page.tag }}</h1>
 <ul>
-{% for post in site.tags[page.tag] %}
+{% assign posts_by_tag = site.tags[page.tag] %}
+{% assign paginator_posts = posts_by_tag | slice: paginator.offset, paginator.per_page %}
+
+{% for post in paginator_posts %}
   <li><a href="{{ post.url }}">{{ post.title }}</a> ({{ post.date | date_to_string }})<br>
     {{ post.content | markdownify | strip_html | truncatewords: 50 }}
   </li>
