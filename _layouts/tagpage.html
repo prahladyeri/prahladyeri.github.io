@@ -7,7 +7,7 @@ paginate_path: "/tag/:tag/page/:num/"
 <h1>Tag: {{ page.tag }}</h1>
 <ul>
 {% assign posts_by_tag = site.tags[page.tag] %}
-{% total_pages = posts_by_tag | size | divided_by: paginator.per_page | ceil %}
+{% assign total_pages = posts_by_tag | size | divided_by: paginator.per_page | ceil %}
 {% assign current_page = page.pagination_page | default: 1 %}
 {% assign paginator_posts = posts_by_tag | slice: (current_page | minus: 1) | times: paginator.per_page, paginator.per_page %}
 
