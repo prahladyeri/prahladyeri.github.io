@@ -1,24 +1,46 @@
 ---
 layout: post
-title: 'Are your Firefox addons really that safe? - An Insider Story'
-tags: linux
+title: 'An Interesting Tale from History: What the Noscript vs. Adblock Plus Incident Taught Us About Add-on Security'
+image: '/uploads/abp-vs-noscript.webp'
+tags: firefox chrome
 ---
+Firefox has long been a pillar of the open-source software community, renowned for its commitment to privacy, freedom, and transparency. With strict guidelines for what enters its add-on repository, it’s easy to assume that developers of highly popular extensions share these same values. But sometimes, reality challenges our assumptions in unexpected ways. 
 
-Firefox is one of the most competitive FOSS browsers out there, there is no denying it. Mozilla also has strict guidelines regarding what goes into their repos. And in the spirit of all things open source, you may naturally tend to believe that developers who have written your coolest new *million ratings plus* addon are also held to Mozilla’s high standards and subject to all quality audits.<!--more-->
+Let’s revisit an intriguing tale from 2009 that changed the way we think about browser add-on security: the infamous clash between two popular Firefox add-ons, **Adblock Plus (ABP)** and **Noscript**. This story isn’t just a moment of open-source drama—it’s a cautionary tale about trust, transparency, and how we evaluate the tools we rely on every day.
 
-Well, read this short story before subjecting yourself to that blind faith and just clicking on every `Add to Firefox` button in your browser.
+#### **The Incident: Noscript vs. Adblock Plus – A Code War Unfolds**
 
-![Mozilla plugins](/uploads/old/Mozilla_plugins.png)
+Back in 2009, Noscript, a popular security add-on developed by Giorgio Maone, was partially funded by advertisements. To earn revenue, Giorgio’s add-on quietly whitelisted his own ad-supported websites within Adblock Plus (ABP) without user consent. But it wasn’t a simple whitelist addition; Noscript altered ABP’s internal settings to achieve this, effectively hacking into a fellow add-on’s functionality. This was more than a simple slip-up; it was a violation of user trust.
 
-This story is about two popular firefox addons, *Adblock-Plus* and *Noscript*. A few years ago, the Noscript addon was at least partially funded by advertisements. To make a long tale short, the Noscript developer, Giorgio Maone decided to make Noscript meddle with the settings of ABP plugin to whitelist his own sites that earned him advertisement revenue. Of course, this attracted a lot of [unwanted attention](https://adblockplus.org/blog/attention-noscript-users) and a code war ensued between the ABP dev Wladimir Palantir and Giorgio. Things would not have gone that far, had Giorgio just “whitelisted” his advert websites using ABP’s API or other open methods. The fact that he actually hacked into Firefox internals to make his own addon override Wladimir’s ABP is what made all hell break loose.
+Naturally, the move didn’t go unnoticed. **Wladimir Palant**, the developer behind Adblock Plus, discovered the modifications, sparking a public outcry and addressing it in a detailed blog post titled “[Attention Noscript users](https://adblockplus.org/blog/attention-noscript-users)” . What ensued was a very public “code war” between the developers, highlighting a significant vulnerability in how Firefox extensions interacted with each other at that time.
 
-The most ironical about this is the fact that *Noscript* itself is a security-plugin, meaning it is used to block adware to keep the user safe! If the developer of a plugin like *Noscript* would do this, then just think about what all stupid things those random developers of funky little addons might be doing. Of course, Giorgio [publicly apologized](http://hackademix.net/2009/05/04/dear-adblock-plus-and-noscript-users-dear-mozilla-community/) for the debacle he had caused and reading his sincere apology might almost make you forget all qualms about addon security. But the issue here is not about this little turf war between ABP and Noscript, nor is it about what Giorgio did was right or wrong, he handled the situation correctly, regardless. The larger issue here is the security architecture in the entire firefox ecosystem.
+!['abp-vs-noscript.webp']('/uploads/abp-vs-noscript.webp')
 
-You see, when I install a Chrome addon, it asks me as a user what all permissions it needs to be granted. I will know at once, whether it is going to write to my file system, or access the HTML tags in the browser, and it most certainly tells me whether it could play havoc with the other installed addons or not (as happened in this case). Its high time that Firefox too needs to come up with such granular security levels when it comes to installing addons. Only then, incidents like the Noscript debacle can be safely prevented.
+#### **Why This Incident Still Matters Today**
 
-So, next time when you click on that *Add to Firefox* button on the install page, just think about what all goes in a developer’s mind when they write those plugins. I know there are a lot of great FOSS developers (Wladimir and Giorgio included) who selflessly contribute to the open source software, but it is not always apparent whether it is purely out of selflessness or there is an insidious motive on their part to make money by using the users of their addons.
+Noscript’s actions might seem minor in hindsight—especially after Giorgio’s public apology on his blog, “[Dear Adblock Plus and Noscript users, dear Mozilla community](http://hackademix.net/2009/05/04/dear-adblock-plus-and-noscript-users-dear-mozilla-community)” —but the implications ran deeper. This wasn’t just about one developer’s questionable judgment. It was a moment that revealed a larger issue: Firefox’s add-on architecture didn’t provide users with adequate control or visibility over permissions.
 
-References:
+It also raised broader questions: If a security-focused extension like Noscript could manipulate another extension, what about the myriad lesser-known plugins users were installing without a second thought?
 
-<https://adblockplus.org/blog/attention-noscript-users>\
-<http://hackademix.net/2009/05/04/dear-adblock-plus-and-noscript-users-dear-mozilla-community>
+#### **Lessons Learned: Modern Add-on Security and Transparency**
+
+Over the years, browsers have evolved, and so have the security measures around add-ons. Today, **permission-based security models** are the industry standard, with browsers like Chrome and Firefox explicitly informing users about what an extension can access. Mozilla, in particular, has introduced **WebExtensions**, a new architecture that offers enhanced isolation between add-ons to prevent similar incidents.
+
+However, it’s not just about architectural changes. This story underscores the need for vigilance when using third-party extensions. Here are a few best practices to keep in mind:
+
+1. **Review Permissions:** Always check the permissions requested by an add-on. If it seems to require more access than its function justifies, it’s worth reconsidering.
+2. **Stick to Trusted Developers:** While popularity doesn’t guarantee trustworthiness, sticking to well-known and highly rated add-ons with transparent histories is usually safer.
+3. **Stay Updated:** Browser policies and extension capabilities change frequently. Regularly review your installed extensions to ensure they’re up-to-date and still secure.
+
+#### **How Far We’ve Come: The Evolution of Add-on Policies**
+
+It’s interesting to reflect on how far we’ve come since the Noscript-ABP incident. Mozilla’s **addons.mozilla.org (AMO)** now subjects all add-ons to automated and manual reviews. There are stricter guidelines, better transparency, and a comprehensive permission system in place.
+
+The Firefox add-on saga is a valuable reminder of how even open-source ecosystems are susceptible to lapses in transparency and accountability. It’s a testament to the need for constant evolution in how browsers handle user privacy and security.
+
+#### **A Final Thought**
+
+In hindsight, the Noscript and ABP conflict was more than just a developer feud—it was a pivotal moment that shaped the future of browser security. As users, we benefit from this history, with safer add-ons and better guidelines. But as technology evolves, so do the risks, and it’s on all of us to stay informed and vigilant.
+
+So, the next time you click “Add to Firefox,” remember: every piece of software has a story, and it’s worth taking the time to understand it.
+

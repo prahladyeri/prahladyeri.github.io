@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 'From userscript to Chrome extension: Say goodbye to Greasemonkey and Tampermonkey'
-tags: javascript web-development chrome-extension tampermonkey tutorial
+title: "From userscript to Chrome extension: say goodbye to Greasemonkey and Tampermonkey"
+tags: javascript chrome chrome-extension tampermonkey tutorial
 ---
 
 [Userscripts](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/userScripts) are a very useful and handy tool in the hands of power users. Just like customized garnishing, salt and pepper, etc. we put on our food before we eat, we can add custom javascript tweaks on the websites we visit.
