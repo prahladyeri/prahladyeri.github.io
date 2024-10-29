@@ -14,7 +14,7 @@ Back in 2009, Noscript, a popular security add-on developed by Giorgio Maone, wa
 
 Naturally, the move didn’t go unnoticed. **Wladimir Palant**, the developer behind Adblock Plus, discovered the modifications, sparking a public outcry and addressing it in a detailed blog post titled “[Attention Noscript users](https://adblockplus.org/blog/attention-noscript-users)” . What ensued was a very public “code war” between the developers, highlighting a significant vulnerability in how Firefox extensions interacted with each other at that time.
 
-!['abp-vs-noscript.webp']('/uploads/abp-vs-noscript.webp')
+![abp-vs-noscript.webp](/uploads/abp-vs-noscript.webp)
 
 #### **Why this incident still matters today**
 
