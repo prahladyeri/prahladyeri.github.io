@@ -37,9 +37,9 @@ class Car {
 
 On the surface, it looks quite simple and intuitive. If you want to create a car, you instantiate an object with a color and speed, and you can make it drive or repaint it with a method. It's elegant—until complexity starts creeping in.
 
-## When simple tasks become complex 
-
 ![the-illusion-of-simplicity](/uploads/the-illusion-of-simplicity.webp)
+
+## When simple tasks become complex 
 
 The illusion of simplicity in OOP begins to unravel when basic requirements evolve. Let's say we need to support a new vehicle type: a truck. Following OOP principles, you may introduce a `Truck` class that inherits from `Car`, or you might abstract both into a common superclass called `Vehicle`. It looks like a small addition, but such minor changes snowball over time.
 
