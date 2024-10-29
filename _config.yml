@@ -22,6 +22,8 @@ author:
   url:            https://prahladyeri.github.io
 
 paginate:         10
+paginate_path: "/page/:num/"
+tag_permalink: /tag/:tag/
 
 # Language specific
 default_lang: en
