@@ -12,7 +12,7 @@ Let’s revisit an intriguing tale from 2009 that changed the way we think about
 
 Back in 2009, Noscript, a popular security add-on developed by Giorgio Maone, was partially funded by advertisements. To earn revenue, Giorgio’s add-on quietly whitelisted his own ad-supported websites within Adblock Plus (ABP) without user consent. But it wasn’t a simple whitelist addition; Noscript altered ABP’s internal settings to achieve this, effectively hacking into a fellow add-on’s functionality. This was more than a simple slip-up; it was a violation of user trust.
 
-Naturally, the move didn’t go unnoticed. **Wladimir Palant**, the developer behind Adblock Plus, discovered the modifications, sparking a public outcry and addressing it in a detailed blog post titled “[Attention Noscript users](https://adblockplus.org/blog/attention-noscript-users)” . What ensued was a very public “code war” between the developers, highlighting a significant vulnerability in how Firefox extensions interacted with each other at that time.
+Naturally, the move didn’t go unnoticed. **Wladimir Palant**, the developer behind Adblock Plus, discovered the modifications, sparking a public outcry and addressing it in a detailed blog post titled “[Attention Noscript users](https://forum.adblockplus.org/viewtopic.php?t=7356)” . What ensued was a very public “code war” between the developers, highlighting a significant vulnerability in how Firefox extensions interacted with each other at that time.
 
 ![abp-vs-noscript.webp](/uploads/abp-vs-noscript.webp)
 
