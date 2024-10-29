@@ -1,13 +1,16 @@
 ---
 layout: base
 paginate: 10
-paginate_path: "/tag/{{ page.tag }}/page/:num/"
+paginate_path: "/tag/:tag/page/:num/"
 ---
 <div class="post">
 <h1>Tag: {{ page.tag }}</h1>
 <ul>
 {% assign posts_by_tag = site.tags[page.tag] %}
-{% assign paginator_posts = posts_by_tag | slice: paginator.offset, paginator.per_page %}
+{% total_pages = posts_by_tag | size | divided_by: paginator.per_page | ceil %}
+{% assign current_page = page.pagination_page | default: 1 %}
+{% assign paginator_posts = posts_by_tag | slice: (current_page | minus: 1) | times: paginator.per_page, paginator.per_page %}
+
 
 {% for post in paginator_posts %}
   <li><a href="{{ post.url }}">{{ post.title }}</a> ({{ post.date | date_to_string }})<br>
@@ -20,12 +23,12 @@ paginate_path: "/tag/{{ page.tag }}/page/:num/"
 <nav aria-label="Pagination">
 <hr class="my-0">
 	<ul class="pagination justify-content-center my-4">
-    {% if paginator.previous_page %}
-      <li class="page-item"><a class="page-link" href="{{ base.url }}/{{ paginator.previous_page_path }}">Previous</a></li>
+    {% if current_page > 1 %}
+      <li class="page-item"><a class="page-link" href="{{ base.url }}/{{ current_page | minus: 1 }}">Previous</a></li>
     {% endif %}
 
     {% if paginator.next_page %}
-      <li class="page-item"><a class="page-link" href="{{ base.url }}/{{ paginator.next_page_path }}">Next</a></li>
+      <li class="page-item"><a class="page-link" href="{{ base.url }}/{{ current_page | plus: 1 }}">Next</a></li>
     {% endif %}
 	</ul>
 </nav>
