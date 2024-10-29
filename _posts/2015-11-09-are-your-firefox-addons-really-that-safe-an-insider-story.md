@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'An Interesting Tale from History: What the Noscript vs. Adblock Plus Incident Taught Us About Add-on Security'
+title: 'An interesting tale from history: what the Noscript vs. Adblock Plus incident taught us about add-on security'
 image: '/uploads/abp-vs-noscript.webp'
 tags: firefox chrome
 ---
@@ -8,7 +8,7 @@ Firefox has long been a pillar of the open-source software community, renowned f
 
 Let’s revisit an intriguing tale from 2009 that changed the way we think about browser add-on security: the infamous clash between two popular Firefox add-ons, **Adblock Plus (ABP)** and **Noscript**. This story isn’t just a moment of open-source drama—it’s a cautionary tale about trust, transparency, and how we evaluate the tools we rely on every day.
 
-#### **The Incident: Noscript vs. Adblock Plus – A Code War Unfolds**
+#### **The incident: Noscript vs. Adblock Plus – a code war unfolds**
 
 Back in 2009, Noscript, a popular security add-on developed by Giorgio Maone, was partially funded by advertisements. To earn revenue, Giorgio’s add-on quietly whitelisted his own ad-supported websites within Adblock Plus (ABP) without user consent. But it wasn’t a simple whitelist addition; Noscript altered ABP’s internal settings to achieve this, effectively hacking into a fellow add-on’s functionality. This was more than a simple slip-up; it was a violation of user trust.
 
@@ -16,13 +16,13 @@ Naturally, the move didn’t go unnoticed. **Wladimir Palant**, the developer be
 
 !['abp-vs-noscript.webp']('/uploads/abp-vs-noscript.webp')
 
-#### **Why This Incident Still Matters Today**
+#### **Why this incident still matters today**
 
 Noscript’s actions might seem minor in hindsight—especially after Giorgio’s public apology on his blog, “[Dear Adblock Plus and Noscript users, dear Mozilla community](http://hackademix.net/2009/05/04/dear-adblock-plus-and-noscript-users-dear-mozilla-community)” —but the implications ran deeper. This wasn’t just about one developer’s questionable judgment. It was a moment that revealed a larger issue: Firefox’s add-on architecture didn’t provide users with adequate control or visibility over permissions.
 
 It also raised broader questions: If a security-focused extension like Noscript could manipulate another extension, what about the myriad lesser-known plugins users were installing without a second thought?
 
-#### **Lessons Learned: Modern Add-on Security and Transparency**
+#### **Lessons learned: modern add-on security and transparency**
 
 Over the years, browsers have evolved, and so have the security measures around add-ons. Today, **permission-based security models** are the industry standard, with browsers like Chrome and Firefox explicitly informing users about what an extension can access. Mozilla, in particular, has introduced **WebExtensions**, a new architecture that offers enhanced isolation between add-ons to prevent similar incidents.
 
@@ -32,13 +32,13 @@ However, it’s not just about architectural changes. This story underscores the
 2. **Stick to Trusted Developers:** While popularity doesn’t guarantee trustworthiness, sticking to well-known and highly rated add-ons with transparent histories is usually safer.
 3. **Stay Updated:** Browser policies and extension capabilities change frequently. Regularly review your installed extensions to ensure they’re up-to-date and still secure.
 
-#### **How Far We’ve Come: The Evolution of Add-on Policies**
+#### **How far we’ve come: the evolution of add-on policies**
 
 It’s interesting to reflect on how far we’ve come since the Noscript-ABP incident. Mozilla’s **addons.mozilla.org (AMO)** now subjects all add-ons to automated and manual reviews. There are stricter guidelines, better transparency, and a comprehensive permission system in place.
 
 The Firefox add-on saga is a valuable reminder of how even open-source ecosystems are susceptible to lapses in transparency and accountability. It’s a testament to the need for constant evolution in how browsers handle user privacy and security.
 
-#### **A Final Thought**
+#### **A final thought**
 
 In hindsight, the Noscript and ABP conflict was more than just a developer feud—it was a pivotal moment that shaped the future of browser security. As users, we benefit from this history, with safer add-ons and better guidelines. But as technology evolves, so do the risks, and it’s on all of us to stay informed and vigilant.
 
