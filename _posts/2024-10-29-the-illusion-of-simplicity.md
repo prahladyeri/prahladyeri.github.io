@@ -116,23 +116,3 @@ However, using the same hammer for every nail isn’t always the right strategy.
 The takeaway here is not to discard OOP altogether. It’s a valuable tool, but one that needs to be wielded judiciously. Treating it as a panacea can lead to an illusion of simplicity that hides layers of unnecessary complexity. As developers, we must remain adaptable, choosing the right paradigm based on the problem at hand rather than blindly adhering to OOP principles.
 
 The next time you’re about to design a new system or refactor an existing one, ask yourself: *Is OOP truly the simplest solution?*
-
-## Sources:
-
-1. **Gamma, Erich, Richard Helm, Ralph Johnson, and John Vlissides. *Design Patterns: Elements of Reusable Object-Oriented Software.* Addison-Wesley, 1994.**
-
-2. **Martin, Robert C. *Clean Code: A Handbook of Agile Software Craftsmanship.* Prentice Hall, 2008.**
-
-3. **Hunt, Andrew, and David Thomas. *The Pragmatic Programmer: Your Journey to Mastery.* Addison-Wesley, 1999.**
-
-4. **Meyer, Bertrand. *Object-Oriented Software Construction.* Prentice Hall, 1997.**
-
-5. **Chiusano, Paul, and Rúnar Bjarnason. *Functional Programming in Scala.* Manning Publications, 2014.**
-
-6. **Gupta, Aditya. "A Comparative Study of Object-Oriented and Functional Programming Paradigms." *International Journal of Computer Science and Information Technologies (IJCSIT).***
-
-7. **Saini, Vaibhav, and Sameer Pradhan. "Object-Oriented vs. Functional Programming: A Comparative Study of Common Software Design Patterns." *ResearchGate.***
-
-8. **Grogono, Peter. "Reflections on the Teaching of Object-Oriented Programming." *ACM SIGCSE Bulletin.***
-
-9. **Brooks Jr., Frederick P. *The Mythical Man-Month: Essays on Software Engineering.* Addison-Wesley, 1975.**
