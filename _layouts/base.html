@@ -28,14 +28,20 @@
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@prahladyeri" />
 	<meta name="twitter:creator" content="@prahladyeri" />
+	<meta property="og:site_name" content="{{ site.title }} - {{ site.tagline }}" />
 	{% if page.id %}
+		<meta property="og:type" content="article" />
+
 		<meta name="twitter:url" content="{{ site.url }}{{ page.url }}" />
+		<meta property="og:url" content="{{ site.url }}{{ page.url }}" />
 		<meta name="twitter:title" content="{{ page.title }}" />
+		<meta property="og:title" content="{{ page.title }}" />
 		<meta name="twitter:text:title" content="{{ page.title }}" />
 		<meta name="twitter:description" content="{{ page.content | markdownify | strip_html | truncatewords: 50 }}" />
-		<!-- <meta name="description" property="og:description" content="{{ page.content | markdownify | strip_html | truncatewords: 50 }}" /> -->
-		<meta name="description" property="og:description" 
+		<meta name="description" 
 		content="{% if page.description %}{{ page.description | strip_html | truncate: 160 }}{% else %}{{ page.content | markdownify | strip_html | truncate: 160 }}{% endif %}" />
+		<meta property="og:description"
+		content="{% if page.description %}{{ page.description | strip_html | truncate: 160 }}{% else %}{{ page.content | markdownify | strip_html | truncate: 160 }}{% endif %}" />		
 		
 		{% if page.image %}
 			<meta name="twitter:image" content="{{ site.url }}{{ page.image }}" />
