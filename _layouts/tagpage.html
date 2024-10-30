@@ -6,7 +6,6 @@ layout: base
 <table class='table table-sm table-bordered table-striped'>
 {% for post in site.tags[page.tag] %}
   <tr><td><a href="{{ post.url }}">{{ post.title }}</a> ({{ post.date | date_to_string }})
-  <!-- <br>{{ post.content | markdownify | strip_html | truncatewords: 50 }} -->
   </td></tr>
 {% endfor %}
 </table>
