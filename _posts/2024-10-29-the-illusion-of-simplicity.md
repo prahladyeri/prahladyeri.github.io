@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The illusion of simplicity: how object-oriented programming overcomplicates simple problems"
+title: "The illusion of simplicity: how OOP can overcomplicate simple problems"
 description: "OOP has been hailed as the savior of software development world, but is it truly the answer to every software challenge or it is just an illusion of simplicity?"
 tags: programming software-engineering agile
 image: /uploads/the-illusion-of-simplicity.webp
