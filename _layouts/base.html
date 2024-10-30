@@ -140,7 +140,8 @@
 						{% endfor %}
 						{% endcapture %}
 						{% assign sortedtags = tags | split:' ' | sort %}
-						{% assign bg_classes = "bg-dark bg-primary bg-success bg-danger bg-secondary" | split: " " %}
+						{% assign bg_classes = "bg-dark bg-primary bg-success bg-danger bg-secondary bg-warning bg-info bg-light" | split: " " %}
+						{% assign light_classes = "bg-warning bg-light bg-info" | split: " " %}
 
 							{% for tag in sortedtags reversed  %}
 							{% assign tagitems = tag | split: '#' %}
@@ -148,7 +149,12 @@
 							{% if post_count >= 4 %}
 								{% assign random_index = forloop.index | modulo: bg_classes.size %}
 								{% assign random_class = bg_classes[random_index] %}
-								<a class="badge {{random_class}} text-decoration-none link-light fs-6 mb-1" href="{{ site.baseurl }}/tag/{{ tagitems[1] }}">
+								{% assign text_class = "text-light" %}
+								{% if light_classes contains random_class %}
+								  {% assign text_class = "text-dark" %}
+								{% endif %}
+								
+								<a class="badge {{random_class}} {{text_class}} text-decoration-none link-light fs-6 mb-1" href="{{ site.baseurl }}/tag/{{ tagitems[1] }}">
 									{{ tagitems[1] }} ({{ tagitems[2] }})
 								</a>&nbsp;
 							{% endif %}
