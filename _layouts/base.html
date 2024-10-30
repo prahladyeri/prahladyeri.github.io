@@ -35,7 +35,7 @@
 		<meta name="twitter:description" content="{{ page.content | markdownify | strip_html | truncatewords: 50 }}" />
 		<!-- <meta name="description" property="og:description" content="{{ page.content | markdownify | strip_html | truncatewords: 50 }}" /> -->
 		<meta name="description" property="og:description" 
-		content="{% if page.description %}{{ page.description | strip_html | truncate: 220 }}{% else %}{{ page.content | markdownify | strip_html | truncate: 220 }}{% endif %}" />
+		content="{% if page.description %}{{ page.description | strip_html | truncate: 160 }}{% else %}{{ page.content | markdownify | strip_html | truncate: 160 }}{% endif %}" />
 		
 		{% if page.image %}
 			<meta name="twitter:image" content="{{ site.url }}{{ page.image }}" />
