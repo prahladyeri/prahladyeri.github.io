@@ -1,6 +1,5 @@
 # Group 1
 User-agent: *
-Disallow: /static/
 Disallow: /drafts/
 Disallow: /theme/
 
