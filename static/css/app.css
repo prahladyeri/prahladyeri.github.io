@@ -9,6 +9,10 @@ body {
 	font-family: "Inter", "Ubuntu", "Segoe UI", "Helvetica";
 }
 
+.card-tags ul.d-flex .badge {
+	 flex-grow: 1;
+}
+
 .container {
     flex: 1;
 }

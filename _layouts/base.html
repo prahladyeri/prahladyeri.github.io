@@ -128,12 +128,12 @@
 				</div>
 			</div>
 			<!-- Tags widget-->
-			<div class="card mb-4">
+			<div class="card-tags card mb-4">
 				<div class="card-header">Tags</div>
 				<div class="card-body">
 					<div class="row">
 						<div class="col-sm-12">
-							<ul class="list-unstyled mb-0">
+							<ul class="list-unstyled mb-0 d-flex flex-wrap">
 						{% capture tags %}
 						{% for tag in site.tags %}
 						{{ tag[1].size | plus: 1000 }}#{{ tag[0] }}#{{ tag[1].size }}
