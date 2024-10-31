@@ -39,14 +39,21 @@ footer {
 	font-size: 20px;
 }
 
-.the-content a:not(.btn):not([class*="btn-"]) {
+.the-content a:not(.btn):not(.page-link):not([class*="btn-"])
+{
   color: #004085; /* Navy Blue */
 }
-.the-content a:not(.btn):not([class*="btn-"]):visited {
+.the-content a:not(.btn):not(.page-link):not([class*="btn-"]):visited
+{
   color: #495057; /* Muted Gray-Blue */
 }
-.the-content a:not(.btn):not([class*="btn-"]):hover {
+.the-content a:not(.btn):not(.page-link):not([class*="btn-"]):hover
+{
   color: #002752; /* Darker Navy on Hover */
+}
+.the-content a:not(.btn):not(.page-link):not([class*="btn-"]):focus
+{
+  outline: 2px solid #002752;
 }
 
 /* Exclude Bootstrap classes like .btn-primary, .btn-secondary, etc. */
