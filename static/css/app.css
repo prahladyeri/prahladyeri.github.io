@@ -58,9 +58,11 @@ footer {
 
 
 /* Apply word wrapping to highlighted code blocks */
-div.highlight, 
+.highlight pre, 
+.highlight code,
 pre.highlight,
-code {
+code
+{
     white-space: pre-wrap; /* Allows wrapping of long lines */
     word-wrap: break-word; /* Breaks long words onto the next line */
     overflow-wrap: break-word; /* Provides better handling for overflow */
