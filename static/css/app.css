@@ -58,10 +58,11 @@ footer {
 
 
 /* Apply word wrapping to highlighted code blocks */
-.highlight pre, 
-.highlight code,
-pre.highlight,
-code
+.the-content .highlight,
+.the-content .highlight pre, 
+.the-content .highlight code,
+.the-content pre,
+.the-content code
 {
     white-space: pre-wrap; /* Allows wrapping of long lines */
     word-wrap: break-word; /* Breaks long words onto the next line */
