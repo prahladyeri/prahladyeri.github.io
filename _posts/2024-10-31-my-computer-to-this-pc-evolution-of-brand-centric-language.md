@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'From "My Computer" to "This PC": The evolution of language in a brand-centric consumer culture'
+title: 'From "My Computer" to "This PC": the evolution of language in a brand-centric consumer culture'
 tags: society technology language
 image: /uploads/my-computer-to-this-pc-evolution-of-brand-centric-language.webp
 ---
