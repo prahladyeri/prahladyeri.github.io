@@ -17,9 +17,9 @@ In this in-depth guide, we’ll cover how to create a dynamic airline ticket boo
 8. Additional resources and open-source projects
 9. Conclusion
 
----
-
 ![airline-ticket-booking-system-php-mysql](/uploads/airline-ticket-booking-system-php-mysql.webp)
+
+---
 
 ### 1. Introduction to the airline booking system
 
