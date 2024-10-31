@@ -100,7 +100,5 @@ In this age of consumerism, it is vital to recognize the role of linguistics in 
 ### References
 
 1. Crystal, D. (2008). A Dictionary of Linguistics and Phonetics. Wiley-Blackwell.
-2. Lunt, P. (2016). The cultural politics of consumerism: rethinking the role of language. Journal of Consumer Culture.
 3. McLuhan, M. (1964). Understanding Media: The Extensions of Man. McGraw-Hill.
 4. Postman, N. (1993). Technopoly: The Surrender of Culture to Technology. Knopf.
-5. Vann, R. (2000). Language and Identity: The Sociolinguistics of Modernity. Cambridge University Press.
