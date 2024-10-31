@@ -177,6 +177,67 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ```
 
+The `flights.php` (Search Flights Page) file is intended to allow users to search for flights by specifying criteria like origin, destination, and date, and then display available flights based on those inputs. Here’s how it could be implemented:
+
+```php
+<!-- flights.php -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Flights</title>
+</head>
+<body>
+    <h1>Search for Flights</h1>
+    <form method="POST" action="flights.php">
+        <label for="origin">Origin:</label>
+        <input type="text" name="origin" required>
+        
+        <label for="destination">Destination:</label>
+        <input type="text" name="destination" required>
+        
+        <label for="date">Date:</label>
+        <input type="date" name="date" required>
+        
+        <button type="submit">Search</button>
+    </form>
+
+    <?php
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        include 'db/connection.php';
+        $origin = $_POST['origin'];
+        $destination = $_POST['destination'];
+        $date = $_POST['date'];
+
+        // Query to search flights
+        $query = "SELECT * FROM flights WHERE origin = ? AND destination = ? AND DATE(departure_time) = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("sss", $origin, $destination, $date);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        echo "<h2>Available Flights</h2>";
+        if ($result->num_rows > 0) {
+            echo "<table><tr><th>Flight Number</th><th>Departure</th><th>Arrival</th><th>Seats</th><th>Price</th></tr>";
+            while ($flight = $result->fetch_assoc()) {
+                echo "<tr>
+                    <td>{$flight['flight_number']}</td>
+                    <td>{$flight['departure_time']}</td>
+                    <td>{$flight['arrival_time']}</td>
+                    <td>{$flight['seats_available']}</td>
+                    <td>{$flight['price']}</td>
+                    <td><a href='book.php?flight_id={$flight['id']}'>Book Now</a></td>
+                </tr>";
+            }
+            echo "</table>";
+        } else {
+            echo "No flights found.";
+        }
+    }
+    ?>
+</body>
+</html>
+```
+
 ---
 
 ### 6. Ticket booking and reservation management
@@ -215,6 +276,75 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ```
+
+The `manage_booking.php` file allows users to view and manage their existing bookings, such as viewing current reservations, canceling them, or checking status. Here’s a basic implementation for managing bookings:
+
+```php
+<!-- manage_booking.php -->
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
+
+include 'db/connection.php';
+$user_id = $_SESSION['user_id'];
+
+// Fetch bookings for the logged-in user
+$query = "SELECT bookings.id, flights.flight_number, flights.origin, flights.destination, flights.departure_time, bookings.status
+          FROM bookings
+          JOIN flights ON bookings.flight_id = flights.id
+          WHERE bookings.user_id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Bookings</title>
+</head>
+<body>
+    <h1>Your Bookings</h1>
+    <?php if ($result->num_rows > 0): ?>
+        <table>
+            <tr>
+                <th>Flight Number</th>
+                <th>Origin</th>
+                <th>Destination</th>
+                <th>Departure</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            <?php while ($booking = $result->fetch_assoc()): ?>
+                <tr>
+                    <td><?php echo $booking['flight_number']; ?></td>
+                    <td><?php echo $booking['origin']; ?></td>
+                    <td><?php echo $booking['destination']; ?></td>
+                    <td><?php echo $booking['departure_time']; ?></td>
+                    <td><?php echo ucfirst($booking['status']); ?></td>
+                    <td>
+                        <?php if ($booking['status'] === 'confirmed'): ?>
+                            <form method="POST" action="cancel_booking.php">
+                                <input type="hidden" name="booking_id" value="<?php echo $booking['id']; ?>">
+                                <button type="submit">Cancel</button>
+                            </form>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+        </table>
+    <?php else: ?>
+        <p>No bookings found.</p>
+    <?php endif; ?>
+</body>
+</html>
+```
+
+Similarly, the **`cancel_booking.php`** could handle booking cancellation logic, updating the booking status in the `bookings` table when a user requests to cancel. The implementation of this file is left to the user as a home-work exercise.
 
 ---
 
