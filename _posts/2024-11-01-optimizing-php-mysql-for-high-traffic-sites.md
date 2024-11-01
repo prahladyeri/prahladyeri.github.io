@@ -97,6 +97,7 @@ xdebug.output_dir="/var/log/xdebug"
 For very high-traffic sites, scaling vertically may not be sufficient. Instead, use load balancing and database sharding to distribute traffic and reduce load on individual servers.
 
 **Load balancing**: Distribute traffic across multiple PHP servers using tools like **NGINX** or **HAProxy**.
+
 **Database sharding**: Partition your database into smaller, more manageable pieces based on logical data separation (e.g., sharding by user region).
 
 **Example of basic load balancing with NGINX**:
