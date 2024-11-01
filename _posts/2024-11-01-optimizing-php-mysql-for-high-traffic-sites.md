@@ -118,8 +118,10 @@ server {
 
 Optimizing PHP and MySQL for high-traffic websites involves a multifaceted approach, from implementing effective caching and indexing to refining SQL queries and tuning server configurations. With the right strategies and tools, your application can handle large-scale traffic efficiently, ensuring a seamless experience for your users.
 
-**References**
-- *MySQL Documentation: Optimization Guidelines*
-- *PHP Performance Best Practices*
-- *High Performance MySQL, 3rd Edition (Baron Schwartz)*
+Here is the rewritten citation in a Wikipedia-style format:
 
+**References**
+
+- MySQL Documentation Team, Oracle Corporation. *[MySQL Documentation: Optimization Guidelines](https://dev.mysql.com/doc/refman/8.0/en/optimization.html)*.
+- PHP.net contributors. *[PHP Performance Best Practices](https://www.php.net/manual/en/intro.performance.php)*.
+- Schwartz, Baron; Zaitsev, Peter; Tkachenko, Vadim. *High Performance MySQL, 3rd Edition*. O'Reilly Media, 2012.
