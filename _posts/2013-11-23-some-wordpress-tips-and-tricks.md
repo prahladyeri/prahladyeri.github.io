@@ -76,9 +76,9 @@ Change it accordingly to suit your needs.
 
 ***References:***
 
-- http://www.cryoutcreations.eu/forums/t/breadcrumbs-how-to-show-home-instead-of-site-title-in-the-breadcrumbs
-- http://wordpress.org/plugins/contact-form-7/
-- http://www.wpsquared.com/top-10-wordpress-contact-form-plugins/
-- http://wordpress.org/support/topic/plugin-contact-form-7-16?replies=5
-- http://contactform7.com/text-fields/
-- http://contactform7.com/tag-syntax/
+- <http://www.cryoutcreations.eu/forums/t/breadcrumbs-how-to-show-home-instead-of-site-title-in-the-breadcrumbs>
+- <http://wordpress.org/plugins/contact-form-7/>
+- <http://www.wpsquared.com/top-10-wordpress-contact-form-plugins/>
+- <http://wordpress.org/support/topic/plugin-contact-form-7-16?replies=5>
+- <http://contactform7.com/text-fields/>
+- <http://contactform7.com/tag-syntax/>
