@@ -124,5 +124,5 @@ Here is the rewritten citation in a Wikipedia-style format:
 **References**
 
 - MySQL Documentation Team, Oracle Corporation. *[MySQL Documentation: Optimization Guidelines](https://dev.mysql.com/doc/refman/8.0/en/optimization.html)*.
-- PHP.net contributors. *[PHP Performance Best Practices](https://www.php.net/manual/en/intro.performance.php)*.
+- PHP.net contributors. *[PHP Performance Best Practices](https://www.php.net/manual/en/features.gc.performance-considerations.php)*.
 - Schwartz, Baron; Zaitsev, Peter; Tkachenko, Vadim. *High Performance MySQL, 3rd Edition*. O'Reilly Media, 2012.
