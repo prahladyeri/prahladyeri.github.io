@@ -50,7 +50,7 @@ If you notice that some whitespace is still left on top of the page, you can try
 
 This is a pretty decent form plugin that, from a single line of short-code (in your page or post), creates a basic all-purpose contact-form such as this:
 
-![Page created with Contact Forms 7](/uploads/old/Contact-Forms-7-300x164.png)
+![Page created with Contact Forms 7](/uploads/old/Contact-Forms-7.png)
 
 **Page created with Contact Forms 7**
 
