@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Guarding the digital frontier: top open source security projects of 2024"
-tags: open-source cyber-security
+tags: open-source security
 image: /uploads/guarding-the-digital-frontier.jpg
 ---
 As digital threats evolve at an unprecedented pace, robust cybersecurity measures have become more critical than ever. Open source security projects stand at the forefront of this battle, offering powerful tools that empower organizations to protect their data and infrastructure. These projects promote transparency, encourage collaboration, and often provide cost-effective alternatives to proprietary software. In 2024, the open source community continues to innovate, with numerous security projects making significant strides in safeguarding the digital frontier. This article will explore the leading open source security projects you should know about this year.
