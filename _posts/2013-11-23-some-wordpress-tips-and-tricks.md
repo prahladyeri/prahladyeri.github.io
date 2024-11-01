@@ -4,7 +4,7 @@ title: 'Some Wordpress tips and tricks'
 tags: wordpress php
 ---
 
-Wordpress is a universally recognized and robust blogging platform written in the PHP language. Below are a bunch of Wordpress tricks that I've learned during my deployments, and I'd like to share with you.<!--more-->
+Wordpress is a universally recognized and robust blogging platform written in the PHP language. Below are a bunch of Wordpress tricks that I've learned during my deployments, and I'd like to share with you.
 
 ***1. Change breadcrumbs to start from "Home" instead of Site-Title***: When I set up this site, the breadcrumbs in the post used to read like this:
 
@@ -50,7 +50,7 @@ If you notice that some whitespace is still left on top of the page, you can try
 
 This is a pretty decent form plugin that, from a single line of short-code (in your page or post), creates a basic all-purpose contact-form such as this:
 
-[![Page created with Contact Forms 7](/uploads/old/Contact-Forms-7-300x164.png){.size-medium .wp-image-120 width="300" height="164"}](/uploads/old/Contact-Forms-7.png)
+![Page created with Contact Forms 7](/uploads/old/Contact-Forms-7-300x164.png)
 
 **Page created with Contact Forms 7**
 
