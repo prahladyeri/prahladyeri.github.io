@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Alternative "Reddit like" social networking sites for the minimalists'
+title: 'Best minimalist social networks for users tired of clutter'
 tags: internet reddit hubski medium
 image: /uploads/alternative-reddit-like-social-networking-sites-for-the-minimalists.webp
 ---
