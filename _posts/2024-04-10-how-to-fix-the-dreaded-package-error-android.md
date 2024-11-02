@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Troubleshoot the 'Invalid Package' Error on Android APK Installation"
+title: "Troubleshoot the 'Invalid Package' error on Android APK installation"
 tags: android apk mobile-development tutorial troubleshooting
 published: true
 image: /uploads/android-package-error.jpg
