@@ -2,11 +2,12 @@
 layout: post
 title: 'How to Generate PDFs in Python for Google App Engine'
 tags: google-app-engine python
+image: /uploads/old/pdf-300x300.png
 ---
 
 One of my last projects based on google app engine and python involved storing form data in GAE datastore and generating PDF documents that the user can download. Whilst data storing was the easier part as google's big data API it is pretty [well documented](https://developers.google.com/appengine/docs/python/datastore/), the trickier aspect was to convert it to PDF using python.<!--more-->
 
-[![pdf](/uploads/old/pdf-300x300.png){.alignnone .wp-image-164 width="108" height="108"}](/uploads/old/pdf.png)
+![pdf](/uploads/old/pdf-300x300.png)
 
 This was especially difficult in the face of GAE not providing an easy mechanism for disk writing that most PDF generation libraries require. To share my endeavors, I'm writing this post about how to generate pdfs in python for Google app engine.
 
