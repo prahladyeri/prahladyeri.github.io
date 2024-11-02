@@ -9,7 +9,7 @@ PDF generation and processing is a common requirement in many web applications, 
 
 ---
 
-### 1. **FPDF**
+### 1. [**FPDF**](https://github.com/Setasign/FPDF)
 
 **FPDF** is one of the most basic and lightweight libraries for creating PDF files with PHP. It requires no external dependencies and allows developers to generate PDFs from scratch using a simple API.
 
@@ -29,7 +29,7 @@ PDF generation and processing is a common requirement in many web applications, 
   
 ---
 
-### 2. **TCPDF**
+### 2. [**TCPDF**](https://github.com/tecnickcom/TCPDF)
 
 **TCPDF** is a robust, feature-rich library that builds on the simplicity of FPDF but provides more advanced capabilities like support for HTML, Unicode, and complex layouts.
 
@@ -51,7 +51,7 @@ PDF generation and processing is a common requirement in many web applications, 
 
 ---
 
-### 3. **mPDF**
+### 3. [**mPDF**](https://libraries.io/packagist/mpdf%2Fmpdf)
 
 **mPDF** is based on FPDF and HTML2PDF and is designed for converting HTML content into PDFs. It provides a good balance between simplicity and features, offering an easy way to convert web pages into PDFs.
 
@@ -73,7 +73,7 @@ PDF generation and processing is a common requirement in many web applications, 
 
 ---
 
-### 4. **Snappy (wkhtmltopdf)**
+### 4. [**Snappy (wkhtmltopdf)**](https://libraries.io/packagist/knplabs%2Fknp-snappy)
 
 **Snappy** is a wrapper for the **wkhtmltopdf** command-line tool that uses WebKit to render HTML as PDF. It’s known for producing high-quality, accurate PDFs from complex HTML/CSS structures.
 
@@ -95,7 +95,7 @@ PDF generation and processing is a common requirement in many web applications, 
 
 ---
 
-### 5. **PDFParser**
+### 5. [**PDFParser**](https://libraries.io/packagist/smalot%2Fpdfparser)
 
 **PDFParser** is a powerful library for parsing and extracting content from existing PDF files. It focuses on analyzing and extracting text, images, and metadata rather than creating new PDFs.
 
@@ -114,7 +114,7 @@ PDF generation and processing is a common requirement in many web applications, 
 
 ---
 
-### 6. **SetaPDF**
+### 6. [**SetaPDF**](https://www.setasign.com/products/setapdf-core/details/)
 
 **SetaPDF** is a commercial-grade PHP library for professional-level PDF processing. It offers features like form filling, signing, and advanced manipulation of PDF files.
 
@@ -134,7 +134,7 @@ PDF generation and processing is a common requirement in many web applications, 
 
 ---
 
-### 7. **FPDI**
+### 7. [**FPDI**](https://github.com/Setasign/FPDI)
 
 **FPDI** is an extension to FPDF and TCPDF that allows you to import pages from existing PDFs and use them in newly generated PDFs. It's perfect for modifying and merging PDFs.
 
@@ -153,7 +153,7 @@ PDF generation and processing is a common requirement in many web applications, 
 
 ---
 
-### 8. **PDFMerger**
+### 8. [**PDFMerger**](https://github.com/myokyawhtun/PDFMerger)
 
 **PDFMerger** is a small, easy-to-use library for merging PDF files. It simplifies the process of combining multiple PDF files into one document.
 
@@ -172,7 +172,7 @@ PDF generation and processing is a common requirement in many web applications, 
 
 ---
 
-### 9. **Dompdf**
+### 9. [**Dompdf**](https://github.com/dompdf/dompdf)
 
 **Dompdf** is one of the most popular PHP libraries for converting HTML and CSS to PDF. It’s a powerful library that uses a layout engine based on HTML5 and CSS3, allowing developers to generate PDFs from existing web pages or dynamically built HTML documents.
 
