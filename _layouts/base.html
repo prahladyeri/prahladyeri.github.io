@@ -29,6 +29,7 @@
 	<meta name="twitter:site" content="@prahladyeri" />
 	<meta name="twitter:creator" content="@prahladyeri" />
 	<meta property="og:site_name" content="{{ site.title }} - {{ site.tagline }}" />
+	<meta name="application-name" content="{{ site.title }} - {{ site.tagline }}" />
 	<meta name="twitter:url" content="{{site.url}}{{page.url}}" />
 	<meta property="og:url" content="{{ site.url }}{{ page.url }}" />
 	{% if page.id %}
@@ -88,7 +89,15 @@
 	}
 	}
 	</script>
-	{% endif %}  
+	{% endif %}
+	<script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "WebSite",
+	  "name": "Prahlad Yeri - Freelance Programmer and Writer",
+	  "url": "https://prahladyeri.github.io"
+	}
+	</script>
 </head>
  <body class=""> 
 	<!-- Responsive navbar-->
