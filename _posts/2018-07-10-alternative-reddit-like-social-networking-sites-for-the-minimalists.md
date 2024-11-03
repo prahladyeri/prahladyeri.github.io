@@ -64,8 +64,8 @@ Here's a roundup of some of the best minimalist social networks available:
 | Hubski       | General interest              | Tag-based, thoughtful posts        | Community-driven, rich discussions        | Smaller user base                        |
 | Mastodon     | General social networking     | Decentralized, federated           | Privacy-focused, varied content           | Steep learning curve for new users       |
 | Snapzu       | Broad topics                  | Tribe categories, minimal UI       | Polished design, respectful community     | Invite-only access                       |
-| **Discuit.net** | Community/social sharing | Markdown support, simple interface | Lightweight, ad-free, active communities  | Limited user base, less feature-rich     |
-| **Peerlist.io** | Tech professionals         | Profiles, project showcase         | Great for networking, verified credentials| Smaller network compared to LinkedIn     |
+| Discuit.net | Community/social sharing | Markdown support, simple interface | Lightweight, ad-free, active communities  | Limited user base, less feature-rich     |
+| Peerlist.io | Tech professionals         | Profiles, project showcase         | Great for networking, verified credentials| Smaller network compared to LinkedIn     |
 | Lemmy        | General/community forums      | Federated, decentralized           | Privacy-focused, Fediverse support        | Relatively new, limited user base        |
 | kbin         | Aggregator and microblogging  | Federation, ActivityPub support    | Decentralized, ad-free, privacy-focused   | Limited reach, niche audience            |
 | Steemit      | Content creation              | Blockchain-based rewards           | Incentivizes content creation             | Cryptocurrency volatility                |
