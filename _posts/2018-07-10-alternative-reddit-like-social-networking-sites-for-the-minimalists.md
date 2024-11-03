@@ -29,15 +29,6 @@ Here's a roundup of some of the best minimalist social networks available:
 
 **What sets it apart**: Hacker News was created by Y Combinator and has maintained its no-frills interface since inception. Its orange-and-white theme, simple text links, and threaded comments are loved by developers, entrepreneurs, and tech enthusiasts for their straightforwardness and depth.
 
-#### Slashdot
-**Niche**: Science, technology, and culture  
-**Key Features**: User-submitted stories, discussions, customizable viewing options  
-**Pros**: Engaging content curation, minimal resource usage.  
-**Cons**: Can be more niche-focused than casual platforms.  
-**Website**: [Slashdot](https://slashdot.org/)
-
-**Slashdot in action**: Often described as the original tech community before Hacker News, Slashdot encourages debate and insightful commentary. Its retro, no-nonsense design is a throwback to simpler days and appeals to those seeking intellectually stimulating discussions.
-
 #### Hubski
 **Niche**: General interest, thoughtful discussions  
 **Key Features**: Community-driven, tag-based content, user-focused interactions  
@@ -67,13 +58,19 @@ Here's a roundup of some of the best minimalist social networks available:
 
 ### 3. Comparison table for minimalist platforms
 
-| Platform   | Niche                      | Key Features                  | Pros                                   | Cons                                  |
-|------------|----------------------------|--------------------------------|----------------------------------------|---------------------------------------|
-| Hacker News| Technology/startups        | Plain text, quality discussions| Fast, simple UI, high-quality content  | Niche-focused                        |
-| Slashdot   | Science/technology/culture | User stories, discussions      | Customizable, engaging content         | Niche-specific                       |
-| Hubski     | General interest           | Tag-based, thoughtful posts    | Community-driven, rich discussions    | Smaller user base                    |
-| Mastodon   | General social networking  | Decentralized, federated       | Privacy-focused, varied content       | Steep learning curve for new users   |
-| Snapzu     | Broad topics               | Tribe categories, minimal UI   | Polished design, respectful community | Invite-only access                   |
+| Platform     | Niche                         | Key Features                       | Pros                                      | Cons                                      |
+|--------------|-------------------------------|------------------------------------|-------------------------------------------|-------------------------------------------|
+| Hacker News  | Technology/startups           | Plain text, quality discussions    | Fast, simple UI, high-quality content     | Niche-focused                            |
+| Hubski       | General interest              | Tag-based, thoughtful posts        | Community-driven, rich discussions        | Smaller user base                        |
+| Mastodon     | General social networking     | Decentralized, federated           | Privacy-focused, varied content           | Steep learning curve for new users       |
+| Snapzu       | Broad topics                  | Tribe categories, minimal UI       | Polished design, respectful community     | Invite-only access                       |
+| **Discuit.net** | Community/social sharing | Markdown support, simple interface | Lightweight, ad-free, active communities  | Limited user base, less feature-rich     |
+| **Peerlist.io** | Tech professionals         | Profiles, project showcase         | Great for networking, verified credentials| Smaller network compared to LinkedIn     |
+| Lemmy        | General/community forums      | Federated, decentralized           | Privacy-focused, Fediverse support        | Relatively new, limited user base        |
+| kbin         | Aggregator and microblogging  | Federation, ActivityPub support    | Decentralized, ad-free, privacy-focused   | Limited reach, niche audience            |
+| Steemit      | Content creation              | Blockchain-based rewards           | Incentivizes content creation             | Cryptocurrency volatility                |
+| SaidIt.net   | Social news                   | Voting, free speech                | Privacy-focused, open community           | Light moderation, niche audience         |
+
 
 ### 4. Honorable mentions
 
