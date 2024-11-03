@@ -2,7 +2,7 @@
 layout: post
 title: 'From "My Computer" to "This PC": the evolution of language in a brand-centric consumer culture'
 tags: society technology language
-image: /uploads/my-computer-to-this-pc-evolution-of-brand-centric-language.webp
+image: /uploads/my-computer-to-this-pc-evolution-of-brand-centric-language-2.png
 ---
 Language is a living, breathing phenomenon, evolving with society’s changing values, technological advancements, and cultural shifts. The transition from "My Computer" to "This PC" serves as a fascinating example of how linguistics have shifted toward branding and consumerism, rather than focusing on individual identity. This article dives deep into this evolution, exploring how language has transformed to reflect a more brand-centric and consumer-focused mindset, and the profound impact this shift has on our collective behavior and identity.
 
@@ -25,7 +25,7 @@ However, with the rise of technology and a consumer-driven culture, a notable sh
 
 ## The rise of brand-centric language
 
-![my-computer-to-this-pc-evolution-of-brand-centric-language](/uploads/my-computer-to-this-pc-evolution-of-brand-centric-language.webp)
+![my-computer-to-this-pc-evolution-of-brand-centric-language](/uploads/my-computer-to-this-pc-evolution-of-brand-centric-language-2.png)
 
 ### Language as branding: examining "This PC"
 
