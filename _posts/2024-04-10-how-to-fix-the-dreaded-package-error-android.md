@@ -34,4 +34,4 @@ The very obvious thing to first do is clean the project and rebuild the APK in A
 </activity>
 ```
 
-Please let me know whether this resolves your APK package error through the linked forums. Also let me know if you know some other way to fix this error.
+Please let me know whether this resolves your APK package error through comments. Also let me know if you know some other way to fix this error.
