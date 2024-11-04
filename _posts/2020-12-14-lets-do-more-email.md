@@ -6,7 +6,7 @@ image: /uploads/email.jpg
 ---
 Despite the rise of privacy advocates discouraging use of email, it remains a valuable communication tool with numerous benefits. Here's why you should continue to embrace email in your digital communication strategy.
 
-## The nostalgic value Of written communication
+## The nostalgic value of written communication
 
 When did you last see someone post a letter in an inland or envelope in the old-fashioned way? Believe it or not but the art of "letter writing" has become an almost extinct skill these days. Email is the last remaining vestige of actual written communication, allowing for thoughtful exchanges while preserving records in an open format.
 
