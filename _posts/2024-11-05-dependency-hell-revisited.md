@@ -70,10 +70,3 @@ The path to avoiding dependency hell involves a blend of proactive management, c
 #### Final thoughts
 
 Dependency hell is a reminder that even the most advanced tools have their limits. With great power comes great responsibility, and developers must stay vigilant when relying on these systems. By adopting best practices, leveraging automated tools, and staying informed, you can reap the benefits of modern packaging systems without getting entangled in their hidden pitfalls.
-
----
-
-**Sources**:
-- [Composer Documentation](https://getcomposer.org/doc/)
-- [Python Packaging Authority](https://pypi.org/help/)
-- General software development best practices
