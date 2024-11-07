@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "Introducing Comment Monk: simple comment hosting system for static blogs and websites"
-tags: php web-development wordpress
+tags: php wordpress disqus giscus
 published: true
 image: /uploads/cm/cm-dashboard.png
 ---
 
-I wanted to implement a comment hosting system for my static blog <https://prahladyeri.github.io>, just basic Wordpress.org style commenting feature with user's name, website, etc., no complicated logins or sign-ups or third-party platforms. The user reads your blog, posts a comment, and you approve from the backend (or alternatively, it gets auto-approved and you get an email notification). As simple as that!
+I wanted to implement a comment hosting system for my static blog, just basic Wordpress.org style commenting feature with user's name, website, etc., no complicated logins or sign-ups or third-party platforms. The user reads your blog, posts a comment, and you approve from the backend (or alternatively, it gets auto-approved and you get an email notification). As simple as that!
 
 Since github pages doesn't provide any backend PHP scripting facility, I had to develop a whole backend app along with a frontend EMCA script which could be plugged into a `div` block at the end of a blog post, a space typically reserved for comments. [Comment-Monk](https://github.com/prahladyeri/comment-monk/) is the result of that effort. I have made this app open source and put it on github so that it can be used by as many folks as possible. To use this app for your own static blog, just download the repo and deploy it to a PHP web hosting service. It's a very light script with Sqlite backend, intentionally kept small enough to be deployed to one of those cheap (even free) PHP hosting facilities.
 
@@ -31,3 +31,7 @@ Your audience can read your content and be able to post a comment. The backend v
 The comments block has a very basic and bland look by default but you can customize it fully by editing the `/static/cm-client.css` on backend which is used for styling it.
 
 I hope you will find this system useful for your static blog. If you face any issue, don't forget to raise it on the [github tracker](https://github.com/prahladyeri/comment-monk/). Happy Coding!
+
+**Edit: 2024-11-07**
+
+While comment-monk was a good academic exercise, I realized through this experiment that hosting and maintaining your own custom solution isn't that trivial for an indie tech blogger and to be honest, not even necessary. Between the difficulty and complexity of maintaining a custom comment system on one hand, and the ad-ridden and privacy unfriendly platforms like Disqus on the other, I've found [giscus](https://giscus.app/) to be a good middle-path and that is what I switched to.
