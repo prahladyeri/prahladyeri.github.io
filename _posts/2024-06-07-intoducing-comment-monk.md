@@ -5,33 +5,36 @@ tags: php wordpress disqus giscus
 published: true
 image: /uploads/cm/cm-dashboard.png
 ---
+I wanted to implement a comment hosting system for my static blog—something as simple as the basic WordPress.org commenting feature, with fields for the user's name, website, etc. No complicated logins, sign-ups, or third-party platforms. The user reads your blog, posts a comment, and you approve it from the backend (or, alternatively, it gets auto-approved, and you receive an email notification). As simple as that!
 
-I wanted to implement a comment hosting system for my static blog, just basic Wordpress.org style commenting feature with user's name, website, etc., no complicated logins or sign-ups or third-party platforms. The user reads your blog, posts a comment, and you approve from the backend (or alternatively, it gets auto-approved and you get an email notification). As simple as that!
+Since GitHub Pages doesn't provide backend PHP scripting, I had to develop an entire backend app along with a frontend ECMAScript (JavaScript) script that could be plugged into a `div` block at the end of a blog post—typically the space reserved for comments. [Comment-Monk](https://github.com/prahladyeri/comment-monk/) is the result of that effort. I've made this app open-source and hosted it on GitHub so that it can be used by as many folks as possible. 
 
-Since github pages doesn't provide any backend PHP scripting facility, I had to develop a whole backend app along with a frontend EMCA script which could be plugged into a `div` block at the end of a blog post, a space typically reserved for comments. [Comment-Monk](https://github.com/prahladyeri/comment-monk/) is the result of that effort. I have made this app open source and put it on github so that it can be used by as many folks as possible. To use this app for your own static blog, just download the repo and deploy it to a PHP web hosting service. It's a very light script with Sqlite backend, intentionally kept small enough to be deployed to one of those cheap (even free) PHP hosting facilities.
+To use this app on your own static blog, simply download the repo and deploy it to a PHP web hosting service. It's a lightweight script with an SQLite backend, intentionally kept small enough to be deployed on one of those affordable (even free) PHP hosting services.
 
-Once you start the app, it takes you to the Install page where you can register with your details and credentials using which you can login to the app and administer it as a super user. It also asks the website or domain of your blog where you'll host the commenting system.
+Once you start the app, you'll be taken to the Install page, where you can register with your details and credentials, which you'll use to log in as a superuser. It also asks for the website or domain of your blog where you'll host the commenting system.
 
 ![cm-login](/uploads/cm/cm-login.png)
 
-Once you login and go to home page, you can see this screen where you can view and manage your comments. Right now, you can just view and delete your comments but more features are en-route in the upcoming versions. You can also set your user preferences from the "Actions" menu on the top right.
+Once logged in and on the homepage, you can see this screen where you can view and manage comments. Right now, you can only view and delete comments, but more features are on the way in upcoming versions. You can also set your user preferences from the "Actions" menu in the top right.
 
 ![cm-dashboard](/uploads/cm/cm-dashboard.png)
 
-Most importantly, you can click on the "Client Snippet" button which will guide you to implement your frontend HTML code to embed the comments.
+Most importantly, you can click on the "Client Snippet" button, which will guide you through implementing the frontend HTML code to embed the comments.
 
-Once you do that, your static blog should look something like this:
+Once you've done that, your static blog should look something like this:
 
 ![cm-client](/uploads/cm/cm-client.png)
 
-At the place where you added the `script` tag, you should be able to see a ready comment block showing all existing comments along with a submit form to post one.
+At the place where you added the `script` tag, you should be able to see a comment block displaying all existing comments along with a submission form for posting new ones.
 
-Your audience can read your content and be able to post a comment. The backend validates the URI (Uniform Resource Identifier) and if a registered domain is found, creates an entry for that comment which will be reflected in the administrator's (YOUR) dashboard. I think this is almost as simple as it could be!
+Your audience can read your content and post comments. The backend validates the URI (Uniform Resource Identifier), and if a registered domain is found, it creates an entry for that comment, which will be reflected on the administrator's (YOUR) dashboard. I think this is about as simple as it can get!
 
-The comments block has a very basic and bland look by default but you can customize it fully by editing the `/static/cm-client.css` on backend which is used for styling it.
+The comment block has a very basic and minimal design by default, but you can fully customize it by editing the `/static/cm-client.css` on the backend, which is used for styling.
 
-I hope you will find this system useful for your static blog. If you face any issue, don't forget to raise it on the [github tracker](https://github.com/prahladyeri/comment-monk/). Happy Coding!
+I hope you find this system useful for your static blog. If you encounter any issues, don't hesitate to raise them on the [GitHub tracker](https://github.com/prahladyeri/comment-monk/). Happy coding!
 
-**Edit: 2024-11-07**
+---
 
-While comment-monk was a good academic exercise, I realized through this experiment that hosting and maintaining your own custom solution isn't that trivial for an indie tech blogger and to be honest, not even necessary. Between the difficulty and complexity of maintaining a custom comment system on one hand, and the ad-ridden and privacy unfriendly platforms like Disqus on the other, I've found [giscus](https://giscus.app/) to be a good middle-path and that is what I switched to.
+### **Edit: 2024-11-07**
+
+While Comment-Monk was a great academic exercise, I realized through this experiment that hosting and maintaining your own custom solution isn't as trivial for an indie tech blogger as it may seem. To be honest, it's not even necessary. Between the complexity of maintaining a custom comment system and the ad-ridden, privacy-unfriendly platforms like Disqus, I found [Giscus](https://giscus.app/) to be a good middle ground. That's why I made the switch.
