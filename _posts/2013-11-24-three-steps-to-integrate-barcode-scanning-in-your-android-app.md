@@ -4,9 +4,9 @@ title: '3 Steps to integrate barcode scanning in your Android app'
 tags: android java
 ---
 
-Whilst barcode scanning is a pretty complex and non-trivial task in itself, it could be overwhelming sometimes with android programming. Lucky for us, there exists an opensource project called [*ZXing (pronounced Zebra-crossing)*](https://github.com/zxing/zxing) that solves this problem for us.<!--more-->
+Whilst barcode scanning is a pretty complex and non-trivial task in itself, it could be overwhelming sometimes with android programming. Lucky for us, there exists an opensource project called [*ZXing (pronounced Zebra-crossing)*](https://github.com/zxing/zxing) that solves this problem for us.
 
-[![Barcode](/uploads/old/barcode.png){.wp-image-152 .alignnone width="108" height="77"}](/uploads/old/barcode.png)
+![Barcode](/uploads/old/barcode.png)
 
 The ZXing project has already done the heavy lifting by programming the core java components required to scan a 1d/2d barcode or even a PR-code in the form of a [Google-play app](https://play.google.com/store/apps/details?id=com.google.zxing.client.android). All you have to do is send an intent to this app and receive the scanned results that you may use in your app.
 

@@ -8,7 +8,7 @@ Framework wars and debates are very much a thing these days, be it Angular vs Ba
 
 Whilst the traditional jQuery/Backbone way is to render the DOM directly using methods like \$(component).html("DOM Code"), React considers it an anti-pattern and recommends the way of virtual DOM - a concept where you don't render the DOM directly as it is, but keep a virtual copy of it and render only the differential which is essentially *patching* the DOM.
 
-![JavaScript Frameworks](/uploads/2018/07/js-frameworks.jpeg){.alignnone .size-full .wp-image-812 width="640" height="426"}
+![JavaScript Frameworks](/uploads/2018/07/js-frameworks.jpeg)
 
 One thing that comes to mind is that more than an improvement over the former approach, you are basically trading off CPU overhead for lesser memory usage. The former jQuery approach is more **memory intensive** as the browser needs to keep large amount of DOM structural code in memory until its rendered (yeah, it gets pretty large in a non-trivial app with lots of widgets that may need to be rendered in a complex array of patterns). However, what exactly are we gaining by using the JSX virtual DOM method? The JSX approach is just as much **CPU intensive** as the jQuery approach is RAM intensive because it takes just as many CPU cycles to compute the differential and come up with a "patch" version of the DOM. In fact, the trade-off may be even worse considering that React is more of a library overhead than jQuery which is just a light "write less do more" wrapper over JavaScript DOM manipulation functions.
 
