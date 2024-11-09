@@ -60,7 +60,7 @@ Unlike heavyweight comment systems, giscus is built with performance in mind. It
 
 ### 3. Privacy-focused
 
-giscus does not track users or display ads, making it an excellent choice for bloggers who want to maintain a privacy-friendly site. Since comments are facilitated through GitHub accounts, users already familiar with GitHub’s policies can engage confidently.
+Giscus does not track users or display ads, making it an excellent choice for bloggers who want to maintain a privacy-friendly site. Since comments are facilitated through GitHub accounts, users already familiar with GitHub’s policies can engage confidently.
 
 ### 4. Simple installation
 
