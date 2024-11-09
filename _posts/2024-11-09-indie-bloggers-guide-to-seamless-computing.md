@@ -44,7 +44,7 @@ For the indie blogger who doesn’t want to spend their time coding or worrying 
 
 ## Enter the middle ground: why giscus is the best of both worlds
 
-**giscus** offers a perfect balance between ease of use, privacy, and functionality. Here’s why it’s the ideal comment hosting system for the indie blogger:
+[**giscus**](https://giscus.app/) offers a perfect balance between ease of use, privacy, and functionality. Here’s why it’s the ideal comment hosting system for the indie blogger:
 
 ### 1. Fully integrated with GitHub
 
@@ -60,7 +60,7 @@ Unlike heavyweight comment systems, giscus is built with performance in mind. It
 
 ### 3. Privacy-focused
 
-Giscus does not track users or display ads, making it an excellent choice for bloggers who want to maintain a privacy-friendly site. Since comments are facilitated through GitHub accounts, users already familiar with GitHub’s policies can engage confidently.
+**giscus** does not track users or display ads, making it an excellent choice for bloggers who want to maintain a privacy-friendly site. Since comments are facilitated through GitHub accounts, users already familiar with GitHub’s policies can engage confidently.
 
 ### 4. Simple installation
 
