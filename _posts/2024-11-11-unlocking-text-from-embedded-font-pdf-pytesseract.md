@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "Unlocking Text from Embedded-Font PDFs: A pytesseract OCR Tutorial"
-tags: python tutorial pytesseract ocr
+tags: python tutorial ocr pdf pytesseract pdfplumber pdfminer pdf2image
 image: /uploads/unlocking-text-from-embedded-font-pdf-pytesseract.webp
 ---
 Extracting text from a PDF is usually straightforward when it's in English and doesn't have embedded fonts. However, once those assumptions are removed, it becomes challenging to use basic python libraries like `pdfminer` or `pdfplumber`. Last month, I was tasked with extracting text from a Gujarati-language PDF and importing data fields such as name, address, city, etc., into JSON format.
 
-If the font is embedded in the PDF itself, simple copy-pasting won't work, and using `pdfminer` will return unreadable junk text. Therefore, I had to convert each PDF page to an image and then apply OCR using the `pytesseract` library to "scan" the page instead of just reading it. This tutorial will show you how to do just that.
+If the font is embedded in the PDF itself, simple copy-pasting won't work, and using `pdfplumber` will return unreadable junk text. Therefore, I had to convert each PDF page to an image and then apply OCR using the `pytesseract` library to "scan" the page instead of just reading it. This tutorial will show you how to do just that.
 
 ![unlocking-text-from-embedded-font-pdf-pytesseract](/uploads/unlocking-text-from-embedded-font-pdf-pytesseract.webp)
 
