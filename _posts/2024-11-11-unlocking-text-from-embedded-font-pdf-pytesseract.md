@@ -160,3 +160,9 @@ def process_text(page_num, e_text):
 Every PDF has its own nuances that must be accounted for. In this case, a new serial number (like 0૧ or 0૨) in the first field signaled a new group when the subsequent field (surname) changed.
 
 `pytesseract` is a testament to the evolution and advancement in IT technology. About a decade ago, reading or parsing a PDF image using OCR in a non-English language on a modestly configured PC or laptop would have been nearly impossible. This is truly progress! Happy coding, and let me know how it goes in the comments below.
+
+## References
+
+- [Tesseract installation in windows](https://stackoverflow.com/q/46140485/849365)
+- [Use pytesseract OCR to recognize text from an image](https://stackoverflow.com/q/37745519/849365)
+- [How to configure pytesseract to support text detection for non English language in windows 10?](https://stackoverflow.com/q/65572698/849365)
