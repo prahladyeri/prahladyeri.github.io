@@ -6,7 +6,7 @@ tags: git github gitlab microsoft open-source
 
 After [Microsoft's recent acquisition of Github](https://prahladyeri.github.io/blog/2018/06/microsofts-github-acquisition-an-unbiased-perspective.html), a mass exodus has kind of begun and many small and large projects are moving their code bases to the much hyped [Gitlab](https://gitlab.com/) in a hurry, and these include both open and closed source projects. However, before migrating to Gitlab, they should take a pause and learn something about Gitlab and consider evaluating other alternatives too.<!--more-->
 
-![Gitlab Stack](/uploads/2018/06/gitlab_stack.png){.size-full .wp-image-644 width="692" height="605"} 
+![Gitlab Stack](/uploads/2018/06/gitlab_stack.png)
 
 **Gitlab Stack**
 
