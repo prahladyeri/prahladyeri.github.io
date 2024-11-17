@@ -63,8 +63,6 @@ The hidden costs of ERP implementation, such as training, downtime, and consulta
 
 #### References
 
-Here are the citations formatted in Wikipedia style:
-
 1. **Open Source Integrators**. "ERP Implementation Costs: Understanding Hidden Expenses Beyond Initial Investments." *Open Source Integrators*. Available at: <https://opensourceintegrators.com/articles/erp-implementation-costs>.
 
 2. **Kimberling, E.** "The Hidden Costs of Cloud ERP Systems: A Critical Analysis." *Third Stage Consulting*. Available at: <https://thirdstage-consulting.com/blog/the-hidden-costs-of-cloud-erp-systems/>.
