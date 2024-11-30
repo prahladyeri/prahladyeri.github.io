@@ -1,7 +1,6 @@
 ---
 layout: post
 title: 'Who exactly I am as a soul? - A crash course in Advaita Vedanta'
-published: false
 tags: spirituality
 image: /uploads/who-exactly-am-i-as-soul.webp
 ---
