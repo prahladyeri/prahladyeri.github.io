@@ -37,6 +37,14 @@ npm install cors
 The `brokers` object contains configurations for each MQTT broker such as the URL and options (e.g., authentication). Each broker is also assigned a `lastMessage` object to store the latest MQTT message for each topic.
 
 ```javascript
+const mqtt = require('mqtt');
+const express = require('express');
+const cors = require('cors');  // Optional: Import CORS package
+const fs  = require('fs');
+const path = require('path');
+const os = require('os');
+
+
 const brokers = {};
 
 brokers['example'] =  { 
