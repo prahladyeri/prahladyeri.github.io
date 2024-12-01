@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'PHP-FPM vs node.js - The REAL Performance Battle'
-tags: php javascript node
+tags: php javascript nodejs
 ---
 
 Even after my last [article](/blog/2014/06/php-vs-node-js-real-statistics.html) about PHP and node.js benchmarking, my search for the holy grail of performance truth still continues. However, I do understand now that pitting PHP running on apache against a stand-alone node was a bit unfair with PHP for it was limited by what the apache configuration could handle.<!--more-->

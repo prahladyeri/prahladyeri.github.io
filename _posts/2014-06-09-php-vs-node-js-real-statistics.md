@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'PHP vs node.js: The REAL statistics'
-tags: php javascript node
+tags: php javascript nodejs
 ---
 
 When it comes to web programming, I've always coded in ASP.NET or the LAMP technologies for most part of my life. Now, the new buzz in the city is [node.js](https://en.wikipedia.org/wiki/Node.js). It is a light-weight platform that runs javascript code on server-side and is said to improvise performance by using async I/O.<!--more-->

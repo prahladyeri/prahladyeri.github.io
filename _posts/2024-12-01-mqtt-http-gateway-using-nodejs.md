@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Building a Secure and Efficient MQTT-HTTP Gateway with Node.js"
-tags: mqtt node javascript tutorial
+tags: mqtt nodejs javascript tutorial
 image: /uploads/mqtt-http-gateway-node.webp
 ---
 One of my recent projects involved creating a Node.js script that acts as a gateway or middleware, capturing messages from an MQTT broker and relaying (streaming) them on the HTTP side via GET requests. Similarly, it should also handle POST requests from the HTTP side and publish them to the corresponding broker on the respective topic.
