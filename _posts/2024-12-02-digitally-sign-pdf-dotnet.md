@@ -214,7 +214,7 @@ In order for this to work, you must create a `cert` subdirectory within the appl
 ```bash
 openssl genrsa -out private.key 2048
 openssl req -new -key private.key -out request.csr -subj "/C=IN/ST=GUJ/L=Vadodara/O=ACME/OU=Unit/CN=ACME"
-openssl x509 -req -days 365 -in request.csr -signkey private.key -out certificate.crt -extensions v3_req -extfile cert_config.cnf
+openssl x509 -req -days 365 -in request.csr -signkey private.key -out certificate.crt  -addext "subjectAltName=DNS:acme.example.com" -addext "basicConstraints=CA:FALSE" -addext "keyUsage=critical,digitalSignature,nonRepudiation,keyEncipherment" -addext "extendedKeyUsage=codeSigning"
 openssl pkcs12 -export -out certificate.pfx -inkey private.key -in certificate.crt -password pass:digisign
 ```
 
