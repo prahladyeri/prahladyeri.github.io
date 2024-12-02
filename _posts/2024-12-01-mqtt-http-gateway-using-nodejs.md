@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Building a Secure and Efficient MQTT-HTTP Gateway with Node.js"
+title: "Building a secure and efficient MQTT-HTTP gateway with Node.js"
 tags: mqtt nodejs javascript tutorial
 image: /uploads/mqtt-http-gateway-node.webp
 ---
@@ -24,7 +24,7 @@ It's not necessary to stick to version 4 of the mqtt.js but I found it more stab
 npm install mqtt@4 express
 ```
 
-### Optional: CORS Package
+### Optional: CORS package
 
 You might also need the `cors` package if you want to customize Cross-Origin Resource Sharing (CORS) settings and enable access to the gateway for multiple users, such as REST API clients. I needed this in my case.
 
@@ -32,7 +32,7 @@ You might also need the `cors` package if you want to customize Cross-Origin Res
 npm install cors
 ```
 
-## Setting Up Your MQTT Brokers
+## Setting up your MQTT brokers
 
 The `brokers` object contains configurations for each MQTT broker such as the URL and options (e.g., authentication). Each broker is also assigned a `lastMessage` object to store the latest MQTT message for each topic.
 
@@ -72,7 +72,7 @@ brokers["mosquitto"]= {
 };
 ```
 
-## Initializing Middleware for HTTP Requests
+## Initializing middleware for HTTP requests
 
 Middleware ensures proper handling of requests by validating input and enabling CORS.
 
@@ -86,7 +86,11 @@ app.use(cors({
 }));
 ```
 
-## Establishing MQTT Connections
+## Establishing MQTT connections
+
+I've kept the subscription topic to `#` wildcard i.e. subscribe to all topics, you may or may not want to do that. The "connect" event of `mqttClient` handles the connection where you can subscribe to the topics. Correspondingly, the `message` event handles the incoming events from each broker. The dummy `switch` block here can be used to add any custom processing logic you may have. The `lastMessage` variable will anyway store the message for the corresponding topic.
+
+The `error` and `auth` event handlers are just dummy blocks that you can expand upon if you want to. In the end, each client object is stored to `mqttClients` array object from which it can later be retrieved.
 
 ```javascript
 // Store MQTT client objects for each broker
@@ -137,11 +141,7 @@ Object.keys(brokers).forEach(key => {
   });
 ```
 
-I've kept the subscription topic to `#` wildcard i.e. subscribe to all topics, you may or may not want to do that. The "connect" event of mqttClient handles the connection where you can subscribe to the topics. Correspondingly, the "message" event handles the incoming events from each broker. The dummy `switch` block here can be used to add any custom processing logic you may have. The `lastMessage` variable will anyway store the message for the corresponding topic.
-
-The 'error' and 'auth' event handlers are just dummy blocks which you can expand upon if you want to. In the end, each client object is stored to `mqttClients` array object from which it can later be retrieved.
-
-## Bridging MQTT with Express API Routes
+## Bridging MQTT with Express API routes
 
 On the HTTP side, I've created just two routes viz. `events` and `publish`. The former is used to fetch messages from a broker and latter to publish to them. 
 
@@ -195,7 +195,7 @@ This is also pretty simple and straightforward. As earlier, I've created a dummy
 
 Same holds true for publish. It accepts three parameters called brokerKey, topic and message, then correspondingly publishes the message on the broker. You may want to add custom logic here including authentication logic based on API keys, etc.
 
-## Starting the Express Server
+## Starting the Express server
 
 The final step is to start the Express server. Use a custom port, or fallback to a default if not provided.
 
