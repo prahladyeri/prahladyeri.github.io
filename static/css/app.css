@@ -6,7 +6,7 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-	font-family: "Inter", "Ubuntu", "Segoe UI", "Helvetica";
+	font-family: "Roboto", "Ubuntu", "Segoe UI", "Helvetica";
 }
 
 .card-tags ul.d-flex .badge {
