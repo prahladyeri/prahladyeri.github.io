@@ -25,6 +25,10 @@ footer {
 	max-width: 100%;
 }
 
+.the-content h1 {
+	font-size: 24px;
+}
+
 .the-content h2, 
 .the-content h3, 
 .the-content h4, 
