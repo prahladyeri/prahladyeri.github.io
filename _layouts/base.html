@@ -150,7 +150,7 @@
 						{% endcapture %}
 						{% assign sortedtags = tags | split:' ' | sort %}
 						{% assign bg_classes = "bg-dark bg-primary bg-success bg-danger bg-secondary bg-warning bg-info bg-light" | split: " " %}
-						{% assign light_classes = "bg-warning bg-light bg-info" | split: " " %}
+						{% assign light_classes = "bg-light" | split: " " %}
 
 							{% for tag in sortedtags reversed  %}
 							{% assign tagitems = tag | split: '#' %}
