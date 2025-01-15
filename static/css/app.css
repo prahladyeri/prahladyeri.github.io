@@ -39,7 +39,7 @@ footer {
 }
 
 .the-content *:not(h1, h2, h3, h4, h5, h6) {
-	font-size: 20px;
+	font-size: 17px;
 }
 
 .the-content a:not(.btn):not(.page-link):not([class*="btn-"])
