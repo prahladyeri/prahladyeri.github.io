@@ -6,7 +6,7 @@ title: Home
 <div class="row">
 	{% for post in paginator.posts %}
 	<!-- Blog post-->
-	<div class="col-lg-6">
+	<div class="col-lg-6 col-xl-4">
 	<div class="card mb-4">
 	{% if post.image %}
 		<a href="{{site.baseurl}}{{post.url }}"><img loading="lazy" style='width: 100%; height: auto; max-height: 250px' class="card-img-top" src="{{site.baseurl}}{{post.image}}" alt="..." /></a>
