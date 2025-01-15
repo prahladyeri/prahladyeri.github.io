@@ -7,10 +7,10 @@ title: Home
 	{% for post in paginator.posts %}
         {% if forloop.first %}
             {% assign bs_class = "col-12" %}
-            {% assign img_height = "250px" %}
+            {% assign img_height = "500px" %}
         {% else %}
             {% assign bs_class = "col-lg-6 col-xl-4" %}
-            {% assign img_height = "500px" %}
+            {% assign img_height = "250px" %}
         {% endif %}	
 	<!-- Blog post-->
 	<div class="{{bs_class}}">
