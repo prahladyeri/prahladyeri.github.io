@@ -8,7 +8,7 @@ title: Home
         {% if forloop.first %}
             {% assign bs_class = "col-12 col-md-6 col-lg-6 col-xl-12" %}
         {% else %}
-            {% assign bs_class = "col-lg-6 col-md-6 col-lg-6 col-xl-4" %}
+            {% assign bs_class = "col-12 col-lg-6 col-md-6 col-lg-6 col-xl-4" %}
         {% endif %}	
 		{% assign img_height = (bs_class contains 'col-xl-12') and '500px' or '250px' %}
 	<!-- Blog post-->
