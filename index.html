@@ -5,13 +5,20 @@ title: Home
 <!-- Nested row for non-featured blog posts-->
 <div class="row">
 	{% for post in paginator.posts %}
+        {% if forloop.first %}
+            {% assign bs_class = "col-12" %}
+            {% assign img_height = "250px" %}
+        {% else %}
+            {% assign bs_class = "col-lg-6 col-xl-4" %}
+            {% assign img_height = "500px" %}
+        {% endif %}	
 	<!-- Blog post-->
-	<div class="col-lg-6 col-xl-4">
+	<div class="{{bs_class}}">
 	<div class="card mb-4">
 	{% if post.image %}
-		<a href="{{site.baseurl}}{{post.url }}"><img loading="lazy" style='width: 100%; height: auto; max-height: 250px' class="card-img-top" src="{{site.baseurl}}{{post.image}}" alt="..." /></a>
+		<a href="{{site.baseurl}}{{post.url }}"><img loading="lazy" style='width: 100%; height: auto; max-height: {{img_height}}' class="card-img-top" src="{{site.baseurl}}{{post.image}}" alt="..." /></a>
 	{% else %}
-		<a href="{{site.baseurl}}{{post.url }}"><img loading="lazy" style='width: 100%; height: auto max-height: 250px' class="card-img-top" src="{{site.baseurl}}/uploads/cover.jpg" alt="..." /></a>
+		<a href="{{site.baseurl}}{{post.url }}"><img loading="lazy" style='width: 100%; height: auto max-height: {{img_height}}' class="card-img-top" src="{{site.baseurl}}/uploads/cover.jpg" alt="..." /></a>
 	{% endif %}
 		<div class="card-body">
 			<div class="small text-muted">{{ post.date | date_to_string }}</div>
