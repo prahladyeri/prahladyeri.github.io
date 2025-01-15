@@ -6,7 +6,7 @@ title: Home
 <div class="row">
 	{% for post in paginator.posts %}
         {% if forloop.first %}
-            {% assign bs_class = "col-12" %}
+            {% assign bs_class = "col-12 col-xl-12" %}
             {% assign img_height = "500px" %}
         {% else %}
             {% assign bs_class = "col-lg-6 col-xl-4" %}
