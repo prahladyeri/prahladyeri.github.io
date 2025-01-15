@@ -6,12 +6,11 @@ title: Home
 <div class="row">
 	{% for post in paginator.posts %}
         {% if forloop.first %}
-            {% assign bs_class = "col-12 col-xl-12" %}
-            {% assign img_height = "500px" %}
+            {% assign bs_class = "col-12 col-md-6 col-lg-6 col-xl-12" %}
         {% else %}
-            {% assign bs_class = "col-lg-6 col-xl-4" %}
-            {% assign img_height = "250px" %}
+            {% assign bs_class = "col-lg-6 col-md-6 col-lg-6 col-xl-4" %}
         {% endif %}	
+		{% assign img_height = (bs_class contains 'col-xl-12') and '500px' or '250px' %}
 	<!-- Blog post-->
 	<div class="{{bs_class}}">
 	<div class="card mb-4">
