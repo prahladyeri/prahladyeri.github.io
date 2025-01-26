@@ -22,11 +22,11 @@ body {
 }
 
 .blog-title {
-	font-size: 28px;
+	font-size: 3 rem;
 	/* font-weight: bold; */
-	font-family: georgia;
+	font-family: "arial black";
 	text-decoration: none;
-	color: lightsteelblue !important;
+	color: white !important;
 }
 
 a {	color: lightblue; }
