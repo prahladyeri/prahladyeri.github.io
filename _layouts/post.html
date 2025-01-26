@@ -13,7 +13,7 @@ layout: base
 		<!-- Post tags-->
 		  {% for tag in page.tags %}
 			{% capture tag_name %}{{ tag }}{% endcapture %}
-			<a class='mb-1 text-decoration-none fw-bold' href="{{site.baseurl}}/tag/{{ tag_name }}">{{ tag_name }}</a>
+			<a class='mb-1 text-decoration-none fw-bold tag-link' href="{{site.baseurl}}/tag/{{ tag_name }}">{{ tag_name }}</a>
 		  {% endfor %}
 	</header>
 	<!-- Preview image figure-->

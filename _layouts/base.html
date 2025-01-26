@@ -125,7 +125,7 @@
 			{% assign post_count = tagitems[2] | plus: 0 %}
 			{% if post_count >= 4 %}
 			
-				<a class="ms-2 me-2 mb-1" href="{{ site.baseurl }}/tag/{{ tagitems[1] }}">
+				<a class="ms-2 me-2 mb-1 tag-link" href="{{ site.baseurl }}/tag/{{ tagitems[1] }}">
 					{{ tagitems[1] }} [{{ tagitems[2] }}]
 				</a>
 			{% endif %}

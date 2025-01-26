@@ -31,6 +31,12 @@ a {	color: lightblue; }
 
 a:visited {color: lightcoral;}
 
+a.page-link,
+a.tag-link
+{
+	color: lightblue !important;
+}
+
 .the-article img {
 	max-width: 100%;
 }
