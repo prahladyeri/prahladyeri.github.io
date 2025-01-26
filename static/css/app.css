@@ -1,3 +1,20 @@
+/* start: bootstrap shortcuts */
+.fw-bold {
+	font-weight: bold;
+}
+.text-center {
+  text-align: center !important;
+}
+
+.text-start {
+  text-align: left !important;
+}
+
+.text-end {
+  text-align: right !important;
+}
+/* end: bootstrap shortcuts */
+
 body {
 	font-family: "Segoe UI", "Ubuntu", "Helvetica", "Verdana";
 	background-color: black;
@@ -10,23 +27,9 @@ body {
 	font-family: consolas;
 }
 
-a,
-a:visited
-{
-	color: lightblue;
-}
+a {	color: lightblue; }
 
-.text-center {
-  text-align: center !important;
-}
-
-.text-start {
-  text-align: left !important;
-}
-
-.text-end {
-  text-align: right !important;
-}
+a:visited {color: lightcoral;}
 
 .the-article img {
 	max-width: 100%;
@@ -51,19 +54,19 @@ a:visited
 
 .the-content a:not(.btn):not(.page-link):not([class*="btn-"])
 {
-  color: #004085; /* Navy Blue */
+  color: lightblue; /* Navy Blue */
 }
 .the-content a:not(.btn):not(.page-link):not([class*="btn-"]):visited
 {
-  color: #495057; /* Muted Gray-Blue */
+  color: lightcoral; /* Muted Gray-Blue */
 }
 .the-content a:not(.btn):not(.page-link):not([class*="btn-"]):hover
 {
-  color: #002752; /* Darker Navy on Hover */
+  color: lightgoldenrodyellow; /* Darker Navy on Hover */
 }
 .the-content a:not(.btn):not(.page-link):not([class*="btn-"]):focus
 {
-  outline: 2px solid #002752;
+  outline: 2px solid lightgoldenrodyellow;
 }
 
 /* Exclude Bootstrap classes like .btn-primary, .btn-secondary, etc. */
