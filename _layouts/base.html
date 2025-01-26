@@ -97,62 +97,42 @@
 	</script>
 </head>
  <body class=""> 
-	<!-- Responsive navbar-->
 	<header class='row'>
 		<div class="col-8 mx-auto text-center">
 			<a class="navbar-brand" href="{{site.baseurl}}/">Prahlad Yeri</a>
 			<span class="navbar-text ms-2 text-white">Freelance Programmer and Writer</span> <!-- Tagline added here -->
 		</div>
 	</header>
-    <!-- include sidebar.html -->
-	<div class="container mt-2">
+	
+	<!-- content -->
 	<div class='row'>
-		<div class="col-lg-12 the-content">
+		<div class="col-8 mx-auto the-content">
 		{{ content }}
 		</div>
-		<!-- bottom widgets-->
-		<div class="col-lg-12">
-			<!-- Search widget-->
-			<div class="d-none card mb-4">
-				<div class="card-header">Search</div>
-				<div class="card-body">
-					<div class="input-group">
-						<input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-						<button class="btn btn-primary" id="button-search" type="button">Go!</button>
-					</div>
-				</div>
-			</div>
-			<!-- Tags widget-->
-			<div class="row">
-				<div class="col-sm-12">
-				Tags:&nbsp;
-				{% capture tags %}
-				{% for tag in site.tags %}
-				{{ tag[1].size | plus: 1000 }}#{{ tag[0] }}#{{ tag[1].size }}
-				{% endfor %}
-				{% endcapture %}
-				{% assign sortedtags = tags | split:' ' | sort %}
+	</div>
+	<div class='row'>
+		<div class="col-lg-8 mx-auto"> <!-- tags widget-->
+		Tags:&nbsp;
+		{% capture tags %}
+		{% for tag in site.tags %}
+		{{ tag[1].size | plus: 1000 }}#{{ tag[0] }}#{{ tag[1].size }}
+		{% endfor %}
+		{% endcapture %}
+		{% assign sortedtags = tags | split:' ' | sort %}
 
-					{% for tag in sortedtags reversed  %}
-					{% assign tagitems = tag | split: '#' %}
-					{% assign post_count = tagitems[2] | plus: 0 %}
-					{% if post_count >= 4 %}
-					
-						<a class="ms-2 me-2 mb-1" href="{{ site.baseurl }}/tag/{{ tagitems[1] }}">
-							{{ tagitems[1] }} [{{ tagitems[2] }}]
-						</a>
-					{% endif %}
-					{% endfor %}
-				</div>
-			</div>
-			<!-- Side widget-->
-			<div class="d-none card mb-4">
-				<div class="card-header">Side Widget</div>
-				<div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
-			</div>
+			{% for tag in sortedtags reversed  %}
+			{% assign tagitems = tag | split: '#' %}
+			{% assign post_count = tagitems[2] | plus: 0 %}
+			{% if post_count >= 4 %}
+			
+				<a class="ms-2 me-2 mb-1" href="{{ site.baseurl }}/tag/{{ tagitems[1] }}">
+					{{ tagitems[1] }} [{{ tagitems[2] }}]
+				</a>
+			{% endif %}
+			{% endfor %}
 		</div>
 	</div>
-	</div>
+	
 	<!-- Footer-->
 <footer class="py-2 row">
       <!-- Left Column: Copyright Information -->
@@ -167,9 +147,6 @@
 		<a class="ms-2 me-2" href="{{site.baseurl}}/about">/about</a> | 
         <a href="https://github.com/prahladyeri" class="ms-2 me-2">/github</a> | 
         <a href="mailto:prahladyeri@yahoo.com" class="ms-2 me-2">/email</a> | 
-        <a href="https://x.com/prahladyeri" class="ms-2 me-2">/twitter</a> | 
-        <a href="https://www.linkedin.com/in/prahlad-yeri-243a5316" class="ms-2 me-2">/linkedin</a> | 
-        <a href="https://stackoverflow.com/users/849365/prahlad-yeri" class="ms-2 me-2">/stackoverflow</a> | 
         <a href="{{site.baseurl}}/atom.xml" class="ms-2 me-2">/feed</a>
       </div>
       
