@@ -32,9 +32,16 @@ a {	color: lightblue; }
 a:visited {color: lightcoral;}
 
 a.page-link,
-a.tag-link
+.blog-title
 {
 	color: lightblue !important;
+}
+
+a.tag-link,
+a.tag-link:visited,
+a.tag-link:hover
+{
+	color: lightgoldenrodyellow !important;
 }
 
 .the-article img {
