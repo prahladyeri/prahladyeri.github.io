@@ -103,5 +103,6 @@ a.tag-link:hover
 		word-wrap: break-word; /* Breaks long words onto the next line */
 		overflow-wrap: break-word; /* Provides better handling for overflow */
 		max-width: 100%; /* Ensures it doesn't exceed the container width */
+		display: block;
 	}
 }
