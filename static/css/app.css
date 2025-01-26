@@ -21,6 +21,39 @@ body {
 	color: antiquewhite;
 }
 
+/* General Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse; /* Removes double borders */
+  background-color: #2f4f4f; /* Dark grey background for the table */
+  color: #f8f9fa; /* Light text color for readability */
+}
+
+/* Borders for Table, Rows, and Cells */
+th, td {
+  border: 1px solid #f8f9fa; /* Light border color */
+  padding: 0.5rem; /* Adds spacing inside cells */
+  text-align: left; /* Aligns text to the left */
+}
+
+/* Header Row Styling */
+th {
+  background-color: #5f9ea0; /* Cadet Blue for the header */
+  font-weight: bold;
+  color: #ffffff; /* White text for the header */
+}
+
+/* Optional: Hover Effect for Rows */
+tr:hover {
+  background-color: #556b2f; /* Dark Olive Green for hover */
+}
+
+/* Optional: Zebra Stripes for Rows */
+tr:nth-child(even) {
+  background-color: #3d5656; /* Slightly lighter grey for even rows */
+}
+
+
 .blog-title {
 	font-size: 3rem;
 	font-family: "arial black";
