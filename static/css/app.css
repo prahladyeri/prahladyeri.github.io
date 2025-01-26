@@ -93,7 +93,7 @@ a.tag-link:hover
 {
     display: block;
     max-width: 100%;
-    overflow-x: scroll;	
+    overflow: auto;
 }
 
 /* Apply word wrapping to highlighted code blocks */
