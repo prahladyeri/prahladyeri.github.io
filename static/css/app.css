@@ -1,24 +1,23 @@
-html, body {
-    height: 100%;
-    margin: 0;
-}
-
 body {
-    display: flex;
-    flex-direction: column;
 	font-family: "Segoe UI", "Ubuntu", "Helvetica", "Verdana";
+	background-color: back;
+	color: white;
 }
 
-.card-tags ul.d-flex .badge {
-	 flex-grow: 1;
+a {
+	color: lightblue;
 }
 
-.container {
-    flex: 1;
+.text-center {
+  text-align: center !important;
 }
 
-footer {
-    margin-top: auto;
+.text-start {
+  text-align: left !important;
+}
+
+.text-end {
+  text-align: right !important;
 }
 
 .the-article img {
