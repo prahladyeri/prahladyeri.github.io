@@ -7,14 +7,10 @@ title: Home
 	{% for post in paginator.posts %}
 	<!-- Blog post-->
 	<div class="col-8 mx-auto">
-	<div class="card mb-4">
-		<div class="card-body">
-			<!-- <div class="small text-muted">{{ post.date | date_to_string }}</div> -->
-			<h1 class="card-title fw-bold">{{post.title}}</h1>
-			<p class="card-text">{% include short/t_post_summary.html %}</p>
-			<a class="btn btn-primary" href="{{site.baseurl}}{{ post.url }}">Read more →</a>
-		</div>
-	</div>
+		<!-- <div class="small text-muted">{{ post.date | date_to_string }}</div> -->
+		<h1 class="card-title fw-bold">{{post.title}}</h1>
+		<p class="card-text">{% include short/t_post_summary.html %}</p>
+		<a class="btn btn-primary" href="{{site.baseurl}}{{ post.url }}">Read more →</a>
 	</div>
 	{% endfor %}
 </div>
