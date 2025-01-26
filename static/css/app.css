@@ -18,21 +18,22 @@
 body {
 	font-family: "Segoe UI", "Ubuntu", "Helvetica", "Verdana";
 	background-color: black;
-	color: white;
+	color: antiquewhite;
 }
 
 .blog-title {
-	font-size: 23px;
-	font-weight: bold;
-	font-family: consolas;
+	font-size: 28px;
+	/* font-weight: bold; */
+	font-family: georgia;
+	text-decoration: none;
+	color: lightsteelblue !important;
 }
 
 a {	color: lightblue; }
 
 a:visited {color: lightcoral;}
 
-a.page-link,
-.blog-title
+a.page-link
 {
 	color: lightblue !important;
 }
