@@ -89,7 +89,12 @@ a.tag-link:hover
   /* color: #fff; /* Default Bootstrap button color */
   /* text-decoration: none; /* Optional to remove underline */
 /* } */
-
+.the-content code
+{
+    display: block;
+    max-width: 100%;
+    overflow-x: scroll;	
+}
 
 /* Apply word wrapping to highlighted code blocks */
 @media (max-width: 768px) {
