@@ -9,7 +9,7 @@ title: Home
 	<div class="col-10 mx-auto">
 		<!-- <div class="small text-muted">{{ post.date | date_to_string }}</div> -->
 		<h1>{{post.title}}</h1>
-		<p >{% include short/t_post_summary.html %}</p>
+		<p class='mb-0' >{% include short/t_post_summary.html %}</p>
 		<a href="{{site.baseurl}}{{ post.url }}">Read more →</a>
 	</div>
 	{% endfor %}
