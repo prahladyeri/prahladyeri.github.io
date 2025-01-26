@@ -16,14 +16,13 @@
 /* end: bootstrap shortcuts */
 
 body {
-	font-family: "Segoe UI", "Ubuntu", "Helvetica", "Verdana";
-	background-color: black;
+	font-family: verdana;
+	background-color: darkslategrey;
 	color: antiquewhite;
 }
 
 .blog-title {
 	font-size: 3rem;
-	/* font-weight: bold; */
 	font-family: "arial black";
 	text-decoration: none;
 	color: lightsteelblue !important;
