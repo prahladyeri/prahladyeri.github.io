@@ -9,7 +9,7 @@ title: Home
 	<div class="col-8 mx-auto">
 	<div class="card mb-4">
 		<div class="card-body">
-			<div class="small text-muted">{{ post.date | date_to_string }}</div>
+			<!-- <div class="small text-muted">{{ post.date | date_to_string }}</div> -->
 			<h1 class="card-title fw-bold">{{post.title}}</h1>
 			<p class="card-text">{% include short/t_post_summary.html %}</p>
 			<a class="btn btn-primary" href="{{site.baseurl}}{{ post.url }}">Read more →</a>
@@ -23,17 +23,17 @@ title: Home
 <hr class="my-0">
 <ul class="pagination justify-content-center my-4">
 {% if paginator.previous_page and paginator.previous_page > 1 %}
-	<li class="page-item"><a class="page-link" href="{{ base.url }}/page/{{ paginator.previous_page }}">Previous</a></li>
+	<a class="page-link" href="{{ base.url }}/page/{{ paginator.previous_page }}">Previous</a>
 {% elsif paginator.previous_page and paginator.previous_page == 1 %}
-	<li class="page-item"><a class="page-link" href="{{ base.url }}/">Previous</a></li>
+	<a class="page-link" href="{{ base.url }}/">Previous</a>
 {% else %}
-	<!-- <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a></li> -->
+	<a class="disabled" href="javascript:" tabindex="-1" aria-disabled="true">Previous</a>
 {% endif %}
-
+&nbsp;|&nbsp;
 {% if paginator.next_page %}
-	<li class="page-item"><a class="page-link" href="{{ base.url }}/page/{{ paginator.next_page }}">Next</a></li>
+	<a class="page-link" href="{{ base.url }}/page/{{ paginator.next_page }}">Next</a>
 {% else %}
-	<!-- <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a></li> -->
+	<a class="disabled" href="javascript:" tabindex="-1" aria-disabled="true">Next</a>
 {% endif %}
 </ul>
 </nav>
