@@ -6,11 +6,11 @@ title: Home
 <div class="row">
 	{% for post in paginator.posts %}
 	<!-- Blog post-->
-	<div class="col-8 mx-auto">
+	<div class="col-10 mx-auto">
 		<!-- <div class="small text-muted">{{ post.date | date_to_string }}</div> -->
-		<h1 class="card-title fw-bold">{{post.title}}</h1>
-		<p class="card-text">{% include short/t_post_summary.html %}</p>
-		<a class="btn btn-primary" href="{{site.baseurl}}{{ post.url }}">Read more →</a>
+		<h1>{{post.title}}</h1>
+		<p >{% include short/t_post_summary.html %}</p>
+		<a href="{{site.baseurl}}{{ post.url }}">Read more →</a>
 	</div>
 	{% endfor %}
 </div>
