@@ -123,40 +123,34 @@
 				</div>
 			</div>
 			<!-- Tags widget-->
-			<div class="card-tags card mb-4">
-				<div class="card-header">Tags</div>
-				<div class="card-body">
-					<div class="row">
-						<div class="col-sm-12">
-							<ul class="list-unstyled mb-0 d-flex flex-wrap">
-						{% capture tags %}
-						{% for tag in site.tags %}
-						{{ tag[1].size | plus: 1000 }}#{{ tag[0] }}#{{ tag[1].size }}
-						{% endfor %}
-						{% endcapture %}
-						{% assign sortedtags = tags | split:' ' | sort %}
-						{% assign bg_classes = "bg-dark bg-primary bg-success bg-danger bg-secondary bg-warning bg-info bg-light" | split: " " %}
-						{% assign light_classes = "bg-light" | split: " " %}
+			<div class="row">
+				<div class="col-sm-12">
+				Tags:&nbsp;
+				{% capture tags %}
+				{% for tag in site.tags %}
+				{{ tag[1].size | plus: 1000 }}#{{ tag[0] }}#{{ tag[1].size }}
+				{% endfor %}
+				{% endcapture %}
+				{% assign sortedtags = tags | split:' ' | sort %}
+				{% assign bg_classes = "bg-dark bg-primary bg-success bg-danger bg-secondary bg-warning bg-info bg-light" | split: " " %}
+				{% assign light_classes = "bg-light" | split: " " %}
 
-							{% for tag in sortedtags reversed  %}
-							{% assign tagitems = tag | split: '#' %}
-							{% assign post_count = tagitems[2] | plus: 0 %}
-							{% if post_count >= 4 %}
-								{% assign random_index = forloop.index | modulo: bg_classes.size %}
-								{% assign random_class = bg_classes[random_index] %}
-								{% assign text_class = "text-light" %}
-								{% if light_classes contains random_class %}
-								  {% assign text_class = "text-dark" %}
-								{% endif %}
-								
-								<a class="badge rounded-pill p-2 {{random_class}} {{text_class}} text-decoration-none fs-6 mb-1" href="{{ site.baseurl }}/tag/{{ tagitems[1] }}">
-									{{ tagitems[1] }} ({{ tagitems[2] }})
-								</a>&nbsp;
-							{% endif %}
-							{% endfor %}
-							</ul>
-						</div>
-					</div>
+					{% for tag in sortedtags reversed  %}
+					{% assign tagitems = tag | split: '#' %}
+					{% assign post_count = tagitems[2] | plus: 0 %}
+					{% if post_count >= 4 %}
+						{% assign random_index = forloop.index | modulo: bg_classes.size %}
+						{% assign random_class = bg_classes[random_index] %}
+						{% assign text_class = "text-light" %}
+						{% if light_classes contains random_class %}
+						  {% assign text_class = "text-dark" %}
+						{% endif %}
+						
+						<a class="ms-2 me-2 badge rounded-pill p-2 {{random_class}} {{text_class}} text-decoration-none fs-6 mb-1" href="{{ site.baseurl }}/tag/{{ tagitems[1] }}">
+							{{ tagitems[1] }} [{{ tagitems[2] }}]
+						</a>
+					{% endif %}
+					{% endfor %}
 				</div>
 			</div>
 			<!-- Side widget-->
@@ -169,7 +163,6 @@
 	</div>
 	<!-- Footer-->
 <footer class="py-2 row">
-  <div class="col-8 mx-auto">
       <!-- Left Column: Copyright Information -->
       <div class="col text-start text-light">
         <p class="m-0">Copyright &copy; 2024. Prahlad Yeri. <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="text-muted">CC BY-SA 4.0</a></p>
@@ -177,22 +170,21 @@
       
       <!-- Middle Column: Social Media Icons -->
       <div class="col text-center">
-		<a class="nav-link" href="{{site.baseurl}}/">/blog</a> | 
-		<a class="nav-link" href="{{site.baseurl}}/projects">/projects</a> | 
-		<a class="nav-link" href="{{site.baseurl}}/about">/about</a> | 
-        <a href="https://github.com/prahladyeri" class="text-light me-3">/github</a> | 
-        <a href="mailto:prahladyeri@yahoo.com" class="text-light me-3">/email</a> | 
-        <a href="https://x.com/prahladyeri" class="text-light me-3">/twitter</a> | 
-        <a href="https://www.linkedin.com/in/prahlad-yeri-243a5316" class="text-light me-3">/linkedin</a> | 
-        <a href="https://stackoverflow.com/users/849365/prahlad-yeri" class="text-light me-3">/stackoverflow</a> | 
-        <a href="{{site.baseurl}}/atom.xml" class="text-light">/feed</a>
+		<a class="ms-2 me-2" href="{{site.baseurl}}/">/blog</a> | 
+		<a class="ms-2 me-2" href="{{site.baseurl}}/projects">/projects</a> | 
+		<a class="ms-2 me-2" href="{{site.baseurl}}/about">/about</a> | 
+        <a href="https://github.com/prahladyeri" class="ms-2 me-2">/github</a> | 
+        <a href="mailto:prahladyeri@yahoo.com" class="ms-2 me-2">/email</a> | 
+        <a href="https://x.com/prahladyeri" class="ms-2 me-2">/twitter</a> | 
+        <a href="https://www.linkedin.com/in/prahlad-yeri-243a5316" class="ms-2 me-2">/linkedin</a> | 
+        <a href="https://stackoverflow.com/users/849365/prahlad-yeri" class="ms-2 me-2">/stackoverflow</a> | 
+        <a href="{{site.baseurl}}/atom.xml" class="ms-2 me-2">/feed</a>
       </div>
       
       <!-- Right Column: Powered by Information -->
       <div class="col text-end text-light">
         <p class="m-0">Powered by Jekyll and GitHub Pages</p>
       </div>
-  </div>
 </footer>
 	
 <script>
