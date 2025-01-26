@@ -4,7 +4,15 @@ body {
 	color: white;
 }
 
-a {
+.blog-title {
+	font-size: 23px;
+	font-weight: bold;
+	font-family: consolas;
+}
+
+a,
+a:visited
+{
 	color: lightblue;
 }
 
