@@ -5,20 +5,9 @@ title: Home
 <!-- Nested row for non-featured blog posts-->
 <div class="row">
 	{% for post in paginator.posts %}
-        {% if forloop.first %}
-            {% assign bs_class = "col-12 col-md-6 col-lg-6 col-xl-12" %}
-        {% else %}
-            {% assign bs_class = "col-12 col-lg-6 col-md-6 col-lg-6 col-xl-4" %}
-        {% endif %}	
-		{% assign img_height = (bs_class contains 'col-xl-12') and '500px' or '250px' %}
 	<!-- Blog post-->
-	<div class="{{bs_class}}">
+	<div class="col-8 mx-auto">
 	<div class="card mb-4">
-	{% if post.image %}
-		<a href="{{site.baseurl}}{{post.url }}"><img loading="lazy" style='width: 100%; height: auto; max-height: {{img_height}}' class="card-img-top" src="{{site.baseurl}}{{post.image}}" alt="..." /></a>
-	{% else %}
-		<a href="{{site.baseurl}}{{post.url }}"><img loading="lazy" style='width: 100%; height: auto max-height: {{img_height}}' class="card-img-top" src="{{site.baseurl}}/uploads/cover.jpg" alt="..." /></a>
-	{% endif %}
 		<div class="card-body">
 			<div class="small text-muted">{{ post.date | date_to_string }}</div>
 			<h1 class="card-title fw-bold">{{post.title}}</h1>
