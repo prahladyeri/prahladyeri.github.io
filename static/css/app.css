@@ -89,7 +89,7 @@ a.tag-link:hover
   /* color: #fff; /* Default Bootstrap button color */
   /* text-decoration: none; /* Optional to remove underline */
 /* } */
-.the-content code
+.the-content .highlight pre code
 {
     display: block;
     max-width: 100%;
