@@ -132,21 +132,13 @@
 				{% endfor %}
 				{% endcapture %}
 				{% assign sortedtags = tags | split:' ' | sort %}
-				{% assign bg_classes = "bg-dark bg-primary bg-success bg-danger bg-secondary bg-warning bg-info bg-light" | split: " " %}
-				{% assign light_classes = "bg-light" | split: " " %}
 
 					{% for tag in sortedtags reversed  %}
 					{% assign tagitems = tag | split: '#' %}
 					{% assign post_count = tagitems[2] | plus: 0 %}
 					{% if post_count >= 4 %}
-						{% assign random_index = forloop.index | modulo: bg_classes.size %}
-						{% assign random_class = bg_classes[random_index] %}
-						{% assign text_class = "text-light" %}
-						{% if light_classes contains random_class %}
-						  {% assign text_class = "text-dark" %}
-						{% endif %}
-						
-						<a class="ms-2 me-2 badge rounded-pill p-2 {{random_class}} {{text_class}} text-decoration-none fs-6 mb-1" href="{{ site.baseurl }}/tag/{{ tagitems[1] }}">
+					
+						<a class="ms-2 me-2 p-2 text-decoration-none fs-6 mb-1" href="{{ site.baseurl }}/tag/{{ tagitems[1] }}">
 							{{ tagitems[1] }} [{{ tagitems[2] }}]
 						</a>
 					{% endif %}
