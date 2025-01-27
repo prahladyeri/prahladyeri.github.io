@@ -77,6 +77,16 @@ a.tag-link:hover
 	color: lightgoldenrodyellow !important;
 }
 
+.the-article .posted-on {
+	color: lightgrey;
+	font-family: georgia, ubuntu;
+}
+
+.the-article .tagged-under label {
+	color: lightgrey;
+	font-family: georgia, ubuntu;
+}
+
 .the-article img {
 	max-width: 100%;
 }
