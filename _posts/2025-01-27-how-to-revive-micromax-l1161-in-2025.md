@@ -2,6 +2,7 @@
 layout: post
 title: "How to revive a Micromax Canvas Lapbook L1161 in 2025"
 tags: micromax laptop guide
+image: /uploads/micromax-canvas-lapbook-l1161.jpg
 ---
 This little masterpiece of a Notebook that came with Atom baytrail processor was released in circa 2016 and was once the favorite of many a college students and tech enthusiasts. It has helped me a lot in my freelancing journey and learning process. I consider it a notable artifact of our times and hold it in the same nostalgic regard as the ASUS Eee PC and other such iconic devices. Back then, it barely cost INR 10K - you can't even get a decent smartphone for that price today!
 
