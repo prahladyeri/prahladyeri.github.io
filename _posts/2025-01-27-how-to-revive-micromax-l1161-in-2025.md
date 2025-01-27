@@ -8,7 +8,7 @@ This little masterpiece of a Notebook that came with Atom baytrail processor was
 
 ![micromax-canvas-lapbook-l1161](/uploads/micromax-canvas-lapbook-l1161.jpg)
 
-Sadly, like all good things in life, its glory days came to an end. Micromax eventually succumbed to global competetion from big tech conglomerates and its laptop division became defunct. As a result, customers of this laptop were left stranded, unable to download offial device drivers anymore. For those who wanted to format their disk and do a clean install of Windows, this presented a major problem.
+Sadly, like all good things in life, its glory days came to an end. Micromax eventually succumbed to global competetion from big tech conglomerates and its laptop division became defunct. As a result, customers of this laptop were left stranded, unable to download official device drivers anymore. For those who wanted to format their disk and do a clean install of Windows, this presented a major problem.
 
 Fortunately, I had downloaded the L1161 drivers from their official web portal while the company was still functional, you can [find them here](https://drive.google.com/file/d/1iC1qoPaa7rNZohaSI5qmlIQK2EpCVahO/view?usp=drive_link).
 
