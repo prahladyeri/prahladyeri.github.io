@@ -10,11 +10,6 @@ layout: base
 		<h1 class="fw-bold mb-1">{{page.title}}</h1>
 		<!-- Post meta content-->
 		<div class="text-muted fst-italic mb-2">Posted on {{ page.date | date_to_string }}</div>
-		<!-- Post tags-->
-		  {% for tag in page.tags %}
-			{% capture tag_name %}{{ tag }}{% endcapture %}
-			<a class='mb-1 text-decoration-none fw-bold tag-link' href="{{site.baseurl}}/tag/{{ tag_name }}">{{ tag_name }}</a>
-		  {% endfor %}
 	</header>
 	<!-- Preview image figure-->
 	<!-- <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure> -->
@@ -22,6 +17,12 @@ layout: base
 	<section class="mb-5">
 		{{ content }}
 	</section>
+		<!-- Post tags-->
+		<label>tagged under: </label>
+		  {% for tag in page.tags %}
+			{% capture tag_name %}{{ tag }}{% endcapture %}
+			<a class='mb-1 text-decoration-none fw-bold tag-link' href="{{site.baseurl}}/tag/{{ tag_name }}">{{ tag_name }}</a>
+		  {% endfor %}
 </article>
 
 <script src="https://giscus.app/client.js"
