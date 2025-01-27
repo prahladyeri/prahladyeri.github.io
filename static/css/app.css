@@ -58,7 +58,7 @@ tr:nth-child(even) {
 	font-size: 3rem;
 	font-family: "arial black";
 	text-decoration: none;
-	color: lightsteelblue !important;
+	color: lightgray !important;
 }
 
 a {	color: lightblue; }
