@@ -4,7 +4,7 @@ title: Home
 ---
 <div class="row">
 	{% for post in paginator.posts %}
-	<div class="col-10 mx-auto">
+	<div class="col-12 col-md-10 mx-auto">
 		<!-- <div class="small text-muted">{{ post.date | date_to_string }}</div> -->
 		<h1 class='mb-1'>{{post.title}}</h1>
 		<p class='mb-0 mt-0' >{% include short/t_post_summary.html %}</p>
