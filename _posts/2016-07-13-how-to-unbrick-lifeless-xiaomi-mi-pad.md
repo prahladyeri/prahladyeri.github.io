@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How to Unbrick and revive a totally lifeless Xiaomi Mi-Pad'
-tags: android hardware xiaomi tutorial
+tags: android hardware xiaomi guide
 ---
 
 Last week, my brand new Xiaomi Mi-Pad arrived via Flipkart and no sooner did I have it in my hands, I started installing useful apps like Greenify, ES File Explorer, etc. Two days went by and I was disappointed to learn that it doesn’t support a USB Dongle (Data Card) which is a very common method of Internet access in India. The only way I could have it was to root the tablet. And it was while rooting using SuperSU app that I foolishly selected a wrong click and ended up bricking my brand new tablet.<!--more-->

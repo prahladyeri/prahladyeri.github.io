@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How to approach and evaluate programming languages for a project'
-tags: php python software-engineering tutorial
+tags: php python software-engineering guide
 ---
 
 While it's a topic which has already invited hair splitting debates ad nauseam, it has also invited a lot of hype and there is a need to unclutter that hype and think about this topic objectively.

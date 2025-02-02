@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How to know whether my blog post will attract traffic or not'
-tags: blogging wordpress seo tutorial
+tags: blogging wordpress seo guide
 ---
 
 One of the evergreen topics for discussions in the blogging world is SEO, and especially the various ways of attracting bless of the all-pervading search engines to one’s own site or blog. There are various ways to approach this problem, some of the popular ones are:
