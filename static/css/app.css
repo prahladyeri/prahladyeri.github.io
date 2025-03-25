@@ -39,6 +39,10 @@ table {
   color: #f8f9fa; /* Light text color for readability */
 }
 
+table a {
+	color: #f8f9fa !important;
+}
+
 /* Borders for Table, Rows, and Cells */
 th, td {
   border: 1px solid #f8f9fa; /* Light border color */
