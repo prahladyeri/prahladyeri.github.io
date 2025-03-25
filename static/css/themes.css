@@ -1,0 +1,80 @@
+/*Classic Dark Mode (Elegant & Minimal)*/
+:root {
+    --main-font: 'Inter', sans-serif;
+    --heading-font: 'Merriweather', serif;
+    --bgcolor: #121212;
+    --fgcolor: #e0e0e0;
+    --linkcolor: #bb86fc;
+}
+
+/* Cyberpunk Glow (Futuristic Neon) */
+:root {
+    --main-font: 'Roboto Mono', monospace;
+    --heading-font: 'Orbitron', sans-serif;
+    --bgcolor: #000814;
+    --fgcolor: #00ffea;
+    --linkcolor: #ff007f;
+}
+
+/* Midnight Blue (Cool & Soothing) */
+:root {
+    --main-font: 'Nunito', sans-serif;
+    --heading-font: 'Playfair Display', serif;
+    --bgcolor: #1a1b26;
+    --fgcolor: #c0caf5;
+    --linkcolor: #7aa2f7;
+}
+
+/* Clean Minimalist (Soft & Professional) */
+:root {
+    --main-font: 'Lora', serif;
+    --heading-font: 'Poppins', sans-serif;
+    --bgcolor: #ffffff;
+    --fgcolor: #333333;
+    --linkcolor: #007bff;
+}
+
+/* Vintage Newspaper (Classic & Elegant) */
+:root {
+    --main-font: 'Garamond', serif;
+    --heading-font: 'Times New Roman', serif;
+    --bgcolor: #f4f1ea;
+    --fgcolor: #2f2f2f;
+    --linkcolor: #8b0000;
+}
+
+/* Soft Pastel (Gentle on the Eyes) */
+:root {
+    --main-font: 'Quicksand', sans-serif;
+    --heading-font: 'Dancing Script', cursive;
+    --bgcolor: #fef6e4;
+    --fgcolor: #2a2a2a;
+    --linkcolor: #ff6699;
+}
+
+/* Solarized Dark (Soft Contrast, Good for Reading) */
+:root {
+    --main-font: 'Source Sans Pro', sans-serif;
+    --heading-font: 'EB Garamond', serif;
+    --bgcolor: #002b36;
+    --fgcolor: #93a1a1;
+    --linkcolor: #268bd2;
+}
+
+/* Sepia Mode (Book-Like Feel) */
+:root {
+    --main-font: 'PT Serif', serif;
+    --heading-font: 'Libre Baskerville', serif;
+    --bgcolor: #f5deb3;
+    --fgcolor: #3b3b3b;
+    --linkcolor: #a52a2a;
+}
+
+/* Coffee Theme (Warm & Cozy) */
+:root {
+    --main-font: 'Merriweather', serif;
+    --heading-font: 'Oswald', sans-serif;
+    --bgcolor: #3e2723;
+    --fgcolor: #d7ccc8;
+    --linkcolor: #ffab40;
+}

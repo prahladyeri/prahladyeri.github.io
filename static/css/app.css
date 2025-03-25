@@ -1,3 +1,13 @@
+/* Clean Minimalist (Soft & Professional) */
+:root {
+    --main-font: 'Lora', "trebuchet ms";
+    --heading-font: 'Poppins', "segoe ui";
+    --bgcolor: #ffffff;
+    --fgcolor: #333333;
+    --linkcolor: #007bff;
+}
+
+
 /* start: bootstrap shortcuts */
 .fw-bold {
 	font-weight: bold;
@@ -16,9 +26,9 @@
 /* end: bootstrap shortcuts */
 
 body {
-	font-family: verdana;
-	background-color: darkslategrey;
-	color: antiquewhite;
+	font-family: var(--main-font);
+	background-color: var(--bgcolor);
+	color: var(--fgcolor);
 }
 
 /* General Table Styling */
@@ -58,23 +68,23 @@ tr:nth-child(even) {
 	font-size: 3rem;
 	font-family: "arial black";
 	text-decoration: none;
-	color: lightgray !important;
+	color: var(--fgcolor) !important;
 }
 
-a {	color: lightblue; }
+a {	color: var(--linkcolor); }
 
 a:visited {color: lightcoral;}
 
 a.page-link
 {
-	color: lightblue !important;
+	color: var(--linkcolor) !important;
 }
 
 a.tag-link,
 a.tag-link:visited,
 a.tag-link:hover
 {
-	color: lightgoldenrodyellow !important;
+	color: var(--linkcolor) !important;
 }
 
 .the-article .posted-on {
@@ -84,7 +94,7 @@ a.tag-link:hover
 
 .the-article .tagged-under label {
 	color: lightgrey;
-	font-family: georgia, ubuntu;
+	font-family: var(--main-font);
 }
 
 .the-article img {
@@ -110,19 +120,19 @@ a.tag-link:hover
 
 .the-content a:not(.btn):not(.page-link):not([class*="btn-"])
 {
-  color: lightblue; /* Navy Blue */
+  color: var(--linkcolor);
 }
 .the-content a:not(.btn):not(.page-link):not([class*="btn-"]):visited
 {
-  color: lightcoral; /* Muted Gray-Blue */
+  color: var(--linkcolor);
 }
 .the-content a:not(.btn):not(.page-link):not([class*="btn-"]):hover
 {
-  color: lightgoldenrodyellow; /* Darker Navy on Hover */
+  color: var(--linkcolor);
 }
 .the-content a:not(.btn):not(.page-link):not([class*="btn-"]):focus
 {
-  outline: 2px solid lightgoldenrodyellow;
+  outline: 2px solid var(--linkcolor);
 }
 
 /* Exclude Bootstrap classes like .btn-primary, .btn-secondary, etc. */
