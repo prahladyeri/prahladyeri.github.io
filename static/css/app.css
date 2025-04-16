@@ -1,11 +1,12 @@
-/* Clean Minimalist (Soft & Professional) */
+/*Classic Dark Mode (Elegant & Minimal)*/
 :root {
-    --main-font: 'Lora', "trebuchet ms";
-    --heading-font: 'Poppins', "segoe ui";
-    --bgcolor: #ffffff;
-    --fgcolor: #333333;
-    --linkcolor: #007bff;
+    --main-font: 'Inter', sans-serif;
+    --heading-font: 'Merriweather', serif;
+    --bgcolor: #121212;
+    --fgcolor: #e0e0e0;
+    --linkcolor: #bb86fc;
 }
+
 
 
 /* start: bootstrap shortcuts */
