@@ -36,12 +36,11 @@ body {
 table {
   width: 100%;
   border-collapse: collapse; /* Removes double borders */
-  background-color: #2f4f4f; /* Dark grey background for the table */
-  color: #f8f9fa; /* Light text color for readability */
+  font-size: 0.95rem;
 }
 
 table a {
-	color: #f8f9fa !important;
+	color: var(--linkcolor) !important;
 }
 
 /* Borders for Table, Rows, and Cells */
@@ -53,19 +52,22 @@ th, td {
 
 /* Header Row Styling */
 th {
-  background-color: #5f9ea0; /* Cadet Blue for the header */
-  font-weight: bold;
-  color: #ffffff; /* White text for the header */
+	background-color: color-mix(in srgb, var(--bgcolor) 70%, white 30%);
+	font-weight: bold;
+}
+
+tr {
+  transition: background-color 0.2s ease-in-out;
 }
 
 /* Optional: Hover Effect for Rows */
 tr:hover {
-  background-color: #556b2f; /* Dark Olive Green for hover */
+    background-color: color-mix(in srgb, var(--bgcolor) 60%, white 40%);
 }
 
 /* Optional: Zebra Stripes for Rows */
 tr:nth-child(even) {
-  background-color: #3d5656; /* Slightly lighter grey for even rows */
+    background-color: color-mix(in srgb, var(--bgcolor) 80%, white 20%);
 }
 
 
