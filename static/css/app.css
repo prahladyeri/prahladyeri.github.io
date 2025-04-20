@@ -71,12 +71,17 @@ tr:nth-child(even) {
 }
 
 
-.blog-title {
+a.blog-title {
 	font-size: 3rem;
 	font-family: "arial black";
 	text-decoration: none;
-	color: var(--fgcolor) !important;
 }
+
+a.blog-title,
+a.blog-title:visited {
+	color: darkseagreen;
+}
+
 
 a {	color: var(--linkcolor); }
 
