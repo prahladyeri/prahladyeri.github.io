@@ -1,6 +1,6 @@
 /*Classic Dark Mode (Elegant & Minimal)*/
 :root {
-    --main-font: 'Inter', sans-serif;
+    --main-font: 'Inter', 'Segoe UI', sans-serif;
     --heading-font: 'Merriweather', serif;
     --bgcolor: #121212;
     --fgcolor: #e0e0e0;
@@ -18,7 +18,7 @@
 
 /* Midnight Blue (Cool & Soothing) */
 :root {
-    --main-font: 'Nunito', sans-serif;
+    --main-font: 'Nunito', 'Segoe UI', sans-serif;
     --heading-font: 'Playfair Display', serif;
     --bgcolor: #1a1b26;
     --fgcolor: #c0caf5;
@@ -27,7 +27,7 @@
 
 /* Clean Minimalist (Soft & Professional) */
 :root {
-    --main-font: 'Lora', serif;
+    --main-font: 'Lora', 'Segoe UI', serif;
     --heading-font: 'Poppins', sans-serif;
     --bgcolor: #ffffff;
     --fgcolor: #333333;
@@ -36,7 +36,7 @@
 
 /* Vintage Newspaper (Classic & Elegant) */
 :root {
-    --main-font: 'Garamond', serif;
+    --main-font: 'Garamond', 'Segoe UI', serif;
     --heading-font: 'Times New Roman', serif;
     --bgcolor: #f4f1ea;
     --fgcolor: #2f2f2f;
@@ -45,7 +45,7 @@
 
 /* Soft Pastel (Gentle on the Eyes) */
 :root {
-    --main-font: 'Quicksand', sans-serif;
+    --main-font: 'Quicksand', 'Segoe UI', sans-serif;
     --heading-font: 'Dancing Script', cursive;
     --bgcolor: #fef6e4;
     --fgcolor: #2a2a2a;
@@ -54,7 +54,7 @@
 
 /* Solarized Dark (Soft Contrast, Good for Reading) */
 :root {
-    --main-font: 'Source Sans Pro', sans-serif;
+    --main-font: 'Source Sans Pro', 'Segoe UI', sans-serif;
     --heading-font: 'EB Garamond', serif;
     --bgcolor: #002b36;
     --fgcolor: #93a1a1;
@@ -63,7 +63,7 @@
 
 /* Sepia Mode (Book-Like Feel) */
 :root {
-    --main-font: 'PT Serif', serif;
+    --main-font: 'PT Serif', 'Segoe UI', serif;
     --heading-font: 'Libre Baskerville', serif;
     --bgcolor: #f5deb3;
     --fgcolor: #3b3b3b;
@@ -72,7 +72,7 @@
 
 /* Coffee Theme (Warm & Cozy) */
 :root {
-    --main-font: 'Merriweather', serif;
+    --main-font: 'Merriweather', 'Segoe UI', serif;
     --heading-font: 'Oswald', sans-serif;
     --bgcolor: #3e2723;
     --fgcolor: #d7ccc8;
