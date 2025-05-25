@@ -78,13 +78,11 @@ a.blog-title {
 
 a.blog-title,
 a.blog-title:visited {
-	color: darkseagreen;
+	color: var(--heading-fgcolor);
 }
 
-
 a {	color: var(--linkcolor); }
-
-a:visited {color: var(--heading-fgcolor);}
+a:visited {color: lightcoral;}
 
 a.page-link
 {
