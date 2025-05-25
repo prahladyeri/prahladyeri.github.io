@@ -98,12 +98,8 @@ a.tag-link:hover
 }
 
 .the-article .posted-on {
-	color: lightgrey;
-	font-family: georgia, ubuntu;
-}
-
-.the-article .tagged-under label {
-	color: lightgrey;
+	color: var(--fgcolor);
+	opacity: 0.7;
 	font-family: var(--main-font);
 }
 
