@@ -1,13 +1,11 @@
 /*Classic Dark Mode (Elegant & Minimal)*/
 :root {
-    --main-font: 'Segoe UI', 'Inter', sans-serif;
-    --heading-font: 'Merriweather', serif;
-    --bgcolor: #121212;
-    --fgcolor: #e0e0e0;
-    --linkcolor: #bb86fc;
+    --main-font: "franklin gothic", 'Segoe UI', 'Tahoma', sans-serif;
+    --heading-font: "arial black";
+    --bgcolor: #1a1b26;
+    --fgcolor: #c0caf5;
+    --linkcolor: #7aa2f7;
 }
-
-
 
 /* start: bootstrap shortcuts */
 .fw-bold {
@@ -73,7 +71,7 @@ tr:nth-child(even) {
 
 a.blog-title {
 	font-size: 3rem;
-	font-family: "arial black";
+	font-family: var(--heading-font);
 	text-decoration: none;
 }
 
@@ -127,7 +125,7 @@ a.tag-link:hover
 }
 
 .the-content *:not(h1, h2, h3, h4, h5, h6) {
-	font-size: 17px;
+	font-size: 18px;
 }
 
 .the-content a:not(.btn):not(.page-link):not([class*="btn-"])
