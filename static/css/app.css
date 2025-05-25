@@ -70,7 +70,6 @@ tr:nth-child(even) {
     background-color: color-mix(in srgb, var(--bgcolor) 80%, white 20%);
 }
 
-
 a.blog-title {
 	font-size: 3rem;
 	font-family: var(--heading-font);
