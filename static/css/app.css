@@ -2,6 +2,7 @@
 :root {
     --main-font: "franklin gothic", 'Segoe UI', 'Tahoma', sans-serif;
     --heading-font: "arial black";
+	--heading-fgcolor: lightsteelblue;
     --bgcolor: #1a1b26;
     --fgcolor: #c0caf5;
     --linkcolor: #7aa2f7;
@@ -83,7 +84,7 @@ a.blog-title:visited {
 
 a {	color: var(--linkcolor); }
 
-a:visited {color: lightcoral;}
+a:visited {color: var(--heading-fgcolor);}
 
 a.page-link
 {
