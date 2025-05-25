@@ -6,6 +6,7 @@
     --bgcolor: #1a1b26;
     --fgcolor: #c0caf5;
     --linkcolor: #7aa2f7;
+	--visited-linkcolor: color-mix(in srgb, var(--linkcolor) 80%, var(--fgcolor)); 
 }
 
 /* start: bootstrap shortcuts */
@@ -82,7 +83,7 @@ a.blog-title:visited {
 }
 
 a {	color: var(--linkcolor); }
-a:visited {color: lightcoral;}
+a:visited {color: var(--visited-linkcolor);}
 
 a.page-link
 {
