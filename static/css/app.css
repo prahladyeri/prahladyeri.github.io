@@ -1,10 +1,11 @@
 /*Classic Dark Mode (Elegant & Minimal)*/
 :root {
+	--brand-font: "arial black";
     --main-font: calibri;
     --heading-font: "segoe ui";
     --bgcolor: #f4f1ea;
     --fgcolor: #2f2f2f;
-	--heading-fgcolor: chocolate;
+	--brand-fgcolor: burlywood;
     --linkcolor: #8b0000;
 	--visited-linkcolor: color-mix(in srgb, var(--linkcolor) 80%, var(--fgcolor)); 
 }
@@ -72,13 +73,13 @@ tr:nth-child(even) {
 
 a.blog-title {
 	font-size: 3rem;
-	font-family: "arial black";
+	font-family: var(--brand-font);
 	text-decoration: none;
 }
 
 a.blog-title,
 a.blog-title:visited {
-	color: var(--heading-fgcolor);
+	color: var(--brand-fgcolor);
 }
 
 a {	color: var(--linkcolor); }
