@@ -36,8 +36,8 @@
 
 /* Vintage Newspaper (Classic & Elegant) */
 :root {
-    --main-font: 'Garamond', 'Segoe UI', serif;
-    --heading-font: 'Times New Roman', serif;
+    --main-font: calibri;
+    --heading-font: "segoe ui";
     --bgcolor: #f4f1ea;
     --fgcolor: #2f2f2f;
     --linkcolor: #8b0000;
