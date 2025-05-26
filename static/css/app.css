@@ -46,29 +46,22 @@ table a {
 
 /* Borders for Table, Rows, and Cells */
 th, td {
-  border: 1px solid #f8f9fa; /* Light border color */
-  padding: 0.5rem; /* Adds spacing inside cells */
-  text-align: left; /* Aligns text to the left */
+	border: 1px solid color-mix(in srgb, var(--bgcolor) 50%, black 50%);
+	padding: 0.5rem;
+	text-align: left;
 }
-
-/* Header Row Styling */
 th {
-	background-color: color-mix(in srgb, var(--bgcolor) 70%, white 30%);
+	background-color: color-mix(in srgb, var(--bgcolor) 80%, white 20%);
 	font-weight: bold;
 }
-
 tr {
-  transition: background-color 0.2s ease-in-out;
+	transition: background-color 0.3s ease-in-out;
 }
-
-/* Optional: Hover Effect for Rows */
 tr:hover {
-    background-color: color-mix(in srgb, var(--bgcolor) 60%, white 40%);
+    background-color: rgba(255, 255, 255, 0.1);
 }
-
-/* Optional: Zebra Stripes for Rows */
 tr:nth-child(even) {
-    background-color: color-mix(in srgb, var(--bgcolor) 80%, white 20%);
+    background-color: color-mix(in srgb, var(--bgcolor) 85%, white 15%);
 }
 
 a.blog-title {
