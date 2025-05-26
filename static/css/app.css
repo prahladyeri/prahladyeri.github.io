@@ -1,11 +1,11 @@
 /*Classic Dark Mode (Elegant & Minimal)*/
 :root {
-    --main-font: "franklin gothic", 'Segoe UI', 'Tahoma', sans-serif;
+    --main-font: "Arial", 'Segoe UI', 'Tahoma', sans-serif;
     --heading-font: "arial black";
 	--heading-fgcolor: lightsteelblue;
-    --bgcolor: #1a1b26;
-    --fgcolor: #c0caf5;
-    --linkcolor: #7aa2f7;
+    --bgcolor: #f4f1ea;
+    --fgcolor: #2f2f2f;
+    --linkcolor: #8b0000;
 	--visited-linkcolor: color-mix(in srgb, var(--linkcolor) 80%, var(--fgcolor)); 
 }
 
