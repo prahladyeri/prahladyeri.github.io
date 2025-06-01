@@ -19,12 +19,12 @@ What truly sets me apart is my commitment to core principles:
 
 If you're looking for a reliable, solutions-driven developer to bring your project to life, I'm confident that I'm the right fit for your needs. Let's work together to create software that delivers real value.
 
-## Support My Open Source Work
-Your contributions help keep my open-source projects alive! If you've benefited from my work and would like to support, you can:
-- **Donate via PayPal**: [paypal.me/prahladyeri](https://paypal.me/prahladyeri)
-- **Become a Patron on Patreon**: [patreon.com/prahladyeri](https://patreon.com/prahladyeri)
-
 ## Hire Me for Your Projects
 Need a software solution? Let's build something great together!
 - **Request a Quote**: [prahladyeri@yahoo.com](mailto:prahladyeri@yahoo.com)
 - **Hire Me on Upwork**: [Upwork Profile](https://www.upwork.com/freelancers/~01e977ff45b62e031c)
+
+## Support My Open Source Work
+Your contributions help keep my open-source projects alive! If you've benefited from my work and would like to support, you can:
+- **Donate via PayPal**: [paypal.me/prahladyeri](https://paypal.me/prahladyeri)
+- **Become a Patron on Patreon**: [patreon.com/prahladyeri](https://patreon.com/prahladyeri)
