@@ -21,7 +21,7 @@ If you're looking for a reliable, solutions-driven developer to bring your proje
 
 ## Hire Me for Your Projects
 Need a software solution? Let's build something great together!
-- **Request a Quote**: [prahladyeri@yahoo.com](mailto:prahladyeri@yahoo.com)
+- **Request Quote**: [prahladyeri@yahoo.com](mailto:prahladyeri@yahoo.com)
 - **Hire Me on Upwork**: [Upwork Profile](https://www.upwork.com/freelancers/~01e977ff45b62e031c)
 
 ## Support My Open Source Work
