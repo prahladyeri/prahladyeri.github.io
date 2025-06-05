@@ -1,12 +1,12 @@
-/*Classic Dark Mode (Elegant & Minimal)*/
+/* Coffee Theme (Warm & Cozy) */
 :root {
 	--brand-font: "arial black";
     --main-font: calibri;
     --heading-font: "segoe ui";
-    --bgcolor: #f4f1ea;
-    --fgcolor: #2f2f2f;
-	--brand-fgcolor: burlywood;
-    --linkcolor: #8b0000;
+    --bgcolor: #3e2723;
+    --fgcolor: #d7ccc8;
+    --linkcolor: #ffab40;
+	--brand-fgcolor: #cd853f;
 	--visited-linkcolor: color-mix(in srgb, var(--linkcolor) 80%, var(--fgcolor)); 
 }
 

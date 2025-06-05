@@ -45,7 +45,7 @@
 
 /* Soft Pastel (Gentle on the Eyes) */
 :root {
-    --main-font: 'Quicksand', 'Segoe UI', sans-serif;
+    --main-font: corbel, 'Quicksand', 'Segoe UI', sans-serif;
     --heading-font: 'Dancing Script', cursive;
     --bgcolor: #fef6e4;
     --fgcolor: #2a2a2a;
