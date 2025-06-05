@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The art and science of effectively maintaining changelogs for your project"
+title: "The art and science of effectively maintaining changelogs"
 tags: git dotnet open-source
 ---
 Even in 2025, maintaining changelogs isn't an exact science. There is no general consensus or even tooling around how your changelog should look in order to conform to some norms or standards, because there aren't any. After some trial-error and pondering, this is what I came up with for my upcoming FocusBeam project:
