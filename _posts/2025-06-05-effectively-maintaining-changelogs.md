@@ -8,8 +8,6 @@ Even in 2025, maintaining changelogs isn't an exact science. There is no general
 ```bash
 # Focus Beam Changelog
 
-All notable changes to this project will be documented in this file.
-
 ## [Unreleased]
 ### Added
 - [x] Dashboard and Timesheet view
