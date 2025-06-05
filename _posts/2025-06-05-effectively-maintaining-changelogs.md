@@ -26,7 +26,7 @@ Even in 2025, maintaining changelogs isn't an exact science. There is no general
 
 This format looks somewhat better than the older version that I still retain for some existing projects:
 
-	R 1.1
+	R1.1
 
 	- Pending CRM Reports.
 	- Check post script.
