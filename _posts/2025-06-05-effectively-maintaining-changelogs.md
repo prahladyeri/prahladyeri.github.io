@@ -15,7 +15,7 @@ Even in 2025, maintaining changelogs isn't an exact science. There is no general
 - [x] Settings View
 - [x] Project creation and editing
 - [x] Task creation and editing
-- [x] Enable "Timesheet" button on dashboard
+- [x] Enable Timesheet button on dashboard
 - [ ] Show Total Hours worked on the project on Dashboard View
 - [ ] Logged hours computation
 - [ ] Notes
