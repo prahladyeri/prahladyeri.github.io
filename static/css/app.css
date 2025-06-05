@@ -2,7 +2,7 @@
 :root {
 	--brand-font: "arial black";
     --main-font: corbel;
-    --heading-font: "segoe ui";
+    --heading-font: corbel, "segoe ui";
     --bgcolor: #3e2723;
     --fgcolor: #d7ccc8;
     --linkcolor: #ffab40;
