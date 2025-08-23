@@ -1,12 +1,12 @@
-/* Coffee Theme (Warm & Cozy) */
+/* Clean Minimalist (Soft & Professional) */
 :root {
 	--brand-font: "arial black";
-    --main-font: corbel;
+    --main-font: 'Segoe UI';
     --heading-font: corbel, "segoe ui";
-    --bgcolor: #3e2723;
-    --fgcolor: #d7ccc8;
-    --linkcolor: #ffab40;
-	--brand-fgcolor: #cd853f;
+    --bgcolor: #ffffff;
+    --fgcolor: #333333;
+    --linkcolor: #007bff;
+	--brand-fgcolor: #007bff;
 	--visited-linkcolor: color-mix(in srgb, var(--linkcolor) 80%, var(--fgcolor)); 
 }
 

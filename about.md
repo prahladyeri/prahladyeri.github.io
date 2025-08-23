@@ -28,3 +28,10 @@ Need a software solution? Let's build something great together!
 Your contributions help keep my open-source projects alive! If you've benefited from my work and would like to support, you can:
 - **Donate via PayPal**: [paypal.me/prahladyeri](https://paypal.me/prahladyeri)
 - **Become a Patron on Patreon**: [patreon.com/prahladyeri](https://patreon.com/prahladyeri)
+
+## Connect with me online
+
+- [twitter](https://twitter.com/prahladyeri)
+- [linkedin](https://www.linkedin.com/in/prahlad-yeri-243a5316)
+- [facebook](https://www.facebook.com/prahladyeri14/)
+- [reddit](https://www.reddit.com/user/pyeri)
