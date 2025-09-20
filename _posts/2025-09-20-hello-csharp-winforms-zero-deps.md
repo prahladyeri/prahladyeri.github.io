@@ -2,6 +2,7 @@
 layout: post
 title: "Create a C# Windows Desktop App in 9 Lines — No Visual Studio Needed"
 tags: dotnet open-source tutorial
+image: /uploads/csharp-hello.png
 ---
 
 If you're new to C# and especially desktop development, here's how easy it is to get started on a modern Windows 10/11 PC. This way of creating a Hello World C# program doesn't involve installation of any heavy IDE like Visual Studio or the .NET 8/9 SDK.
