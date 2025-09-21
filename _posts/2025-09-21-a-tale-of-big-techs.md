@@ -9,7 +9,7 @@ Trump has recently imposed [$100,000 fee for each H1B applicant](https://www.ndt
 
 Broadly speaking, there are two kinds of software companies in the American IT industry. Firstly, the product based companies like Microsoft, Google, Oracle, Adobe, etc. which are also called "big techs" or "Valley companies" as they're based in the famous area of Silicon Valley in California. Secondly, there are the IT Services firms like Infosys, TCS, Wipro, Tech Mahindra, etc. which are based outside of Silicon Valley, make massive use of H1B visa applications and are mostly India based. These are 'affectionately' called "body shops" by some Americans, especially the folks in Trump's MAGA base who often have a profound dislike towards those who "steal their jobs".
 
-In recent years, there has been a strong business rivalry between these two sets of firms. As every story has a Goliath vs David, or Peasants vs Lords, or a Model vs Rajput college in the popular 1980s movie *'Jo Jeeta Wohi Sikandar'*, in our story they happen to be the big techs and these services firms.
+In recent years, there has been a strong business rivalry between these two sets of firms. As every story has a David vs Goliath, or Peasants vs Lords, or a Model vs Rajput college in the popular 1980s movie *'Jo Jeeta Wohi Sikandar'*, in our story they happen to be the big techs and these services firms.
 
 ![jo-jeeta-wohi-sikandar](/uploads/jo-jeeta-wohi-sikandar.jpg)
 
