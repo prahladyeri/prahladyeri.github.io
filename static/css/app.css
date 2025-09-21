@@ -6,7 +6,7 @@
     --bgcolor: #121212;
     --fgcolor: #e0e0e0;
     --linkcolor: #bb86fc;
-	--brand-fgcolor: #bb86fc;
+	--brand-fgcolor: 'lightsalmon';
 	--visited-linkcolor: color-mix(in srgb, var(--linkcolor) 80%, var(--fgcolor)); 
 }
 
