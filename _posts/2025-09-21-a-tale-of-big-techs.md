@@ -11,11 +11,11 @@ Broadly speaking, there are two kinds of software companies in the American IT i
 
 In recent years, there has been a strong business rivalry between these two sets of firms. As every story has a Goliath vs David, or Peasants vs Lords, or a Model vs Rajput college in the popular 1980s movie *'Jo Jeeta Wohi Sikandar'*, in our story they happen to be the big techs and these services firms.
 
-![jo-jeeta-wohi-sikandar](https://pbs.twimg.com/media/FTUgLf5X0AEr6V6?format=jpg&name=small)
+![jo-jeeta-wohi-sikandar](/uploads/jo-jeeta-wohi-sikandar.jpg)
 
 It's funny how it works really because back home, these same services firms are highly respected tax-paying companies, and most IT grads line up eagerly to get recruited through their interviews and walk-ins. Coming back to our story, the recent famous dinner at White House on 6th September attended by most of the big tech CEOs should leave little doubt about who is closer to the Trump establishment.
 
-![wh-dinner](https://pbs.twimg.com/media/G0EYBvxWcAEbXlz?format=jpg&name=small)
+![wh-dinner](/uploads/wh-dinner.jpg)
 
 Now this is where the story takes an interesting turn. We don't know if the H1B decision was made in that dinner meeting or sometime later but there is no doubt that it affects the profitability of services firms more disproportionately than 'big techs'. Not saying that it doesn't have anything to do with MAGA supporters pushing for this for a very long time, just that the business angle is quite important too and directly affects profitability and wealth creation of individuals and firms.
 
