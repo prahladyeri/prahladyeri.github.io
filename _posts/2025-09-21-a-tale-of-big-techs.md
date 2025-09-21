@@ -23,7 +23,7 @@ Infosys stock, for example, declined rapidly after this announcement. That's bec
 
 There is a lot for big techs to gain by this decision. The clients of Infosys and TCS, for example, will find it difficult to pay the additional overhead of $100,000 per H1B applicant. This will make them more inclined to switch to a big tech firm - this not only improves their bottom line but also aligns well with Trump's U.S. First policy.
 
-Not just that, if Infosys and TCS decide to shift outsourcing back home to India, the now jobless H1B holders in the states will be absorbed at a very cheap rate by the big techs! It's possible that exemptions or reversals could emerge later, especially if big tech lobbies successfully
+Not just that, if Infosys and TCS decide to shift outsourcing back home to India, the now jobless H1B holders in the states will be absorbed at a very cheap rate by the big techs! It's possible that exemptions or reversals could emerge later, especially if big tech lobbies successfully.
 
 Presently, the situation looks gloomy for India's IT services champions. Yet, much like the underdog in *Jo Jeeta Wohi Sikandar*, they still have cards to play. The fact that the White House quickly rushed to [issue clarifications](https://timesofindia.indiatimes.com/business/international-business/white-house-clarifies-100000-fee-does-not-apply-to-current-h1b-visa-holders-or-renewals-safe-to-travel-also-its-not-annual-fee/articleshow/124022952.cms) shows that these so-called 'body shops' retain significant lobbying influence, even if it's exercised more quietly than Silicon Valley's.
 
