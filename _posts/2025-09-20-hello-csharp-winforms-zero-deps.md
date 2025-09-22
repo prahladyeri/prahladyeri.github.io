@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Create a C# Windows Desktop App in 9 Lines — No Visual Studio Needed"
-tags: dotnet open-source tutorial
+tags: dotnet csharp open-source tutorial
 image: /uploads/csharp-hello.png
 ---
 
