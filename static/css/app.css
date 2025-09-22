@@ -3,9 +3,9 @@
 	--brand-font: "arial black";
     --main-font: 'roboto';
     --heading-font: 'roboto';
-    --bgcolor: #fef6e4;
-    --fgcolor: #2a2a2a;
-    --linkcolor: #ff6699;
+    --bgcolor: #ffffff;
+    --fgcolor: #333333;
+    --linkcolor: #007bff;
 	--brand-fgcolor: lightslategrey;
 	--visited-linkcolor: color-mix(in srgb, var(--linkcolor) 80%, var(--fgcolor)); 
 }
