@@ -1,11 +1,11 @@
-/* Clean Minimalist (Soft & Professional) */
+/* Vintage Newspaper (Classic & Elegant) */
 :root {
 	--brand-font: "arial black";
-    --main-font: 'Merriweather';
-    --heading-font: 'Merriweather';
-    --bgcolor: #121212;
-    --fgcolor: #e0e0e0;
-    --linkcolor: #bb86fc;
+    --main-font: 'roboto';
+    --heading-font: 'roboto';
+    --bgcolor: #f4f1ea;
+    --fgcolor: #2f2f2f;
+    --linkcolor: #8b0000;
 	--brand-fgcolor: lightslategrey;
 	--visited-linkcolor: color-mix(in srgb, var(--linkcolor) 80%, var(--fgcolor)); 
 }
