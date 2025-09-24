@@ -2,7 +2,7 @@
 layout: post
 title: "Tale of 'Big Tech' and 'Body Shops': The Real Story Behind Trump's $100,000 H1B Fee"
 tags: h1b visa
-published: false
+published: true
 ---
 
 Trump has recently imposed [$100,000 fee for each H1B applicant](https://www.ndtv.com/world-news/trump-imposes-100-000-fee-on-h-1b-visas-how-it-may-impact-indians-immigration-action-gold-card-visa-program-9310691), this has created a lot of buzz and panic in both U.S. and India which happens to sponsor about 70% of overall H1B applicants to the states every year. Rather than look at this through the extreme panic lens that folks back home are using, or the extremely gleeful lens that Trump's MAGA base is using, I'm going to do a clinical and realpolitik analysis of this whole situation.
