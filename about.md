@@ -35,4 +35,4 @@ Your contributions help keep my open-source projects alive! If you've benefited 
 - [linkedin](https://www.linkedin.com/in/prahlad-yeri-243a5316)
 - [facebook](https://www.facebook.com/prahladyeri14/)
 - [reddit](https://www.reddit.com/user/pyeri)
-- [GPG Key](https://keys.openpgp.org/vks/v1/by-fingerprint/F0BD1A7B8E8C5D12BF05E062E12979BA15FDE7FD)
+- [PGP Key](https://keys.openpgp.org/vks/v1/by-fingerprint/F0BD1A7B8E8C5D12BF05E062E12979BA15FDE7FD)
