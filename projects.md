@@ -18,7 +18,6 @@ layout: page
 			<th scope="col">Description</th>
 			<th scope="col">Stars</th>
 			<th scope="col">Last Commit</th>
-			<th scope="col">Link</th>
 		</tr>
 	</thead>
 	<tbody id="projects-body">
@@ -56,10 +55,11 @@ document.addEventListener('DOMContentLoaded', function() {
 					<td>${repo.description || 'No description available'}</td>
 					<td>${repo.stargazers_count}</td>
 					<td>${new Date(repo.pushed_at).toLocaleDateString()}</td>
-					<td><a href="${repo.html_url}" class="btn btn-dark text-light" target="_blank">View Project</a></td>
 				</tr>
 			`;
         });
+		//<td><a href="${repo.html_url}" class="btn btn-dark text-light" target="_blank">View Project</a></td>
+		
         document.getElementById("projects-body").innerHTML = projects;
         document.querySelector(".fa-spin").remove();        
     })
