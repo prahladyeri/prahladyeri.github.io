@@ -11,7 +11,13 @@ layout: page
 
 <span class="fa-spin">Loading...</span>
 
-<table class="table table-striped table-sm table-bordered mt-3">
+<style>
+#theTable {
+    font-family: "cascadia code", consolas, monospace;
+}
+</style>
+
+<table id="theTable" class="table table-striped table-sm table-bordered mt-3">
 	<thead>
 		<tr>
 			<th scope="col">Project Name</th>
