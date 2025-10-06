@@ -3,7 +3,7 @@ layout: post
 title: "Unpopular Opinion: Implicit Usings are an Anti-Pattern"
 tags: dotnet csharp open-source
 image: /uploads/code-python.jpg
-published: false
+published: true
 ---
 
 As someone who has coded across Python, PHP, Java, and C#, I've learned to borrow patterns from each language to improve workflow and maintainability. One principle that has consistently stood the test of time is Python's aphorism: **"Explicit is better than implicit."** It usually leads to robust, readable, and maintainable code.
