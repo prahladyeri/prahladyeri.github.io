@@ -31,6 +31,7 @@ Your contributions help keep my open-source projects alive! If you've benefited 
 
 ## Connect with me online
 
+- [bsky.app](https://bsky.app/profile/prahladyeri.bsky.social)
 - [twitter](https://twitter.com/prahladyeri)
 - [linkedin](https://www.linkedin.com/in/prahlad-yeri-243a5316)
 - [facebook](https://www.facebook.com/prahladyeri14/)
