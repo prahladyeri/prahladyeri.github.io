@@ -6,10 +6,11 @@
 	<meta name="author" content="Prahlad Yeri">
 	{% if page.title == "Home" %}
 	<title>{{ site.title }} - {{ site.tagline }}</title>
+	<meta name="description" content="Personal blog by Prahlad Yeri about programming, web and technology insights.">	
 	{% else %}
 	<title>{{ page.title }}</title>
 	{% endif %}  
-	<meta name="description" content="Personal blog by Prahlad Yeri about programming, web and technology insights.">
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     {% if page.robots == 'noindex' %}
         <meta name="robots" content="noindex">
