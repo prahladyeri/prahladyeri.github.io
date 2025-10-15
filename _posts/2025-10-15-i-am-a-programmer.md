@@ -12,6 +12,6 @@ When CTOs or project managers suggest programmers in their team to use AI assist
 
 If they're really so confident on the LLM's effectiveness, why not just keep it voluntary, why force it on people? The results will be there in the outcome of the shipped product for all to see. By forcing LLM usage upon programmers for implementation of every tiny little thing, are they trying to make us dependent on LLMs to such extent that programmers will be reduced to mere approvers of LLM generated code in the new scheme of things; mere rubber stamps, if you will, who just label the commits and annotate the tags as a formality?
 
-Needless to say, they'd still want you to take the responsibility. If bugs or tickets get raised on the shipped code, it's **you** who gets fired, not the copilot or chatgpt - though the larger narrative or news headlines next day would still be, "AI is eating jobs!".
+Needless to say, they'd still want you to take the responsibility. If bugs or tickets get raised on the shipped code, it's **you** who gets fired, not the copilot or chatgpt - though the larger narrative or news headlines next day would still be, "AI is eating jobs"!
 
 If the essence of programming shifts from creating to merely approving, we risk losing not just a profession, but a craft. What do you think is going on here, let me know your thoughts in comments.
