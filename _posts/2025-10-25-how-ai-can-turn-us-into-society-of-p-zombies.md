@@ -5,7 +5,7 @@ tags: programming
 published: true
 image: /uploads/mesh.jpg
 ---
-I'm probably one of the last generations of human writers on this planet who is actually involved in the end-to-end writing process. We're already transitioning to that phase where the drafting and proof-reading for most articles is done by an LLM, and even other processes like editing and publishing are transitioning to full automation as we speak.
+I'm probably one of the last generations of human writers on this planet who is actually involved in the end-to-end writing process. We're already transitioning to that phase where the drafting and proof-reading for many articles is done by an LLM, and even other processes like editing and publishing are transitioning to full automation as we speak.
 
 For starters, what exactly is a *p-zombie* or philosophical zombie? For those who don't know, it's a hypothetical machine (biological or otherwise) that looks and feels much like a human but there is no soul or consciousness inside. When you talk to it, you feel like you're talking to a real human based on the responses and feedback but can't be 100% sure that there is no chip or other kind of controller device inside. That "thing" is called a philosophical zombie.
 
