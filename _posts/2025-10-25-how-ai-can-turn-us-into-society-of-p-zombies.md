@@ -1,0 +1,26 @@
+---
+layout: post
+title: "How AI can turn us into a society of p-zombies"
+tags: programming
+published: true
+image: /uploads/mesh.jpg
+---
+I'm probably one of the last generations of human writers on this planet who is actually involved in the end-to-end writing process. We're already transitioning to that phase where the drafting and proof-reading for most articles is done by an LLM, and even other processes like editing and publishing are transitioning to full automation as we speak.
+
+For starters, what exactly is a *p-zombie* or philosophical zombie? For those who don't know, it's a hypothetical machine (biological or otherwise) that looks and feels much like a human but there is no soul or consciousness inside. When you talk to it, you feel like you're talking to a real human based on the responses and feedback but can't be 100% sure that there is no chip or other kind of controller device inside. That "thing" is called a philosophical zombie.
+
+The challenge then is: *how do you know if the person you're chatting with is a real human and not a p-zombie?* The truth is that you can never be cent percent sure; this is no different than what is popularly called a *Turing Test* in computer science where a turing machine or program like LLM is said to have passed the test when its response is indistinguishable from a human's response. The p-zombie is the philosophy equivalent of it.
+
+The idea that we humans might become p-zombies one day is both terrifying and dystopian, and also unbelievable at first glace. However, consider for a moment *what* exactly makes you a human: Is it the material body or shell composed of protons, neutrons and electrons? That's partly true, our personality is half-material and half-spiritual. The material or visible half is one that "does stuff", walks in the morning, drives the car, works on a computer or laptop, eats, drinks, codes, has sex. The other spiritual half is the *inner world* composed of thoughts, feelings, emotions, intellect, rationality, memory, wonder, epiphanies, etc. - things we know exist but can't be touched or seen in material spectrum. It is this other half self that we have slowly and gradually started delegating to artificial machines like LLMs.
+
+Presently, we are mostly delegating memory and logic components, tasks which we feel overwhelmed to handle ourselves - that's the justification given anyway. But we have also started emotionally depending on chatbots; like this famous teenager [Adam Raine who shared his deepest emotions and vulnerabilities with an LLM](https://www.npr.org/sections/shots-health-news/2025/09/19/nx-s1-5545749/ai-chatbots-safety-openai-meta-characterai-teens-suicide) which by several accounts helped him end his life.
+
+Now who exactly do we hold accountable for Adam's death? The LLM itself which lacks an intent or motive to do anything on its own? Or the makers of this LLM who built the algorithm with primarily commercial motives - drive engagement and eyeballs to their content? Or this society itself which has enabled and unleashed this monstrous thing called AI?
+
+Let's ask an even more fundamental question: how exactly do you define your identity or being? It's not you AADHAR or PAN or SSN number (as much as the authority wants to convince you it is!). Neither is it the physical body, it's this other spiritual half composed of soul, consciousness, etc. that defines the real you. Whatever be your religious and spiritual belief or even lack thereof, you can't be in denial of this part of your own self for it defines who you are, it is your very identity if you will.
+
+Authoritarians and businesses love p-zombies; the idea of controlling other humans to such extent that you don't even need a remote control or whip - rather, they themselves surrender parts of their psyche bit by bit to a machine built by you - this would be a dream society for any authoritarian! Stalin and Mao would be dancing in their graves on the day when humans are totally dependent and controlled by a branded gizmo or LLM built for their assistance and daily tasks. That's exactly why all the top bosses like VP/CEO/CTO/etc. are loving the idea of AI so much! They ask you to use LLM assistance not for code generation or unit tests, but to slowly and steadily get you addicted to this matrix where they become the controller and you the controlled.
+
+If this article sounds overly alarming, consider the rapid pace of technological growth and even rapid trajectory of advancements in AI. Only five years ago in 2020, it'd have been unthinkable to have a chatting assistant right on your smartphone that accomplishes so many things. It's possible that there is a genuine use case for LLMs, maybe using it as just a reference tool (a glorified wikipedia if you will?) might increase productivity. But given the average nature of present day humans and the larger political climate we are in, and the trajectory the society is on, AI has more potential for harm than good.
+
+If you think you can convince me otherwise or have any point to share, feel free to leave a comment below.
