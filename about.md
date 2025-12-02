@@ -7,7 +7,7 @@ layout: page
 
 **Experienced Software Developer with a Focus on Problem-Solving and Quality**
 
-Hello, I am Prahlad Yeri. Educate and solve problems is my mantra. With over 10 years of experience in IT across industries such as Telecom, Mechanical, and Electrical, I specialize in **Full Stack Web Development** (PHP, Flask, React, jQuery), and also work on **Desktop Development** (.NET/WinForms). My approach to every project starts by deeply understanding the problem at hand and architecting the most efficient solution to meet user requirements.
+Hello, I am Prahlad Yeri. Educate and solve problems is my mantra. With over 10 years of experience in IT across industries such as Telecom, Mechanical, and Electrical, I work on **Full Stack Web Development** (PHP, Flask, React, jQuery) and also **Desktop Development** (.NET/WinForms) projects. My approach to every project starts by deeply understanding the problem at hand and architecting the most efficient solution to meet user requirements.
 
 Beyond just writing code, I emphasize **best practices**—from **Agile methodologies** to **Test-Driven Development (TDD)** and design patterns. My goal is to deliver robust, high-performing solutions that stand the test of time.
 
