@@ -1,14 +1,16 @@
-/* Clean Minimalist (Soft & Professional) */
+/* Coffee Theme (Warm & Cozy) */
 :root {
-	--brand-font: "arial black";
-	--brand-fgcolor: lightslategrey;
-	--visited-linkcolor: color-mix(in srgb, var(--linkcolor) 80%, var(--fgcolor)); 
-    --main-font: 'Lora', 'Segoe UI', serif;
-    --heading-font: 'Poppins', sans-serif;
-    --bgcolor: #ffffff;
-    --fgcolor: #333333;
-    --linkcolor: #007bff;
+    --main-font: 'Merriweather', tahoma, serif;
+    --heading-font: 'Oswald', sans-serif;
+    --bgcolor: #3e2723;
+    --fgcolor: #d7ccc8;
+    --linkcolor: #ffab40;
 }
+
+--brand-font: "arial black";
+--brand-fgcolor: lightslategrey;
+--visited-linkcolor: color-mix(in srgb, var(--linkcolor) 80%, var(--fgcolor)); 
+
 
 /* start: bootstrap shortcuts */
 .fw-bold {

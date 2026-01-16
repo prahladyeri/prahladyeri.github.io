@@ -27,9 +27,6 @@
 
 /* Clean Minimalist (Soft & Professional) */
 :root {
-	--brand-font: "arial black";
-	--brand-fgcolor: lightslategrey;
-	--visited-linkcolor: color-mix(in srgb, var(--linkcolor) 80%, var(--fgcolor)); 
     --main-font: 'Lora', 'Segoe UI', serif;
     --heading-font: 'Poppins', sans-serif;
     --bgcolor: #ffffff;
@@ -39,9 +36,6 @@
 
 /* Vintage Newspaper (Classic & Elegant) */
 :root {
-	--brand-font: "arial black";
-	--brand-fgcolor: lightslategrey;
-	--visited-linkcolor: color-mix(in srgb, var(--linkcolor) 80%, var(--fgcolor)); 
     --main-font: calibri;
     --heading-font: "segoe ui";
     --bgcolor: #f4f1ea;
@@ -51,9 +45,6 @@
 
 /* Soft Pastel (Gentle on the Eyes) */
 :root {
-	--brand-font: "arial black";
-	--brand-fgcolor: lightslategrey;
-	--visited-linkcolor: color-mix(in srgb, var(--linkcolor) 80%, var(--fgcolor)); 
     --main-font: corbel, 'Quicksand', 'Segoe UI', sans-serif;
     --heading-font: 'Dancing Script', cursive;
     --bgcolor: #fef6e4;
@@ -63,7 +54,7 @@
 
 /* Solarized Dark (Soft Contrast, Good for Reading) */
 :root {
-    --main-font: 'Source Sans Pro', 'Segoe UI', sans-serif;
+    --main-font: 'Source Sans Pro',tahoma, sans-serif;
     --heading-font: 'EB Garamond', serif;
     --bgcolor: #002b36;
     --fgcolor: #93a1a1;
@@ -72,7 +63,7 @@
 
 /* Sepia Mode (Book-Like Feel) */
 :root {
-    --main-font: 'PT Serif', 'Segoe UI', serif;
+    --main-font: 'PT Serif', tahoma, serif;
     --heading-font: 'Libre Baskerville', serif;
     --bgcolor: #f5deb3;
     --fgcolor: #3b3b3b;
@@ -81,7 +72,7 @@
 
 /* Coffee Theme (Warm & Cozy) */
 :root {
-    --main-font: 'Merriweather', 'Segoe UI', serif;
+    --main-font: 'Merriweather', tahoma, serif;
     --heading-font: 'Oswald', sans-serif;
     --bgcolor: #3e2723;
     --fgcolor: #d7ccc8;
