@@ -1,44 +1,51 @@
 [
-    {
-        "name": "VisualAlchemist",
-        "html_url": "https://github.com/prahladyeri/VisualAlchemist",
-        "description": "Open source database diagramming and automation tool",
-        "pushed_at": "2024-06-15T14:44:39Z",
-        "stars": 727
-    },
-    {
-        "name": "curated-lists",
-        "html_url": "https://github.com/prahladyeri/curated-lists",
-        "description": "Curated Lists of various things",
-        "pushed_at": "2024-06-15T08:58:03Z",
-        "stars": 285
-    },
-    {
-        "name": "hotspotd",
-        "html_url": "https://github.com/prahladyeri/hotspotd",
-        "description": "Simple daemon to create a wifi hotspot on Linux",
-        "pushed_at": "2021-08-10T03:30:41Z",
-        "stars": 281
-    },
-    {
-        "name": "tuxdrive",
-        "html_url": "https://github.com/prahladyeri/tuxdrive",
-        "description": "Console based DIY Google Drive Client",
-        "pushed_at": "2021-08-09T21:02:20Z",
-        "stars": 58
-    },
-    {
-        "name": "http-live-simulator",
-        "html_url": "https://github.com/prahladyeri/http-live-simulator",
-        "description": "A simple HTTP Server that serves with random delay for live simulation",
-        "pushed_at": "2020-10-01T02:27:31Z",
-        "stars": 58
-    },
-    {
-        "name": "tiddly",
-        "html_url": "https://github.com/prahladyeri/tiddly",
-        "description": "Minimal, prototype RESTful server for basic CRUD transactions",
-        "pushed_at": "2017-06-20T12:59:16Z",
-        "stars": 40
-    }
+  {
+    "name": "VisualAlchemist",
+    "html_url": "https://github.com/prahladyeri/VisualAlchemist",
+    "description": "Open source database diagramming and automation tool",
+    "pushed_at": "2024-06-15T14:44:39Z",
+    "stargazers_count": 726
+  },
+  {
+    "name": "curated-lists",
+    "html_url": "https://github.com/prahladyeri/curated-lists",
+    "description": "Curated Lists of various things",
+    "pushed_at": "2025-11-27T17:29:00Z",
+    "stargazers_count": 298
+  },
+  {
+    "name": "hotspotd",
+    "html_url": "https://github.com/prahladyeri/hotspotd",
+    "description": "Simple daemon to create a wifi hotspot on Linux",
+    "pushed_at": "2021-08-10T03:30:41Z",
+    "stargazers_count": 281
+  },
+  {
+    "name": "tuxdrive",
+    "html_url": "https://github.com/prahladyeri/tuxdrive",
+    "description": "Console based DIY Google Drive Client",
+    "pushed_at": "2021-08-09T21:02:20Z",
+    "stargazers_count": 60
+  },
+  {
+    "name": "http-live-simulator",
+    "html_url": "https://github.com/prahladyeri/http-live-simulator",
+    "description": "A simple HTTP Server that serves with random delay for live simulation",
+    "pushed_at": "2020-10-01T02:27:31Z",
+    "stargazers_count": 57
+  },
+  {
+    "name": "listoffreelancingvideos",
+    "html_url": "https://github.com/prahladyeri/listoffreelancingvideos",
+    "description": "Curated List of Videos about Freelancing",
+    "pushed_at": "2018-04-20T16:49:27Z",
+    "stargazers_count": 43
+  },
+  {
+    "name": "tiddly",
+    "html_url": "https://github.com/prahladyeri/tiddly",
+    "description": "Minimal, prototype RESTful server for basic CRUD transactions",
+    "pushed_at": "2017-06-20T12:59:16Z",
+    "stargazers_count": 38
+  }
 ]
