@@ -146,6 +146,10 @@ a.tag-link:hover
     overflow: auto;
 }
 
+.page-title {
+	font-family: "arial black";
+}
+
 /* Apply word wrapping to highlighted code blocks */
 @media (max-width: 768px) {
 	.the-content .highlight,
