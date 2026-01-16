@@ -1,13 +1,13 @@
-/* Soft Pastel (Gentle on the Eyes) */
+/* Clean Minimalist (Soft & Professional) */
 :root {
 	--brand-font: "arial black";
 	--brand-fgcolor: lightslategrey;
-    --main-font: corbel, 'Quicksand', 'Segoe UI', sans-serif;
-    --heading-font: 'Dancing Script', cursive;
-    --bgcolor: #fef6e4;
-    --fgcolor: #2a2a2a;
-    --linkcolor: #ff6699;
 	--visited-linkcolor: color-mix(in srgb, var(--linkcolor) 80%, var(--fgcolor)); 
+    --main-font: 'Lora', 'Segoe UI', serif;
+    --heading-font: 'Poppins', sans-serif;
+    --bgcolor: #ffffff;
+    --fgcolor: #333333;
+    --linkcolor: #007bff;
 }
 
 /* start: bootstrap shortcuts */
