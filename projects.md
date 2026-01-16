@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .then(data => {
         let projects = '';
-        data.items.forEach(repo => {
+        data.forEach(repo => {
 			projects += `
 				<tr>
 					<td><a href="${repo.html_url}" target="_blank">${repo.name}</a></td>
