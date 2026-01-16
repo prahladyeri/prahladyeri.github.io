@@ -33,7 +33,7 @@ layout: page
 </div>
 <script type='module'>
 document.addEventListener('DOMContentLoaded', function() {
-	apiUrl = "https://prahladyeri.github.io/uploads/projects.json";
+	let apiUrl = "https://prahladyeri.github.io/uploads/projects.json";
 
     fetch(apiUrl)
     .then(response => {
