@@ -57,9 +57,6 @@ th {
 tr {
 	transition: background-color 0.3s ease-in-out;
 }
-tr:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
 tr:nth-child(even) {
     background-color: color-mix(in srgb, var(--bgcolor) 85%, white 15%);
 }
