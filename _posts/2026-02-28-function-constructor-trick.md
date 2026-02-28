@@ -2,7 +2,7 @@
 layout: post
 title: "Readymade template engine using the function constructor trick in JavaScript"
 tags: javascript
-published: false
+published: true
 image: /uploads/code.jpg
 ---
 One of my favorite features in JavaScript is the backtick string interpolation technique:
