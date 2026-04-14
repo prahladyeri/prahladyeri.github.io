@@ -1,3 +1,21 @@
+/* Clean Minimalist (Soft & Professional) */
+:root {
+    --main-font: 'Lora', 'Segoe UI', serif;
+    --heading-font: 'Poppins', sans-serif;
+    --bgcolor: #ffffff;
+    --fgcolor: #333333;
+    --linkcolor: #007bff;
+}
+
+/* Vintage Newspaper (Classic & Elegant) */
+:root {
+    --main-font: calibri;
+    --heading-font: "segoe ui";
+    --bgcolor: #f4f1ea;
+    --fgcolor: #2f2f2f;
+    --linkcolor: #8b0000;
+}
+
 /*Classic Dark Mode (Elegant & Minimal)*/
 :root {
     --main-font: 'Inter', 'Segoe UI', sans-serif;
@@ -23,24 +41,6 @@
     --bgcolor: #1a1b26;
     --fgcolor: #c0caf5;
     --linkcolor: #7aa2f7;
-}
-
-/* Clean Minimalist (Soft & Professional) */
-:root {
-    --main-font: 'Lora', 'Segoe UI', serif;
-    --heading-font: 'Poppins', sans-serif;
-    --bgcolor: #ffffff;
-    --fgcolor: #333333;
-    --linkcolor: #007bff;
-}
-
-/* Vintage Newspaper (Classic & Elegant) */
-:root {
-    --main-font: calibri;
-    --heading-font: "segoe ui";
-    --bgcolor: #f4f1ea;
-    --fgcolor: #2f2f2f;
-    --linkcolor: #8b0000;
 }
 
 /* Soft Pastel (Gentle on the Eyes) */
