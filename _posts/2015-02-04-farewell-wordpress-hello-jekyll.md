@@ -14,8 +14,6 @@ While WordPress is a powerful platform, it can feel over-engineered for simple b
 
 Jekyll generates static sites made of pure HTML/CSS. Static sites, unlike dynamic ones, don’t require server-side processing or database queries, which reduces hosting resource usage and speeds up load times. This makes static sites both cost-efficient and faster. In fact, [Github pages](https://github.com/jekyll/jekyll/wiki/Sites) provides you fully free static hosting for Zero USD per month!
 
-![migrate-wp-jekyll](/uploads/migrate-wp-jekyll.jpg)
-
 ### Jekyll vs WordPress: A closer look
 
 While both Jekyll and WordPress serve the purpose of creating websites, they differ in several key areas, making Jekyll a better choice for specific use cases like simple blogs or static sites.
