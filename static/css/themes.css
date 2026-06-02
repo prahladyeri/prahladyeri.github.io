@@ -1,7 +1,7 @@
 /* Clean Minimalist (Soft & Professional) */
 :root {
     --main-font: 'Lora', 'Segoe UI', serif;
-    --heading-font: 'Poppins', sans-serif;
+    --heading-font: 'Poppins', 'Segoe UI', sans-serif;
     --bgcolor: #ffffff;
     --fgcolor: #333333;
     --linkcolor: #007bff;
@@ -19,7 +19,7 @@
 /*Classic Dark Mode (Elegant & Minimal)*/
 :root {
     --main-font: 'Inter', 'Segoe UI', sans-serif;
-    --heading-font: 'Merriweather', serif;
+    --heading-font: 'Merriweather', 'Segoe UI', serif;
     --bgcolor: #121212;
     --fgcolor: #e0e0e0;
     --linkcolor: #bb86fc;
