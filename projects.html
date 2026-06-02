@@ -20,9 +20,10 @@ published: true
 .tab-btn,
 .pane,
 .spotlight-panes,
-.pane-content
+.pane-content,
+.pane-content *
 {
-	font-size: 16px;
+	font-size: 15px;
 }
 
 .tab-btn {
@@ -45,12 +46,11 @@ published: true
   border-radius: 6px;
   overflow: hidden;
   position: relative;
-  background: #fff;
 }
 .pane {
   display: none;
-  padding: 24px;
-  gap: 24px;
+  padding: 12px;
+  gap: 12px;
   height: 100%;
   flex-direction: column; /* Stacks children vertically: Image on top, Content below */
   align-items: center;
@@ -65,8 +65,8 @@ published: true
 .pane-image img { 
   max-width: 100%; 
   max-height: 280px; /* Limits screenshot height so it doesn't push text out of view */
-  width: auto; 
-  height: auto;
+  width: 100%; 
+  height: 100%;
   border-radius: 4px; 
   box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
 }
@@ -74,8 +74,13 @@ published: true
   width: 100%; /* Spans full container width */
   text-align: left;
 }
+.pane-content h3, p
+ {
+  margin: 4px 0px;
+}
+
 .badge {
-  background: #e9ecef;
+  background: var(--linkcolor);
   padding: 4px 8px;
   font-size: 0.8rem;
   border-radius: 12px;
