@@ -16,9 +16,18 @@ published: true
   width: 25%;
   gap: 8px;
 }
+
+.tab-btn,
+.pane,
+.spotlight-panes,
+.pane-content
+{
+	font-size: 16px;
+}
+
 .tab-btn {
   text-align: left;
-  padding: 12px;
+  padding: 8px;
   background: #f8f9fa;
   border: 1px solid #e9ecef;
   cursor: pointer;
@@ -30,8 +39,8 @@ published: true
   border-color: #007bff;
 }
 .spotlight-panes {
-  width: 75%;
-  min-height: 350px;
+  width: 89%;
+  min-height: 450px; /* Increased slightly to accommodate vertical stacking */
   border: 1px solid #e9ecef;
   border-radius: 6px;
   overflow: hidden;
@@ -41,20 +50,29 @@ published: true
 .pane {
   display: none;
   padding: 24px;
-  gap: 20px;
+  gap: 24px;
   height: 100%;
+  flex-direction: column; /* Stacks children vertically: Image on top, Content below */
   align-items: center;
 }
 .pane.active {
   display: flex;
 }
-.pane-content { width: 50%; }
-.pane-image { width: 50%; }
+.pane-image { 
+  width: 100%; /* Spans full container width */
+  text-align: center;
+}
 .pane-image img { 
-  width: 100%; 
-  height: auto; 
+  max-width: 100%; 
+  max-height: 280px; /* Limits screenshot height so it doesn't push text out of view */
+  width: auto; 
+  height: auto;
   border-radius: 4px; 
   box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+}
+.pane-content { 
+  width: 100%; /* Spans full container width */
+  text-align: left;
 }
 .badge {
   background: #e9ecef;
@@ -69,13 +87,11 @@ published: true
   .spotlight-wrapper { flex-direction: column; }
   .spotlight-tabs { width: 100%; flex-direction: row; overflow-x: auto; }
   .spotlight-panes { width: 100%; }
-  .pane { flex-direction: column-reverse; }
-  .pane-content, .pane-image { width: 100%; }
 }
 </style>
 
 <div class="portfolio-container">
-  <h2>Featured Utilities</h2>
+  <h2>Featured Projects</h2>
   
   <div class="spotlight-wrapper">
     <div class="spotlight-tabs">

@@ -36,6 +36,10 @@ body {
 	color: var(--fgcolor);
 }
 
+button {
+	font-family: var(--main-font);
+}
+
 /* General Table Styling */
 table {
   width: 100%;
