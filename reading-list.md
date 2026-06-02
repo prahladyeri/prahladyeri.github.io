@@ -1,4 +1,4 @@
-# 📚 Reading List: On Intellectualism, Scholarship, and the Life of the Mind
+# 📚 Reading List: On Intellectualism and Scholarship
 
 A curated guide for seekers of knowledge, ethical thinkers, and curious minds navigating the scholarly path. This list includes philosophical classics, practical guides, and reflections from both Western and Eastern traditions.
 

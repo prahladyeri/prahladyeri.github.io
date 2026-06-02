@@ -1,0 +1,140 @@
+---
+title: Projects
+layout: page
+published: true
+---
+
+<style>
+.spotlight-wrapper {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.spotlight-tabs {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  gap: 8px;
+}
+.tab-btn {
+  text-align: left;
+  padding: 12px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.tab-btn.active {
+  background: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+.spotlight-panes {
+  width: 75%;
+  min-height: 350px;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+}
+.pane {
+  display: none;
+  padding: 24px;
+  gap: 20px;
+  height: 100%;
+  align-items: center;
+}
+.pane.active {
+  display: flex;
+}
+.pane-content { width: 50%; }
+.pane-image { width: 50%; }
+.pane-image img { 
+  width: 100%; 
+  height: auto; 
+  border-radius: 4px; 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+}
+.badge {
+  background: #e9ecef;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  border-radius: 12px;
+  margin-right: 5px;
+}
+
+/* Responsive Handling */
+@media (max-width: 768px) {
+  .spotlight-wrapper { flex-direction: column; }
+  .spotlight-tabs { width: 100%; flex-direction: row; overflow-x: auto; }
+  .spotlight-panes { width: 100%; }
+  .pane { flex-direction: column-reverse; }
+  .pane-content, .pane-image { width: 100%; }
+}
+</style>
+
+<div class="portfolio-container">
+  <h2>Featured Utilities</h2>
+  
+  <div class="spotlight-wrapper">
+    <div class="spotlight-tabs">
+      {% for item in site.data.portfolio %}
+        <button class="tab-btn {% if forloop.first %}active{% endif %}" data-target="#{{ item.id }}">
+          <strong>{{ item.name }}</strong>
+          <span>★ {{ item.stars }}</span>
+        </button>
+      {% endfor %}
+    </div>
+
+    <div class="spotlight-panes">
+      {% for item in site.data.portfolio %}
+        <div id="{{ item.id }}" class="pane {% if forloop.first %}active{% endif %}">
+          <div class="pane-content">
+            <h3>{{ item.name }}</h3>
+            <p class="tagline"><em>{{ item.tagline }}</em></p>
+            <p class="desc">{{ item.description }}</p>
+            <div class="tech-badges">
+              {% for tag in item.tech %}
+                <span class="badge">{{ tag }}</span>
+              {% endfor %}
+            </div>
+            <a href="{{ item.github }}" class="btn-git" target="_blank">View on GitHub</a>
+          </div>
+          <div class="pane-image">
+            <img src="/uploads/portfolio_assets/{{ item.id }}.png" alt="{{ item.name }} Screenshot">
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- <hr class="section-divider"> -->
+<!-- <div class="all-projects-container"> -->
+  <!-- <h2>All Open Source Repositories</h2> -->
+  <!-- </div> -->
+  
+  
+<script>
+$(document).ready(function() {
+  $('.tab-btn').on('click', function() {
+    // Avoid double trigger if clicking already active element
+    if ($(this).hasClass('active')) return;
+
+    var targetPane = $(this).data('target');
+
+    // Toggle active classes on side control buttons
+    $('.tab-btn').removeClass('active');
+    $(this).addClass('active');
+
+    // Cross-fade the feature panes smoothly
+    $('.pane.active').fadeOut(200, function() {
+      $(this).removeClass('active');
+      $(targetPane).fadeIn(200, function() {
+        $(this).addClass('active').css('display', 'flex');
+      });
+    });
+  });
+});
+</script>

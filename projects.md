@@ -1,6 +1,7 @@
 ---
 title: Projects
 layout: page
+published: false
 ---
 
 <div id="projects" >

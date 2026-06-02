@@ -1,0 +1,21 @@
+- name: "Abhyasa"
+  id: "abhyasa"
+  tagline: "Modular Quiz and Assessment Engine"
+  description: "A highly customizable, decoupled quiz application written in vanilla JavaScript. Supports custom JSON schema datasets for flexible tech evaluation modules."
+  github: "https://github.com/prahladyeri/abhyasa"
+  site: "https://abhyasa.pages.dev/"
+  tech: ["javascript", "html", "css", "esbuild"]
+
+- name: "MDGlance"
+  id: "mdglance"
+  tagline: "Fast, minimal, and dependency-free Markdown viewing on Windows"
+  description: "My preference for a Markdown viewing tool is one that is both minimal and utilitarian at the same time (which is quite a rarity these days!), and that's how MDGlance was born."
+  github: "https://github.com/prahladyeri/mdglance"
+  tech: ["csharp", "dotnet", "winforms", "markdown"]
+
+- name: "FocusBeam"
+  id: "focusbeam"
+  tagline: "Task and project precision tracking tool"
+  description: "A sleek C# desktop environment helper built to map out project timelines, track manual time intervals, and enforce structured changelog tracking definitions."
+  github: "https://github.com/prahladyeri/FocusBeam"
+  tech: ["csharp", "dotnet", "winforms", "sqlite"]
