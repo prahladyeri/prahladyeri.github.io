@@ -2,7 +2,7 @@
 layout: post
 title: "The joy of coding a command line english dictionary program in dotnet"
 tags: dotnet csharp command-line
-published: false
+published: true
 image: /uploads/code.jpg
 ---
 In today's globally connected digital village, we often come across words and syllables which are quite new to us. Most folks hardly take the trouble to look up a dictionary, though; there is no immediate or short-term incentive to increase your word power, especially in a world where LLMs can do most of the intellectual bidding for you.
