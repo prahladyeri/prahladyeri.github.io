@@ -1,5 +1,3 @@
-theme: dark
-
 # Dependencies
 #markdown: kramdown
 #highlighter:      pygments
@@ -35,3 +33,4 @@ version: 2.1.53
 adsense: "ca-pub-0428291735937735"
 adsense_slot: "9729062115"
 #disqus: 'prahladyeri-blog'
+theme: dark
