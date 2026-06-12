@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Create a C# Windows Desktop App in 9 Lines — No Visual Studio Needed"
-tags: dotnet csharp open-source tutorial
+tags: dotnet winforms csharp open-source tutorial
 image: /uploads/csharp-hello.png
 ---
 
@@ -40,7 +40,7 @@ In just nine lines of C# code, without using any IDE, you now have a working “
 
 Open Command Prompt in your project folder and run:
 
-	csc Program.cs
+	csc /r:System.Windows.Forms.dll Program.cs
 	Program
 	
 The first line tells the C# compiler (csc.exe) to build the app into Program.exe. The second one runs it. You can also double-click Program.exe in File Explorer.
@@ -49,7 +49,7 @@ The first line tells the C# compiler (csc.exe) to build the app into Program.exe
 
 By default, a console window appears behind the form. To build a GUI-only app without the console, recompile with the `/target:winexe` parameter:
 
-	csc /target:winexe Program.cs
+	csc /r:System.Windows.Forms.dll /target:winexe Program.cs
 	
 ### What’s next?
 	
