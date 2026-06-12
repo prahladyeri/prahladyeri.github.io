@@ -19,3 +19,31 @@
   description: "A sleek C# desktop environment helper built to map out project timelines, track manual time intervals, and enforce structured changelog tracking definitions."
   github: "https://github.com/prahladyeri/FocusBeam"
   tech: ["csharp", "dotnet", "winforms", "sqlite"]
+
+- name: "dict"
+  id: "dict"
+  tagline: "English dictionary program for Windows systems"
+  description: "This dict program is the Windows equivalent of Linux dict command line utility."
+  github: "https://github.com/prahladyeri/dict"
+  tech: ["csharp", "dotnet"]
+
+- name: "vtscan"
+  id: "vtscan"
+  tagline: "The unofficial command line scanner for the VirusTotal API"
+  description: "Command line tool to scan for malicious files using the VirusTotal API."
+  github: "https://github.com/prahladyeri/vtscan"
+  tech: ["python", "cybersecurity"]
+
+- name: "curated-lists"
+  id: "curated-lists"
+  tagline: "Curated Lists of various things"
+  description: "Hard crafted curated lists of various technology artifacts."
+  github: "https://github.com/prahladyeri/curated-lists"
+  tech: ["markdown", "github"]
+
+- name: "distroverify"
+  id: "distroverify"
+  tagline: "Utility to verify any linux distro file (*.iso) for its integrity"
+  description: "Utility to verify any linux distro file (*.iso) for its integrity."
+  github: "https://github.com/prahladyeri/distroverify"
+  tech: ["python", "linux", "ubuntu"]
