@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Unpopular opinion: desktop GUI is the most efficient and fulfilling way of human-computer interaction'
-tags: desktop windows
+tags: desktop windows winforms
 published: true
 image: /uploads/portfolio/dotnet-ordering-app.png
 discuss:

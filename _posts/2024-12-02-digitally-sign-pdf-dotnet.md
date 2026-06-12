@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Master PDF digital signing with eMudhra and Proxkey in .NET: step-by-step guide"
-tags: dotnet csharp pdf digital-signature
+tags: dotnet csharp pdf digital-signature winforms
 image: /uploads/digitally-sign-pdf-dotnet/digitally-sign-pdf-dotnet.webp
 ---
 One of my recent projects involved coding a simple .NET app that signs PDFs in bulk using Proxkey digital signature. These purchased CA verified digital signatures, like eMudhra and Proxkey, typically come with their own custom apps which can digitally sign PDFs. You can even use software like Adobe Reader for this purpose. However, the limitation is that you can only sign one PDF at a time.
