@@ -1,16 +1,15 @@
 :root {
-    --main-font: 'Inter', 'Segoe UI', sans-serif;
-    --heading-font: 'Merriweather', 'Segoe UI', serif;
+    --main-font: 'Segoe UI', sans-serif;
+    --heading-font: 'Segoe UI', sans-serif;
     --bgcolor: #1a7fc1;
-    --fgcolor: #e0e0e0;
+    /* --fgcolor: #e0e0e0; */
+	--fgcolor: #f0f6fc;
     --linkcolor: #f4bf75;
+	
+	--brand-font: "arial black";
+	--brand-fgcolor: #ffffff; /*lightslategrey;*/
+	--visited-linkcolor: color-mix(in srgb, var(--linkcolor) 80%, var(--fgcolor)); 
 }
-
-
---brand-font: "arial black";
---brand-fgcolor: lightslategrey;
---visited-linkcolor: color-mix(in srgb, var(--linkcolor) 80%, var(--fgcolor)); 
-
 
 /* start: bootstrap shortcuts */
 .fw-bold {
