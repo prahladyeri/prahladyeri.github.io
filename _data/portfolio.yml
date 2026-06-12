@@ -32,7 +32,7 @@
   tagline: "The unofficial command line scanner for the VirusTotal API"
   description: "Command line tool to scan for malicious files using the VirusTotal API."
   github: "https://github.com/prahladyeri/vtscan"
-  tech: ["python", "cybersecurity"]
+  tech: ["python", "cyber-security"]
 
 - name: "curated-lists"
   id: "curated-lists"
