@@ -115,7 +115,7 @@ published: true
     <div class="spotlight-tabs">
       {% for item in site.data.portfolio %}
         <button class="tab-btn {% if forloop.first %}active{% endif %}" data-target="#{{ item.id }}">
-          <strong>{{ item.name }}</strong>
+          <span>{{ item.name }}</span>
           <span>★ {{ item.stars }}</span>
         </button>
       {% endfor %}
