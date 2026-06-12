@@ -5,6 +5,11 @@ published: true
 ---
 
 <style>
+:root {
+  --portfolio-active-bg-color: #2196f3;
+  --portfolio-active-border-color: #F1F8E9;
+}
+
 .spotlight-wrapper {
   display: flex;
   gap: 20px;
@@ -35,9 +40,9 @@ published: true
   border-radius: 4px;
 }
 .tab-btn.active {
-  background: #00695C;
+  background: --var(--portfolio-active-bg-color);
   color: #fff;
-  border-color: #F1F8E9;
+  border-color: --var(--portfolio-active-border-color);
 }
 .spotlight-panes {
   width: 89%;
@@ -83,13 +88,14 @@ published: true
   margin: 7px 0px;
 }
 
+
 .badge {
-  background: #00695C;
+  background: --var(--portfolio-active-bg-color;
   padding: 3px 14px;
   font-size: 15px !important;
   border-radius: 12px;
   margin-right: 5px;
-  border: 1px solid white;
+  border: 1px solid --var(--portfolio-active-border-color);
 }
 
 .tech-badges {
