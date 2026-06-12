@@ -136,7 +136,15 @@ published: true
             <a href="{{ item.github }}" class="btn-git" target="_blank">View on GitHub</a>
           </div>
           <div class="pane-image">
-            <img src="/uploads/portfolio_assets/{{ item.id }}.png" alt="{{ item.name }} Screenshot">
+			{% assign expected_path = "/uploads/portfolio_assets/" | append: item.id | append: ".png" %}
+			{% assign image_src = "/uploads/portfolio_assets/fallback.jpeg" %}
+			  {% for file in site.static_files %}
+				{% if file.path == expected_path %}
+				  {% assign image_src = expected_path %}
+				  {% break %}
+				{% endif %}
+			  {% endfor %}
+            <img src="{{ image_src }}" alt="{{ item.name }} Screenshot">
           </div>
         </div>
       {% endfor %}
