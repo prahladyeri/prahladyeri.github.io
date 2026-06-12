@@ -37,6 +37,8 @@ body {
 
 button {
 	font-family: var(--main-font);
+    font-family: inherit;
+    font-weight: inherit;
 }
 
 /* General Table Styling */
