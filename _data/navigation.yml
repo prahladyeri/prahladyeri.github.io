@@ -1,0 +1,7 @@
+connect_links:
+  - text: "/github"
+    url: "https://github.com/prahladyeri"
+  - text: "/contact"
+    url: "mailto:prahladyeri@yahoo.com"
+  - text: "/feed"
+    url: "/atom.xml"
