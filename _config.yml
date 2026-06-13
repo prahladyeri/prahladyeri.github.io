@@ -9,8 +9,11 @@ permalink:        /blog/:year/:month/:title.html
 #permalink: /blog/:path/:year/:month/:title.html
 # eg. /blog/es/:year/:month/:title.html
 
+collections:
+  guides:
+    output: true
+    permalink: /guides/:title.html
 
-# Setup
 title:            Prahlad Yeri
 tagline:          'Freelance Programmer and Writer'
 description:      'Freelance Programmer and Writer'

@@ -17,3 +17,7 @@ connect_links:
     url: "mailto:prahladyeri@yahoo.com"
   - text: "/feed"
     url: "/atom.xml"
+    
+guides_links:
+  - text: "/first-guide"
+    url: "/first-guide.html"
