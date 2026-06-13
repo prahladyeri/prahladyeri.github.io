@@ -9,17 +9,28 @@ So there I was, writing a quick script to churn through an array of items and th
 
 I confidently typed out the connection string, hit run, and the Python interpreter immediately slapped me in the face with this beautiful piece of performance art:
 
-> How to fix TypeError: 'autocommit' is an invalid keyword argument in Python sqlite3 connect
+```bash
+TypeError: sqlite3.connect() got an unexpected keyword argument 'autocommit'
+```
 
 *Excuse me?*
 
-Modern versions of python above 3.12 let you pass the `autocommit` argument directly like this:
+Modern versions of python (3.12 and above) let you pass the `autocommit` argument directly like this:
 
 ```python
 con = sqlite3.connect('findpkg.db', autocommit=False)
 ```
 
-But legacy python versions like the 3.8 one I'm running don't have this feature yet. Instead, it uses the isolation_level argument to control the auto commits. Any string other than `None` such as `""` or even `"DEFERRED"` should turn off auto-commits. Passing `None` would turn on the autocommit mode.
+But legacy python versions like the 3.8 one I'm running don't have this feature yet. Instead, it uses the `isolation_level` argument to control the transaction behavior. The documented values are as follows:
+
+```bash
+None        # autocommit mode on (Python None, not a string)
+'DEFERRED'  # default
+'IMMEDIATE'
+'EXCLUSIVE'
+```
+
+Examples:
 
 ```python
 con = sqlite3.connect('findpkg.db', isolation_level='DEFERRED') # default, autocommit = False
