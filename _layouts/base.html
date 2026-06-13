@@ -102,20 +102,34 @@
 </head>
  <body>
 <div class='container'>
-	<header class='row'>
-		<!-- <div class="col-12 col-md-6 mx-auto"> -->
-			<!-- <a class="blog-title" href="{{site.baseurl}}/">prahlad yeri</a> -->
-		<!-- </div> -->
-		
-		  <div class="col-12 col-md-10 mx-auto text-center mt-1">
-			<a class="ms-1 me-1" href="{{site.baseurl}}/">/blog</a>
-			<a class="ms-1 me-1" href="{{site.baseurl}}/projects">/projects</a>
-			<a class="ms-1 me-1" href="{{site.baseurl}}/about">/about</a>
-			<a class="ms-2 me-2" href="https://github.com/prahladyeri" >/github</a>
-			<a class="ms-2 me-2" href="mailto:prahladyeri@yahoo.com" >/contact</a>
-			<a class="ms-2 me-2" href="{{site.baseurl}}/atom.xml" >/feed</a>
-		  </div>
-	</header>
+	<!-- <header class='row'> -->
+		  <!-- <div class="col-12 col-md-10 mx-auto text-center mt-1"> -->
+			<!-- <a class="ms-1 me-1" href="{{site.baseurl}}/">/blog</a> -->
+			<!-- <a class="ms-1 me-1" href="{{site.baseurl}}/projects">/projects</a> -->
+			<!-- <a class="ms-1 me-1" href="{{site.baseurl}}/about">/about</a> -->
+			<!-- <a class="ms-2 me-2" href="https://github.com/prahladyeri" >/github</a> -->
+			<!-- <a class="ms-2 me-2" href="mailto:prahladyeri@yahoo.com" >/contact</a> -->
+			<!-- <a class="ms-2 me-2" href="{{site.baseurl}}/atom.xml" >/feed</a> -->
+		  <!-- </div> -->
+	<!-- </header> -->
+	
+  <header class='row'>
+    <div class="col-12 col-md-10 mx-auto text-center mt-1">
+      <a class="fw-bold ms-1 me-1" href="{{site.baseurl}}/">/blog</a>
+      <a class="fw-bold ms-1 me-1" href="{{site.baseurl}}/projects">/projects</a>
+      <a class="fw-bold ms-1 me-1" href="{{site.baseurl}}/about">/about</a>
+      
+      <span class="dropdown-wrapper">
+        <a class="fw-bold ms-2 me-2 dropdown-trigger" href="#">/connect <span class="arrow">▼</span></a>
+        <div class="custom-dropdown">
+          <a href="https://github.com/prahladyeri" target="_blank">/github</a>
+          <a href="mailto:prahladyeri@yahoo.com">/contact</a>
+          <a href="{{site.baseurl}}/atom.xml">/feed</a>
+        </div>
+      </span>
+      
+    </div>
+  </header>
 	
 	<!-- content -->
 	<div class='row'>
@@ -154,5 +168,30 @@
 		  </div>
 	</footer>
 </div>
+
+<script>
+$(document).ready(function() {
+  // Toggle dropdown on clicking the trigger link
+  $('.dropdown-trigger').on('click', function(e) {
+    e.preventDefault(); // Stop page jumping
+    e.stopPropagation(); // Stop click event from bubbling up to document
+    
+    var $wrapper = $(this).parent('.dropdown-wrapper');
+    var $dropdown = $wrapper.find('.custom-dropdown');
+    
+    // Toggle classes and visibility
+    $wrapper.toggleClass('open');
+    $dropdown.slideToggle(150); // Clean, snappy animation
+  });
+
+  // Close dropdown when clicking anywhere outside of it
+  $(document).on('click', function(e) {
+    if (!$(e.target).closest('.dropdown-wrapper').length) {
+      $('.custom-dropdown').slideUp(150);
+      $('.dropdown-wrapper').removeClass('open');
+    }
+  });
+});
+</script>
 </body>
 </html>
