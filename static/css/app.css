@@ -7,7 +7,7 @@
     --linkcolor: #bbdefb;
 	
 	--brand-font: "arial black";
-	--brand-fgcolor: #ffffff; /*lightslategrey;*/
+	--brand-fgcolor: #E0E0E0; /*lightslategrey;*/
 	--visited-linkcolor: color-mix(in srgb, var(--linkcolor) 80%, var(--fgcolor)); 
 }
 
