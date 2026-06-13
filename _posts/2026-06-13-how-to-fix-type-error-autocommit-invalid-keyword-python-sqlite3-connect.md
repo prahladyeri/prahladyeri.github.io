@@ -9,9 +9,7 @@ So there I was, writing a quick script to churn through an array of items and th
 
 I confidently typed out the connection string, hit run, and the Python interpreter immediately slapped me in the face with this beautiful piece of performance art:
 
-```bash
-TypeError: sqlite3.connect() got an unexpected keyword argument 'autocommit'
-```
+> TypeError: sqlite3.connect() got an unexpected keyword argument 'autocommit'
 
 *Excuse me?*
 
