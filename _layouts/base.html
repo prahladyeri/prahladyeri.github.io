@@ -102,34 +102,20 @@
 </head>
  <body>
 <div class='container'>
-	<!-- <header class='row'> -->
-		  <!-- <div class="col-12 col-md-10 mx-auto text-center mt-1"> -->
-			<!-- <a class="ms-1 me-1" href="{{site.baseurl}}/">/blog</a> -->
-			<!-- <a class="ms-1 me-1" href="{{site.baseurl}}/projects">/projects</a> -->
-			<!-- <a class="ms-1 me-1" href="{{site.baseurl}}/about">/about</a> -->
-			<!-- <a class="ms-2 me-2" href="https://github.com/prahladyeri" >/github</a> -->
-			<!-- <a class="ms-2 me-2" href="mailto:prahladyeri@yahoo.com" >/contact</a> -->
-			<!-- <a class="ms-2 me-2" href="{{site.baseurl}}/atom.xml" >/feed</a> -->
-		  <!-- </div> -->
-	<!-- </header> -->
-	
   <header class='row'>
     <div class="col-12 col-md-10 mx-auto text-center mt-1">
       <a class="ms-1 me-1" href="{{site.baseurl}}/">/blog</a>
       <a class="ms-1 me-1" href="{{site.baseurl}}/projects">/projects</a>
   
-	  <span class="dropdown-wrapper">
+	  <!--span class="dropdown-wrapper">
         <a class="ms-2 me-2 dropdown-trigger" href="#">/guides <span class="arrow">▼</span></a>
         <div class="custom-dropdown">
-          <!-- <a href="{{ site.baseurl }}/guides/">/all-guides</a> -->
-          <!-- <hr style="margin: 0.25rem 0; border-color: #eee;"> -->
-          
           {% assign sorted_guides = site.guides | sort: "order" %}
           {% for guide in sorted_guides %}
             <a href="{{ guide.url | relative_url }}">{{ guide.title }}</a>
           {% endfor %}
         </div>
-      </span>	  
+      </span-->
       
 	<span class="dropdown-wrapper">
 	  <a class="ms-2 me-2 dropdown-trigger" href="#">/connect <span class="arrow">▼</span></a>
@@ -165,15 +151,6 @@
 	</div>
 	
 	<footer class="py-2 row">
-		  <!-- <div class="col-12 col-md-10 mx-auto text-center mt-1"> -->
-			<!-- <a class="ms-1 me-1" href="{{site.baseurl}}/">/blog</a> -->
-			<!-- <a class="ms-1 me-1" href="{{site.baseurl}}/projects">/projects</a> -->
-			<!-- <a class="ms-1 me-1" href="{{site.baseurl}}/about">/about</a> -->
-			<!-- <a href="https://github.com/prahladyeri" class="ms-2 me-2">/github</a> -->
-			<!-- <a href="mailto:prahladyeri@yahoo.com" class="ms-2 me-2">/contact</a> -->
-			<!-- <a href="{{site.baseurl}}/atom.xml" class="ms-2 me-2">/feed</a> -->
-		  <!-- </div> -->
-
 		  <div class="col-12 col-md-10 mx-auto text-center text-light mt-1">
 			<span class="m-0">Copyright &copy; 2025 Prahlad Yeri · <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="text-muted">CC BY-SA 4.0</a></span>
 		  </div>
