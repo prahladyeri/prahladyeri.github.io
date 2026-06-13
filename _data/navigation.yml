@@ -19,5 +19,5 @@ connect_links:
     url: "/atom.xml"
     
 guides_links:
-  - text: "/first-guide"
+  - text: "First Guide"
     url: "/first-guide.html"
