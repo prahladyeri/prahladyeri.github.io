@@ -13,7 +13,8 @@
 
 /* start: bootstrap shortcuts */
 .fw-bold {
-	font-weight: bold;
+	/* font-weight: bold; */
+	font-weight: 600;
 }
 .text-center {
   text-align: center !important;
@@ -179,47 +180,24 @@ a.tag-link:hover
 
 /* Hidden by default, absolute positioned dropdown box */
 .custom-dropdown {
-  display: none;
-  position: absolute;
-  top: 100%;
+  /* ... keep your existing position/bg/border styles ... */
+  width: 220px;          /* Hard fixed width suitable for guide titles */
   left: 50%;
-  transform: translateX(-50%); /* Centers the dropdown under the link */
-  background-color: #fff;      /* Match your blog's theme background */
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 0.5rem 0;
-  min-width: 120px;
-  z-index: 1000;
-  text-align: left;
-  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+  transform: translateX(-50%);
+  padding: 2px 2px;
 }
 
-/* Styling links inside the dropdown */
 .custom-dropdown a {
   display: block;
-  padding: 0.25rem 1rem;
-  color: #333;
-  text-decoration: none;
-  font-weight: bold;
+  padding: 0px 0px;
+  white-space: normal;   /* Allows text to wrap safely to line 2 if needed */
+  line-height: 1.3;
 }
 
 .custom-dropdown a:hover {
   background-color: #f5f5f5; /* Subtle hover effect */
 }
 
-.custom-dropdown {
-  /* ... keep your existing position/bg/border styles ... */
-  width: 260px;          /* Hard fixed width suitable for guide titles */
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.custom-dropdown a {
-  display: block;
-  padding: 0.35rem 1rem;
-  white-space: normal;   /* Allows text to wrap safely to line 2 if needed */
-  line-height: 1.3;
-}
 
 /* Apply word wrapping to highlighted code blocks */
 @media (max-width: 768px) {
