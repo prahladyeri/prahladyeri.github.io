@@ -106,6 +106,7 @@ a.tag-link:hover
 .the-content h1 {
 	font-size: 24px;
 	font-family: var(--heading-font);
+	font-weight: normal;
 }
 
 .the-content h2, 
