@@ -193,6 +193,9 @@ $(document).ready(function() {
     
     var $wrapper = $(this).parent('.dropdown-wrapper');
     var $dropdown = $wrapper.find('.custom-dropdown');
+	
+	// --- THE FIX: Close any OTHER open dropdowns and reset their arrows ---
+    $('.dropdown-wrapper').not($wrapper).removeClass('open').find('.custom-dropdown').slideUp(150);	
     
     // Toggle classes and visibility
     $wrapper.toggleClass('open');
