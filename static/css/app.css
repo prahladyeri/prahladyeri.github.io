@@ -217,7 +217,7 @@ a.header-link:hover
 	font-weight: 600;
 	color: var(--bgcolor);
 	display: block;
-	padding: 3px 4px;
+	padding: 2px 2px;
 	white-space: normal;   /* Allows text to wrap safely to line 2 if needed */
 	line-height: 1.3;
 }
