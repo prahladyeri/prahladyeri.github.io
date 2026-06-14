@@ -92,6 +92,15 @@ a.tag-link:hover
 	color: var(--linkcolor) !important;
 }
 
+a.header-link,
+a.header-link:visited,
+a.header-link:hover
+{
+    font-size: 19px;
+    font-weight: 400;
+    color: var(--brand-fgcolor);
+}
+
 .the-article .posted-on {
 	color: var(--fgcolor);
 	opacity: 0.8;
