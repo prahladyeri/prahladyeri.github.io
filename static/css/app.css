@@ -1,13 +1,12 @@
 :root {
     --main-font: 'Segoe UI', sans-serif;
     --heading-font: 'Segoe UI', sans-serif;
-    --bgcolor: #1a7fc1;
-    /* --fgcolor: #e0e0e0; */
-	--fgcolor: #f0f6fc;
-    --linkcolor: #f3e5f5;
+    --bgcolor: #f5f5f5;
+	--fgcolor: #505050;
+    --linkcolor: #5e35b1;
 	
 	--brand-font: "arial black";
-	--brand-fgcolor: #E0E0E0; /*lightslategrey;*/
+	--brand-fgcolor: #616161; /*lightslategrey;*/
 	--visited-linkcolor: color-mix(in srgb, var(--linkcolor) 80%, var(--fgcolor)); 
 }
 
