@@ -193,7 +193,7 @@ a.header-link:hover
   top: 100%;
   left: 50%;
   transform: translateX(-50%); /* Centers the dropdown under the link */
-  background-color: #fff9c4;      /* Match your blog's theme background */
+  background-color: var(--fgcolor);      /* Match your blog's theme background */
   border: 1px solid #a1887f;
   border-radius: 4px;
   padding: 2px 2px;
@@ -208,14 +208,14 @@ a.header-link:hover
 
 /* Styling links inside the dropdown */
 .custom-dropdown a:hover {
-  background-color: #b39ddb; /* Subtle hover effect */
+  background-color: var(--linkcolor); /* Subtle hover effect */
 }
 
 /* Optional: Handle edge-case titles that exceed the 320px max-width */
 .custom-dropdown a {
 	text-decoration: none;
 	font-weight: 600;
-	color: #505050;
+	color: var(--bgcolor);
 	display: block;
 	padding: 2px 2px;
 	white-space: normal;   /* Allows text to wrap safely to line 2 if needed */
