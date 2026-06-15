@@ -85,3 +85,21 @@
 .highlight .ss {
   color: #3a7a3a;
 }
+
+/* --- Default Fallback Styles for Unspecified Languages --- */
+
+/* 1. Target the .highlight container ONLY inside the plaintext wrapper */
+.language-plaintext.highlighter-rouge .highlight pre.highlight {
+  background-color: #f7f7f7; /* Soft grey light-theme background */
+  color: #303030;            /* Matches your base text color */
+  padding: 12px 16px;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+/* 2. Ensure the code element inside inherits the text color and doesn't conflict */
+.language-plaintext.highlighter-rouge .highlight code {
+  color: inherit;
+  background-color: transparent;
+  padding: 0;
+}
