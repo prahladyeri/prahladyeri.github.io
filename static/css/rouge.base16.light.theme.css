@@ -1,22 +1,4 @@
-/*
- # -----------------------------------------------------------------------------
- #  ~/modules/rouge/css/base16/theme.css
- #  Rouge theme base16 (default)
- #
- #  Product/Info:
- #  https://jekyll.one
- #  https://github.com/rouge-ruby/rouge
- #
- #  Copyright (C) 2023, 2024 Juergen Adams
- #  Copyright (c) 2012 Jeanine Adkisson
- #
- #  J1 Template is licensed under the MIT License.
- #  See: https://github.com/jekyll-one-org/j1-template/blob/main/LICENSE
- #  Rouge is licensed under the MIT License.
- #  See: https://github.com/rouge-ruby/rouge/blob/master/LICENSE
- # -----------------------------------------------------------------------------
-*/
-
+/* rouge light theme — corrected for light background */
 .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
 .highlight, .highlight .w {
@@ -29,27 +11,33 @@
 .highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
   color: #505050;
 }
+/* CHANGED: #f4bf75 (yellow) → brick red, readable on white */
 .highlight .cp {
-  color: #f4bf75;
+  color: #9a3b2a;
 }
+/* CHANGED: #f4bf75 → brick red (HTML/XML tags) */
 .highlight .nt {
-  color: #f4bf75;
+  color: #9a3b2a;
 }
+/* CHANGED: #d0d0d0 (near-white) → legible grey */
 .highlight .o, .highlight .ow {
-  color: #d0d0d0;
+  color: #555555;
 }
+/* CHANGED: #d0d0d0 → legible grey */
 .highlight .p, .highlight .pi {
-  color: #d0d0d0;
+  color: #555555;
 }
+/* CHANGED: #90a959 (too pale on white) → darker green */
 .highlight .gi {
-  color: #90a959;
+  color: #3a7a3a;
 }
 .highlight .gd {
   color: #ac4142;
 }
+/* CHANGED: removed near-black background, replaced with soft blue tint */
 .highlight .gh {
-  color: #6a9fb5;
-  background-color: #151515;
+  color: #1a5a8a;
+  background-color: #ddeeff;
   font-weight: bold;
 }
 .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
@@ -64,11 +52,12 @@
 .highlight .kd {
   color: #d28445;
 }
+/* CHANGED: #90a959 → darker green for contrast */
 .highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
-  color: #90a959;
+  color: #3a7a3a;
 }
 .highlight .sr {
-  color: #75b5aa;
+  color: #2a7a70;
 }
 .highlight .si {
   color: #8f5536;
@@ -76,21 +65,23 @@
 .highlight .se {
   color: #8f5536;
 }
+/* CHANGED: #f4bf75 → muted purple (namespace, class, constant names) */
 .highlight .nn {
-  color: #f4bf75;
+  color: #7b4f9e;
 }
 .highlight .nc {
-  color: #f4bf75;
+  color: #7b4f9e;
 }
 .highlight .no {
-  color: #f4bf75;
+  color: #7b4f9e;
 }
 .highlight .na {
-  color: #6a9fb5;
+  color: #2a6a9a;
 }
+/* CHANGED: #90a959 → darker green */
 .highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
-  color: #90a959;
+  color: #3a7a3a;
 }
 .highlight .ss {
-  color: #90a959;
+  color: #3a7a3a;
 }
