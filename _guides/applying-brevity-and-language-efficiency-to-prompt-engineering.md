@@ -1626,7 +1626,3 @@ Every prompt you write should pass this test before you send it:
 > "Does every word in this prompt carry information the model needs to answer correctly?"
 
 If the answer is no — cut. Budget models are not sensitive to social warmth. They are sensitive to precision, context, and structure. Master those three things, and the gap between a ₹500/month budget stack and a ₹20,000/month premium stack becomes, for most daily work, invisible.
-
----
-
-**License:** This guide may be freely shared, adapted, and redistributed for educational and professional use. Attribution appreciated but not required.
