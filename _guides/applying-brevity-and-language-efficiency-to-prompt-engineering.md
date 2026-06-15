@@ -58,7 +58,7 @@ date: 2026-06-15
    - 7.7 [Other Notable Providers](#77-other-notable-providers)
 8. [Building Your Desktop Power-User Tooling](#8-building-your-desktop-power-user-tooling)
    - 8.1 [Architecture for a Multi-Provider Desktop Client](#81-architecture-for-a-multi-provider-desktop-client)
-   - 8.2 [WinForms/.NET Implementation Guide](#82-winformsnets-implementation-guide)
+   - 8.2 [WinForms/.NET Implementation Guide](#82-winformsnet-implementation-guide)
    - 8.3 [Electron/Node.js Cross-Platform Option](#83-electronnodejs-cross-platform-option)
    - 8.4 [CLI Power Tools](#84-cli-power-tools)
    - 8.5 [Building a Local Prompt Library](#85-building-a-local-prompt-library)
