@@ -11,7 +11,6 @@ layout: null
     <priority>1.0</priority>
   </url>
 
-  <!-- All Blog Posts -->
   {% for post in site.posts %}
   <url>
     <loc>{{ site.url }}{{ post.url }}</loc>
@@ -20,8 +19,18 @@ layout: null
     <priority>0.8</priority>
   </url>
   {% endfor %}
+  
+ {% for guide in site.guides %}
+  <url>
+    <loc>{{ site.url }}{{ guide.url }}</loc>
+    {% if guide.date %}
+    <lastmod>{{ guide.date | date_to_xmlschema }}</lastmod>
+    {% endif %}
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  {% endfor %}  
 
-  <!-- Regular Pages (About, Projects, etc.) Excludes tags automatically -->
   {% for page in site.pages %}
     {% unless page.url contains '/tag/' or page.url contains '.xml' or page.url contains '.txt' %}
   <url>
