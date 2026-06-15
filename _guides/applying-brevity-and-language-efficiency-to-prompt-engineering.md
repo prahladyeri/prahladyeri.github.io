@@ -8,6 +8,7 @@ date: 2026-06-15
 ### A Comprehensive Guide for Budget-Conscious Users in Oriental Regions
 
   {% assign words = content | number_of_words %}
+  {{words}} words.
 **Prahlad Yeri** · June 15, 2026 · {% if words < 360 %}1 min{% else %}{{ words | divided_by: 180 }} min{% endif %} read
 
 > **Note:** This article was written with AI assistance.
