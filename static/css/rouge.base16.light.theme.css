@@ -91,7 +91,7 @@
 /* 1. Target the .highlight container ONLY inside the plaintext wrapper */
 .language-plaintext.highlighter-rouge .highlight pre.highlight {
   background-color: #f7f7f7; /* Soft grey light-theme background */
-  color: #303030;            /* Matches your base text color */
+  color: #43a047;            /* Matches your base text color */
   padding: 12px 16px;
   border-radius: 4px;
   overflow-x: auto;
