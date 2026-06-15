@@ -164,7 +164,8 @@ a.header-link:hover
 }
 
 .the-content h1.page-title {
-	font-family: "arial black";
+	font-family: corbel, arial;
+	font-weight: 500;
 }
 
 /* Container for context */
