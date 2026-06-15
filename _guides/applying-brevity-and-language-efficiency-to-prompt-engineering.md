@@ -44,7 +44,7 @@ date: 2026-06-15
 6. [Catalog of Example Prompts and Conversations](#6-catalog-of-example-prompts-and-conversations)
    - 6.1 [Coding Help Lookups](#61-coding-help-lookups)
    - 6.2 [Code Generation — React/Tailwind](#62-code-generation--reacttailwind)
-   - 6.3 [Legacy Code (WinForms/.NET)](#63-legacy-code-winformsnets)
+   - 6.3 [Legacy Code (WinForms/.NET)](#63-legacy-code-winformsnet)
    - 6.4 [Technical Documentation](#64-technical-documentation)
    - 6.5 [Indian Market Product Comparisons](#65-indian-market-product-comparisons)
    - 6.6 [Multi-Turn Conversation Strategies](#66-multi-turn-conversation-strategies)
