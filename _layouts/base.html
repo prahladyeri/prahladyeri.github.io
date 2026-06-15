@@ -113,6 +113,10 @@
           {% assign sorted_guides = site.guides | sort: "order" %}
           {% for guide in sorted_guides %}
             <a href="{{ guide.url | relative_url }}">{{ guide.title }}</a>
+			{% unless forloop.last %}
+				<div class="dropdown-divider"></div>
+			{% endunless %}
+			
           {% endfor %}
         </div>
       </span>
