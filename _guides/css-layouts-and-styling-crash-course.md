@@ -14,7 +14,31 @@ date: 2026-06-15
 
 ---
 
-# 1. What Makes a Website Look Good?
+## Table of Contents
+
+1. [What Makes a Website Look Good?](#1-what-makes-a-website-look-good)
+2. [Design Principles Every Developer Should Know](#design-principles-every-developer-should-know)
+3. [The CSS Box Model](#2-the-css-box-model)
+4. [Margin vs Padding](#margin-vs-padding)
+5. [Widths and Heights](#3-widths-and-heights)
+6. [Typography](#4-typography)
+7. [Positioning](#5-positioning)
+8. [Floats (Legacy Layout)](#6-floats-legacy-layout)
+9. [Flexbox (Modern Layout)](#7-flexbox-modern-layout)
+10. [Blog Layout Using Flexbox](#blog-layout-using-flexbox)
+11. [CSS Grid](#8-css-grid)
+12. [Responsive Design](#9-responsive-design)
+13. [Mobile-First Design](#mobile-first-design)
+14. [Color Theory for Developers](#10-color-theory-for-developers)
+15. [Popular Combinations](#popular-combinations)
+16. [Tailwind CSS](#11-tailwind-css)
+17. [Case Study: Elegant Jekyll Theme](#12-case-study-elegant-jekyll-theme)
+18. [A Simple Design Checklist](#a-simple-design-checklist)
+19. [Modern CSS Layout Recipe (2026)](#modern-css-layout-recipe-2026)
+
+---
+
+## 1. What Makes a Website Look Good?
 
 Most beginners think beautiful websites come from:
 
@@ -39,6 +63,7 @@ Consider these two examples:
 <h1>My Blog</h1>
 <p>Hello World</p>
 <button>Read More</button>
+
 ```
 
 Everything touches each other.
@@ -51,6 +76,7 @@ Everything touches each other.
     <p>Thoughts on technology and open source.</p>
     <button>Read More</button>
 </div>
+
 ```
 
 ```css
@@ -65,6 +91,7 @@ Everything touches each other.
 .hero p {
     margin-bottom: 24px;
 }
+
 ```
 
 The content is identical.
@@ -75,9 +102,9 @@ Yet it feels professional.
 
 ---
 
-# Design Principles Every Developer Should Know
+## Design Principles Every Developer Should Know
 
-## 1. Alignment
+### 1. Alignment
 
 Things should line up.
 
@@ -85,8 +112,9 @@ Bad:
 
 ```text
 Title
-      Paragraph
+     Paragraph
  Button
+
 ```
 
 Good:
@@ -95,31 +123,32 @@ Good:
 Title
 Paragraph
 Button
+
 ```
 
 ---
 
-## 2. White Space
+### 2. White Space
 
-Do not fear empty space.
-
-Apple, Stripe, Linear and Notion use huge amounts of whitespace.
+Do not fear empty space. Apple, Stripe, Linear, and Notion use huge amounts of whitespace.
 
 Bad:
 
 ```css
 padding: 5px;
+
 ```
 
 Better:
 
 ```css
 padding: 40px;
+
 ```
 
 ---
 
-## 3. Contrast
+### 3. Contrast
 
 Make important things stand out.
 
@@ -131,11 +160,12 @@ h1 {
 p {
     color: #666;
 }
+
 ```
 
 ---
 
-## 4. Consistency
+### 4. Consistency
 
 Pick a spacing system:
 
@@ -145,13 +175,14 @@ Pick a spacing system:
 16px
 32px
 64px
+
 ```
 
 Use those everywhere.
 
 ---
 
-# 2. The CSS Box Model
+## 2. The CSS Box Model
 
 Everything in CSS is a box.
 
@@ -159,13 +190,14 @@ Everything in CSS is a box.
 +-------------------+
 |      Margin       |
 | +---------------+ |
-| |   Border      | |
+| |     Border    | |
 | | +-----------+ | |
 | | | Padding   | | |
 | | | Content   | | |
 | | +-----------+ | |
 | +---------------+ |
 +-------------------+
+
 ```
 
 Example:
@@ -176,37 +208,40 @@ Example:
     padding: 20px;
     border: 1px solid #ddd;
 }
+
 ```
 
 ---
 
-# Margin vs Padding
+## Margin vs Padding
 
-## Margin
+### Margin
 
 Outside spacing.
 
 ```css
 margin-bottom: 20px;
+
 ```
 
 Creates distance between elements.
 
 ---
 
-## Padding
+### Padding
 
 Inside spacing.
 
 ```css
 padding: 20px;
+
 ```
 
 Creates distance between content and border.
 
 ---
 
-# 3. Widths and Heights
+## 3. Widths and Heights
 
 Avoid fixed widths whenever possible.
 
@@ -214,6 +249,7 @@ Bad:
 
 ```css
 width: 1200px;
+
 ```
 
 Good:
@@ -221,6 +257,7 @@ Good:
 ```css
 max-width: 1200px;
 width: 100%;
+
 ```
 
 Typical page container:
@@ -231,23 +268,25 @@ Typical page container:
     margin: auto;
     padding: 20px;
 }
+
 ```
 
 The magic:
 
 ```css
 margin: auto;
+
 ```
 
 Centers the container.
 
 ---
 
-# 4. Typography
+## 4. Typography
 
 Typography alone can make a website feel premium.
 
-## Font Stack
+### Font Stack
 
 ```css
 body {
@@ -255,106 +294,102 @@ body {
         system-ui,
         sans-serif;
 }
+
 ```
 
 Uses the user's native font.
 
 ---
 
-## Comfortable Reading
+### Comfortable Reading
 
 ```css
 body {
     line-height: 1.7;
 }
+
 ```
 
-Avoid:
-
-```css
-line-height: 1;
-```
-
-Looks cramped.
+Avoid `line-height: 1;`. It looks cramped.
 
 ---
 
-## Blog Content Width
+### Blog Content Width
 
 ```css
 article {
     max-width: 700px;
 }
+
 ```
 
 Long lines are difficult to read.
 
 ---
 
-# 5. Positioning
+## 5. Positioning
 
-## Static (Default)
+### Static (Default)
 
 ```css
 position: static;
+
 ```
 
 Normal flow.
 
 ---
 
-## Relative
+### Relative
 
 ```css
 position: relative;
 left: 10px;
+
 ```
 
 Moves relative to original position.
 
 ---
 
-## Absolute
+### Absolute
 
 ```css
 position: absolute;
 top: 0;
 right: 0;
+
 ```
 
 Placed relative to nearest positioned parent.
 
 ---
 
-## Fixed
+### Fixed
 
 ```css
 position: fixed;
 top: 0;
+
 ```
 
-Stays visible while scrolling.
-
-Useful for navbars.
+Stays visible while scrolling. Useful for navbars.
 
 ---
 
-## Sticky
+### Sticky
 
 ```css
 position: sticky;
 top: 0;
+
 ```
 
-Acts normal until scrolling reaches it.
-
-Then sticks.
-
-Great for sidebars.
+Acts normal until scrolling reaches it. Then sticks. Great for sidebars.
 
 ---
 
-# 6. Floats (Legacy Layout)
+## 6. Floats (Legacy Layout)
 
 Before Flexbox and Grid, layouts used floats.
 
@@ -368,6 +403,7 @@ Sidebar
 <div class="content">
 Content
 </div>
+
 ```
 
 ```css
@@ -380,6 +416,7 @@ Content
     float: left;
     width: 75%;
 }
+
 ```
 
 Problems:
@@ -388,10 +425,11 @@ Problems:
 * Clearing issues
 * Responsive headaches
 
-Today floats are mainly used for:
+Today floats are mainly used for wrapping text around an asset:
 
 ```html
 <img src="photo.jpg">
+
 ```
 
 ```css
@@ -399,30 +437,20 @@ img {
     float: left;
     margin-right: 20px;
 }
+
 ```
 
 Text wraps around image.
 
 ---
 
-# 7. Flexbox (Modern Layout)
+## 7. Flexbox (Modern Layout)
 
-Flexbox changed everything.
-
-Think:
-
-```text
-Row
-Column
-Centering
-Navigation bars
-Cards
-Toolbars
-```
+Flexbox changed everything. Think: Row, Column, Centering, Navigation bars, Cards, Toolbars.
 
 ---
 
-## Horizontal Layout
+### Horizontal Layout
 
 ```html
 <div class="row">
@@ -430,34 +458,38 @@ Toolbars
     <div>B</div>
     <div>C</div>
 </div>
+
 ```
 
 ```css
 .row {
     display: flex;
 }
+
 ```
 
 ---
 
-## Space Between
+### Space Between
 
 ```css
 .row {
     display: flex;
     justify-content: space-between;
 }
+
 ```
 
 Result:
 
 ```text
 A           B           C
+
 ```
 
 ---
 
-## Centering
+### Centering
 
 ```css
 .hero {
@@ -465,13 +497,14 @@ A           B           C
     justify-content: center;
     align-items: center;
 }
+
 ```
 
 Perfect centering.
 
 ---
 
-## Gap
+### Gap
 
 Instead of margins:
 
@@ -480,30 +513,33 @@ Instead of margins:
     display: flex;
     gap: 20px;
 }
+
 ```
 
 Cleaner.
 
 ---
 
-## Vertical Layout
+### Vertical Layout
 
 ```css
 .column {
     display: flex;
     flex-direction: column;
 }
+
 ```
 
 ---
 
-# Blog Layout Using Flexbox
+## Blog Layout Using Flexbox
 
 ```html
 <div class="layout">
     <aside>Sidebar</aside>
     <main>Content</main>
 </div>
+
 ```
 
 ```css
@@ -519,11 +555,12 @@ aside {
 main {
     flex: 1;
 }
+
 ```
 
 ---
 
-# 8. CSS Grid
+## 8. CSS Grid
 
 For 2D layouts.
 
@@ -536,6 +573,7 @@ Example:
         1fr 1fr 1fr;
     gap: 20px;
 }
+
 ```
 
 Produces:
@@ -543,11 +581,12 @@ Produces:
 ```text
 A B C
 D E F
+
 ```
 
 ---
 
-## Responsive Cards
+### Responsive Cards
 
 ```css
 .grid {
@@ -558,41 +597,44 @@ D E F
 
     gap: 20px;
 }
+
 ```
 
 Automatically adjusts.
 
 ---
 
-# 9. Responsive Design
+## 9. Responsive Design
 
 The web is mobile-first now.
 
 ---
 
-## Viewport Tag
+### Viewport Tag
 
 ```html
 <meta
     name="viewport"
     content="width=device-width, initial-scale=1">
+
 ```
 
 Always include it.
 
 ---
 
-## Responsive Images
+### Responsive Images
 
 ```css
 img {
     max-width: 100%;
 }
+
 ```
 
 ---
 
-## Media Queries
+### Media Queries
 
 ```css
 @media (max-width: 768px) {
@@ -602,12 +644,14 @@ img {
     }
 
 }
+
 ```
 
 Desktop:
 
 ```text
 Sidebar | Content
+
 ```
 
 Mobile:
@@ -615,11 +659,12 @@ Mobile:
 ```text
 Sidebar
 Content
+
 ```
 
 ---
 
-# Mobile-First Design
+## Mobile-First Design
 
 Start small.
 
@@ -627,6 +672,7 @@ Start small.
 .card {
     width: 100%;
 }
+
 ```
 
 Then enhance:
@@ -639,20 +685,20 @@ Then enhance:
     }
 
 }
+
 ```
 
 ---
 
-# 10. Color Theory for Developers
+## 10. Color Theory for Developers
 
-You don't need to be an artist.
-
-Use:
+You don't need to be an artist. Use:
 
 ### One Primary Color
 
 ```css
 --primary: #2563eb;
+
 ```
 
 ### Neutral Grays
@@ -661,17 +707,19 @@ Use:
 --text: #222;
 --muted: #666;
 --border: #ddd;
+
 ```
 
 ### Background
 
 ```css
 --bg: #fafafa;
+
 ```
 
 ---
 
-# Popular Combinations
+## Popular Combinations
 
 ### GitHub
 
@@ -679,6 +727,7 @@ Use:
 #24292e
 #ffffff
 #0969da
+
 ```
 
 ---
@@ -689,6 +738,7 @@ Use:
 #ffffff
 #37352f
 #eb5757
+
 ```
 
 ---
@@ -699,15 +749,14 @@ Use:
 #111827
 #1f2937
 #f9fafb
+
 ```
 
 ---
 
-# 11. Tailwind CSS
+## 11. Tailwind CSS
 
-Tailwind is a utility-first CSS framework.
-
-Instead of writing:
+Tailwind is a utility-first CSS framework. Instead of writing:
 
 ```css
 .card {
@@ -715,27 +764,25 @@ Instead of writing:
     border-radius: 10px;
     background: white;
 }
+
 ```
 
-You write:
+You write directly in your markup:
 
 ```html
-<div
-class="
-p-5
-rounded-lg
-bg-white
-">
+<div class="p-5 rounded-lg bg-white">
+
 ```
 
 ---
 
-## Traditional CSS
+### Traditional CSS
 
 ```html
 <button class="btn">
 Click
 </button>
+
 ```
 
 ```css
@@ -744,99 +791,59 @@ Click
     color: white;
     padding: 10px 20px;
 }
+
 ```
 
 ---
 
-## Tailwind
+### Tailwind
 
 ```html
-<button
-class="
-bg-blue-600
-text-white
-px-4
-py-2
-rounded
-">
+<button class="bg-blue-600 text-white px-4 py-2 rounded">
 Click
 </button>
+
 ```
 
 ---
 
-# Why Developers Love Tailwind
+### Why Developers Love Tailwind
 
-### Faster
+* **Faster:** No switching between HTML and separate stylesheet files.
+* **Consistent:** The core spacing, sizing, and color scales are predefined out of the box.
+* **Responsive:** Built-in modifiers make swapping layouts direct:
+```html
+<div class="w-full md:w-1/2">
 
-No switching between files.
+```
 
-### Consistent
 
-Spacing scale is predefined.
+* **Easy Flexbox:**
+```html
+<div class="flex justify-between items-center">
 
-### Responsive
+```
+
+
+
+---
+
+### Why Some Developers Dislike Tailwind
+
+Large class lists can become verbose and clutter markup layouts over time:
 
 ```html
-<div
-class="
-w-full
-md:w-1/2
-">
+<div class="flex justify-center items-center bg-white rounded shadow p-4">
+
 ```
 
 ---
 
-### Easy Flexbox
+## 12. Case Study: Elegant Jekyll Theme
 
-```html
-<div
-class="
-flex
-justify-between
-items-center
-">
-```
+Imagine building a minimal, readable, and timeless blog theme.
 
----
-
-# Why Some Developers Dislike Tailwind
-
-Large class lists:
-
-```html
-<div
-class="
-flex
-justify-center
-items-center
-bg-white
-rounded
-shadow
-p-4
-">
-```
-
-Can become verbose.
-
----
-
-# 12. Case Study: Elegant Jekyll Theme
-
-Imagine building a blog theme.
-
-Goal:
-
-```text
-Minimal
-Fast
-Readable
-Timeless
-```
-
----
-
-## Layout
+### Layout
 
 ```html
 <body>
@@ -862,11 +869,12 @@ Copyright
 </footer>
 
 </body>
+
 ```
 
 ---
 
-## Base Styling
+### Base Styling
 
 ```css
 body {
@@ -875,11 +883,12 @@ body {
     color: #222;
     background: #fafafa;
 }
+
 ```
 
 ---
 
-## Container
+### Container
 
 ```css
 .container {
@@ -887,22 +896,24 @@ body {
     margin: auto;
     padding: 20px;
 }
+
 ```
 
 ---
 
-## Header
+### Header
 
 ```css
 header {
     padding: 40px 20px;
     border-bottom: 1px solid #ddd;
 }
+
 ```
 
 ---
 
-## Two Column Layout
+### Two Column Layout
 
 ```css
 .container {
@@ -917,11 +928,12 @@ main {
 aside {
     width: 280px;
 }
+
 ```
 
 ---
 
-## Mobile
+### Mobile
 
 ```css
 @media (max-width: 768px) {
@@ -935,11 +947,12 @@ aside {
     }
 
 }
+
 ```
 
 ---
 
-## Article Typography
+### Article Typography
 
 ```css
 article h1 {
@@ -953,11 +966,12 @@ article h2 {
 article p {
     margin-bottom: 1rem;
 }
+
 ```
 
 ---
 
-## Links
+### Links
 
 ```css
 a {
@@ -968,11 +982,12 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
 ```
 
 ---
 
-## Code Blocks
+### Code Blocks
 
 ```css
 pre {
@@ -984,11 +999,12 @@ pre {
 code {
     font-family: monospace;
 }
+
 ```
 
 ---
 
-# A Simple Design Checklist
+## A Simple Design Checklist
 
 Before publishing any site, ask:
 
@@ -1005,7 +1021,7 @@ If the answer is yes, the website will already look better than a large percenta
 
 ---
 
-# Modern CSS Layout Recipe (2026)
+## Modern CSS Layout Recipe (2026)
 
 For most blogs, documentation sites, portfolios, and Jekyll themes:
 
@@ -1043,15 +1059,7 @@ img
         flex-direction: column;
     }
 }
+
 ```
 
-Mastering just:
-
-* Box Model
-* Typography
-* Flexbox
-* Grid
-* Responsive Design
-* Color & Spacing
-
-will get you roughly 90% of the way toward building professional-looking blogs, documentation sites, portfolios, SaaS landing pages, and Jekyll themes without needing advanced CSS tricks.
+Mastering just the Box Model, Typography, Flexbox, Grid, Responsive Design, and basic Color & Spacing principles will get you roughly 90% of the way toward building professional-looking projects without needing complex hacks.
