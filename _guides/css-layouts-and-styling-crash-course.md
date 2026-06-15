@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "A Crash Course in CSS Layouts & Styling"
+title: "CSS Layouts & Styling Crash Course"
 order: 3
 date: 2026-06-15
 ---
