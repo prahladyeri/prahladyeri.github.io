@@ -168,6 +168,10 @@ a.header-link:hover
 	font-weight: 500;
 }
 
+.the-content strong {
+	font-weight: 600;
+}
+
 /* Container for context */
 .dropdown-wrapper {
   position: relative;
