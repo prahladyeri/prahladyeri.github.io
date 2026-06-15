@@ -227,6 +227,12 @@ a.header-link:hover
 	line-height: 1.3;
 }
 
+.dropdown-divider {
+  height: 1px;
+  background-color: #e2e8f0;
+  margin: 4px 0; /* Adjust spacing above and below the line */
+}
+
 /* Apply word wrapping to highlighted code blocks */
 @media (max-width: 768px) {
 	.the-content .highlight,
