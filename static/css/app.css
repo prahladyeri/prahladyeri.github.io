@@ -218,6 +218,10 @@ a.header-link:hover
   transform: translateX(-50%);
 }
 
+.custom-dropdown.custom-dropdown-lg {
+	width: 290px;
+}
+
 /* Styling links inside the dropdown */
 .custom-dropdown a:hover {
   background-color: var(--linkcolor); /* Subtle hover effect */
