@@ -4,6 +4,7 @@ title: "How to fix TypeError: 'autocommit' is an invalid keyword argument in Pyt
 tags: python sqlite database
 published: true
 image: /uploads/code-python.jpg
+description: "Fix the Python sqlite3 'autocommit' TypeError in Python 3.11 and older versions. Learn how to use isolation_level instead of the autocommit argument for batch inserts."
 ---
 So there I was, writing a quick script to churn through an array of items and throw them into a local SQLite database. Standard stuff. Because I didn't want the script to crawl at a snail's pace by writing to the disk on every single loop iteration, I decided to do the sensible thing: turn off `autocommit` mode and just batch-commit the whole thing at the end.
 
@@ -54,4 +55,4 @@ for i, item in enumerate(items):
 con.commit() # manual commit
 ```
 
-Did you feel like stumbling across PEP's yet another quirky, compatibility breaking and fragmentation prone design decisions today? Comment below and let me know.
+Running into autocommit issues on older Python versions? Hope this saved you some debugging time. Let me know in the comments if you hit other sqlite3 gotchas.
