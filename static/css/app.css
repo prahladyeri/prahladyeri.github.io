@@ -1,6 +1,6 @@
 :root {
-    --main-font: 'Segoe UI', sans-serif;
-    --heading-font: 'Segoe UI', sans-serif;
+    --main-font: Constantia, 'Segoe UI', sans-serif;
+    --heading-font: Constantia, 'Segoe UI', sans-serif;
     --bgcolor: #f5f5f5;
 	--fgcolor: #505050;
     --linkcolor: #1a237e;

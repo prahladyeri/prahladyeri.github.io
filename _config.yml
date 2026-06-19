@@ -32,7 +32,7 @@ tag_permalink: "/tag/:tag"
 default_lang: en
 
 # Custom vars
-version: 2.2.4
+version: 2.2.5
 adsense: "ca-pub-0428291735937735"
 adsense_slot: "9729062115"
 #disqus: 'prahladyeri-blog'
