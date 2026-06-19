@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to fix TypeError: 'autocommit' is an invalid keyword argument in Python sqlite3 connect"
+title: "How to fix TypeError: 'autocommit' unexpected keyword argument in Python sqlite3"
 tags: python sqlite database
 published: true
 image: /uploads/code-python.jpg
