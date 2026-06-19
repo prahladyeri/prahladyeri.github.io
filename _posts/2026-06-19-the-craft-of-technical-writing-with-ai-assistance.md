@@ -34,7 +34,7 @@ Create a blueprint or outline with linked ToC for a comprehensive book I want to
 - Cover the various tooling surrounding react development like vite, esbuild, eslint, etc.
 - Cover Typescript, what it is and how it's a better alternative to JavaScript, etc.
 - Cover TailwindCSS, why it's an improvement over traditional CSS, how it integrates with React, etc.
-- Dedicate some space for UI advancements like theming with shadecn and tweakcn, open source themes like DaisyUI, etc.
+- Dedicate some space for UI advancements like theming with shadcn and tweakcn, open source themes like DaisyUI, etc.
 - Dedicate some space on where to get your web and graphics assets like fonts, wallpapers, logos and icons, etc., especially for freelancers looking for open source and budget alternatives.
 - For various integrations, cover as much detail as possible explaining with practical, real world examples or case studies.
 - Cover Cloudflare in considerable detail with all the features it offers like the D1 SQL database, the KV data store, Pages and Workers, etc.
