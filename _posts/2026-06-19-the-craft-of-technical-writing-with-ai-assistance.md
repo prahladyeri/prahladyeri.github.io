@@ -17,7 +17,9 @@ There are many ways of drafting technical content using AI assistance, I'm going
 
 # It all starts with brainstorming
 
-The initial prompt is arguably the most important part of the process and in most cases, the end result is going to be only as good as the efforts you spend here. This is where you get to apply your creativity as a human and tell the model exactly how to write and what topics to cover. You don't need to drill down everything though, just make sure you tell it the exact topics you need covered along with the tone or theme you want. Below is an example prompt you can use (after changing the topics coverage requests to your own) or come up with your own. If you aren't a top expert in your field yet or new to AI assisted writing, it's helpful to have even this prompt looked over or reviewed with an expert model as a meta exercise.
+The initial prompt is arguably the most important part of the process and in most cases, the end result is going to be only as good as the efforts you spend here. This is where you get to apply your creativity as a human and tell the model exactly how to write and what topics to cover. You don't need to drill down everything though, just make sure you tell it the exact topics you need covered along with the tone or theme you want.
+
+Below is an example prompt you can use (after changing the topics coverage requests to your own) or come up with your own. If you aren't a top expert in your field yet or new to AI assisted writing, it's helpful to have even this prompt looked over or reviewed with an expert model as a meta exercise.
 
 ```
 Create a blueprint or outline with linked ToC for a comprehensive book I want to author titled "The Definitive Guide to React-Tailwind" with the tag line "Now with Cloudflare, Firebase, Express.js, Turso, Neon and many other integrations" with following instructions:
@@ -64,7 +66,7 @@ Strict Guardrails:
 ## [CONTEXT ONLY] Book Structure for Scope Reference:
 The full book covers the following path, which you should keep in mind so you know what NOT to cover in Section 1:
 
-{{ OUTLINE/TOC GENERATED IN EARLIER STEP }}
+    {{ OUTLINE/TOC GENERATED IN EARLIER STEP }}
 
 ---
 
