@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How AI can turn us into a society of p-zombies"
-tags: programming
+tags: technical-writing ai
 published: true
 image: /uploads/mesh.jpg
 ---
