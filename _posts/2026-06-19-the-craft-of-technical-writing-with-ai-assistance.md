@@ -9,7 +9,7 @@ description: "A practical, three-file workflow for using AI to write technical b
 
 # An overview of the process
 
-There are many ways of drafting technical content using AI assistance, I'm going to describe here the method I happen to use. The structure is simple and involves at least three basic steps and files:
+There are many ways of drafting technical content using AI assistance, I'm going to describe here the one I happen to use. The structure is simple and involves at least three basic steps and files:
 
 - `./prompt.md`: The initial brainstorming prompt to create the outline, just for the record.
 - `./prompt-gen.md`: The prompt containing actual outline and fed to model for generating each section.
