@@ -1,0 +1,83 @@
+---
+layout: post
+title: "The craft of authoring technical guides, books, tutorials and documentation with AI assistance"
+tags: ai ai-model technical-writing
+published: true
+image: /uploads/books.jpg
+description: "A practical, three-file workflow for using AI to write technical books, tutorials, and documentation, including prompt templates and model selection tips."
+---
+
+# An overview of the process
+
+There are many ways of drafting technical content using AI assistance, I'm going to describe here the method I happen to use. The structure is simple and involves at least three basic steps and files:
+
+```
+./prompt.md  # The initial brainstorming prompt to create the outline, just for the record.
+./prompt-gen.md  # The prompt containing actual outline and fed to model for generating each section.
+./book.md  # The end result or draft output to which you keep adding until the draft is complete.
+```
+
+# It all starts with brainstorming
+
+The initial prompt is arguably the most important part of the process and in most cases, the end result is going to be only as good as the efforts you spend here. This is where you get to apply your creativity as a human and tell the model exactly how to write and what topics to cover. You don't need to drill down everything though, just make sure you tell it the exact topics you need covered along with the tone or theme you want. Below is an example prompt you can use (after changing the topics coverage requests to your own) or come up with your own. If you aren't a top expert in your field yet or new to AI assisted writing, it's helpful to have even this prompt looked over or reviewed with an expert model as a meta exercise.
+
+```
+Create a blueprint or outline with linked ToC for a comprehensive book I want to author titled "The Definitive Guide to React-Tailwind" with the tag line "Now with Cloudflare, Firebase, Express.js, Turso, Neon and many other integrations" with following instructions:
+
+- Write with the mindset of an expert professional with decades of experience in web development while keeping it concise, easy to understand and to the point.
+- This is targeted towards beginners and advanced programmers alike.
+- The target audience is mostly open source developers, individual freelancers and smaller budget IT shops and agencies serving clients through Upwork, Fiverr and similar platforms, even offline - not the big techs. Still, scalability of solutions is important and needs to be covered.
+- Provide detailed examples and case studies wherever applicable.
+- Start with the basics of Internet and WWW, Tim Berners Lee basics in the modern context, etc.
+- Cover the basics of Node.js and npm packaging ecosystem, how it has evolved over the years and how to integrate the tooling around them and build a development workflow.
+- Cover the basics and nitty-gritty of react development, what it is and a brief history followed by state management techniques, useState, useEffect, useContext and other hooks.
+- Cover the various tooling surrounding react development like vite, esbuild, eslint, etc.
+- Cover Typescript, what it is and how it's a better alternative to JavaScript, etc.
+- Cover TailwindCSS, why it's an improvement over traditional CSS, how it integrates with React, etc.
+- Dedicate some space for UI advancements like theming with shadecn and tweakcn, open source themes like DaisyUI, etc.
+- Dedicate some space on where to get your web and graphics assets like fonts, wallpapers, logos and icons, etc., especially for freelancers looking for open source and budget alternatives.
+- For various integrations, cover as much detail as possible explaining with practical, real world examples or case studies.
+- Cover Cloudflare in considerable detail with all the features it offers like the D1 SQL database, the KV data store, Pages and Workers, etc.
+- Cover MQTT in considerable detail, its importance as an emerging technology in IoT, how to integrate it in react projects, etc.
+- Apart from core backend platforms and integrations, also cover some allied functional areas like Stripe and PayPal APIs for payments, Resend and Brevo API for email management, Google Drive and Dropbox for file access, etc.
+- Apart from those mentioned above, cover whatever other topics you think could be beneficial for freelance web developers in the present market and foreseeable future.
+```
+
+# Casting the sections and chapters into an outline prompt
+
+After reviewing the ToC outline created by the model in earlier step, it's now time to integrate it by embedding in a larger book generation prompt (prompt-gen.md) as shown below.
+
+```
+You are an expert technical author and full-stack engineer. Write a comprehensive, highly structured "Section 1 ONLY" for a book titled "The Definitive Guide to React-Tailwind".
+
+Do not write an outline; write the actual book chapters/lessons for Section 1 based on the breakdown below.
+
+This book is specifically targeted at freelance web developers and small 1–3 person agencies who need to build, deploy, and maintain high-performance, low-cost apps efficiently.
+
+Strict Guardrails:
+- Optimize entirely for high-velocity, low-overhead development. 
+- Avoid deep computer science theory, microservices, or complex enterprise build pipelines.
+- Focus on explicit code patterns, minimal high-level abstractions, and cost-effective deployment.
+- Provide relevant, real-world case studies for a small-shop context throughout.
+- Output the detailed content in Markdown format.
+
+---
+
+## [CONTEXT ONLY] Book Structure for Scope Reference:
+The full book covers the following path, which you should keep in mind so you know what NOT to cover in Section 1:
+
+{{ OUTLINE/TOC GENERATED IN EARLIER STEP }}
+
+---
+
+## YOUR TASK: Write the Full Content for Section 1
+Deep-dive into the exact topics, keeping the tone practical and tailored to a freelancer. Provide actual code samples and explanations.
+```
+
+# Drafting the contents with precision and purpose
+
+In the `prompt-gen.md`, replace the "{{ OUTLINE/TOC GENERATED IN EARLIER STEP }}" block with the actual outline generated by model in the earlier step, and "Section 1" with whatever section you want generated - you want to generate one section at a time for both organization and clarity.
+
+But before going further, make sure you choose your drafting model wisely, it doesn't have to be the same as the one you used to generate the outline. Generally speaking, the more *thoughtful* models with high reasoning skills like `gpt-5.4` are used for outline generation and the more precise *dry and academic* family models like `meta-llama-scout` and `qwen-coder` are used for drafting the *Complete Reference* style technical writing. However, if you like the *Oreilly* style more engaging and narrative oriented tone, a high-end model like Claude Sonnet is what you need.
+
+Once you've chosen your model and ready to draft, just run the `prompt-gen.md` for each section and add the output to `book.md` as and when it's done. Never before in the history of human civilization was there a way of drafting technical literature so seamlessly with a few prompts to an AI model. Be grateful to the times we are living in, happy technical writing.
