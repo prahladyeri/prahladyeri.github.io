@@ -108,7 +108,7 @@ Think of it as a three-stage pipeline:
 **Stage 3: Structured Prompt**
 > "React 18. useState. Button click handler sets state but component does not re-render. No error in console. Explain top 3 causes and fix for each. Show code."
 
-Notice the transformation: 22 words down from a long conversational sentence, yet *more* information is packed in because every word carries signal.
+Notice the transformation: 22 words down from a potentially long conversational thread, yet *more* information is packed in because every word carries signal.
 
 ### 2.2 The Four Dimensions of a Good Prompt
 
