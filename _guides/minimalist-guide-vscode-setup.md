@@ -36,7 +36,7 @@ date: 2026-06-24
 Notepad++ is a legendary text editor, but it lacks native LSP (Language Server Protocol) support, modern multi-cursor ergonomics, and integrated terminal profiling. Vim requires a steep cognitive load for configuration. Sublime is proprietary and its package ecosystem is fracturing. VS Code sits in the sweet spot: it is fundamentally a text editor with a standardized extension API, allowing you to build *exactly* the IDE you need, and nothing more.
 
 ### 1.2 The "default-first" rule: exhaust built-ins before installing anything
-VS Code ships with a massive amount of hidden functionality. Before installing an extension to "add a feature," check if it already exists. The minimalist rule: **If a built-in feature can do 80% of what you need, use it.** Do not install a "Live Server" extension when a simple terminal alias or built-in preview works. Do not install "GitLens" when the built-in Source Control gutter decorations suffice.
+VS Code ships with a massive amount of hidden functionality. Before installing an extension to "add a feature" check if it already exists. The minimalist rule: **If a built-in feature can do 80% of what you need, use it.** Do not install a "Live Server" extension when a simple terminal alias or built-in preview works. Do not install "GitLens" when the built-in Source Control gutter decorations suffice.
 
 ### 1.3 Notepad++ → VS Code mindset translation
 - **Sessions** become **Workspaces** (`.code-workspace`).
