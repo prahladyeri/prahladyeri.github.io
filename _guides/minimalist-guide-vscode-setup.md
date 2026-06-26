@@ -77,6 +77,8 @@ For example:
 https://update.code.visualstudio.com/1.81.1/win32-x64-archive/stable
 ```
 
+Note: For recent builds, they've likely stopped the 32-bit builds i.e. `win32-archive`, so the  `win32-x64-archive` is the only option here.
+
 
 ### 2.3 Directory layout
 In Portable Mode (or standard install), understand your directories:
