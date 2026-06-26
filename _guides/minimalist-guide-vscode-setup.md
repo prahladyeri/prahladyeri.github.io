@@ -66,6 +66,22 @@ Portable mode keeps VS Code entirely self-contained. No registry keys, no `%APPD
 3. Inside the extracted root, create a folder named `data`.
 4. Launch `Code.exe`. VS Code will now store all settings, extensions, and logs inside `data/`.
 
+To determine the exact download url for step 1, use this logic:
+
+```
+portable zip:
+https://update.code.visualstudio.com/{version}/win32-x64-archive/stable
+https://update.code.visualstudio.com/{version}/win32-archive/stable
+
+installer:
+https://update.code.visualstudio.com/{version}/win32-x64-archive/stable
+https://update.code.visualstudio.com/{version}/win32-archive/stable
+
+For example:
+https://update.code.visualstudio.com/1.81.1/win32-x64-archive/stable
+```
+
+
 ### 2.3 Directory layout
 In Portable Mode (or standard install), understand your directories:
 - `data/user-data/`: Your `settings.json` and `keybindings.json`.
