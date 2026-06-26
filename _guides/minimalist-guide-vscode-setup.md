@@ -73,10 +73,6 @@ portable zip:
 https://update.code.visualstudio.com/{version}/win32-x64-archive/stable
 https://update.code.visualstudio.com/{version}/win32-archive/stable
 
-installer:
-https://update.code.visualstudio.com/{version}/win32-x64-archive/stable
-https://update.code.visualstudio.com/{version}/win32-archive/stable
-
 For example:
 https://update.code.visualstudio.com/1.81.1/win32-x64-archive/stable
 ```
