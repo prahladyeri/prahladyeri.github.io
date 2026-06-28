@@ -211,7 +211,7 @@ $(document).ready(function() {
     var $code = $(this);
     var $pre = $code.parent('pre');
 
-	var $outer = $pre.closest('.highlighter-rouge, .highlight'); // Matches either class
+	var $outer = $pre.closest('.highlighter-rouge'); // Matches either class
 	// 2. Extract language from the outer container's class list
 	var lang = '';
 	var classes = $outer.attr('class') || '';
