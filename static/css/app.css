@@ -255,6 +255,45 @@ pre.highlight {
   margin: 1.5em 0;
 }
 
+/* 1. The "Title Bar" Background */
+.highlight-wrapper::before {
+  content: "";               /* Required for pseudo-element to show */
+  display: block;
+  position: absolute;
+  top: 0; left: 0; right: 0; /* Stretch full width */
+  height: 2.2rem;            /* Match the padding-top on <pre> (approx 35px) */
+  background: #f0f0f0;       /* <<< YOUR GREY SHADE HERE */
+  border-top-left-radius: 6px;  /* Match wrapper/pre radius if you have them */
+  border-top-right-radius: 6px;
+  z-index: 0;                /* Sit BEHIND the button (z-index: 10) and code */
+  pointer-events: none;      /* Clicks pass through to button/code */
+}
+
+/* Option A: If your Rouge theme sets background on PRE (common) */
+.highlight-wrapper pre {
+  background: transparent !important; /* Let the wrapper handle background */
+  border-radius: 0 0 6px 6px;         /* Only bottom corners rounded */
+  padding-top: 2.2rem;                /* Push code down past the bar */
+  margin: 0;
+}
+
+@media DISABLED_BLOCK_COMMENT {
+	/* Option B: Wrapper provides the MAIN code background (often cleaner) */
+	.highlight-wrapper {
+	  position: relative;
+	  margin: 1.5em 0;
+	  background: #2d2d2d;       /* Your main code block background (e.g., dark mode grey) */
+	  border-radius: 6px;        /* Rounded corners for the whole block */
+	  overflow: hidden;          /* Clips the ::before bar corners neatly */
+	}
+	
+	/* If using Option B (Wrapper has bg), the ::before bar sits on top nicely: */
+	.highlight-wrapper::before {
+	  background: #444;          /* Slightly lighter/darker shade for the "bar" */
+	  /* ... other props from above ... */
+	}	
+}
+
 /* The Button */
 .highlight-wrapper .copy-btn {
   position: absolute;
@@ -265,7 +304,7 @@ pre.highlight {
   color: #fff;
   border: none;
   border-radius: 4px;
-  padding: 0.2rem 0.5rem;
+  padding: 3px 1px;
   font-size: 0.85rem;
   cursor: pointer;
   opacity: 0.7;
