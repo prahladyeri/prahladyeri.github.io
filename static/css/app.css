@@ -265,6 +265,9 @@ pre.highlight {
   background: #f0f0f0;       /* <<< YOUR GREY SHADE HERE */
   border-top-left-radius: 6px;  /* Match wrapper/pre radius if you have them */
   border-top-right-radius: 6px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #BDBDBD;
   z-index: 0;                /* Sit BEHIND the button (z-index: 10) and code */
   pointer-events: none;      /* Clicks pass through to button/code */
 }
@@ -272,7 +275,7 @@ pre.highlight {
 /* Option A: If your Rouge theme sets background on PRE (common) */
 .highlight-wrapper pre {
   background: transparent !important; /* Let the wrapper handle background */
-  border-radius: 0 0 6px 6px;         /* Only bottom corners rounded */
+  border-radius: 6px;
   padding-top: 2.2rem;                /* Push code down past the bar */
   margin: 0;
 }
