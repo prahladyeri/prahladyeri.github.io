@@ -266,7 +266,7 @@ pre.highlight {
   display: block;
   position: absolute;
   top: 0; left: 0; right: 0; 
-  height: 2.2rem;
+  height: 23px;
   background: #333;       /* <<< YOUR GREY SHADE HERE */
   z-index: 0;                /* Sit BEHIND the button (z-index: 10) and code */
   pointer-events: none;      /* Clicks pass through to button/code */
@@ -275,7 +275,7 @@ pre.highlight {
 /* Option A: If your Rouge theme sets background on PRE (common) */
 .highlight-wrapper pre {
   margin: 0;
-  padding: 2.2rem 1rem 1rem 1rem; 
+  padding: 23px 1rem 1rem 1rem; 
   background: transparent !important; /* Let the wrapper handle background */
   border-radius: 6px;
   overflow-x: auto;
@@ -301,14 +301,14 @@ pre.highlight {
 /* The Button */
 .highlight-wrapper .copy-btn {
   position: absolute;
-  top: 0.35rem;
-  right: 0.6rem;
+  top: 2px;
+  right: 2px;
   z-index: 10;
   background: rgba(255,255,255,0.1);
   color: #ddd;
   border: 1px solid rgba(255,255,255,0.2);
   border-radius: 4px;
-  padding: 3px 3px;
+  padding: 1px;
   font-size: 0.8rem;
   cursor: pointer;
   opacity: 0.7;
@@ -322,9 +322,9 @@ pre.highlight {
 .highlight-lang-label {
   position: absolute;
   top: 0;
-  left: 0.75rem;                /* Padding from left edge */
-  height: 2.2rem;               /* Match bar height */
-  line-height: 2.2rem;          /* Vertically center text */
+  left: 6px;                /* Padding from left edge */
+  height: 22px;               /* Match bar height */
+  line-height: 22px;          /* Vertically center text */
   z-index: 1;                   /* Above ::before bar (z-index: 0) */
   color: #aaa;                  /* Muted grey text */
   font-size: 0.7rem;
