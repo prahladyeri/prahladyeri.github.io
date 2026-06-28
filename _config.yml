@@ -1,7 +1,13 @@
 # Dependencies
-#markdown: kramdown
 #highlighter:      pygments
+# markdown: kramdown
 highlighter: rouge
+# kramdown:
+  # syntax_highlighter: rouge
+  # syntax_highlighter_opts:
+    # css_class: 'hljs'        # Adds class="hljs" to <code> (required by github.min.css)
+    # span:
+      # class: 'hljs'          # Uses .hljs-* classes instead of .kt, .s1, etc.
 
 # Permalinks
 permalink:        /blog/:year/:month/:title.html
