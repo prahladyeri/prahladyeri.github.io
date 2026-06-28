@@ -244,6 +244,11 @@ a.header-link:hover
   margin: 4px 0; /* Adjust spacing above and below the line */
 }
 
+pre.highlight {
+    background-color: white;
+    padding: 4px;
+}
+
 /* Apply word wrapping to highlighted code blocks */
 @media (max-width: 768px) {
 	.the-content .highlight,
