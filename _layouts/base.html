@@ -205,6 +205,45 @@ $(document).ready(function() {
     }
   });
   
+
+	var prettyNames = {
+	  'csharp': 'C#',       // <--- The one you asked for
+	  'cpp': 'C++',         // Bonus: C++ renders correctly too
+	  'fsharp': 'F#',       // Bonus: F#
+	  'js': 'JavaScript',
+	  'ts': 'TypeScript',
+	  'py': 'Python',
+	  'rb': 'Ruby',
+	  'sh': 'Shell',
+	  'bash': 'Bash',
+	  'zsh': 'Zsh',
+	  'ps1': 'PowerShell',
+	  'ps': 'PowerShell',
+	  'yml': 'YAML',
+	  'yaml': 'YAML',
+	  'md': 'Markdown',
+	  'html': 'HTML',
+	  'css': 'CSS',
+	  'scss': 'SCSS',
+	  'json': 'JSON',
+	  'xml': 'XML',
+	  'sql': 'SQL',
+	  'dockerfile': 'Dockerfile',
+	  'tf': 'Terraform',
+	  'hcl': 'Terraform',
+	  'go': 'Go',
+	  'rs': 'Rust',
+	  'kt': 'Kotlin',
+	  'swift': 'Swift',
+	  'php': 'PHP',
+	  'java': 'Java',
+	  'cs': 'C#',           // Alias sometimes used
+	  'vb': 'VB.NET',
+	  'fs': 'F#'
+	};
+
+
+  
   // copy-button for code
   // 1. Find all Rouge code blocks (pre > code)
   $('pre > code').each(function () {
@@ -250,9 +289,11 @@ $(document).ready(function() {
       });
 	  
 	  if (lang) {
-		// Use a span with a class for styling via CSS (better than inline styles)
-		$btn.prepend('<span class="copy-btn-lang">' + lang + '</span>');
-	  }	  
+		var displayLang = prettyNames[lang] 
+		? prettyNames[lang] 
+		: lang.charAt(0).toUpperCase() + lang.slice(1);
+		$btn.prepend('<span class="copy-btn-lang">' + displayLang + '</span>');
+	  }
 
 	// 4. Append button to wrapper
 	$wrapper.append($btn);
