@@ -312,6 +312,18 @@ pre.highlight {
   line-height: 1;
 }
 
+/* Style for the language label inside the button */
+.copy-btn-lang {
+  margin-right: 6px;
+  text-transform: lowercase; /* 'BASH' -> 'bash' */
+  font-size: 0.75em;         /* Slightly smaller than icon */
+  opacity: 0.8;
+  vertical-align: middle;    /* Aligns with emoji baseline */
+  display: inline-block;
+  line-height: 1;
+}
+
+
 .highlight-wrapper .copy-btn:hover {
   opacity: 1;
   background: rgba(0,0,0,0.7);

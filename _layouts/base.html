@@ -211,31 +211,21 @@ $(document).ready(function() {
     var $code = $(this);
     var $pre = $code.parent('pre');
 
-    // Avoid double-wrapping if script runs twice
-    if ($pre.parent('.highlight-wrapper').length) return;
+	var $outer = $pre.closest('.highlighter-rouge, .highlight'); // Matches either class
+	// 2. Extract language from the outer container's class list
+	var lang = '';
+	var classes = $outer.attr('class') || '';
+	var match = classes.match(/language-(\S+)/);
+	if (match) lang = match[1]; // Returns 'bash', 'ruby', 'python', etc.
+
 
     // 2. Wrap <pre> in a div for positioning context
+    if ($pre.parent('.highlight-wrapper').length) return; // Avoid double-wrapping if script runs twice
     $pre.wrap('<div class="highlight-wrapper" style="position: relative; margin: 1.5em 0;"></div>');
     var $wrapper = $pre.parent('.highlight-wrapper');
 
     // 3. Create the button
     var $btn = $('<button class="copy-btn" aria-label="Copy code" title="Copy to clipboard">📋</button>')
-      /*.css({
-        position: 'absolute',
-        top: '0.4rem',
-        right: '0.4rem',   // Change to 'left: 0.4rem' if you strictly want LEFT corner
-        zIndex: 10,
-        background: 'rgba(0,0,0,0.4)',
-        color: '#fff',
-        border: 'none',
-        borderRadius: '4px',
-        padding: '0.2rem 0.5rem',
-        fontSize: '0.85rem',
-        cursor: 'pointer',
-        opacity: '0.7',
-        transition: 'opacity 0.2s, background 0.2s',
-        lineHeight: 1
-      })*/
       .hover(
         function () { $(this).css({ opacity: 1, background: 'rgba(0,0,0,0.7)' }); },
         function () { $(this).css({ opacity: 0.7, background: 'rgba(0,0,0,0.4)' }); }
@@ -258,9 +248,14 @@ $(document).ready(function() {
           }, 1500);
         });
       });
+	  
+	  if (lang) {
+		// Use a span with a class for styling via CSS (better than inline styles)
+		$btn.prepend('<span class="copy-btn-lang">' + lang + '</span>');
+	  }	  
 
-    // 4. Append button to wrapper
-    $wrapper.append($btn);
+	// 4. Append button to wrapper
+	$wrapper.append($btn);
 
     // 5. Ensure <pre> has padding so code doesn't hide under button
     // (Only add if not already sufficient)
@@ -268,14 +263,9 @@ $(document).ready(function() {
     if (currentPadding < 28) { // ~ height of button + margin
       $pre.css('padding-top', '2.2rem');
     }*/
-	
-	var lang = ($code.attr('class') || '').replace('language-', '');
-	if (lang) $btn.prepend('<span style="margin-right:4px;text-transform:lowercase;">' + lang + '</span>');
 
   });
 
-  
-  
 });
 
 
