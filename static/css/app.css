@@ -247,37 +247,38 @@ a.header-link:hover
 pre.highlight {
     background-color: white;
     padding: 4px;
+    border:1px solid #BDBDBD;
 }
 
 /* Container for positioning */
 .highlight-wrapper {
   position: relative;
   margin: 1.5em 0;
+  background: #1e1e1e;
+  border-radius: 6px;
+  overflow: hidden;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 }
 
 /* 1. The "Title Bar" Background */
 .highlight-wrapper::before {
-  content: "";               /* Required for pseudo-element to show */
+  content: "";              
   display: block;
   position: absolute;
-  top: 0; left: 0; right: 0; /* Stretch full width */
-  height: 2.2rem;            /* Match the padding-top on <pre> (approx 35px) */
-  background: #f0f0f0;       /* <<< YOUR GREY SHADE HERE */
-  border-top-left-radius: 6px;  /* Match wrapper/pre radius if you have them */
-  border-top-right-radius: 6px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #BDBDBD;
+  top: 0; left: 0; right: 0; 
+  height: 2.2rem;
+  background: #333;       /* <<< YOUR GREY SHADE HERE */
   z-index: 0;                /* Sit BEHIND the button (z-index: 10) and code */
   pointer-events: none;      /* Clicks pass through to button/code */
 }
 
 /* Option A: If your Rouge theme sets background on PRE (common) */
 .highlight-wrapper pre {
+  margin: 0;
+  padding: 2.2rem 1rem 1rem 1rem; 
   background: transparent !important; /* Let the wrapper handle background */
   border-radius: 6px;
-  padding-top: 2.2rem;                /* Push code down past the bar */
-  margin: 0;
+  overflow-x: auto;
 }
 
 @media DISABLED_BLOCK_COMMENT {
@@ -300,42 +301,51 @@ pre.highlight {
 /* The Button */
 .highlight-wrapper .copy-btn {
   position: absolute;
-  top: 0.4rem;
-  right: 0.4rem;       /* Use left: 0.4rem for top-left */
+  top: 0.35rem;
+  right: 0.6rem;
   z-index: 10;
-  background: rgba(0,0,0,0.4);
-  color: #fff;
-  border: none;
+  background: rgba(255,255,255,0.1);
+  color: #ddd;
+  border: 1px solid rgba(255,255,255,0.2);
   border-radius: 4px;
   padding: 3px 3px;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   cursor: pointer;
   opacity: 0.7;
   transition: opacity 0.2s, background 0.2s;
   line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Style for the language label inside the button */
-.copy-btn-lang {
-  white-space: nowrap;        /* Prevents wrapping on narrow screens */
-  margin-right: 6px;
-  text-transform: lowercase; /* 'BASH' -> 'bash' */
-  font-size: 0.75em;         /* Slightly smaller than icon */
+.highlight-lang-label {
+  position: absolute;
+  top: 0;
+  left: 0.75rem;                /* Padding from left edge */
+  height: 2.2rem;               /* Match bar height */
+  line-height: 2.2rem;          /* Vertically center text */
+  z-index: 1;                   /* Above ::before bar (z-index: 0) */
+  color: #aaa;                  /* Muted grey text */
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  pointer-events: none;         /* Clicks pass through to button/code */
+  white-space: nowrap;
   opacity: 0.8;
-  vertical-align: middle;    /* Aligns with emoji baseline */
-  display: inline-block;
-  line-height: 1;
 }
 
 
 .highlight-wrapper .copy-btn:hover {
   opacity: 1;
-  background: rgba(0,0,0,0.7);
+  background: rgba(255,255,255,0.2); 
 }
 
-/* Success/Error states (applied via JS) */
-.highlight-wrapper .copy-btn.copied { background: #28a745; opacity: 1; }
-.highlight-wrapper .copy-btn.failed { background: #dc3545; opacity: 1; }
+.highlight-wrapper .copy-btn.copied { background: #28a745; border-color: #28a745; opacity: 1; }
+.highlight-wrapper .copy-btn.failed { background: #dc3545; border-color: #dc3545; opacity: 1; }
+
+.copy-btn-icon { display: inline-block; line-height: 1; }
 
 /* Ensure code doesn't overlap button */
 .highlight-wrapper pre {

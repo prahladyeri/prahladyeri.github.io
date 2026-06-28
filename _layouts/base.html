@@ -247,21 +247,27 @@ $(document).ready(function() {
   $('pre > code').each(function () {
     var $code = $(this);
     var $pre = $code.parent('pre');
+	if ($pre.parent('.highlight-wrapper').length) return;
 
-	var $outer = $pre.closest('.highlighter-rouge'); // Matches either class
-	// 2. Extract language from the outer container's class list
-	var lang = '';
-	var classes = $outer.attr('class') || '';
-	var match = classes.match(/language-(\S+)/);
-	if (match) lang = match[1]; // Returns 'bash', 'ruby', 'python', etc.
-
-
-    // 2. Wrap <pre> in a div for positioning context
-    if ($pre.parent('.highlight-wrapper').length) return; // Avoid double-wrapping if script runs twice
-    $pre.wrap('<div class="highlight-wrapper" style="position: relative; margin: 1.5em 0;"></div>');
+	// Wrap <pre> in a div for positioning context
+	$pre.wrap('<div class="highlight-wrapper" style="position: relative; margin: 1.5em 0;"></div>');
     var $wrapper = $pre.parent('.highlight-wrapper');
 
-    // 3. Create the button
+	// Extract language from the outer container's class list
+	var lang = '';
+	var $outer = $pre.closest('.highlighter-rouge'); // Matches either class
+	var classes = $outer.attr('class') || '';
+	var match = classes.match(/language-(\S+)/);
+	if (match) lang = match[1];
+
+	if (lang) {
+		var displayLang = prettyNames[lang] || lang.charAt(0).toUpperCase() + lang.slice(1);
+		//$btn.prepend('<span class="copy-btn-lang">' + displayLang + '</span>');
+		var $langLabel = $('<span class="highlight-lang-label"></span>').text(displayLang);
+		$wrapper.append($langLabel);
+	}
+
+    // Create the button
     var $btn = $('<button class="copy-btn" aria-label="Copy code" title="Copy to clipboard">'
 		+ '<span class="copy-btn-icon">📋</span>'
 		+ "</button>")
@@ -292,14 +298,7 @@ $(document).ready(function() {
         });
       });
 	  
-	  if (lang) {
-		var displayLang = prettyNames[lang] 
-		? prettyNames[lang] 
-		: lang.charAt(0).toUpperCase() + lang.slice(1);
-		$btn.prepend('<span class="copy-btn-lang">' + displayLang + '</span>');
-	  }
-
-	// 4. Append button to wrapper
+	// Append button to wrapper
 	$wrapper.append($btn);
 
     // 5. Ensure <pre> has padding so code doesn't hide under button
