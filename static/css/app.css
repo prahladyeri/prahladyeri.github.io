@@ -304,7 +304,7 @@ pre.highlight {
   color: #fff;
   border: none;
   border-radius: 4px;
-  padding: 3px 1px;
+  padding: 3px 3px;
   font-size: 0.85rem;
   cursor: pointer;
   opacity: 0.7;
@@ -337,6 +337,7 @@ pre.highlight {
 .highlight-wrapper pre {
   padding-top: 2.2rem !important; /* Overrides inline style if needed */
   margin: 0 !important;           /* Rouge often adds margin; wrapper handles spacing */
+  border: 1.2px solid #9E9E9E;
 }
 
 
