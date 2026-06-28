@@ -249,6 +249,46 @@ pre.highlight {
     padding: 4px;
 }
 
+/* Container for positioning */
+.highlight-wrapper {
+  position: relative;
+  margin: 1.5em 0;
+}
+
+/* The Button */
+.highlight-wrapper .copy-btn {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;       /* Use left: 0.4rem for top-left */
+  z-index: 10;
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s, background 0.2s;
+  line-height: 1;
+}
+
+.highlight-wrapper .copy-btn:hover {
+  opacity: 1;
+  background: rgba(0,0,0,0.7);
+}
+
+/* Success/Error states (applied via JS) */
+.highlight-wrapper .copy-btn.copied { background: #28a745; opacity: 1; }
+.highlight-wrapper .copy-btn.failed { background: #dc3545; opacity: 1; }
+
+/* Ensure code doesn't overlap button */
+.highlight-wrapper pre {
+  padding-top: 2.2rem !important; /* Overrides inline style if needed */
+  margin: 0 !important;           /* Rouge often adds margin; wrapper handles spacing */
+}
+
+
 /* Apply word wrapping to highlighted code blocks */
 @media (max-width: 768px) {
 	.the-content .highlight,

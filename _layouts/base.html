@@ -204,7 +204,77 @@ $(document).ready(function() {
       $('.dropdown-wrapper').removeClass('open');
     }
   });
+  
+  // copy-button for code
+  // 1. Find all Rouge code blocks (pre > code)
+  $('pre > code').each(function () {
+    var $code = $(this);
+    var $pre = $code.parent('pre');
+
+    // Avoid double-wrapping if script runs twice
+    if ($pre.parent('.highlight-wrapper').length) return;
+
+    // 2. Wrap <pre> in a div for positioning context
+    $pre.wrap('<div class="highlight-wrapper" style="position: relative; margin: 1.5em 0;"></div>');
+    var $wrapper = $pre.parent('.highlight-wrapper');
+
+    // 3. Create the button
+    var $btn = $('<button class="copy-btn" aria-label="Copy code" title="Copy to clipboard">📋</button>')
+      /*.css({
+        position: 'absolute',
+        top: '0.4rem',
+        right: '0.4rem',   // Change to 'left: 0.4rem' if you strictly want LEFT corner
+        zIndex: 10,
+        background: 'rgba(0,0,0,0.4)',
+        color: '#fff',
+        border: 'none',
+        borderRadius: '4px',
+        padding: '0.2rem 0.5rem',
+        fontSize: '0.85rem',
+        cursor: 'pointer',
+        opacity: '0.7',
+        transition: 'opacity 0.2s, background 0.2s',
+        lineHeight: 1
+      })*/
+      .hover(
+        function () { $(this).css({ opacity: 1, background: 'rgba(0,0,0,0.7)' }); },
+        function () { $(this).css({ opacity: 0.7, background: 'rgba(0,0,0,0.4)' }); }
+      )
+      .on('click', function () {
+        var text = $code.text(); // Get raw text from the <code> element
+        navigator.clipboard.writeText(text).then(function () {
+          // Success feedback
+          var $this = $(this);
+          $this.text('✅').css({ background: '#28a745' });
+          setTimeout(function () {
+            $this.text('📋').css({ background: 'rgba(0,0,0,0.4)' });
+          }, 1500);
+        }.bind(this), function () {
+          // Fallback / Error feedback
+          var $this = $(this);
+          $this.text('❌').css({ background: '#dc3545' });
+          setTimeout(function () {
+            $this.text('📋').css({ background: 'rgba(0,0,0,0.4)' });
+          }, 1500);
+        });
+      });
+
+    // 4. Append button to wrapper
+    $wrapper.append($btn);
+
+    // 5. Ensure <pre> has padding so code doesn't hide under button
+    // (Only add if not already sufficient)
+    /*var currentPadding = parseFloat($pre.css('padding-top')) || 0;
+    if (currentPadding < 28) { // ~ height of button + margin
+      $pre.css('padding-top', '2.2rem');
+    }*/
+  });
+
+  
+  
 });
+
+
 </script>
 </body>
 </html>
