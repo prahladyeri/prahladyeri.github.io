@@ -317,6 +317,7 @@ pre.highlight {
 
 /* Style for the language label inside the button */
 .copy-btn-lang {
+  white-space: nowrap;        /* Prevents wrapping on narrow screens */
   margin-right: 6px;
   text-transform: lowercase; /* 'BASH' -> 'bash' */
   font-size: 0.75em;         /* Slightly smaller than icon */

@@ -180,6 +180,43 @@
 </div>
 
 <script>
+var prettyNames = {
+	'csharp': 'C#',       // <--- The one you asked for
+	'cpp': 'C++',         // Bonus: C++ renders correctly too
+	'fsharp': 'F#',       // Bonus: F#
+	'js': 'JavaScript',
+	'ts': 'TypeScript',
+	'py': 'Python',
+	'rb': 'Ruby',
+	'sh': 'Shell',
+	'bash': 'Bash',
+	'zsh': 'Zsh',
+	'ps1': 'PowerShell',
+	'ps': 'PowerShell',
+	'yml': 'YAML',
+	'yaml': 'YAML',
+	'md': 'Markdown',
+	'html': 'HTML',
+	'css': 'CSS',
+	'scss': 'SCSS',
+	'json': 'JSON',
+	'xml': 'XML',
+	'sql': 'SQL',
+	'dockerfile': 'Dockerfile',
+	'tf': 'Terraform',
+	'hcl': 'Terraform',
+	'go': 'Go',
+	'rs': 'Rust',
+	'kt': 'Kotlin',
+	'swift': 'Swift',
+	'php': 'PHP',
+	'java': 'Java',
+	'cs': 'C#',           // Alias sometimes used
+	'vb': 'VB.NET',
+	'fs': 'F#'
+};
+
+
 $(document).ready(function() {
   // Toggle dropdown on clicking the trigger link
   $('.dropdown-trigger').on('click', function(e) {
@@ -205,45 +242,6 @@ $(document).ready(function() {
     }
   });
   
-
-	var prettyNames = {
-	  'csharp': 'C#',       // <--- The one you asked for
-	  'cpp': 'C++',         // Bonus: C++ renders correctly too
-	  'fsharp': 'F#',       // Bonus: F#
-	  'js': 'JavaScript',
-	  'ts': 'TypeScript',
-	  'py': 'Python',
-	  'rb': 'Ruby',
-	  'sh': 'Shell',
-	  'bash': 'Bash',
-	  'zsh': 'Zsh',
-	  'ps1': 'PowerShell',
-	  'ps': 'PowerShell',
-	  'yml': 'YAML',
-	  'yaml': 'YAML',
-	  'md': 'Markdown',
-	  'html': 'HTML',
-	  'css': 'CSS',
-	  'scss': 'SCSS',
-	  'json': 'JSON',
-	  'xml': 'XML',
-	  'sql': 'SQL',
-	  'dockerfile': 'Dockerfile',
-	  'tf': 'Terraform',
-	  'hcl': 'Terraform',
-	  'go': 'Go',
-	  'rs': 'Rust',
-	  'kt': 'Kotlin',
-	  'swift': 'Swift',
-	  'php': 'PHP',
-	  'java': 'Java',
-	  'cs': 'C#',           // Alias sometimes used
-	  'vb': 'VB.NET',
-	  'fs': 'F#'
-	};
-
-
-  
   // copy-button for code
   // 1. Find all Rouge code blocks (pre > code)
   $('pre > code').each(function () {
@@ -264,26 +262,32 @@ $(document).ready(function() {
     var $wrapper = $pre.parent('.highlight-wrapper');
 
     // 3. Create the button
-    var $btn = $('<button class="copy-btn" aria-label="Copy code" title="Copy to clipboard">📋</button>')
+    var $btn = $('<button class="copy-btn" aria-label="Copy code" title="Copy to clipboard">'
+		+ '<span class="copy-btn-icon">📋</span>'
+		+ "</button>")
       .hover(
         function () { $(this).css({ opacity: 1, background: 'rgba(0,0,0,0.7)' }); },
         function () { $(this).css({ opacity: 0.7, background: 'rgba(0,0,0,0.4)' }); }
       )
       .on('click', function () {
-        var text = $code.text(); // Get raw text from the <code> element
+        var text = $code.text();
+		var $this = $(this);
+		var $icon = $this.find('.copy-btn-icon');
+
         navigator.clipboard.writeText(text).then(function () {
-          // Success feedback
-          var $this = $(this);
-          $this.text('✅').css({ background: '#28a745' });
+          $icon.text('✅');
+		  $this.css({ background: '#28a745' });
           setTimeout(function () {
-            $this.text('📋').css({ background: 'rgba(0,0,0,0.4)' });
+			$icon.text('📋');
+            $this.css({ background: 'rgba(0,0,0,0.4)' });
           }, 1500);
-        }.bind(this), function () {
+        }, function () {
           // Fallback / Error feedback
-          var $this = $(this);
-          $this.text('❌').css({ background: '#dc3545' });
+          $icon.text('❌')
+		  $this.css({ background: '#dc3545' });
           setTimeout(function () {
-            $this.text('📋').css({ background: 'rgba(0,0,0,0.4)' });
+            $icon.text('📋');
+			$this.css({ background: 'rgba(0,0,0,0.4)' });
           }, 1500);
         });
       });
