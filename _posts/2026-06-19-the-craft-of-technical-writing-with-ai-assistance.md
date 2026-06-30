@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The craft of authoring technical guides, books, tutorials and documentation with AI assistance"
-tags: technical-writing ai-model ai
+tags: technical-writing ai-model ai tutorial
 published: true
 image: /uploads/books.jpg
 description: "A practical, three-file workflow for using AI to write technical books, tutorials, and documentation, including prompt templates and model selection tips."
