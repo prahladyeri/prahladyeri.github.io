@@ -4,13 +4,70 @@ layout: page
 published: true
 ---
 
+<style>
+/* Contact Form */
+
+form {
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+label {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+}
+
+input,
+textarea {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 0.6rem 0.8rem;
+
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    font: inherit;
+}
+
+textarea {
+    min-height: 180px;
+    resize: vertical;
+}
+
+button {
+    margin-top: 1.25rem;
+
+    padding: 0.7rem 1.4rem;
+
+    border: none;
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    font: inherit;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+</style>
+
 <form id="contactForm">
 
     <label for="name">Name:</label>
-    <input name="name"  autocomplete="name" required>
+    <input id='name' name="name"  autocomplete="name" required>
 
     <label for="email">Email:</label>
-    <input name="email" autocomplete="email" type="email" placeholder='you@example.com' required>
+    <input id='email' name="email" autocomplete="email" type="email" placeholder='you@example.com' required>
 
     <label for="message">Message:</label>
 	<textarea
