@@ -1,0 +1,56 @@
+---
+title: Contact
+layout: page
+published: true
+---
+
+<form id="contactForm">
+    <label for="name">Name:</label>
+    <input name="name"  autocomplete="name" required>
+
+    <label for="email">Email:</label>
+    <input name="email" autocomplete="email" type="email" placeholder='you@example.com' required>
+
+    <label for="message">Message:</label>
+	<textarea
+		id="message"
+		name="message"
+		maxlength="4000"
+		required></textarea>
+
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    const body = {
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value
+    };
+
+    const response = await fetch(
+        "https://contact.prahladyeri14.workers.dev/",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        }
+    );
+
+    const result = await response.json();
+
+    if (result.success) {
+        alert("Message sent successfully.");
+        form.reset();
+    } else {
+        alert(result.error);
+    }
+});
+</script>

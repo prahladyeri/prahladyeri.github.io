@@ -14,7 +14,7 @@ connect_links:
   - text: "/stackoverflow"
     url: "https://stackoverflow.com/users/849365/prahlad-yeri"
   - text: "/contact"
-    url: "mailto:prahladyeri@yahoo.com"
+    url: "/contact.html"
   - text: "/feed"
     url: "/atom.xml"
     
