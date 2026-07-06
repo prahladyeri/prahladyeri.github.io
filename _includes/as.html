@@ -12,5 +12,18 @@
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
+<script>
+(function () {
+  var ins = document.currentScript.previousElementSibling.previousElementSibling; // the <ins>
+  setTimeout(function () {
+    // if the ad never rendered, offsetHeight will still be 0
+    if (ins && ins.offsetHeight === 0) {
+      var wrapper = ins.closest('.adsense-block');
+      if (wrapper) wrapper.style.display = 'none';
+    }
+  }, 1500);
+})();
+</script>
 {% endif %}
 <!--end: adsense-->
