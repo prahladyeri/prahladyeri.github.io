@@ -1,3 +1,10 @@
+- name: "Gubbi"
+  id: "gubbi"
+  tagline: "Minimalist LLM chatbot"
+  description: "A minimal, chat-native LLM client for people who work in terminals and want explicit control over file attachments, session files, and provider switching without learning a plugin system."
+  github: "https://github.com/prahladyeri/gubbi"
+  tech: ["python", "llm", "ai"]
+
 - name: "Abhyasa"
   id: "abhyasa"
   tagline: "Modular Quiz and Assessment Engine"
