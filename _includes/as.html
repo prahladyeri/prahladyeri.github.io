@@ -18,7 +18,8 @@
   var ins = document.currentScript.previousElementSibling.previousElementSibling; // the <ins>
   setTimeout(function () {
     // if the ad never rendered, offsetHeight will still be 0
-    if (ins && ins.offsetHeight === 0) {
+    //if (ins && ins.offsetHeight === 0) {
+	if ($("ins").find("iframe").contents().length == 0) {
       var wrapper = ins.closest('.adsense-block');
       if (wrapper) wrapper.style.display = 'none';
     }
