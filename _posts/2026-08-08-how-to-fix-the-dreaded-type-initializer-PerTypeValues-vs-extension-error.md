@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to fix the dreaded 'The type initializer for PerTypeValues threw an exception' during Visual Studio Extension installation"
+title: "Fix: 'The type initializer for PerTypeValues threw an exception' in Visual Studio"
 tags: dotnet visual-studio windows
 published: true
 image: /uploads/dotnet-feature-image.png
