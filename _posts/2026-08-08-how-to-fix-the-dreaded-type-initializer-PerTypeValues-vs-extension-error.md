@@ -49,12 +49,11 @@ If Visual Studio still doesn't recognize the extension after copying, try applyi
 1. Close all Visual Studio instances.
 2. Open the **Developer Command Prompt for VS 2022** (as Administrator).
 3. Reset settings and update configuration:
+
 ```bash
 devenv /ResetSettings
 devenv /updateConfiguration
-
 ```
-
 
 4. Reopen Visual Studio 2022, navigate to **Extensions > Manage Extensions**, and check if the extension is active.
 
