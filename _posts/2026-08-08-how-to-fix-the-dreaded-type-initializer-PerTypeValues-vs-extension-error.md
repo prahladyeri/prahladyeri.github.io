@@ -6,8 +6,6 @@ published: true
 image: /uploads/dotnet-feature-image.png
 ---
 
-# How to fix the dreaded 'The type initializer for PerTypeValues threw an exception' during Visual Studio Extension installation
-
 Yesterday, I was trying to install the [RDLC Report Designer Extension](https://marketplace.visualstudio.com/items?itemName=ProBITools.MicrosoftRdlcReportDesignerforVisualStudio2022&ssr=false) for my Visual Studio 2022 and I was greeted with a strange and obnoxious error right after double-clicking the vsix installation file:
 
 > The type initializer for 'PerTypeValues'1' threw an exception.
